@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace\Models;
+
+class DummyClass extends BaseModel
+{
+    //protected $table = '';
+    //protected $casts = [];
+
+    //=== RELATIONSHIPS ===//
+
+    //=== ATTRIBUTES ===//
+
+    //=== SCOPES ===//
+
+}

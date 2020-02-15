@@ -1,6 +1,6 @@
 # Stockwatch App
 
-##Getting Started
+## Getting Started
 
 
 
