@@ -14,7 +14,7 @@ class AdjustColumnsForAuthentication extends Migration
     public function up()
     {
         Schema::table('users', static function (Blueprint $table) {
-            $table->string('password')->nullable();
+            $table->string('password')->nullable()->change();
         });
 
     }
