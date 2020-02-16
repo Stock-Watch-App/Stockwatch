@@ -16,9 +16,9 @@ Vue.use(VueTailwind)
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faStar, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faStar, faArrowUp)
+library.add(faStar, faArrowUp, faBars)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -34,10 +34,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('slideout-nav', require('./components/SlideoutNav.vue').default);
 // Vue.component('stock-card', require('./components/StockCard.vue').default);
 
 import StockCard from './components/StockCard.vue';
 import StockCardList from './components/StockCardList.vue';
+import Slideout from 'vue-slideout'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,6 +52,8 @@ const app = new Vue({
     // local registration, I think?
     components: {
         StockCard,
-        StockCardList
+        StockCardList,
+        Slideout
     }
 });
+
