@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -55,8 +57,40 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver($provider)->user();
+        $provider_user = Socialite::driver($provider)->user();
+        $user = $this->createOrGetUser(Socialite::driver($provider)->user(), $provider);
 
-        // $user->token;
+        Auth::login($user);
+
+        return redirect()->to('/home');
+    }
+
+    private function createOrGetUser($providerUser, $provider)
+    {
+        $user = User::where('provider', $provider)
+                    ->where('provider_user_id', $providerUser->getId())
+                    ->first();
+
+        if ($user) {
+            //Return account if found
+            return $user;
+        } else {
+
+            //Check if user with same email address exist
+            $user = User::where('email', $providerUser->getEmail())->first();
+
+            //Create user if dont'exist
+            if (!$user) {
+                $user = User::create([
+                    'email' => $providerUser->getEmail(),
+                    'name'  => $providerUser->getName()
+                    'provider'         => $provider
+                    'provider_user_id' => $providerUser->getId(),
+                ]);
+
+            }
+
+            return $user;
+        }
     }
 }
