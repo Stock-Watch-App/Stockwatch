@@ -19,9 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<body class="bg-gray-900 text-white h-screen">
+    <div id="app" class="grid grid-cols-12">
+        <nav class="bg-gray-800 text-white shadow-md p-3 col-span-2 h-screen">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -72,7 +72,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 col-span-10">
             @yield('content')
         </main>
     </div>

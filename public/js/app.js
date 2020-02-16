@@ -47593,9 +47593,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "li",
-    {
-      staticClass: "bg-gray-800 text-white rounded-lg border shadow-md p-3 z-10"
-    },
+    { staticClass: "bg-gray-800 text-white rounded-lg shadow-md p-3 z-10" },
     [
       _c("img", { attrs: { src: "/" } }),
       _vm._v(" "),
