@@ -14,3 +14,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/privacy', [LegalController::class, 'privacy']);
 Route::get('/tos', [LegalController::class, 'tos']);
+
+//===SAMPLE ROUTE===//
+//Route::get('/route', function () {
+//    return view('dir.file');
+//});
