@@ -8,6 +8,20 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// import tailwind globally
+import VueTailwind from 'vue-tailwind'
+Vue.use(VueTailwind)
+
+// font awesome icons
+// not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faStar, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStar, faArrowUp, faBars)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +34,12 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('slideout-nav', require('./components/SlideoutNav.vue').default);
+// Vue.component('stock-card', require('./components/StockCard.vue').default);
+
+import StockCard from './components/StockCard.vue';
+import StockCardList from './components/StockCardList.vue';
+import Slideout from 'vue-slideout'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +49,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    // local registration, I think?
+    components: {
+        StockCard,
+        StockCardList,
+        Slideout
+    }
 });
+
