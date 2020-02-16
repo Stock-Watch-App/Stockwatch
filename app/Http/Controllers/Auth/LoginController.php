@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -57,7 +58,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        $provider_user = Socialite::driver($provider)->user();
+//        $provider_user = Socialite::driver($provider)->user();
         $user = $this->createOrGetUser(Socialite::driver($provider)->user(), $provider);
 
         Auth::login($user);
@@ -83,8 +84,8 @@ class LoginController extends Controller
             if (!$user) {
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
-                    'name'  => $providerUser->getName()
-                    'provider'         => $provider
+                    'name' => $providerUser->getName(),
+                    'provider' => $provider,
                     'provider_user_id' => $providerUser->getId(),
                 ]);
 
