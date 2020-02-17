@@ -100,7 +100,8 @@ class LoginController extends Controller
 
     private function saveImageAvatar($avatar, $userId)
     {
-        Storage::disk('local')->put("/users/images/{$userId}_avatar.jpg", file_get_contents($avatar));
+        $path = "/users/images/{$userId}_avatar.jpg";
+        Storage::disk('local')->put($path, file_get_contents($avatar));
         Image::create([
             'path'           => $path,
             'imageable_type' => User::class,
