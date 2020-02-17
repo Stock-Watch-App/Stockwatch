@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Image;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -57,9 +60,10 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        $provider_user = Socialite::driver($provider)->user();
+//        $provider_user = Socialite::driver($provider)->user();
+        dump(Socialite::driver($provider));
         $user = $this->createOrGetUser(Socialite::driver($provider)->user(), $provider);
-
+//https://id.twitch.tv/oauth2/authorize?client_id=plqz2vn4cg6s5m9ja7fs5vcink1cbg&redirect_uri=http%3A%2F%2Fstockwatch.localhost%2Flogin%2Ftwitch%2Fcallback&response_type=code&scope=user:read:email
         Auth::login($user);
 
         return redirect()->to('/home');
@@ -82,15 +86,27 @@ class LoginController extends Controller
             //Create user if dont'exist
             if (!$user) {
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
-                    'name'  => $providerUser->getName()
-                    'provider'         => $provider
-                    'provider_user_id' => $providerUser->getId(),
+                    'email'            => $providerUser->getEmail(),
+                    'name'             => $providerUser->getName(),
                 ]);
-
+                $user->provider = $provider;
+                $user->provider_user_id = $providerUser->getId();
+                $user->save();
+                $this->saveImageAvatar($providerUser->getAvatar(), $user->id);
             }
 
             return $user;
         }
+    }
+
+    private function saveImageAvatar($avatar, $userId)
+    {
+        $path = "/users/images/{$userId}_avatar.jpg";
+        Storage::disk('local')->put($path, file_get_contents($avatar));
+        Image::create([
+            'path'           => $path,
+            'imageable_type' => User::class,
+            'imageable_id'   => $userId
+        ]);
     }
 }
