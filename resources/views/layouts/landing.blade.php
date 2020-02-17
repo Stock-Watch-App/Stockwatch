@@ -18,11 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/landing.css') }}" rel="stylesheet">
 </head>
-<body class="bg-blue-900 text-white h-screen">
+<body>
     <div id="app">
-        <main id="panel" class="p-4">
+        <main id="panel" class="content">
             @yield('content')
         </main>
     </div>

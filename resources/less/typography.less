@@ -1,0 +1,122 @@
+@import './_variables.less';
+@import './_mixins.less';
+
+/** fluid-typography breaks down like this:
+* 320px (min)
+* 1440px (max)
+* 16px (base)
+* min-font
+* max-font
+* fallback font size
+*/
+
+// mixin
+.fluid-typography-rem(@min-screen: 320px, @max-screen: 1600px, @base-font: 16px, @min-font, @max-font, @fallbackFontSize) {
+    // min size font
+    font-size: @min-font;
+
+    @media screen and (min-width: unit((@min-screen / @base-font), ~'rem')) {
+        /* stylelint-disable */
+        font-size: ~'@{fallbackFontSize}';
+        font-size: calc(
+            @min-font ~' + ' unit(@max-font - @min-font) ~' * ((100vw - '
+                unit((@min-screen / @base-font), ~'rem') ~') /' unit(
+                    (@max-screen / @base-font) - (@min-screen / @base-font)
+                ) ~')'
+        );
+        /* stylelint-enable */
+    }
+
+    @media screen and (min-width: unit((@max-screen / @base-font), ~'rem')) {
+        // max size font
+        font-size: @max-font;
+    }
+}
+
+h1,
+.header1 {
+    color: black;
+    line-height: @smallerLineHeight;
+    margin-top: 0;
+    margin-bottom: @space-xs;
+    .fluid-typography-rem(@small-screen, @large-screen, @base, 1.6rem, 2rem, 1.75rem);
+}
+
+h2,
+.header2 {
+    color: black;
+    line-height: @smallerLineHeight;
+    margin-top: 0;
+    margin-bottom: @space-xs;
+    .fluid-typography-rem(@small-screen, @large-screen, @base, 1.3rem, 1.5rem, 1.4rem);
+}
+
+h3,
+.header3 {
+    color: black;
+    line-height: @smallerLineHeight;
+    margin-top: 0;
+    margin-bottom: @space-xs;
+    .fluid-typography-rem(@small-screen, @large-screen, @base, 1.2rem, 1.375rem, 1.3rem);
+}
+
+h4,
+.header4 {
+    color: black;
+    line-height: @smallerLineHeight;
+    margin-top: 0;
+    margin-bottom: @space-xs;
+    .fluid-typography-rem(@small-screen, @large-screen, @base, 1rem, 1.25rem, 1rem);
+}
+
+h5,
+.header5 {
+    color: black;
+    line-height: @baseLineHeight;
+    margin-top: 0;
+    margin-bottom: @space-xs;
+    .font-unit-rem(16);
+}
+
+h6,
+.header6 {
+    color: black;
+    line-height: @baseLineHeight;
+    margin-top: 0;
+    margin-bottom: @space-xs;
+    .font-unit-rem(16);
+}
+
+p,
+label {
+    color: black;
+    line-height: @baseLineHeight;
+    margin-bottom: @space-xs;
+    margin-top: 0;
+    .font-unit-rem(16);
+
+    &.bodySM {
+        .font-unit-rem(14);
+    }
+
+    &.bodyLight {
+        color: gray;
+    }
+}
+
+a {
+    color: @link;
+    text-decoration: none;
+
+    // &:hover,
+    // &:focus,
+    // &:active {
+    //     color: @link-hover;
+    //     text-decoration: none;
+    //     transition: @transition;
+    // }
+}
+
+.textCenter {
+    text-align: center;
+}

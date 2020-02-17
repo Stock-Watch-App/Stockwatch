@@ -1,0 +1,123 @@
+@import (reference) '_variables.less';
+
+.fpo {
+    background-color: black;
+    text-align: center;
+    .px-rem(padding, 15);
+    .px-rem-margin(15, 0, 15, 0);
+}
+
+// a11y outline mixin
+.a11yOutline {
+    outline: solid 2px @link;
+    outline-offset: -2px;
+}
+
+.visually-hidden() {
+	border:0 !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px !important;
+	overflow: hidden;
+	padding:0 !important;
+    position: absolute !important;
+	width: 1px !important;
+}
+
+/**
+ * @font-face LESS Mixin
+ * use: .font-fa *   @file-path,   // absolute/relative URL to font files
+ *   @font-weight, // 400/700
+ *   @font-style   // italic/normal/inherit
+ * )
+ */
+.font-face(@font-family, @file-path, @font-weight, @font-style) {
+    @font-face {
+        font-family: @font-family;
+        src: url('@{file-path}.woff2') format('woff2'),
+            // modern browsers
+                url('@{file-path}.woff')format('woff'),
+            // ie11
+                url('@{file-path}.ttf')format('truetype'); // Android 4.3 and older
+        font-weight: @font-weight;
+        font-style: @font-style;
+    }
+}
+
+
+//use when setting font size in rem
+.font-unit-rem(@fontSize) {
+    @rem-font: (@fontSize / @base);
+    font-size: ~'@{rem-font}rem';
+}
+
+// based on the font-size of the root HTML element
+.px-rem(@property; @sizeValue) {
+    @pxValue: @sizeValue;
+    @remValue: (@sizeValue / @base);
+    @{property}: ~'@{remValue}rem';
+}
+
+// based on the font-size of the parent element
+.px-em(@property; @sizeValue) {
+    @pxValue: @sizeValue;
+    @emValue: (@sizeValue / @base);
+    @{property}: ~'@{emValue}em';
+}
+
+// sets margins in rems
+// mtv = margin top value
+// usage .px-rem-margin(10, 20, 10, 30);
+.px-rem-margin(@mt: 0; @mr: 0; @mb: 0; @ml: 0;) {
+    @mtv: (@mt / @base);
+    @mrv: (@mr / @base);
+    @mbv: (@mb / @base);
+    @mlv: (@ml / @base);
+    margin: ~"@{mtv}rem" ~"@{mrv}rem" ~"@{mbv}rem" ~"@{mlv}rem";
+}
+
+// sets margins in ems
+// mtv = margin top value
+// usage .px-em-margin(10, 20, 10, 30);
+.px-em-margin(@mt: 0; @mr: 0; @mb: 0; @ml: 0;) {
+    @mtv: (@mt / @base);
+    @mrv: (@mr / @base);
+    @mbv: (@mb / @base);
+    @mlv: (@ml / @base);
+    margin: ~"@{mtv}em" ~"@{mrv}em" ~"@{mbv}em" ~"@{mlv}em";
+}
+
+// sets padding in ems
+// ptv = padding top value
+// usage .px-em-padding(10, 20, 10, 30);
+.px-em-padding(@pt: 0; @pr: 0; @pb: 0; @pl: 0;) {
+    @ptv: (@pt / @base);
+    @prv: (@pr / @base);
+    @pbv: (@pb / @base);
+    @plv: (@pl / @base);
+    padding: ~"@{ptv}em" ~"@{prv}em" ~"@{pbv}em" ~"@{plv}em";
+}
+
+// sets padding in rems
+// ptv = padding top value
+// usage .px-rem-padding(10, 20, 10, 30);
+.px-rem-padding(@pt: 0; @pr: 0; @pb: 0; @pl: 0;) {
+    @ptv: (@pt / @base);
+    @prv: (@pr / @base);
+    @pbv: (@pb / @base);
+    @plv: (@pl / @base);
+    padding: ~"@{ptv}rem" ~"@{prv}rem" ~"@{pbv}rem" ~"@{plv}rem";
+}
+
+/**
+ * Media LESS Mixin
+ * use: .media(
+ *   @breakpoint, // Breakpoint Value
+ *   @rules,   // Nested Rule Set for the media breakpoint
+ * )
+ */
+.media(@breakpoint , @rules) {
+    @media @breakpoint {
+        @rules();
+    }
+}

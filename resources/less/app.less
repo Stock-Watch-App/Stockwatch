@@ -1,0 +1,42 @@
+// Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
+
+@import './reset.less';
+@import './typography.less';
+
+// Variables
+@import './_variables.less';
+@import './_mixins.less';
+
+// sign up landing page
+@import './landing.less';
+
+// components
+@import 'component-card.less';
+
+// Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+
+// @import 'tailwind';
+
+body {
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1em;
+    line-height: @baseLineHeight;
+    background: @american-river;
+}
+
+// content will span full width of page with standard padding on each side
+// aligns with navbar and breadcrumb
+// above 1440px will have set width
+.content {
+    margin: 0 auto;
+    .px-rem-padding(20, 15, 20, 15);
+}
+
+.media(@min-lg-desktop, {
+    .content {
+        width: @lg-desktop;
+    }
+});

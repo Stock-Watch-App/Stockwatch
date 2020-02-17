@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white h-screen">
+<body class="content">
     <div id="app">
         <div>
             <slideout-nav></slideout-nav>
