@@ -40,11 +40,6 @@ return [
         'client_secret' => env('DISCORD_SECRET'),
         'redirect'      => env('DISCORD_REDIRECT_URI')
     ],
-    'reddit' => [
-        'client_id'     => env('REDIIT_KEY'),
-        'client_secret' => env('REDIIT_SECRET'),
-        'redirect'      => env('REDIIT_REDIRECT_URI')
-    ],
     'twitch' => [
         'client_id'     => env('TWITCH_KEY'),
         'client_secret' => env('TWITCH_SECRET'),

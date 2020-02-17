@@ -61,8 +61,9 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
 //        $provider_user = Socialite::driver($provider)->user();
+        dump(Socialite::driver($provider));
         $user = $this->createOrGetUser(Socialite::driver($provider)->user(), $provider);
-
+//https://id.twitch.tv/oauth2/authorize?client_id=plqz2vn4cg6s5m9ja7fs5vcink1cbg&redirect_uri=http%3A%2F%2Fstockwatch.localhost%2Flogin%2Ftwitch%2Fcallback&response_type=code&scope=user:read:email
         Auth::login($user);
 
         return redirect()->to('/home');
