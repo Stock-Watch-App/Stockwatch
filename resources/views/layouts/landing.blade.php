@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="landing">
     <div id="app">
         <main id="panel" class="content">
             @yield('content')

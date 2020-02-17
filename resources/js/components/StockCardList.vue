@@ -1,5 +1,5 @@
 <template>
-    <ul class="grid grid-cols-2 gap-4">
+    <ul class="stock-cards">
         <StockCard
             v-for="houseguestDetail in houseguestDetails"
             :key="houseguestDetail.id"

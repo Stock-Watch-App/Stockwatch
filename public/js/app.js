@@ -19484,10 +19484,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19496,7 +19496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* this looks very scary and wrong */\n/* .slideout-menu {\n    @apply bg-gray-800 text-white shadow-md p-3 col-span-2 h-screen fixed z-0 hidden overflow-y-scroll scrolling-touch inset-y-0;\n    width: 256px;\n} */\n.slideout-menu-left {\n    left: 0;\n}\n.slideout-menu-right {\n    right: 0;\n}\n.slideout-panel {\n    position: relative;\n    z-index: 1;\n    will-change: transform;\n    min-height: 100vh;\n}\n.slideout-open,\n.slideout-open body,\n.slideout-open .slideout-panel {\n    overflow: hidden;\n}\n.slideout-open .slideout-menu {\n    display: block;\n}\n@media screen and (min-width: 780px) {\n.slideout-panel {\n      margin-left: 256px;\n}\n.slideout-menu {\n      display: block;\n}\n.toggle-button {\n      display: none;\n}\n}\n", ""]);
+exports.push([module.i, "\n.slideout-menu {\n    width: 256px;\n    background-color: #2C2C30;\n    position: fixed;\n    height: 100vh;\n    grid-column: span 2;\n}\n.slideout-menu-left {\n    left: 0;\n}\n.slideout-menu-right {\n    right: 0;\n}\n.slideout-panel {\n    position: relative;\n    z-index: 1;\n    will-change: transform;\n    min-height: 100vh;\n}\n.slideout-open,\n.slideout-open body,\n.slideout-open .slideout-panel {\n    overflow: hidden;\n}\n.slideout-open .slideout-menu {\n    display: block;\n}\n@media screen and (min-width: 780px) {\n.slideout-panel {\n      margin-left: 256px;\n}\n.slideout-menu {\n      display: block;\n}\n.toggle-button {\n      display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -50913,15 +50913,15 @@ module.exports = Slideout;
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SlideoutNav.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css&");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -51992,41 +51992,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "li",
-    { staticClass: "bg-gray-800 text-white rounded-lg shadow-md p-3 z-10" },
-    [
-      _c("img", { attrs: { src: "/" } }),
-      _vm._v(" "),
-      _c("h3", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
+  return _c("li", { staticClass: "card dark" }, [
+    _c("img", { attrs: { src: "/" } }),
+    _vm._v(" "),
+    _c("h3", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c("font-awesome-icon", { attrs: { icon: "star" } }),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.houseguestDetails.currentRating) + " / 10")])
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", [
+      _c("h2", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))]),
       _vm._v(" "),
       _c(
-        "div",
+        "span",
         [
-          _c("font-awesome-icon", { attrs: { icon: "star" } }),
+          _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(_vm._s(_vm.houseguestDetails.currentRating) + " / 10")
-          ])
+          _c("p", [_vm._v("5 from last week")])
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("div", [
-        _c("h2", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))]),
-        _vm._v(" "),
-        _c(
-          "span",
-          [
-            _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
-            _vm._v(" "),
-            _c("p", [_vm._v("5 from last week")])
-          ],
-          1
-        )
-      ])
-    ]
-  )
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52052,7 +52046,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "grid grid-cols-2 gap-4" },
+    { staticClass: "stock-cards" },
     _vm._l(_vm.houseguestDetails, function(houseguestDetail) {
       return _c("StockCard", {
         key: houseguestDetail.id,
@@ -82607,7 +82601,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SlideoutNav_vue_vue_type_template_id_9ed8b86a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SlideoutNav.vue?vue&type=template&id=9ed8b86a& */ "./resources/js/components/SlideoutNav.vue?vue&type=template&id=9ed8b86a&");
 /* harmony import */ var _SlideoutNav_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SlideoutNav.vue?vue&type=script&lang=js& */ "./resources/js/components/SlideoutNav.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SlideoutNav.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css& */ "./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -82649,19 +82643,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css&":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css& ***!
-  \**********************************************************************************/
+/***/ "./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css& ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SlideoutNav.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SlideoutNav.vue?vue&type=style&index=0&postcss=less&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_SlideoutNav_vue_vue_type_style_index_0_postcss_less_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

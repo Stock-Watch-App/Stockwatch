@@ -4,17 +4,15 @@
 @import './_mixins.less';
 @import './utilities.less';
 
-// sign up landing page
+// pages
 @import './landing.less';
+@import './dashboard.less';
 
 // components
 @import './components/card.less';
 @import './components/button.less';
+@import './components/input.less';
 
-// Bootstrap
-// @import '~bootstrap/scss/bootstrap';
-
-// @import 'tailwind';
 
 body {
     color: @white;
@@ -22,6 +20,10 @@ body {
     font-size: 1em;
     line-height: @baseLineHeight;
     background: @body-bg;
+
+    &.landing {
+        background: @primary-blue;
+    }
 }
 
 // content will span full width of page with standard padding on each side

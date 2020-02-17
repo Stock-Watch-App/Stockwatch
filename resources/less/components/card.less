@@ -8,11 +8,26 @@
 	display: flex;
 	flex-direction: column;
 	word-wrap: break-word;
-    border: solid 1px @black;
-    .px-em(padding, 16);
+    background: @white;
+    .px-rem(padding, 16);
+
+    h1, h2, h3, h4, h5, h6, p, label {
+        color: @gray-dark;
+    }
 
     &.dark {
-        border: solid 1px @body-overlay-bg;
         background: @body-overlay-bg;
     }
+
+    &.deep {
+        .px-rem(padding, 32);
+    }
+
+    .media(@min-tablet, {
+
+        &.deep {
+            .px-rem(padding, 42);
+        }
+
+    });
 }

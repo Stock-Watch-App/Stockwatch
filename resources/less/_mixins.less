@@ -11,17 +11,15 @@
 .a11yOutline {
     outline: solid 2px @link;
     outline-offset: -2px;
+    border-radius: @border-radius;
 }
 
-.visually-hidden() {
-	border:0 !important;
-	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 1px !important;
-	overflow: hidden;
-	padding:0 !important;
-    position: absolute !important;
-	width: 1px !important;
+// this visually hides a label/text for a11y
+.screenReaderLabel {
+    font-size: 0;
+    height: 1px;
+    overflow: hidden;
+    display: block;
 }
 
 /**

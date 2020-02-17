@@ -18,12 +18,14 @@
   }
 </script>
 
-<style>
-/* this looks very scary and wrong */
-/* .slideout-menu {
-    @apply bg-gray-800 text-white shadow-md p-3 col-span-2 h-screen fixed z-0 hidden overflow-y-scroll scrolling-touch inset-y-0;
+<style postcss="less">
+.slideout-menu {
     width: 256px;
-} */
+    background-color: #2C2C30;
+    position: fixed;
+    height: 100vh;
+    grid-column: span 2;
+}
 
 .slideout-menu-left {
     left: 0;

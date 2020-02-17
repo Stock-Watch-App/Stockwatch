@@ -1,5 +1,5 @@
 <template>
-    <li class="bg-gray-800 text-white rounded-lg shadow-md p-3 z-10">
+    <li class="card dark">
         <img src="/" />
         <h3>{{ houseguestDetails.name }}</h3>
         <div>
