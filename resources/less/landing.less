@@ -1,5 +1,25 @@
 @import './_variables.less';
+@import './_mixins.less';
 
 .landingWrap {
     display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+
+    h1 {
+        grid-column: ~'1/5';
+    }
+
+    .card {
+        grid-column: ~'1/5';
+    }
+
+    .media(@min-desktop, {
+
+        .card {
+            grid-column: ~'2/4';
+        }
+
+    });
 }

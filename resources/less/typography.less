@@ -35,7 +35,7 @@
 
 h1,
 .header1 {
-    color: black;
+    color: @white;
     line-height: @smallerLineHeight;
     margin-top: 0;
     margin-bottom: @space-xs;
@@ -44,7 +44,7 @@ h1,
 
 h2,
 .header2 {
-    color: black;
+    color: @white;
     line-height: @smallerLineHeight;
     margin-top: 0;
     margin-bottom: @space-xs;
@@ -53,7 +53,7 @@ h2,
 
 h3,
 .header3 {
-    color: black;
+    color: @white;
     line-height: @smallerLineHeight;
     margin-top: 0;
     margin-bottom: @space-xs;
@@ -62,7 +62,7 @@ h3,
 
 h4,
 .header4 {
-    color: black;
+    color: @white;
     line-height: @smallerLineHeight;
     margin-top: 0;
     margin-bottom: @space-xs;
@@ -71,7 +71,7 @@ h4,
 
 h5,
 .header5 {
-    color: black;
+    color: @white;
     line-height: @baseLineHeight;
     margin-top: 0;
     margin-bottom: @space-xs;
@@ -80,7 +80,7 @@ h5,
 
 h6,
 .header6 {
-    color: black;
+    color: @white;
     line-height: @baseLineHeight;
     margin-top: 0;
     margin-bottom: @space-xs;
@@ -89,7 +89,7 @@ h6,
 
 p,
 label {
-    color: black;
+    color: @white;
     line-height: @baseLineHeight;
     margin-bottom: @space-xs;
     margin-top: 0;
@@ -100,7 +100,7 @@ label {
     }
 
     &.bodyLight {
-        color: gray;
+        color: @gray-lightest;
     }
 }
 
@@ -108,13 +108,13 @@ a {
     color: @link;
     text-decoration: none;
 
-    // &:hover,
-    // &:focus,
-    // &:active {
-    //     color: @link-hover;
-    //     text-decoration: none;
-    //     transition: @transition;
-    // }
+    &:hover,
+    &:focus,
+    &:active {
+        color: @link-hover;
+        text-decoration: none;
+        transition: @transition;
+    }
 }
 
 .textCenter {

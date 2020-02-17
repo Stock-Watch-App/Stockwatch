@@ -137,7 +137,7 @@ html {
 */
 h1,
 .header1 {
-  color: black;
+  color: #ffffff;
   line-height: 1.2;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -160,7 +160,7 @@ h1,
 }
 h2,
 .header2 {
-  color: black;
+  color: #ffffff;
   line-height: 1.2;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -183,7 +183,7 @@ h2,
 }
 h3,
 .header3 {
-  color: black;
+  color: #ffffff;
   line-height: 1.2;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -206,7 +206,7 @@ h3,
 }
 h4,
 .header4 {
-  color: black;
+  color: #ffffff;
   line-height: 1.2;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -229,7 +229,7 @@ h4,
 }
 h5,
 .header5 {
-  color: black;
+  color: #ffffff;
   line-height: 1.5;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -237,7 +237,7 @@ h5,
 }
 h6,
 .header6 {
-  color: black;
+  color: #ffffff;
   line-height: 1.5;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -245,7 +245,7 @@ h6,
 }
 p,
 label {
-  color: black;
+  color: #ffffff;
   line-height: 1.5;
   margin-bottom: 0.5em;
   margin-top: 0;
@@ -257,11 +257,18 @@ label.bodySM {
 }
 p.bodyLight,
 label.bodyLight {
-  color: gray;
+  color: #BDBDC2;
 }
 a {
-  color: #e0f1ec;
+  color: #1A53F3;
   text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+  color: #0b3ecf;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 .textCenter {
   text-align: center;
@@ -273,7 +280,7 @@ a {
   margin: 0.9375rem 0rem 0.9375rem 0rem;
 }
 .a11yOutline {
-  outline: solid 2px #e0f1ec;
+  outline: solid 2px #1A53F3;
   outline-offset: -2px;
 }
 /**
@@ -290,24 +297,248 @@ a {
  *   @rules,   // Nested Rule Set for the media breakpoint
  * )
  */
+.mg-btm-xs {
+  margin-bottom: 0.5rem;
+}
+.mg-btm-sm {
+  margin-bottom: 0.75rem;
+}
+.mg-btm-md {
+  margin-bottom: 1.25rem;
+}
+.mg-btm-lg {
+  margin-bottom: 2rem;
+}
+.mg-btm-xl {
+  margin-bottom: 3.25rem;
+}
+.mg-top-xs {
+  margin-top: 0.5rem;
+}
+.mg-top-sm {
+  margin-top: 0.75rem;
+}
+.mg-top-md {
+  margin-top: 1.25rem;
+}
+.mg-top-lg {
+  margin-top: 2rem;
+}
+.mg-top-xl {
+  margin-top: 3.25rem;
+}
 .landingWrap {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+}
+.landingWrap h1 {
+  grid-column: 1/5;
+}
+.landingWrap .card {
+  grid-column: 1/5;
+}
+@media only screen and (min-width: 1024px) {
+  .landingWrap .card {
+    grid-column: 2/4;
+  }
 }
 .card {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-  border-radius: 0.25rem !important;
-  max-width: 24rem!important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  border: solid 1px #000000;
+  padding: 1em;
+}
+.card.dark {
+  border: solid 1px #2C2C30;
+  background: #2C2C30;
+}
+.button-base {
+  background-color: #000000;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #ffffff;
+  min-height: 44px;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 1em 1.25em 1em 1.25em;
+}
+.button-base:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base:focus {
+  outline: solid 2px #1A53F3;
+  outline-offset: -2px;
+}
+.button-base.full-width {
+  width: 100%;
+}
+.button-base.small {
+  font-size: 0.875rem;
+  padding: 0.5em 1.25em 0.5em 1.25em;
+}
+.button-base.large {
+  font-size: 1.25rem;
+  padding: 0.75em 1.25em 0.75em 1.25em;
+}
+.button-base.icon {
+  display: flex;
+}
+.button-base.icon figure {
+  flex: 0 0 auto;
+}
+.button-base.icon span {
+  flex: 1 1 auto;
+}
+.button-base.primary {
+  background-color: #1A53F3;
+  color: #ffffff;
+}
+.button-base.primary:hover,
+.button-base.primary:active {
+  background-color: #0b3ecf;
+}
+.button-base.primary:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.primary.ghost {
+  background-color: transparent;
+  border: 1px solid #1A53F3;
+  color: #1A53F3;
+}
+.button-base.primary.ghost:hover,
+.button-base.primary.ghost:active {
+  background-color: hsl(240, 4%, 90%);
+}
+.button-base.primary.ghost:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.secondary {
+  background-color: #1AF3DA;
+  color: #000000;
+}
+.button-base.secondary:hover,
+.button-base.secondary:active {
+  background-color: #0bcfb9;
+}
+.button-base.secondary:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.secondary.ghost {
+  background-color: transparent;
+  border: 1px solid #1AF3DA;
+  color: #1AF3DA;
+}
+.button-base.secondary.ghost:hover,
+.button-base.secondary.ghost:active {
+  background-color: hsl(240, 4%, 90%);
+}
+.button-base.secondary.ghost:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.danger {
+  background-color: #E9512B;
+  color: #000000;
+}
+.button-base.danger:hover,
+.button-base.danger:active {
+  background-color: #cc3a15;
+}
+.button-base.danger:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.twitter {
+  background-color: #1da1f2;
+  color: #ffffff;
+}
+.button-base.twitter:hover,
+.button-base.twitter:active {
+  background-color: #0d95e8;
+}
+.button-base.twitter:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.discord {
+  background-color: #7289DA;
+  color: #ffffff;
+}
+.button-base.discord:hover,
+.button-base.discord:active {
+  background-color: #5e78d5;
+}
+.button-base.discord:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.facebook {
+  background-color: #1877f2;
+  color: #ffffff;
+}
+.button-base.facebook:hover,
+.button-base.facebook:active {
+  background-color: #0d6ae4;
+}
+.button-base.facebook:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
+}
+.button-base.twitch {
+  background-color: #9146ff;
+  color: #ffffff;
+}
+.button-base.twitch:hover,
+.button-base.twitch:active {
+  background-color: #822cff;
+}
+.button-base.twitch:disabled {
+  background-color: #95959D;
+  border-color: #95959D;
+  color: #494950;
+  cursor: default;
 }
 body {
-  color: white;
+  color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1em;
   line-height: 1.5;
-  background: #626e72;
+  background: #151518;
 }
 .content {
   margin: 0 auto;
-  padding: 1.25rem 0.9375rem 1.25rem 0.9375rem;
+  padding: 1.25rem 1rem 1.25rem 1rem;
 }
 @media only screen and (min-width: 1280px) {
   .content {

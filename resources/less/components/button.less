@@ -1,0 +1,178 @@
+@import '../_variables.less';
+@import '../_mixins.less';
+
+
+// button mixins
+
+// base disabled state
+.disabled() {
+    &:disabled {
+        background-color: @button-disabled;
+        border-color: @button-disabled;
+        color: @button-disabled-text;
+        cursor: default;
+    }
+}
+
+
+// base button component styles
+.button-base {
+    background-color: @black;
+    border: 1px solid transparent;
+    border-radius: @border-radius;
+    color: @white;
+    min-height: 44px; // a11y
+    transition: @transition;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    .px-rem(font-size, 16);
+    .px-em-padding(16, 20, 16, 20);
+    .disabled;
+
+    &:focus {
+        .a11yOutline;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+
+    &.small {
+        .px-rem(font-size, 14);
+        .px-em-padding(8, 20, 8, 20);
+    }
+
+    &.large {
+        .px-rem(font-size, 20);
+        .px-em-padding(12, 20, 12, 20);
+    }
+
+    &.icon {
+        display: flex;
+
+        figure {
+            flex: 0 0 auto;
+        }
+
+        span {
+            flex: 1 1 auto;
+        }
+    }
+
+    // primary variant
+    &.primary  {
+        background-color: @button-primary;
+        color: @white;
+
+        &:hover,
+        &:active {
+            background-color: @button-primary-hover;
+        }
+
+        .disabled;
+
+        // primary ghost variant
+        &.ghost {
+            background-color: transparent;
+            border: 1px solid @button-primary;
+            color: @button-primary;
+
+            &:hover,
+            &:active {
+                background-color: @gray-hint;
+            }
+
+            .disabled;
+        }
+    }
+
+    // secondary variant
+    &.secondary {
+        background-color: @button-secondary;
+        color: @black;
+
+        &:hover,
+        &:active {
+            background-color: @button-secondary-hover;
+        }
+
+        .disabled;
+
+        // secondary ghost variant
+        &.ghost {
+            background-color: transparent;
+            border: 1px solid @button-secondary;
+            color: @button-secondary;
+
+            &:hover,
+            &:active {
+                background-color: @gray-hint;
+            }
+
+            .disabled;
+        }
+    }
+
+    // danger variant
+    &.danger {
+        background-color: @button-danger;
+        color: @black;
+
+        &:hover,
+        &:active {
+            background-color: @button-danger-hover;
+        }
+
+        .disabled;
+    }
+
+    &.twitter {
+        background-color: @twitter;
+        color: @white;
+
+        &:hover,
+        &:active {
+            background-color: darken(@twitter, 5%);
+        }
+
+        .disabled;
+    }
+
+    &.discord {
+        background-color: @discord;
+        color: @white;
+
+        &:hover,
+        &:active {
+            background-color: darken(@discord, 5%);
+        }
+
+        .disabled;
+    }
+
+    &.facebook {
+        background-color: @facebook;
+        color: @white;
+
+        &:hover,
+        &:active {
+            background-color: darken(@facebook, 5%);
+        }
+
+        .disabled;
+    }
+
+    &.twitch {
+        background-color: @twitch;
+        color: @white;
+
+        &:hover,
+        &:active {
+            background-color: darken(@twitch, 5%);
+        }
+
+        .disabled;
+    }
+}
+
