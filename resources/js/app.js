@@ -17,8 +17,9 @@ Vue.use(VueTailwind)
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faStar, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faTwitch, faTwitter, faDiscord, faFacebook, faReddit } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faStar, faArrowUp, faBars)
+library.add(faStar, faArrowUp, faBars, faTwitch, faTwitter, faDiscord, faFacebook, faReddit)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
@@ -30,16 +31,16 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+const files = require.context('./', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('slideout-nav', require('./components/SlideoutNav.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('slideout-nav', require('./components/SlideoutNav.vue').default);
 // Vue.component('stock-card', require('./components/StockCard.vue').default);
 
-import StockCard from './components/StockCard.vue';
-import StockCardList from './components/StockCardList.vue';
-import Slideout from 'vue-slideout'
+// import StockCard from './components/StockCard.vue';
+// import StockCardList from './components/StockCardList.vue';
+// import Slideout from 'vue-slideout'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,10 +51,10 @@ import Slideout from 'vue-slideout'
 const app = new Vue({
     el: '#app',
     // local registration, I think?
-    components: {
-        StockCard,
-        StockCardList,
-        Slideout
-    }
+    // components: {
+    //     StockCard,
+    //     StockCardList,
+    //     Slideout
+    // }
 });
 

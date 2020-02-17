@@ -74,7 +74,7 @@
                 </div>
             </nav>
             <main id="panel" class="p-4">
-                <button class="toggle-button"><font-awesome-icon icon="bars" size="large"/></button>
+                <button class="toggle-button"><font-awesome-icon icon="bars" /></button>
                 @yield('content')
             </main>
         </div>
