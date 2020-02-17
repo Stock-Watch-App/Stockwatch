@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec210181607271d8d01e57b668848889",
+    "content-hash": "5fcdca7f9620018babe4550f85f2846d",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2208,6 +2208,80 @@
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
             "time": "2019-09-25T06:06:35+00:00"
+        },
+        {
+            "name": "socialiteproviders/reddit",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Reddit.git",
+                "reference": "c33331c58436947289e78e482747cdbf98f502f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Reddit/zipball/c33331c58436947289e78e482747cdbf98f502f0",
+                "reference": "c33331c58436947289e78e482747cdbf98f502f0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Reddit\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "Reddit OAuth2 Provider for Laravel Socialite",
+            "time": "2017-01-25T09:48:29+00:00"
+        },
+        {
+            "name": "socialiteproviders/twitch",
+            "version": "v5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Twitch.git",
+                "reference": "f9b1f90a94f539e1b29e84ee0f731f42d59f3213"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Twitch/zipball/f9b1f90a94f539e1b29e84ee0f731f42d59f3213",
+                "reference": "f9b1f90a94f539e1b29e84ee0f731f42d59f3213",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~2.0 || ~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Twitch\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "Twitch OAuth2 Provider for Laravel Socialite",
+            "time": "2019-07-01T10:35:46+00:00"
         },
         {
             "name": "socialiteproviders/twitter",
