@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -86,9 +87,10 @@ class LoginController extends Controller
                 $user = User::create([
                     'email'            => $providerUser->getEmail(),
                     'name'             => $providerUser->getName(),
-                    'provider'         => $provider,
-                    'provider_user_id' => $providerUser->getId(),
                 ]);
+                $user->provider = $provider;
+                $user->provider_user_id = $providerUser->getId();
+                $user->save();
                 $this->saveImageAvatar($providerUser->getAvatar(), $user->id);
             }
 
