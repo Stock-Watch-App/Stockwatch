@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LegalController;
+use App\Http\Controllers\DebugController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,8 @@ Route::get('/landing', function () {
 Route::get('/privacy', [LegalController::class, 'privacy']);
 Route::get('/tos', [LegalController::class, 'tos']);
 
+
+Route::get('/debug/showme/{route}', [DebugController::class, 'showme'])->where('route', '.*');
 //===SAMPLE ROUTE===//
 //Route::get('/route', function () {
 //    return view('dir.file');
