@@ -280,9 +280,8 @@ a:active {
   margin: 0.9375rem 0rem 0.9375rem 0rem;
 }
 .a11yOutline {
-  outline: solid 2px #1A53F3;
-  outline-offset: -2px;
-  border-radius: 4px;
+  outline: 0;
+  box-shadow: 0 0 0 1pt #1A53F3;
 }
 .screenReaderLabel {
   font-size: 0;
@@ -413,9 +412,8 @@ a:active {
   cursor: default;
 }
 .button-base:focus {
-  outline: solid 2px #1A53F3;
-  outline-offset: -2px;
-  border-radius: 4px;
+  outline: 0;
+  box-shadow: 0 0 0 1pt #1A53F3;
 }
 .button-base.full-width {
   width: 100%;
@@ -590,9 +588,8 @@ a:active {
 }
 .text-input:active,
 .text-input:focus {
-  outline: solid 2px #1A53F3;
-  outline-offset: -2px;
-  border-radius: 4px;
+  outline: 0;
+  box-shadow: 0 0 0 1pt #1A53F3;
 }
 .text-input.dark {
   background: #95959D;
