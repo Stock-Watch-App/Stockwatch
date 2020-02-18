@@ -21,7 +21,7 @@ Route::get('/privacy', [LegalController::class, 'privacy']);
 Route::get('/tos', [LegalController::class, 'tos']);
 
 
-Route::get('/debug/showme/{route}', [DebugController::class, 'showme'])->where('route', '.*');
+Route::get('/debug/showme/{blade}', [DebugController::class, 'showme'])->where('route', '.*');
 //===SAMPLE ROUTE===//
 //Route::get('/route', function () {
 //    return view('dir.file');

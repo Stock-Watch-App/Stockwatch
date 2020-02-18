@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class DebugController extends Controller
 {
-    public function showme($route)
+    public function showme($blade)
     {
-        $vars = $this->getTempVars($route);
-        $route = preg_replace('/\//', '.', $route);
-        return view($route, $vars);
+        $vars = $this->getTempVars($blade);
+        $blade = preg_replace('/\//', '.', $blade);
+        return view($blade, $vars);
     }
 
     protected function getTempVars($blade): array
