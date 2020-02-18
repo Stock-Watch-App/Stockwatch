@@ -64,7 +64,7 @@
             <span>Sign-in with Twitch</span>
         </a>
 
-        <a href="/" alt="Log in">
+        <a href="/login" alt="Log in">
             <span>Already have an account? Sign in</span>
         </a>
     </div>
