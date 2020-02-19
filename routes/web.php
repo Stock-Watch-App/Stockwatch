@@ -7,7 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes([
+    'verify' => true,
+    'register' => (env('APP_ENV', 'production') === 'local') //this needs to be removed when we go live
+]);
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
