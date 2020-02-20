@@ -7,6 +7,12 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "require": {
         "php": "^7.2",
         "doctrine/dbal": "^2.10",
@@ -20,7 +26,8 @@
         "socialiteproviders/reddit": "^3.0",
         "socialiteproviders/twitch": "^5.1",
         "socialiteproviders/twitter": "^3.0",
-        "tbirrell/laravel-model-directory": "dev-master"
+        "tbirrell/laravel-model-directory": "dev-master",
+        "laravel/nova": "~2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -67,6 +74,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan nova:publish"
         ]
     }
 }
