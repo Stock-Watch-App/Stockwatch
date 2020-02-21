@@ -6,9 +6,3 @@
         {{ $slot }}
     </div>
 </div>
-
-<div class="card">
-    <div class="form-wrap">
-        {{ $slot }}
-    </div>
-</div>
