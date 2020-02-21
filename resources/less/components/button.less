@@ -17,10 +17,10 @@
 
 // base button component styles
 .button-base {
-    background-color: @black;
+    background-color: @white;
     border: 1px solid transparent;
     border-radius: @border-radius;
-    color: @white;
+    color: @black;
     min-height: 2.75rem; // a11y
     transition: @transition;
     display: inline-block;
@@ -115,6 +115,30 @@
         }
     }
 
+    &.prepend {
+        .px-em-padding(0, 20, 0, 0);
+        display: inline-flex;
+
+        figure {
+            .px-em(padding, 8);
+            .px-em(margin-right, 16);
+            display: inline-flex;
+            height: 2.75rem;
+            width: 2.75rem;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                color: @white;
+            }
+        }
+
+        span {
+            text-align: center;
+        }
+
+    }
+
     // danger variant
     &.danger {
         background-color: @button-danger;
@@ -129,52 +153,72 @@
     }
 
     &.twitter {
-        background-color: @twitter;
+        border: 2px solid @twitter;
         color: @black;
         font-weight: 700;
 
+        figure {
+            border-right: 1px solid @twitter;
+            background-color: @twitter;
+        }
+
         &:hover,
         &:active {
-            background-color: darken(@twitter, 5%);
+            background: @gray-hint;
         }
 
         .disabled;
     }
 
     &.discord {
-        background-color: @discord;
+        border: 2px solid @discord;
         color: @black;
         font-weight: 700;
 
+        figure {
+            border-right: 1px solid @discord;
+            background-color: @discord;
+        }
+
         &:hover,
         &:active {
-            background-color: darken(@discord, 5%);
+            background-color: @gray-hint;
         }
 
         .disabled;
     }
 
     &.facebook {
-        background-color: @facebook;
+        border: 2px solid @facebook;
         color: @black;
         font-weight: 700;
 
+        figure {
+            border-right: 1px solid @facebook;
+            background-color: @facebook;
+        }
+
         &:hover,
         &:active {
-            background-color: darken(@facebook, 5%);
+            background-color: @gray-hint;
         }
 
         .disabled;
     }
 
     &.twitch {
-        background-color: @twitch;
+        border: 2px solid @twitch;
         color: @black;
         font-weight: 700;
 
+        figure {
+            border-right: 1px solid @twitch;
+            background-color: @twitch;
+        }
+
         &:hover,
         &:active {
-            background-color: darken(@twitch, 5%);
+            background-color: @gray-hint;
         }
 
         .disabled;

@@ -1,9 +1,9 @@
 @extends('layouts.landing')
 
-<!-- also can't hit this blade -->
 @section('content')
-<div class="landingWrap textCenter mg-top-lg" id="landing">
-    <h2 class="mg-btm-lg">{{ __('Verify Your Email Address') }}</h2>
+<div class="landingWrapSingle mg-top-lg" id="landing">
+    <div class="card single light">
+        <h2 class="mg-btm-lg">{{ __('Verify your email address') }}</h2>
 
         @if (session('resent'))
             <div class="alert alert-success" role="alert">
@@ -11,11 +11,10 @@
             </div>
         @endif
 
-        {{ __('Before proceeding, please check your email for a verification link.') }}
-        {{ __('If you did not receive the email') }},
+        <p>{{ __('Before proceeding, please check your email for a verification link.') }}</p>
         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
             @csrf
-            <button type="submit" class="button-base primary full-width mg-btm-lg">{{ __('click here to request another') }}</button>.
+            <button type="submit" class="button-base primary full-width mg-btm-lg">{{ __('click here to request another') }}</button>
         </form>
     </div>
 </div>

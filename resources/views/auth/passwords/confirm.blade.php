@@ -1,9 +1,8 @@
 @extends('layouts.landing')
 
-<!-- can't hit this blade -->
 @section('content')
-<div class="landingWrap textCenter mg-top-lg" id="landing">
-    <div class="card deep">
+<div class="landingWrapSingle mg-top-lg" id="landing">
+    <div class="card single light">
         <h2 class="mg-btm-lg">{{ __('Confirm Password') }}</h2>
         <p>{{ __('Please confirm your password before continuing.') }}</p>
 

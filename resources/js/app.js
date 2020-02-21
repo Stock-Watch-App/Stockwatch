@@ -17,9 +17,9 @@ Vue.use(VueTailwind)
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faStar, faArrowUp, faBars } from '@fortawesome/free-solid-svg-icons'
-import { faTwitch, faTwitter, faDiscord, faFacebook, faReddit } from '@fortawesome/free-brands-svg-icons'
+import { faTwitch, faTwitter, faDiscord, faFacebookF, faReddit } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faStar, faArrowUp, faBars, faTwitch, faTwitter, faDiscord, faFacebook, faReddit)
+library.add(faStar, faArrowUp, faBars, faTwitch, faTwitter, faDiscord, faFacebookF, faReddit)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

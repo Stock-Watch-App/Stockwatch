@@ -15,6 +15,16 @@
         color: @gray-dark;
     }
 
+    &.duo {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 0;
+
+        > div {
+            .px-rem(padding, 16);
+        }
+    }
+
     &.dark {
         background: @body-overlay-bg;
     }
@@ -29,5 +39,18 @@
             .px-rem(padding, 42);
         }
 
+        &.duo {
+            grid-template-columns: 1fr 1fr;
+
+            > div {
+                .px-rem(padding, 32);
+            }
+        }
+    });
+
+    .media(@min-desktop, {
+        &.duo {
+            grid-template-columns: auto .75fr;
+        }
     });
 }

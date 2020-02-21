@@ -260,13 +260,13 @@ label.bodyLight {
   color: #BDBDC2;
 }
 a {
-  color: #1A53F3;
+  color: hsl(224, 90%, 53%);
   text-decoration: none;
 }
 a:hover,
 a:focus,
 a:active {
-  color: #0b3ecf;
+  color: hsl(224, 90%, 43%);
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
@@ -281,7 +281,7 @@ a:active {
 }
 .a11yOutline {
   outline: 0;
-  box-shadow: 0 0 0 1pt #1A53F3;
+  box-shadow: 0 0 0 1pt hsl(224, 90%, 53%);
 }
 .screenReaderLabel {
   font-size: 0;
@@ -345,16 +345,27 @@ a:active {
   grid-template-rows: auto;
   grid-gap: 2rem;
 }
-.landingWrap h1 {
-  grid-column: 1/5;
-}
 .landingWrap .card {
   grid-column: 1/5;
+  background-color: hsl(224, 90%, 45%);
 }
-@media only screen and (min-width: 1024px) {
-  .landingWrap .card {
-    grid-column: 2/4;
-  }
+.landingWrap .form-wrap {
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+.landingWrap .bottom-links {
+  display: flex;
+  justify-content: space-between;
+}
+.landingWrapSingle {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+}
+.landingWrapSingle .card {
+  grid-column: 2/4;
+  background-color: #ffffff;
 }
 .stock-cards {
   display: grid;
@@ -381,6 +392,14 @@ a:active {
 .card label {
   color: #151518;
 }
+.card.duo {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0;
+}
+.card.duo > div {
+  padding: 1rem;
+}
 .card.dark {
   background: #2C2C30;
 }
@@ -391,12 +410,23 @@ a:active {
   .card.deep {
     padding: 2.625rem;
   }
+  .card.duo {
+    grid-template-columns: 1fr 1fr;
+  }
+  .card.duo > div {
+    padding: 2rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .card.duo {
+    grid-template-columns: auto 0.75fr;
+  }
 }
 .button-base {
-  background-color: #000000;
+  background-color: #ffffff;
   border: 1px solid transparent;
   border-radius: 4px;
-  color: #ffffff;
+  color: #000000;
   min-height: 2.75rem;
   transition: all 0.2s ease-in-out;
   display: inline-block;
@@ -413,7 +443,7 @@ a:active {
 }
 .button-base:focus {
   outline: 0;
-  box-shadow: 0 0 0 1pt #1A53F3;
+  box-shadow: 0 0 0 1pt hsl(224, 90%, 53%);
 }
 .button-base.full-width {
   width: 100%;
@@ -437,12 +467,12 @@ a:active {
   flex: 1 1 auto;
 }
 .button-base.primary {
-  background-color: #1A53F3;
+  background-color: hsl(224, 90%, 53%);
   color: #ffffff;
 }
 .button-base.primary:hover,
 .button-base.primary:active {
-  background-color: #0b3ecf;
+  background-color: hsl(224, 90%, 43%);
 }
 .button-base.primary:disabled {
   background-color: #95959D;
@@ -452,8 +482,8 @@ a:active {
 }
 .button-base.primary.ghost {
   background-color: transparent;
-  border: 1px solid #1A53F3;
-  color: #1A53F3;
+  border: 1px solid hsl(224, 90%, 53%);
+  color: hsl(224, 90%, 53%);
 }
 .button-base.primary.ghost:hover,
 .button-base.primary.ghost:active {
@@ -494,6 +524,25 @@ a:active {
   color: #494950;
   cursor: default;
 }
+.button-base.prepend {
+  padding: 0em 1.25em 0em 0em;
+  display: inline-flex;
+}
+.button-base.prepend figure {
+  padding: 0.5em;
+  margin-right: 1em;
+  display: inline-flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+}
+.button-base.prepend figure svg {
+  color: #ffffff;
+}
+.button-base.prepend span {
+  text-align: center;
+}
 .button-base.danger {
   background-color: #E9512B;
   color: #000000;
@@ -509,13 +558,17 @@ a:active {
   cursor: default;
 }
 .button-base.twitter {
-  background-color: #1da1f2;
+  border: 2px solid #1da1f2;
   color: #000000;
   font-weight: 700;
 }
+.button-base.twitter figure {
+  border-right: 1px solid #1da1f2;
+  background-color: #1da1f2;
+}
 .button-base.twitter:hover,
 .button-base.twitter:active {
-  background-color: #0d95e8;
+  background: hsl(240, 4%, 90%);
 }
 .button-base.twitter:disabled {
   background-color: #95959D;
@@ -524,13 +577,17 @@ a:active {
   cursor: default;
 }
 .button-base.discord {
-  background-color: #7289DA;
+  border: 2px solid #7289DA;
   color: #000000;
   font-weight: 700;
 }
+.button-base.discord figure {
+  border-right: 1px solid #7289DA;
+  background-color: #7289DA;
+}
 .button-base.discord:hover,
 .button-base.discord:active {
-  background-color: #5e78d5;
+  background-color: hsl(240, 4%, 90%);
 }
 .button-base.discord:disabled {
   background-color: #95959D;
@@ -539,13 +596,17 @@ a:active {
   cursor: default;
 }
 .button-base.facebook {
-  background-color: #1877f2;
+  border: 2px solid #1877f2;
   color: #000000;
   font-weight: 700;
 }
+.button-base.facebook figure {
+  border-right: 1px solid #1877f2;
+  background-color: #1877f2;
+}
 .button-base.facebook:hover,
 .button-base.facebook:active {
-  background-color: #0d6ae4;
+  background-color: hsl(240, 4%, 90%);
 }
 .button-base.facebook:disabled {
   background-color: #95959D;
@@ -554,13 +615,17 @@ a:active {
   cursor: default;
 }
 .button-base.twitch {
-  background-color: #9146ff;
+  border: 2px solid #9146ff;
   color: #000000;
   font-weight: 700;
 }
+.button-base.twitch figure {
+  border-right: 1px solid #9146ff;
+  background-color: #9146ff;
+}
 .button-base.twitch:hover,
 .button-base.twitch:active {
-  background-color: #822cff;
+  background-color: hsl(240, 4%, 90%);
 }
 .button-base.twitch:disabled {
   background-color: #95959D;
@@ -589,7 +654,7 @@ a:active {
 .text-input:active,
 .text-input:focus {
   outline: 0;
-  box-shadow: 0 0 0 1pt #1A53F3;
+  box-shadow: 0 0 0 1pt hsl(224, 90%, 53%);
 }
 .text-input.dark {
   background: #95959D;
@@ -636,7 +701,7 @@ body {
   background: #151518;
 }
 body.landing {
-  background: #1A53F3;
+  background: hsl(224, 90%, 53%);
 }
 .content {
   margin: 0 auto;

@@ -7,19 +7,38 @@
     grid-template-rows: auto;
     grid-gap: 2rem;
 
-    h1 {
-        grid-column: ~'1/5';
-    }
-
     .card {
         grid-column: ~'1/5';
+        background-color: @primary-blue-02;
+    }
+
+    .form-wrap {
+        background-color: @white;
+        border-radius: @border-radius;
+    }
+
+    .bottom-links {
+        display: flex;
+        justify-content: space-between;
     }
 
     .media(@min-desktop, {
 
         .card {
-            grid-column: ~'2/4';
+            //grid-column: ~'2/4';
         }
 
     });
+}
+
+.landingWrapSingle {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+
+    .card {
+        grid-column: ~'2/4';
+        background-color: @white;
+    }
 }

@@ -1,11 +1,9 @@
 @extends('layouts.landing')
 
-<!-- not sure this blade is in use -->
-
 @section('content')
-<div class="landingWrap textCenter mg-top-lg" id="landing">
-    <div class="card deep">
-       <h2 class="mg-btm-lg">{{ __('Reset Password') }}</h2>
+<div class="landingWrapSingle mg-top-lg" id="landing">
+    <div class="card single light">
+        <h2 class="mg-btm-lg">{{ __('Reset password') }}</h2>
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
