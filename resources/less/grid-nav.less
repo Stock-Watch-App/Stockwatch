@@ -6,23 +6,40 @@
     // grid-template-columns: 9fr auto;
     // grid-template-rows: 50px 100vh 50px;
     grid-template:
-        "header header" 50px
+        "aside header" 60px
         "sidebar content" 100vh
-        "footer footer" 50px
+        "sidebar footer" 50px
         ~'/ auto 9fr';
 
+    // kind of a spacer element?
     header {
         grid-area: header;
-        padding: 1rem;
+    }
+
+    // toggle nav
+    aside {
+        grid-area: aside;
+        position: sticky;
+        top: 0;
+        padding-left: 1rem;
+        z-index: 2;
         display: flex;
+        align-items: center;
+        background: @body-bg;
+    }
+
+    .logo {
+        color: @white;
+        text-transform: uppercase;
+        margin-left: 2rem;
+        font-weight: 700;
     }
 
     .sidebar-nav {
+        background: @body-bg;
         padding: 1rem;
         overflow: auto;
         transition: width ease-in-out 160ms;
-        position: sticky;
-        top: 0;
 
         &.open {
             grid-area: sidebar;
@@ -41,6 +58,16 @@
 
     }
 
+    .profile-wrap {
+        text-align: center;
+
+        .profile-pic {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            width: 45%;
+        }
+    }
+
     .app-content {
         grid-area: content;
         border-radius: 30px 0 0 0;
@@ -49,5 +76,6 @@
 
     footer {
         grid-area: footer;
+        background-color: @body-overlay-bg;
     }
 }
