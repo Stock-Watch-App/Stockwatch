@@ -33,11 +33,16 @@
         text-transform: uppercase;
         margin-left: 2rem;
         font-weight: 700;
+
+        // this will animate to a small logo version
+        &.mini {
+            display: none;
+        }
     }
 
     .sidebar-nav {
         background: @body-bg;
-        padding: 1rem;
+        padding: 2rem 1rem;
         overflow: auto;
         transition: width ease-in-out 160ms;
 
@@ -48,24 +53,83 @@
 
         &.closed {
             width: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .sidebar-nav-list {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                // nav item img
+                figure {
+                    margin-right: 0;
+                }
+
+                // nav item text
+                span {
+                    display: none;
+                }
+            }
+
+            .profile-wrap {
+                display: block;
+
+                .profile-pic {
+                    max-width: 40px;
+                }
+
+                .profile-name {
+                    display: none;
+                }
+            }
         }
 
-        // in progress
+        .profile-wrap {
+            // text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 2rem;
+            .px-rem(font-size, 14);
 
-        a {
-            color: @white;
+            div {
+                display: flex;
+                flex-direction: column;
+                margin-left: 1rem;
+                flex: 1 1 75%;
+            }
+
+            .profile-pic {
+                // -webkit-clip-path: circle(50% at 50% 50%);
+                // clip-path: circle(50% at 50% 50%);
+                // width: 45%;
+                border-radius: 8px;
+                flex: 1 1 50px;
+            }
         }
 
-    }
+        .sidebar-nav-list {
+            li {
+                margin-bottom: 1rem;
+            }
 
-    .profile-wrap {
-        text-align: center;
+            figure {
+                margin-right: 1rem;
+            }
 
-        .profile-pic {
-            -webkit-clip-path: circle(50% at 50% 50%);
-            clip-path: circle(50% at 50% 50%);
-            width: 45%;
+            .item-wrap {
+                color: @white;
+                display: flex;
+                align-items: center;
+
+                // .mini {
+                //     display: none;
+                // }
+            }
         }
+
     }
 
     .app-content {

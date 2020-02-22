@@ -26,7 +26,7 @@
                 <font-awesome-icon icon="bars" size="lg" />
             </button>
 
-            <a class="logo" href="{{ url('/') }}">
+            <a class="logo" v-bind:class="[isActive ? 'full' : 'mini']" href="{{ url('/') }}">
                 {{ config('app.name', 'Stock Watch') }}
             </a>
         </aside>
@@ -34,44 +34,74 @@
         </header>
         <!-- <slideout-nav></slideout-nav> -->
         <nav id="menu" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
-
-            <div class="profile-wrap">
-                <img src="{{ asset('/storage/avatar-default.svg') }}" alt="Profile image" class="profile-pic" />
-                <p>Hello, {{ Auth::user()->name }}</p>
-            </div>
-
-            <ul class="navbar-nav ml-auto">
-            <li>
-                <a href="/">Dashboard</a>
-            </li>
-            <li>
-                <a href="/">Leaderboard</a>
-            </li>
-            <li>
-                <a href="/">History</a>
-            </li>
-            <li>
-                <a href="/">Account</a>
-            </li>
-            <li>
-                <a href="/">Admin</a>
-            </li>
-
             @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <p>need to fix this logged in check</p>
+            @else
+                <div class="profile-wrap">
+                    <img src="{{ asset('/storage/avatar-default.svg') }}" alt="Profile image" class="profile-pic" />
+                    <div class="profile-name">
+                        <span>{{ Auth::user()->name }}</span>
+                        <span>@RobotKatie</span>
+                    </div>
+                </div>
+            @endguest
+
+            <ul class="sidebar-nav-list">
+            <li>
+                <a href="/" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="columns" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="award" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Leaderboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="history" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">History</span>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="user-circle" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="/" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="user-shield" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span>
+                </a>
+            </li>
+            @guest
+                <li>
+                    <a class="item-wrap" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <li>
+                        <a class="item-wrap" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
             @else
                 <li>
-                    <a href="{{ route('logout') }}"
+                    <a class="item-wrap" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
