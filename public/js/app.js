@@ -82465,13 +82465,15 @@ files.keys().map(function (key) {
  */
 
 var app = new Vue({
-  el: '#app' // local registration, I think?
-  // components: {
-  //     StockCard,
-  //     StockCardList,
-  //     Slideout
-  // }
-
+  el: '#app',
+  data: {
+    isActive: true
+  },
+  methods: {
+    toggleNavbar: function toggleNavbar(event) {
+      this.isActive = !this.isActive;
+    }
+  }
 });
 
 /***/ }),

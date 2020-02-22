@@ -1,0 +1,53 @@
+@import './_variables.less';
+@import './_mixins.less';
+
+.app-wrapper {
+    display: grid;
+    // grid-template-columns: 9fr auto;
+    // grid-template-rows: 50px 100vh 50px;
+    grid-template:
+        "header header" 50px
+        "sidebar content" 100vh
+        "footer footer" 50px
+        ~'/ auto 9fr';
+
+    header {
+        grid-area: header;
+        padding: 1rem;
+        display: flex;
+    }
+
+    .sidebar-nav {
+        padding: 1rem;
+        overflow: auto;
+        transition: width ease-in-out 160ms;
+        position: sticky;
+        top: 0;
+
+        &.open {
+            grid-area: sidebar;
+            width: 300px;
+        }
+
+        &.closed {
+            width: 70px;
+        }
+
+        // in progress
+
+        a {
+            color: @white;
+        }
+
+    }
+
+    .app-content {
+        grid-area: content;
+        border-radius: 30px 0 0 0;
+        background-color: @body-overlay-bg;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+}
