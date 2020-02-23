@@ -5,7 +5,7 @@
     display: grid;
     grid-template:
         "aside" 60px
-        "content" 100vh
+        "content" auto
         "footer" 50px
         ~'/ auto';
 
@@ -98,6 +98,7 @@
     .app-content {
         grid-area: content;
         background-color: @body-overlay-bg;
+        padding: 2rem;
     }
 
     footer {
@@ -109,7 +110,7 @@
     .media(@min-tablet, {
         grid-template:
             "aside ." 60px
-            "sidebar content" 100vh
+            "sidebar content" auto
             "sidebar footer" 50px
             ~'/ auto 9fr';
 

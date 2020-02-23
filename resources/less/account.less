@@ -1,0 +1,39 @@
+@import './_variables.less';
+@import './_mixins.less';
+
+.user-account {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template:
+        "headline headline" auto
+        "photo photo" auto
+        "fields ." auto
+        ~'/ 1fr 1fr';
+
+    h2 {
+        grid-area: headline;
+    }
+
+    // I'll clean this up
+    label {
+        color: @white;
+    }
+
+    .profile-image-edit {
+        grid-area: photo;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .image-edit-button {
+        display: flex;
+        flex-direction: column;
+        margin-left: 2rem;
+    }
+
+    .edit-profile {
+        grid-area: fields;
+    }
+}
+

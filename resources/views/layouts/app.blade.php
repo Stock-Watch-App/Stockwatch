@@ -30,9 +30,6 @@
                 {{ config('app.name', 'Stock Watch') }}
             </a>
         </aside>
-        <!-- <header>
-        </header> -->
-        <!-- <slideout-nav></slideout-nav> -->
         <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
             @guest
                 <p>need to fix this logged in check</p>
@@ -72,7 +69,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" title="Account" class="item-wrap">
+                <a href="/account" title="Account" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="user-circle" fixed-width />
                     </figure>

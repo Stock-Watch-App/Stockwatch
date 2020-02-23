@@ -341,7 +341,7 @@ a:active {
 }
 .app-wrapper {
   display: grid;
-  grid-template: "aside" 60px "content" 100vh "footer" 50px / auto;
+  grid-template: "aside" 60px "content" auto "footer" 50px / auto;
 }
 .app-wrapper aside {
   grid-area: aside;
@@ -410,6 +410,7 @@ a:active {
 .app-wrapper .app-content {
   grid-area: content;
   background-color: #2C2C30;
+  padding: 2rem;
 }
 .app-wrapper footer {
   grid-area: footer;
@@ -417,7 +418,7 @@ a:active {
 }
 @media only screen and (min-width: 768px) {
   .app-wrapper {
-    grid-template: "aside ." 60px "sidebar content" 100vh "sidebar footer" 50px / auto 9fr;
+    grid-template: "aside ." 60px "sidebar content" auto "sidebar footer" 50px / auto 9fr;
   }
   .app-wrapper .sidebar-nav {
     grid-area: sidebar;
@@ -493,6 +494,31 @@ a:active {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
+}
+.user-account {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template: "headline headline" auto "photo photo" auto "fields ." auto / 1fr 1fr;
+}
+.user-account h2 {
+  grid-area: headline;
+}
+.user-account label {
+  color: #ffffff;
+}
+.user-account .profile-image-edit {
+  grid-area: photo;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-account .image-edit-button {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+.user-account .edit-profile {
+  grid-area: fields;
 }
 .card {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -802,6 +828,9 @@ a:active {
   color: #494950;
   cursor: not-allowed;
   outline: none;
+}
+.text-input.inline-width {
+  width: inherit;
 }
 .label {
   font-size: 1rem;

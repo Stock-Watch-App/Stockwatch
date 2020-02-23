@@ -20,6 +20,10 @@ Route::get('/landing', function () {
     return view('landing');
 });
 
+Route::get('/account', function () {
+    return view('account');
+});
+
 Route::get('/privacy', [LegalController::class, 'privacy']);
 Route::get('/tos', [LegalController::class, 'tos']);
 
