@@ -38,7 +38,7 @@
                 <p>need to fix this logged in check</p>
             @else
                 <div class="profile-wrap">
-                    <img src="{{ asset('/storage/avatar-default.svg') }}" alt="Profile image" class="profile-pic" />
+                    <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />
                     <div class="profile-name">
                         <span>{{ Auth::user()->name }}</span>
                         <span>@RobotKatie</span>
@@ -48,7 +48,7 @@
 
             <ul class="sidebar-nav-list">
             <li>
-                <a href="/" class="item-wrap">
+                <a href="/" title="Dashboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="columns" fixed-width />
                     </figure>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" class="item-wrap">
+                <a href="/" title="Leaderboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="award" fixed-width />
                     </figure>
@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" class="item-wrap">
+                <a href="/" title="History" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="history" fixed-width />
                     </figure>
@@ -72,7 +72,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" class="item-wrap">
+                <a href="/" title="Account" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="user-circle" fixed-width />
                     </figure>
@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" class="item-wrap">
+                <a href="/" title="Admin" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="user-shield" fixed-width />
                     </figure>
@@ -89,20 +89,20 @@
             </li>
             @guest
                 <li>
-                    <a class="item-wrap" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="item-wrap" title="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
                     <li>
-                        <a class="item-wrap" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="item-wrap" title="Register" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
             @else
                 <li>
-                    <a class="item-wrap" href="{{ route('logout') }}"
+                    <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                    <figure>
-                    <font-awesome-icon icon="sign-out-alt" fixed-width />
+                    <figure>
+                        <font-awesome-icon icon="sign-out-title" fixed-width />
                     </figure>
                         <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span>
                     </a>
