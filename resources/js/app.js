@@ -53,6 +53,12 @@ const app = new Vue({
     data: {
         isActive: true
     },
+    mounted() {
+      if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
+          //then this is a mobile device
+          this.isActive = false;
+      }
+    },
     methods: {
         toggleNavbar: function(event){
            this.isActive = !this.isActive;
