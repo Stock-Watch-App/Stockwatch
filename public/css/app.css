@@ -341,10 +341,7 @@ a:active {
 }
 .app-wrapper {
   display: grid;
-  grid-template: "aside header" 60px "content content" 100vh "footer footer" 50px / auto 9fr;
-}
-.app-wrapper header {
-  grid-area: header;
+  grid-template: "aside" 60px "content" 100vh "footer" 50px / auto;
 }
 .app-wrapper aside {
   grid-area: aside;
@@ -377,6 +374,7 @@ a:active {
   position: fixed;
   width: 300px;
   left: -300px;
+  top: 60px;
 }
 .app-wrapper .sidebar-nav.open {
   transform: translateX(300px);
@@ -419,11 +417,13 @@ a:active {
 }
 @media only screen and (min-width: 768px) {
   .app-wrapper {
-    grid-template: "aside header" 60px "sidebar content" 100vh "sidebar footer" 50px / auto 9fr;
+    grid-template: "aside ." 60px "sidebar content" 100vh "sidebar footer" 50px / auto 9fr;
   }
   .app-wrapper .sidebar-nav {
-    position: relative;
+    grid-area: sidebar;
+    position: unset;
     left: 0;
+    top: 0;
     transition: width ease-in-out 160ms;
   }
   .app-wrapper .sidebar-nav.open {

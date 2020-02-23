@@ -30,8 +30,8 @@
                 {{ config('app.name', 'Stock Watch') }}
             </a>
         </aside>
-        <header>
-        </header>
+        <!-- <header>
+        </header> -->
         <!-- <slideout-nav></slideout-nav> -->
         <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
             @guest

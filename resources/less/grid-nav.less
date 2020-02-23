@@ -4,15 +4,15 @@
 .app-wrapper {
     display: grid;
     grid-template:
-        "aside header" 60px
-        "content content" 100vh
-        "footer footer" 50px
-        ~'/ auto 9fr';
+        "aside" 60px
+        "content" 100vh
+        "footer" 50px
+        ~'/ auto';
 
     // kind of a spacer element?
-    header {
-        grid-area: header;
-    }
+    // header {
+    //     grid-area: header;
+    // }
 
     // toggle nav
     aside {
@@ -49,6 +49,7 @@
         position: fixed;
         width: 300px;
         left: -300px;
+        top: 60px;
 
         &.open {
             transform: translateX(300px);
@@ -107,14 +108,16 @@
 
     .media(@min-tablet, {
         grid-template:
-            "aside header" 60px
+            "aside ." 60px
             "sidebar content" 100vh
             "sidebar footer" 50px
             ~'/ auto 9fr';
 
         .sidebar-nav {
-            position: relative;
+            grid-area: sidebar;
+            position: unset;
             left: 0;
+            top: 0;
             transition: width ease-in-out 160ms;
 
             &.open {
