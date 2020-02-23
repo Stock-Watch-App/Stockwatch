@@ -23,7 +23,7 @@
         z-index: 2;
         display: flex;
         align-items: center;
-        background: @body-bg;
+        background: @body-overlay-bg;
     }
 
     .logo {
@@ -39,7 +39,7 @@
     }
 
     .sidebar-nav {
-        background: @body-bg;
+        background: @body-overlay-bg;
         padding: 2rem 1rem;
         overflow: auto;
         transition: all .3s ease-in-out;
@@ -97,13 +97,13 @@
 
     .app-content {
         grid-area: content;
-        background-color: @body-overlay-bg;
+        // background-color: @body-bg;
         padding: 2rem;
     }
 
     footer {
         grid-area: footer;
-        background-color: @body-overlay-bg;
+        background-color: @body-bg;
     }
 
 

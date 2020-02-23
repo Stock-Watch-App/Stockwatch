@@ -137,54 +137,57 @@ html {
 */
 h1,
 .header1 {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.2;
+  font-variation-settings: "wght" 700;
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-size: 1.6rem;
+  font-size: 2.5rem;
 }
 @media screen and (min-width: 20rem) {
   h1,
   .header1 {
     /* stylelint-disable */
     font-size: 1.75rem;
-    font-size: calc(1.6rem  +  0.4  * ((100vw -  20rem ) / 70 ));
+    font-size: calc(2.5rem  +  0.5  * ((100vw -  20rem ) / 70 ));
     /* stylelint-enable */
   }
 }
 @media screen and (min-width: 90rem) {
   h1,
   .header1 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
 h2,
 .header2 {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.2;
+  font-variation-settings: "wght" 700;
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 @media screen and (min-width: 20rem) {
   h2,
   .header2 {
     /* stylelint-disable */
     font-size: 1.4rem;
-    font-size: calc(1.3rem  +  0.2  * ((100vw -  20rem ) / 70 ));
+    font-size: calc(2rem  +  0.441  * ((100vw -  20rem ) / 70 ));
     /* stylelint-enable */
   }
 }
 @media screen and (min-width: 90rem) {
   h2,
   .header2 {
-    font-size: 1.5rem;
+    font-size: 2.441rem;
   }
 }
 h3,
 .header3 {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.2;
+  font-variation-settings: "wght" 700;
   margin-top: 0;
   margin-bottom: 0.5em;
   font-size: 1.2rem;
@@ -194,20 +197,21 @@ h3,
   .header3 {
     /* stylelint-disable */
     font-size: 1.3rem;
-    font-size: calc(1.2rem  +  0.175  * ((100vw -  20rem ) / 70 ));
+    font-size: calc(1.2rem  +  0.753  * ((100vw -  20rem ) / 70 ));
     /* stylelint-enable */
   }
 }
 @media screen and (min-width: 90rem) {
   h3,
   .header3 {
-    font-size: 1.375rem;
+    font-size: 1.953rem;
   }
 }
 h4,
 .header4 {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.2;
+  font-variation-settings: "wght" 700;
   margin-top: 0;
   margin-bottom: 0.5em;
   font-size: 1rem;
@@ -217,19 +221,19 @@ h4,
   .header4 {
     /* stylelint-disable */
     font-size: 1rem;
-    font-size: calc(1rem  +  0.25  * ((100vw -  20rem ) / 70 ));
+    font-size: calc(1rem  +  0.563  * ((100vw -  20rem ) / 70 ));
     /* stylelint-enable */
   }
 }
 @media screen and (min-width: 90rem) {
   h4,
   .header4 {
-    font-size: 1.25rem;
+    font-size: 1.563rem;
   }
 }
 h5,
 .header5 {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.5;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -237,7 +241,7 @@ h5,
 }
 h6,
 .header6 {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.5;
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -245,7 +249,7 @@ h6,
 }
 p,
 label {
-  color: #ffffff;
+  color: #25282F;
   line-height: 1.5;
   margin-bottom: 0.5em;
   margin-top: 0;
@@ -257,7 +261,7 @@ label.bodySM {
 }
 p.bodyLight,
 label.bodyLight {
-  color: #BDBDC2;
+  color: hsl(240, 4%, 75%);
 }
 a {
   color: hsl(224, 90%, 53%);
@@ -272,6 +276,22 @@ a:active {
 }
 .textCenter {
   text-align: center;
+}
+@font-face {
+  font-family: 'Source Sans Variable';
+  font-weight: 200 900;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('/storage/WOFF2/VAR/SourceSansVariable-Roman.ttf.woff2') format('woff2'), url('/storage/WOFF/VAR/SourceSansVariable-Roman.ttf.woff') format('woff'), url('/storage/VAR/SourceSansVariable-Roman.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Source Sans Variable Italic';
+  font-weight: 200 900;
+  font-style: italic;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('/storage/WOFF2/VAR/SourceSansVariable-Italic.ttf.woff2') format('woff2'), url('/storage/WOFF/VAR/SourceSansVariable-Italic.ttf.woff') format('woff'), url('/storage/VAR/SourceSansVariable-Italic.ttf') format('truetype');
 }
 .fpo {
   background-color: black;
@@ -334,10 +354,10 @@ a:active {
   margin-top: 3.25rem;
 }
 .text-white {
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
 }
 .text-dark {
-  color: #151518;
+  color: hsl(240, 7%, 9%);
 }
 .app-wrapper {
   display: grid;
@@ -352,10 +372,10 @@ a:active {
   z-index: 2;
   display: flex;
   align-items: center;
-  background: #151518;
+  background: #32333D;
 }
 .app-wrapper .logo {
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
   text-transform: uppercase;
   margin-left: 2rem;
   font-weight: 700;
@@ -364,7 +384,7 @@ a:active {
   display: none;
 }
 .app-wrapper .sidebar-nav {
-  background: #151518;
+  background: #32333D;
   padding: 2rem 1rem;
   overflow: auto;
   transition: all 0.3s ease-in-out;
@@ -386,7 +406,7 @@ a:active {
   margin-right: 1rem;
 }
 .app-wrapper .sidebar-nav .sidebar-nav-list .item-wrap {
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
   display: flex;
   align-items: center;
 }
@@ -409,12 +429,11 @@ a:active {
 }
 .app-wrapper .app-content {
   grid-area: content;
-  background-color: #2C2C30;
   padding: 2rem;
 }
 .app-wrapper footer {
   grid-area: footer;
-  background-color: #2C2C30;
+  background-color: #25282F;
 }
 @media only screen and (min-width: 768px) {
   .app-wrapper {
@@ -473,7 +492,7 @@ a:active {
   background-color: hsl(224, 90%, 45%);
 }
 .landingWrap .form-wrap {
-  background-color: #ffffff;
+  background-color: hsl(0, 0%, 100%);
   border-radius: 4px;
 }
 .landingWrap .bottom-links {
@@ -488,7 +507,7 @@ a:active {
 }
 .landingWrapSingle .card {
   grid-column: 2/4;
-  background-color: #ffffff;
+  background-color: hsl(0, 0%, 100%);
 }
 .stock-cards {
   display: grid;
@@ -504,7 +523,7 @@ a:active {
   grid-area: headline;
 }
 .user-account label {
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
 }
 .user-account .profile-image-edit {
   grid-area: photo;
@@ -527,7 +546,7 @@ a:active {
   display: flex;
   flex-direction: column;
   word-wrap: break-word;
-  background: #ffffff;
+  background: hsl(0, 0%, 100%);
   padding: 1rem;
 }
 .card h1,
@@ -538,7 +557,7 @@ a:active {
 .card h6,
 .card p,
 .card label {
-  color: #151518;
+  color: hsl(240, 7%, 9%);
 }
 .card.duo {
   display: grid;
@@ -549,7 +568,7 @@ a:active {
   padding: 1rem;
 }
 .card.dark {
-  background: #2C2C30;
+  background: #32333D;
 }
 .card.deep {
   padding: 2rem;
@@ -571,10 +590,10 @@ a:active {
   }
 }
 .button-base {
-  background-color: #ffffff;
+  background-color: hsl(0, 0%, 100%);
   border: 1px solid transparent;
   border-radius: 4px;
-  color: #000000;
+  color: hsl(0, 0%, 0%);
   min-height: 2.75rem;
   transition: all 0.2s ease-in-out;
   display: inline-block;
@@ -584,9 +603,9 @@ a:active {
   padding: 0em 1.25em 0em 1.25em;
 }
 .button-base:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base:focus {
@@ -616,16 +635,16 @@ a:active {
 }
 .button-base.primary {
   background-color: hsl(224, 90%, 53%);
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
 }
 .button-base.primary:hover,
 .button-base.primary:active {
   background-color: hsl(224, 90%, 43%);
 }
 .button-base.primary:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.primary.ghost {
@@ -638,38 +657,38 @@ a:active {
   background-color: hsl(240, 4%, 90%);
 }
 .button-base.primary.ghost:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.secondary {
-  background-color: #1AF3DA;
-  color: #000000;
+  background-color: hsl(22.5, 95.1%, 40.2%);
+  color: hsl(0, 0%, 100%);
 }
 .button-base.secondary:hover,
 .button-base.secondary:active {
-  background-color: #0bcfb9;
+  background-color: hsl(22.5, 95.1%, 30.2%);
 }
 .button-base.secondary:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.secondary.ghost {
   background-color: transparent;
-  border: 1px solid #1AF3DA;
-  color: #1AF3DA;
+  border: 1px solid hsl(22.5, 95.1%, 40.2%);
+  color: hsl(22.5, 95.1%, 40.2%);
 }
 .button-base.secondary.ghost:hover,
 .button-base.secondary.ghost:active {
   background-color: hsl(240, 4%, 90%);
 }
 .button-base.secondary.ghost:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.prepend {
@@ -686,66 +705,66 @@ a:active {
   justify-content: center;
 }
 .button-base.prepend figure svg {
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
 }
 .button-base.prepend span {
   text-align: center;
 }
 .button-base.danger {
-  background-color: #E9512B;
-  color: #000000;
+  background-color: hsl(22.5, 95.1%, 40.2%);
+  color: hsl(0, 0%, 0%);
 }
 .button-base.danger:hover,
 .button-base.danger:active {
-  background-color: #cc3a15;
+  background-color: hsl(22.5, 95.1%, 30.2%);
 }
 .button-base.danger:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.twitter {
-  border: 2px solid #1da1f2;
-  color: #000000;
+  border: 2px solid hsl(203, 89%, 53%);
+  color: hsl(0, 0%, 0%);
   font-weight: 700;
 }
 .button-base.twitter figure {
-  border-right: 1px solid #1da1f2;
-  background-color: #1da1f2;
+  border-right: 1px solid hsl(203, 89%, 53%);
+  background-color: hsl(203, 89%, 53%);
 }
 .button-base.twitter:hover,
 .button-base.twitter:active {
   background: hsl(240, 4%, 90%);
 }
 .button-base.twitter:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.discord {
-  border: 2px solid #7289DA;
-  color: #000000;
+  border: 2px solid hsl(227, 58%, 65%);
+  color: hsl(0, 0%, 0%);
   font-weight: 700;
 }
 .button-base.discord figure {
-  border-right: 1px solid #7289DA;
-  background-color: #7289DA;
+  border-right: 1px solid hsl(227, 58%, 65%);
+  background-color: hsl(227, 58%, 65%);
 }
 .button-base.discord:hover,
 .button-base.discord:active {
   background-color: hsl(240, 4%, 90%);
 }
 .button-base.discord:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.facebook {
   border: 2px solid #1877f2;
-  color: #000000;
+  color: hsl(0, 0%, 0%);
   font-weight: 700;
 }
 .button-base.facebook figure {
@@ -757,52 +776,52 @@ a:active {
   background-color: hsl(240, 4%, 90%);
 }
 .button-base.facebook:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.twitch {
-  border: 2px solid #9146ff;
-  color: #000000;
+  border: 2px solid hsl(264, 100%, 64%);
+  color: hsl(0, 0%, 0%);
   font-weight: 700;
 }
 .button-base.twitch figure {
-  border-right: 1px solid #9146ff;
-  background-color: #9146ff;
+  border-right: 1px solid hsl(264, 100%, 64%);
+  background-color: hsl(264, 100%, 64%);
 }
 .button-base.twitch:hover,
 .button-base.twitch:active {
   background-color: hsl(240, 4%, 90%);
 }
 .button-base.twitch:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: default;
 }
 .button-base.toggle {
   background: transparent;
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
   padding: 0;
   font-size: 2rem;
 }
 .text-input {
-  border: solid 2px hsl(240, 4%, 90%);
+  border: solid 1px hsl(240, 4%, 75%);
   border-radius: 4px;
-  color: #151518;
+  color: hsl(240, 7%, 9%);
   font-size: 1rem;
   height: 2.75rem;
   padding: 0 0.625rem;
   width: 100%;
 }
 .text-input::-webkit-input-placeholder {
-  color: #494950;
+  color: hsl(240, 5%, 30%);
   opacity: 1;
 }
 .text-input::-webkit-input-placeholder,
 .text-input::placeholder {
-  color: #494950;
+  color: hsl(240, 5%, 30%);
   opacity: 1;
 }
 .text-input:active,
@@ -811,21 +830,21 @@ a:active {
   box-shadow: 0 0 0 1pt hsl(224, 90%, 53%);
 }
 .text-input.dark {
-  background: #95959D;
-  color: #ffffff;
+  background: hsl(240, 4%, 60%);
+  color: hsl(0, 0%, 100%);
 }
 .text-input.is-invalid {
   border: solid 1px transparent;
-  outline: solid 2px #E9512B;
+  outline: solid 2px hsl(22.5, 95.1%, 40.2%);
   outline-offset: -2px;
 }
 .text-input.is-invalid:invalid {
   box-shadow: none;
 }
 .text-input:disabled {
-  background-color: #95959D;
-  border-color: #95959D;
-  color: #494950;
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
   cursor: not-allowed;
   outline: none;
 }
@@ -835,7 +854,7 @@ a:active {
 .label {
   font-size: 1rem;
   font-weight: 700;
-  color: #151518;
+  color: hsl(240, 7%, 9%);
   margin-bottom: 0.5rem;
   display: inline-block;
 }
@@ -851,11 +870,12 @@ a:active {
   display: block;
 }
 body {
-  color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #25282F;
+  font-family: "Source Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
+  font-weight: "wght" 400;
   font-size: 1em;
   line-height: 1.5;
-  background: #151518;
+  background: hsl(0, 0%, 100%);
 }
 body.landing {
   background: hsl(224, 90%, 53%);

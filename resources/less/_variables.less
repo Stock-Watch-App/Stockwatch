@@ -5,6 +5,17 @@
 @transition: all 0.2s ease-in-out;
 @border-radius: 4px;
 
+// fonts
+@source-sans: "Source Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
+@source-sans-italic: "Source Sans Variable Italic", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
+// variable font settings
+@source-sans-bold: "wght" 700;
+@source-sans-normal: "wght" 400;
+@base-font: @source-sans;
+@base-font-weight-bold: @source-sans-bold;
+@base-font-weight-normal: @source-sans-normal;
+
+
 // breakpoints
 @xlg-desktop : 1440px;
 @lg-desktop : 1280px;
@@ -43,41 +54,60 @@
 // colors
 @primary-blue: hsl(224, 90%, 53%);
 @primary-blue-02: hsl(224, 90%, 45%);
-@secondary-blue: #1AF3DA;
-@red: #E9512B;
-@yellow: #FBE400;
-@green: #0D9347;
-@purple: #652C8C;
-@taranshow: #087893;
-@gray-dark: #151518;
-@gray-medium: #2C2C30;
-@gray-light: #95959D;
-@gray-lightest: #BDBDC2;
+@primary-blue-03:#031E68;
+@primary-blue-04: #0B124E;
+@secondary-blue: hsl(173, 90%, 53%);
+// @red: hsl(12, 81%, 54%);
+@red: hsl(22.5, 95.1%, 40.2%);
+@yellow: hsl(55, 100%, 49%);
+@green: hsl(146, 84%, 31%);
+@purple: hsl(276, 52%, 36%);
+@taranshow: hsl(192, 90%, 30%);
+@gray-01: #25282F;
+@gray-02: #32333D;
+@gray-03: #373740;
+@gray-dark: hsl(240, 7%, 9%);
+@gray-medium: hsl(240, 4%, 18%);
+@gray-light: hsl(240, 4%, 60%);
+@gray-lightest: hsl(240, 4%, 75%);
 @gray-hint: hsl(240, 4%, 90%);
-@gray-text-on-lightest: #494950;
-@white: #ffffff;
-@black: #000000;
+@gray-text-on-lightest: hsl(240, 5%, 30%);
+@white: hsl(0, 0%, 100%);
+@black: hsl(0, 0%, 0%);
 
 // alias
 @link: @primary-blue;
 @link-hover: darken(@primary-blue, 10%);
 @button-primary: @primary-blue;
 @button-primary-hover: darken(@button-primary, 10%);
-@button-secondary: @secondary-blue;
-@button-secondary-hover: darken(@button-secondary, 10%);
+@button-secondary: @red;
+@button-secondary-hover: darken(@red, 10%);
 @button-danger: @red;
 @button-danger-hover: darken(@button-danger, 10%);
-@disabled-bg: @gray-light;
+@disabled-bg: @gray-hint;
 @disabled-text: @gray-text-on-lightest;
+
 @placeholder-text: @gray-text-on-lightest;
-@body-bg: @gray-dark;
-@body-overlay-bg: @gray-medium;
-@border: @gray-hint;
+@body-bg: @gray-01;
+@body-overlay-bg: @gray-02;
+@border: @gray-lightest;
 @body-text-light: @white;
 @body-text-dark: @gray-dark;
 
 // brands
-@twitter: #1da1f2;
+@twitter: hsl(203, 89%, 53%);
 @facebook: rgb(24, 119, 242);
-@discord: #7289DA;
-@twitch: #9146ff;
+@discord: hsl(227, 58%, 65%);
+@twitch: hsl(264, 100%, 64%);
+
+// shadows
+@shadow-xs:	0 0 0 1px rgba(0, 0, 0, 0.05);
+@shadow-sm:	0 1px 2px 0 rgba(0, 0, 0, 0.05);
+@shadow:	0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+@shadow-md:	0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+@shadow-lg:	0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+@shadow-xl:	0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+@shadow-2xl:	0 25px 50px -12px rgba(0, 0, 0, 0.25);
+@shadow-inner:	inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+@shadow-outline:	0 0 0 3px rgba(66, 153, 225, 0.5);
+
