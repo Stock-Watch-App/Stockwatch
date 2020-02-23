@@ -3,12 +3,10 @@
 
 .app-wrapper {
     display: grid;
-    // grid-template-columns: 9fr auto;
-    // grid-template-rows: 50px 100vh 50px;
     grid-template:
         "aside header" 60px
-        "sidebar content" 100vh
-        "sidebar footer" 50px
+        "content content" 100vh
+        "footer footer" 50px
         ~'/ auto 9fr';
 
     // kind of a spacer element?
@@ -34,7 +32,7 @@
         margin-left: 2rem;
         font-weight: 700;
 
-        // this will animate to a small logo version
+        // placeholder untill we render a smaller img
         &.mini {
             display: none;
         }
@@ -44,50 +42,35 @@
         background: @body-bg;
         padding: 2rem 1rem;
         overflow: auto;
-        transition: width ease-in-out 160ms;
+        transition: all .3s ease-in-out;
+        top: 0;
+        bottom: 0;
+        min-height: 100vh;
+        position: fixed;
+        width: 300px;
+        left: -300px;
 
         &.open {
-            grid-area: sidebar;
-            width: 300px;
+            transform: translateX(300px);
         }
 
-        &.closed {
-            width: 70px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .sidebar-nav-list {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                // nav item img
-                figure {
-                    margin-right: 0;
-                }
-
-                // nav item text
-                span {
-                    display: none;
-                }
+        .sidebar-nav-list {
+            li {
+                margin-bottom: 1rem;
             }
 
-            .profile-wrap {
-                display: block;
+            figure {
+                margin-right: 1rem;
+            }
 
-                .profile-pic {
-                    max-width: 40px;
-                }
-
-                .profile-name {
-                    display: none;
-                }
+            .item-wrap {
+                color: @white;
+                display: flex;
+                align-items: center;
             }
         }
 
         .profile-wrap {
-            // text-align: center;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -106,35 +89,13 @@
                 // clip-path: circle(50% at 50% 50%);
                 // width: 45%;
                 border-radius: 8px;
-                flex: 1 1 50px;
+                flex: 0 0 42px;
             }
         }
-
-        .sidebar-nav-list {
-            li {
-                margin-bottom: 1rem;
-            }
-
-            figure {
-                margin-right: 1rem;
-            }
-
-            .item-wrap {
-                color: @white;
-                display: flex;
-                align-items: center;
-
-                // .mini {
-                //     display: none;
-                // }
-            }
-        }
-
     }
 
     .app-content {
         grid-area: content;
-        border-radius: 30px 0 0 0;
         background-color: @body-overlay-bg;
     }
 
@@ -142,4 +103,64 @@
         grid-area: footer;
         background-color: @body-overlay-bg;
     }
+
+
+    .media(@min-tablet, {
+        grid-template:
+            "aside header" 60px
+            "sidebar content" 100vh
+            "sidebar footer" 50px
+            ~'/ auto 9fr';
+
+        .sidebar-nav {
+            position: relative;
+            left: 0;
+            transition: width ease-in-out 160ms;
+
+            &.open {
+                grid-area: sidebar;
+                transform: none;
+                width: 300px;
+            }
+
+            &.closed {
+                width: 70px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .sidebar-nav-list {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    // nav item img
+                    figure {
+                        margin-right: 0;
+                    }
+
+                    // nav item text
+                    span {
+                        display: none;
+                    }
+                }
+
+                .profile-wrap {
+                    display: block;
+
+                    .profile-pic {
+                        max-width: 42px;
+                    }
+
+                    .profile-name {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .app-content {
+            border-radius: 30px 0 0 0;
+        }
+    });
 }

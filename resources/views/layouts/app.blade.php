@@ -33,7 +33,7 @@
         <header>
         </header>
         <!-- <slideout-nav></slideout-nav> -->
-        <nav id="menu" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
+        <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
             @guest
                 <p>need to fix this logged in check</p>
             @else
@@ -101,6 +101,9 @@
                     <a class="item-wrap" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
+                                    <figure>
+                    <font-awesome-icon icon="sign-out-alt" fixed-width />
+                    </figure>
                         <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span>
                     </a>
 

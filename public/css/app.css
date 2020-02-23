@@ -341,7 +341,7 @@ a:active {
 }
 .app-wrapper {
   display: grid;
-  grid-template: "aside header" 60px "sidebar content" 100vh "sidebar footer" 50px / auto 9fr;
+  grid-template: "aside header" 60px "content content" 100vh "footer footer" 50px / auto 9fr;
 }
 .app-wrapper header {
   grid-area: header;
@@ -370,37 +370,27 @@ a:active {
   background: #151518;
   padding: 2rem 1rem;
   overflow: auto;
-  transition: width ease-in-out 160ms;
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  bottom: 0;
+  min-height: 100vh;
+  position: fixed;
+  width: 300px;
+  left: -300px;
 }
 .app-wrapper .sidebar-nav.open {
-  grid-area: sidebar;
-  width: 300px;
+  transform: translateX(300px);
 }
-.app-wrapper .sidebar-nav.closed {
-  width: 70px;
+.app-wrapper .sidebar-nav .sidebar-nav-list li {
+  margin-bottom: 1rem;
+}
+.app-wrapper .sidebar-nav .sidebar-nav-list figure {
+  margin-right: 1rem;
+}
+.app-wrapper .sidebar-nav .sidebar-nav-list .item-wrap {
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-.app-wrapper .sidebar-nav.closed .sidebar-nav-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.app-wrapper .sidebar-nav.closed .sidebar-nav-list figure {
-  margin-right: 0;
-}
-.app-wrapper .sidebar-nav.closed .sidebar-nav-list span {
-  display: none;
-}
-.app-wrapper .sidebar-nav.closed .profile-wrap {
-  display: block;
-}
-.app-wrapper .sidebar-nav.closed .profile-wrap .profile-pic {
-  max-width: 40px;
-}
-.app-wrapper .sidebar-nav.closed .profile-wrap .profile-name {
-  display: none;
 }
 .app-wrapper .sidebar-nav .profile-wrap {
   display: flex;
@@ -417,27 +407,59 @@ a:active {
 }
 .app-wrapper .sidebar-nav .profile-wrap .profile-pic {
   border-radius: 8px;
-  flex: 1 1 50px;
-}
-.app-wrapper .sidebar-nav .sidebar-nav-list li {
-  margin-bottom: 1rem;
-}
-.app-wrapper .sidebar-nav .sidebar-nav-list figure {
-  margin-right: 1rem;
-}
-.app-wrapper .sidebar-nav .sidebar-nav-list .item-wrap {
-  color: #ffffff;
-  display: flex;
-  align-items: center;
+  flex: 0 0 42px;
 }
 .app-wrapper .app-content {
   grid-area: content;
-  border-radius: 30px 0 0 0;
   background-color: #2C2C30;
 }
 .app-wrapper footer {
   grid-area: footer;
   background-color: #2C2C30;
+}
+@media only screen and (min-width: 768px) {
+  .app-wrapper {
+    grid-template: "aside header" 60px "sidebar content" 100vh "sidebar footer" 50px / auto 9fr;
+  }
+  .app-wrapper .sidebar-nav {
+    position: relative;
+    left: 0;
+    transition: width ease-in-out 160ms;
+  }
+  .app-wrapper .sidebar-nav.open {
+    grid-area: sidebar;
+    transform: none;
+    width: 300px;
+  }
+  .app-wrapper .sidebar-nav.closed {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-wrapper .sidebar-nav.closed .sidebar-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-wrapper .sidebar-nav.closed .sidebar-nav-list figure {
+    margin-right: 0;
+  }
+  .app-wrapper .sidebar-nav.closed .sidebar-nav-list span {
+    display: none;
+  }
+  .app-wrapper .sidebar-nav.closed .profile-wrap {
+    display: block;
+  }
+  .app-wrapper .sidebar-nav.closed .profile-wrap .profile-pic {
+    max-width: 42px;
+  }
+  .app-wrapper .sidebar-nav.closed .profile-wrap .profile-name {
+    display: none;
+  }
+  .app-wrapper .app-content {
+    border-radius: 30px 0 0 0;
+  }
 }
 .landingWrap {
   display: grid;
