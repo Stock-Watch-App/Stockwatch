@@ -1,6 +1,22 @@
 @import './_variables.less';
 @import './_mixins.less';
 
+// animations
+
+.sidebar-nav {
+    &.open {
+        transition:
+            visibility 160ms ease-in-out 100ms,
+            width 160ms ease-in-out 0s;
+    }
+
+    &.closed {
+        transition:
+            visibility 160ms ease-in-out 0s,
+            width 160ms ease-in-out 10ms;
+    }
+}
+
 .app-wrapper {
     display: grid;
     grid-template:
@@ -13,8 +29,8 @@
     aside {
         grid-area: aside;
         // make this better
-        // position: sticky;
-        // top: 0;
+        position: sticky;
+        top: 0;
         padding-left: 1rem;
         z-index: 2;
         display: flex;
@@ -29,6 +45,7 @@
         font-weight: 700;
 
         // placeholder untill we render a smaller img
+        // this is hacky and clunky for now
         &.mini {
             display: none;
         }
@@ -38,8 +55,6 @@
         background: @body-overlay-bg;
         color: @white;
         padding: 2rem 1rem;
-        // overflow: auto;
-        transition: all .3s ease-in-out;
         top: 0;
         bottom: 0;
         min-height: 100vh;
@@ -47,6 +62,7 @@
         width: 300px;
         left: -300px;
         top: 60px;
+        z-index: 2;
 
         &.open {
             transform: translateX(300px);
@@ -132,12 +148,15 @@
             "sidebar footer" auto
             ~'/ auto 9fr';
 
+        aside {
+            position: relative;
+        }
+
         .sidebar-nav {
             grid-area: sidebar;
             position: unset;
             left: 0;
             top: 0;
-            transition: width ease-in-out 160ms;
 
             &.open {
                 grid-area: sidebar;
@@ -163,7 +182,8 @@
 
                     // nav item text
                     span {
-                        display: none;
+                        visibility: hidden;
+                        width: 0;
                     }
                 }
 

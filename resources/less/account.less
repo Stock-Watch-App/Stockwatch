@@ -2,14 +2,13 @@
 @import './_mixins.less';
 
 .user-account {
-    grid-column: ~'2/7';
     display: grid;
     grid-gap: 2rem;
     grid-template:
-        "headline headline" auto
-        "photo photo" auto
-        "fields ." auto
-        ~'/ 1fr 1fr';
+        "headline" auto
+        "photo" auto
+        "fields" auto
+        ~'/ 1fr';
 
     h2 {
         grid-area: headline;
@@ -31,5 +30,13 @@
     .edit-profile {
         grid-area: fields;
     }
+
+    .media(@min-tablet, {
+        grid-template:
+            "headline headline" auto
+            "photo photo" auto
+            "fields ." auto
+            ~'/ 1fr 1fr';
+    });
 }
 

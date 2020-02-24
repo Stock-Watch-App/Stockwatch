@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="user-account">
+    <div class="user-account app-content-max">
         <h2>Account Settings</h2>
 
         <div class="profile-image-edit">

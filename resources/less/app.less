@@ -38,12 +38,22 @@ body {
     .px-rem-padding(20, 16, 20, 16);
 }
 
+.app-content-max {
+    grid-column: ~'1/9';
+}
+
+.media(@min-desktop, {
+    .content {
+        width: @lg-desktop;
+    }
+
+    .app-content-max {
+        grid-column: ~'2/7';
+    }
+});
+
 .media(@min-lg-desktop, {
     .content {
         width: @lg-desktop;
     }
 });
-
-.app-content-max {
-    grid-column: ~'2/7';
-}

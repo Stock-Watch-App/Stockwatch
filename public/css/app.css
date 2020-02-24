@@ -359,12 +359,21 @@ a:active {
 .text-dark {
   color: hsl(240, 7%, 9%);
 }
+.sidebar-nav.open {
+  transition: visibility 160ms ease-in-out 100ms, width 160ms ease-in-out 0s;
+}
+.sidebar-nav.closed {
+  transition: visibility 160ms ease-in-out 0s, width 160ms ease-in-out 10ms;
+}
 .app-wrapper {
   display: grid;
   grid-template: "aside" 60px "content" auto "footer" auto / auto;
 }
 .app-wrapper aside {
   grid-area: aside;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   padding-left: 1rem;
   z-index: 2;
   display: flex;
@@ -384,7 +393,6 @@ a:active {
   background: #32333D;
   color: hsl(0, 0%, 100%);
   padding: 2rem 1rem;
-  transition: all 0.3s ease-in-out;
   top: 0;
   bottom: 0;
   min-height: 100vh;
@@ -392,6 +400,7 @@ a:active {
   width: 300px;
   left: -300px;
   top: 60px;
+  z-index: 2;
 }
 .app-wrapper .sidebar-nav.open {
   transform: translateX(300px);
@@ -454,12 +463,14 @@ a:active {
   .app-wrapper {
     grid-template: "aside ." 60px "sidebar content" auto "sidebar footer" auto / auto 9fr;
   }
+  .app-wrapper aside {
+    position: relative;
+  }
   .app-wrapper .sidebar-nav {
     grid-area: sidebar;
     position: unset;
     left: 0;
     top: 0;
-    transition: width ease-in-out 160ms;
   }
   .app-wrapper .sidebar-nav.open {
     grid-area: sidebar;
@@ -481,7 +492,8 @@ a:active {
     margin-right: 0;
   }
   .app-wrapper .sidebar-nav.closed .sidebar-nav-list span {
-    display: none;
+    visibility: hidden;
+    width: 0;
   }
   .app-wrapper .sidebar-nav.closed .profile-wrap {
     display: block;
@@ -530,10 +542,9 @@ a:active {
   grid-gap: 2rem;
 }
 .user-account {
-  grid-column: 2/7;
   display: grid;
   grid-gap: 2rem;
-  grid-template: "headline headline" auto "photo photo" auto "fields ." auto / 1fr 1fr;
+  grid-template: "headline" auto "photo" auto "fields" auto / 1fr;
 }
 .user-account h2 {
   grid-area: headline;
@@ -551,6 +562,11 @@ a:active {
 }
 .user-account .edit-profile {
   grid-area: fields;
+}
+@media only screen and (min-width: 768px) {
+  .user-account {
+    grid-template: "headline headline" auto "photo photo" auto "fields ." auto / 1fr 1fr;
+  }
 }
 .card {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -897,11 +913,19 @@ body.landing {
   margin: 0 auto;
   padding: 1.25rem 1rem 1.25rem 1rem;
 }
+.app-content-max {
+  grid-column: 1/9;
+}
+@media only screen and (min-width: 1024px) {
+  .content {
+    width: 1280px;
+  }
+  .app-content-max {
+    grid-column: 2/7;
+  }
+}
 @media only screen and (min-width: 1280px) {
   .content {
     width: 1280px;
   }
-}
-.app-content-max {
-  grid-column: 2/7;
 }
