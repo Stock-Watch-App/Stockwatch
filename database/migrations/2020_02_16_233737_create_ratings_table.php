@@ -15,6 +15,9 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id')->nullable();
+            $table->integer('week');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
