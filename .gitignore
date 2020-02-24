@@ -3,6 +3,7 @@
 /public/storage
 /public/css
 /public/js
+/public/vendor
 /storage/*.key
 /vendor
 .env
@@ -13,4 +14,3 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea/
-auth.json

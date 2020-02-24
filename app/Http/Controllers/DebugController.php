@@ -34,4 +34,9 @@ class DebugController extends Controller
         }
         return $tempVars;
     }
+
+    public function xyz()
+    {
+
+    }
 }
