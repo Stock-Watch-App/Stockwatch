@@ -3,7 +3,7 @@
 @section('content')
 <div class="landingWrap textCenter mg-top-lg" id="landing">
     <div class="card deep">
-        <h2 class="mg-btm-lg">{{ __('Reset Password') }}</h2>
+        <h4 class="mg-btm-lg">{{ __('Reset Password') }}</h4>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">

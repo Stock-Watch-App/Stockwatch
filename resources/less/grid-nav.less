@@ -6,19 +6,15 @@
     grid-template:
         "aside" 60px
         "content" auto
-        "footer" 50px
+        "footer" auto
         ~'/ auto';
-
-    // kind of a spacer element?
-    // header {
-    //     grid-area: header;
-    // }
 
     // toggle nav
     aside {
         grid-area: aside;
-        position: sticky;
-        top: 0;
+        // make this better
+        // position: sticky;
+        // top: 0;
         padding-left: 1rem;
         z-index: 2;
         display: flex;
@@ -40,8 +36,9 @@
 
     .sidebar-nav {
         background: @body-overlay-bg;
+        color: @white;
         padding: 2rem 1rem;
-        overflow: auto;
+        // overflow: auto;
         transition: all .3s ease-in-out;
         top: 0;
         bottom: 0;
@@ -99,11 +96,32 @@
         grid-area: content;
         // background-color: @body-bg;
         padding: 2rem;
+        display: grid;
+        // main content grid def
+        grid-template-columns: repeat(8, 1fr);
     }
 
     footer {
         grid-area: footer;
         background-color: @body-bg;
+        .px-rem-padding(16, 16, 8, 16);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .font-unit-rem(14);
+
+        p, a {
+           color: @white;
+           .font-unit-rem(14);
+        }
+
+        ul {
+            display: flex;
+
+            li {
+                margin-right: 1rem;
+            }
+        }
     }
 
 
@@ -111,7 +129,7 @@
         grid-template:
             "aside ." 60px
             "sidebar content" auto
-            "sidebar footer" 50px
+            "sidebar footer" auto
             ~'/ auto 9fr';
 
         .sidebar-nav {

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="app-content-max">
 
         <h2>Privacy Policy</h2>
         <p>Your privacy is important to us. It is Reality Stockwatch's policy to respect your privacy regarding any information we may collect from you across our website,

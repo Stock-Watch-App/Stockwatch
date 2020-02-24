@@ -3,7 +3,7 @@
 @section('content')
 <div class="landingWrapSingle mg-top-lg" id="landing">
     <div class="card single light">
-        <h2 class="mg-btm-lg">{{ __('Reset password') }}</h2>
+        <h4 class="mg-btm-lg">{{ __('Reset password') }}</h4>
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 

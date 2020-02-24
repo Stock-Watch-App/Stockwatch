@@ -274,7 +274,7 @@ a:active {
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
-.textCenter {
+.text-center {
   text-align: center;
 }
 @font-face {
@@ -361,13 +361,10 @@ a:active {
 }
 .app-wrapper {
   display: grid;
-  grid-template: "aside" 60px "content" auto "footer" 50px / auto;
+  grid-template: "aside" 60px "content" auto "footer" auto / auto;
 }
 .app-wrapper aside {
   grid-area: aside;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
   padding-left: 1rem;
   z-index: 2;
   display: flex;
@@ -385,8 +382,8 @@ a:active {
 }
 .app-wrapper .sidebar-nav {
   background: #32333D;
+  color: hsl(0, 0%, 100%);
   padding: 2rem 1rem;
-  overflow: auto;
   transition: all 0.3s ease-in-out;
   top: 0;
   bottom: 0;
@@ -430,14 +427,32 @@ a:active {
 .app-wrapper .app-content {
   grid-area: content;
   padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
 }
 .app-wrapper footer {
   grid-area: footer;
   background-color: #25282F;
+  padding: 1rem 1rem 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+.app-wrapper footer p,
+.app-wrapper footer a {
+  color: hsl(0, 0%, 100%);
+  font-size: 0.875rem;
+}
+.app-wrapper footer ul {
+  display: flex;
+}
+.app-wrapper footer ul li {
+  margin-right: 1rem;
 }
 @media only screen and (min-width: 768px) {
   .app-wrapper {
-    grid-template: "aside ." 60px "sidebar content" auto "sidebar footer" 50px / auto 9fr;
+    grid-template: "aside ." 60px "sidebar content" auto "sidebar footer" auto / auto 9fr;
   }
   .app-wrapper .sidebar-nav {
     grid-area: sidebar;
@@ -515,15 +530,13 @@ a:active {
   grid-gap: 2rem;
 }
 .user-account {
+  grid-column: 2/7;
   display: grid;
   grid-gap: 2rem;
   grid-template: "headline headline" auto "photo photo" auto "fields ." auto / 1fr 1fr;
 }
 .user-account h2 {
   grid-area: headline;
-}
-.user-account label {
-  color: hsl(0, 0%, 100%);
 }
 .user-account .profile-image-edit {
   grid-area: photo;
@@ -888,4 +901,7 @@ body.landing {
   .content {
     width: 1280px;
   }
+}
+.app-content-max {
+  grid-column: 2/7;
 }

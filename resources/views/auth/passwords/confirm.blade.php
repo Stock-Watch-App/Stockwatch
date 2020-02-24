@@ -3,7 +3,7 @@
 @section('content')
 <div class="landingWrapSingle mg-top-lg" id="landing">
     <div class="card single light">
-        <h2 class="mg-btm-lg">{{ __('Confirm Password') }}</h2>
+        <h4 class="mg-btm-lg">{{ __('Confirm Password') }}</h4>
         <p>{{ __('Please confirm your password before continuing.') }}</p>
 
         <form method="POST" action="{{ route('password.confirm') }}">

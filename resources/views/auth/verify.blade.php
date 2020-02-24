@@ -3,7 +3,7 @@
 @section('content')
 <div class="landingWrapSingle mg-top-lg" id="landing">
     <div class="card single light">
-        <h2 class="mg-btm-lg">{{ __('Verify your email address') }}</h2>
+        <h4 class="mg-btm-lg">{{ __('Verify your email address') }}</h4>
 
         @if (session('resent'))
             <div class="alert alert-success" role="alert">

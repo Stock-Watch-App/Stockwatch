@@ -3,7 +3,7 @@
 @section('content')
 <div class="landingWrap mg-top-lg" id="landing">
     @component('loginflow')
-        <h2 class="mg-btm-lg">{{ __('Login') }}</h2>
+        <h4 class="mg-btm-lg">{{ __('Login') }}</h4>
         @component('sso')
         @endcomponent
         <p class="mg-btm-md mg-top-md textCenter">{{ __('Or') }}</p>

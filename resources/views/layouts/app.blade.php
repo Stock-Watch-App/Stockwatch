@@ -13,8 +13,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -32,7 +32,6 @@
         </aside>
         <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
             @guest
-                <p>need to fix this logged in check</p>
             @else
                 <div class="profile-wrap">
                     <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />
@@ -45,7 +44,7 @@
 
             <ul class="sidebar-nav-list">
             <li>
-                <a href="/" title="Dashboard" class="item-wrap">
+                <a href="/home" title="Dashboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="columns" fixed-width />
                     </figure>
@@ -99,7 +98,7 @@
                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                     <figure>
-                        <font-awesome-icon icon="sign-out-title" fixed-width />
+                        <font-awesome-icon icon="sign-out-alt" fixed-width />
                     </figure>
                         <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span>
                     </a>
@@ -113,7 +112,27 @@
         <main id="panel" class="app-content">
             @yield('content')
         </main>
-        <footer>feets</footer>
+        <footer class="footer">
+            <ul>
+                <li>
+                    <a href="/tos" title="Terms of Service">
+                        Terms of Service
+                    </a>
+                </li>
+                <li>
+                    <a href="/privacy" title="Privacy Policy">
+                        Privacy Policy
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:hello@realitystockwatch.com" title="Privacy Policy">
+                        hello@realitystockwatch.com
+                    </a>
+                </li>
+            </ul>
+
+            <p>&copy; {{ date('Y') }} Reality Stock Watch. All Rights Reserved.</p>
+        </footer>
     </div>
 </body>
 </html>

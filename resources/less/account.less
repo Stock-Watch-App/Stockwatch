@@ -2,6 +2,7 @@
 @import './_mixins.less';
 
 .user-account {
+    grid-column: ~'2/7';
     display: grid;
     grid-gap: 2rem;
     grid-template:
@@ -12,11 +13,6 @@
 
     h2 {
         grid-area: headline;
-    }
-
-    // I'll clean this up
-    label {
-        color: @white;
     }
 
     .profile-image-edit {
