@@ -1,0 +1,25 @@
+@import '../_variables.less';
+@import '../_mixins.less';
+
+.stockcard {
+    display: grid;
+    grid-template-columns: 20% auto 40%;
+    grid-template-rows: 1fr;
+
+    // this is not scalable katie!
+    h1, h2, h3, h4, h5, h6, p, label {
+        color: @white;
+        margin-bottom: 0;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.rating-wrap, .price-change-wrap {
+    display: flex;
+    flex-direction: row;
+}

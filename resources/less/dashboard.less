@@ -2,7 +2,12 @@
 @import './_mixins.less';
 
 .stock-cards {
+    grid-column: ~'1/7';
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
+}
+
+.user-details {
+    grid-column: ~'7/9';
 }
