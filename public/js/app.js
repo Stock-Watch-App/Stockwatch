@@ -14845,24 +14845,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import TCard from 'vue-tailwind/src/components/TCard.vue'
-//     export default {
-//     components: {
-//         TCard
-//     }
-// }
-// Vue.component("stock-card", {
-//     props: {
-//       image: String,
-//       title: String,
-//       user: String
-//     },
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguestDetails: {
       name: String,
       currentRating: Number,
-      currentPrice: Number
+      currentPrice: Number,
+      photo: '/storage/avatar-default.svg'
     }
   }
 });
@@ -50712,26 +50703,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "card dark" }, [
-    _c("img", { attrs: { src: "/" } }),
+  return _c("li", { staticClass: "card dark stockcard" }, [
+    _c("img", { attrs: { src: "/storage/avatar-default.svg" } }),
     _vm._v(" "),
-    _c("h3", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("font-awesome-icon", { attrs: { icon: "star" } }),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.houseguestDetails.currentRating) + " / 10")])
-      ],
-      1
-    ),
+    _c("div", {}, [
+      _c("h3", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
+      _vm._v(" "),
+      _c(
+        "span",
+        { staticClass: "rating-wrap" },
+        [
+          _c("font-awesome-icon", { attrs: { icon: "star" } }),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(_vm._s(_vm.houseguestDetails.currentRating) + " / 10")
+          ])
+        ],
+        1
+      )
+    ]),
     _vm._v(" "),
     _c("div", [
       _c("h2", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))]),
       _vm._v(" "),
       _c(
         "span",
+        { staticClass: "price-change-wrap" },
         [
           _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
           _vm._v(" "),
@@ -81302,8 +81299,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })

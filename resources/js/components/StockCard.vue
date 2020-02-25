@@ -1,14 +1,16 @@
 <template>
-    <li class="card dark">
-        <img src="/" />
-        <h3>{{ houseguestDetails.name }}</h3>
-        <div>
-            <font-awesome-icon icon="star"/>
-            <p>{{ houseguestDetails.currentRating }} / 10</p>
+    <li class="card dark stockcard">
+        <img src="/storage/avatar-default.svg" />
+        <div class="">
+            <h3>{{ houseguestDetails.name }}</h3>
+            <span class="rating-wrap">
+                <font-awesome-icon icon="star"/>
+                <p>{{ houseguestDetails.currentRating }} / 10</p>
+            </span>
         </div>
         <div>
             <h2>${{ houseguestDetails.currentPrice }}</h2>
-            <span>
+            <span class="price-change-wrap">
                 <font-awesome-icon icon="arrow-up"/>
                 <p>5 from last week</p>
             </span>
@@ -17,26 +19,13 @@
 </template>
 
 <script>
-    // import TCard from 'vue-tailwind/src/components/TCard.vue'
-    //     export default {
-    //     components: {
-    //         TCard
-    //     }
-    // }
-
-    // Vue.component("stock-card", {
-    //     props: {
-    //       image: String,
-    //       title: String,
-    //       user: String
-    //     },
-
     export default {
         props: {
             houseguestDetails: {
                 name: String,
                 currentRating: Number,
-                currentPrice: Number
+                currentPrice: Number,
+                photo: '/storage/avatar-default.svg'
             }
         }
     }
