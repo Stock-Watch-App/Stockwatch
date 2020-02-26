@@ -1,11 +1,17 @@
 @import './_variables.less';
 @import './_mixins.less';
 
-.stock-cards {
-    grid-column: ~'1/7';
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
+.stock-cards-wrap {
+    grid-column: ~'1/6';
+
+    .stock-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(100px, max-content);
+        grid-gap: 2rem;
+    }
+
+
 }
 
 .user-details {

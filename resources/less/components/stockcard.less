@@ -3,23 +3,95 @@
 
 .stockcard {
     display: grid;
-    grid-template-columns: 20% auto 40%;
-    grid-template-rows: 1fr;
+    border: solid 1px @gray-hint;
+    grid-template-columns: 65px 1fr auto;
+    grid-gap: .5rem;
+    grid-auto-flow: dense;
+    overflow: hidden;
+
 
     // this is not scalable katie!
     h1, h2, h3, h4, h5, h6, p, label {
-        color: @white;
+        // color: @white;
         margin-bottom: 0;
     }
 
-    img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
-}
+    .hg-img {
+        grid-column: 1;
+        border: solid 1px @border;
 
-.rating-wrap, .price-change-wrap {
-    display: flex;
-    flex-direction: row;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .hg-details {
+        grid-column: ~'2 / 5';
+        justify-content: space-between;
+    }
+
+    .rating-wrap {
+        align-items: baseline;
+
+        .hg-star {
+            color: @yellow;
+        }
+
+        .hg-star-rating {
+            font-variation-settings: @base-font-weight-bold;
+            .px-rem(margin-right, 2);
+        }
+
+        .num-wrap {
+            line-height: 1;
+        }
+    }
+
+    .hg-price {
+        grid-column: ~'5 / 6';
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    p {
+        .font-unit-rem(14);
+    }
+
+    svg {
+        .px-rem(margin-right, 4);
+    }
+
+    .price-wrap {
+        background: @yellow;
+        border-radius: @border-radius;
+        .px-em-padding(8, 16, 8, 16);
+    }
+
+    .price-change-wrap {
+        align-items: baseline;
+
+        p {
+            line-height: 1;
+        }
+
+        svg {
+            .font-unit-rem(12);
+        }
+
+        &.green {
+            color: @green;
+        }
+
+        &.red {
+            color: @red;
+        }
+
+        &.neutral {
+            color: @gray-light;
+        }
+    }
 }

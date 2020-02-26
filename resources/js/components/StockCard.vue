@@ -1,18 +1,28 @@
 <template>
-    <li class="card dark stockcard">
-        <img src="/storage/avatar-default.svg" />
-        <div class="">
-            <h3>{{ houseguestDetails.name }}</h3>
-            <span class="rating-wrap">
-                <font-awesome-icon icon="star"/>
-                <p>{{ houseguestDetails.currentRating }} / 10</p>
+    <li class="card stockcard">
+        <div class="hg-img">
+            <img src="/storage/avatar-default.svg" />
+        </div>
+        <div class="hg-details flex-col">
+            <p>{{ houseguestDetails.name }}</p>
+            <span class="rating-wrap flex-row">
+                <font-awesome-icon icon="star" class="hg-star" />
+                <span class="num-wrap flex-row">
+                    <span class="hg-star-rating">{{ houseguestDetails.currentRating }}</span>
+                    <span> / 10</span>
+                </span>
             </span>
         </div>
-        <div>
-            <h2>${{ houseguestDetails.currentPrice }}</h2>
-            <span class="price-change-wrap">
+        <div class="hg-price">
+            <span class="price-wrap">
+                <h3>${{ houseguestDetails.currentPrice }}</h3>
+            </span>
+            <span class="price-change-wrap flex-row" v-bind:class="[isPos ? 'green' : 'red']">
                 <font-awesome-icon icon="arrow-up"/>
-                <p>5 from last week</p>
+                <!-- need a check for up, down, no-change -->
+                <!-- <font-awesome-icon icon="arrow-down"/>
+                <font-awesome-icon icon="arrow-right"/> -->
+                <p>{{ houseguestDetails.priceDifference }} from last week</p>
             </span>
         </div>
     </li>
@@ -25,6 +35,7 @@
                 name: String,
                 currentRating: Number,
                 currentPrice: Number,
+                priceDifference: Number,
                 photo: '/storage/avatar-default.svg'
             }
         }

@@ -14847,12 +14847,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguestDetails: {
       name: String,
       currentRating: Number,
       currentPrice: Number,
+      priceDifference: Number,
       photo: '/storage/avatar-default.svg'
     }
   }
@@ -14891,22 +14902,26 @@ __webpack_require__.r(__webpack_exports__);
         image: 'https://source.unsplash.com/collection/190727/400x400?1',
         name: "Jess",
         currentPrice: "30",
-        currentRating: "5"
+        currentRating: "5",
+        priceDifference: "2"
       }, {
         image: 'https://source.unsplash.com/collection/190727/400x400?2',
         name: "Jerry",
         currentPrice: "300",
-        currentRating: "5"
+        currentRating: "5",
+        priceDifference: "12"
       }, {
         image: 'https://source.unsplash.com/collection/190727/400x400?3',
         name: "Matt",
         currentPrice: "330",
-        currentRating: "8"
+        currentRating: "8",
+        priceDifference: "20"
       }, {
         image: 'https://source.unsplash.com/collection/190727/400x400?4',
         name: "Justin",
         currentPrice: "10",
-        currentRating: "9"
+        currentRating: "9",
+        priceDifference: "0"
       }]
     };
   }
@@ -50703,43 +50718,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "card dark stockcard" }, [
-    _c("img", { attrs: { src: "/storage/avatar-default.svg" } }),
+  return _c("li", { staticClass: "card stockcard" }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c("div", {}, [
-      _c("h3", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
+    _c("div", { staticClass: "hg-details flex-col" }, [
+      _c("p", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
       _vm._v(" "),
       _c(
         "span",
-        { staticClass: "rating-wrap" },
+        { staticClass: "rating-wrap flex-row" },
         [
-          _c("font-awesome-icon", { attrs: { icon: "star" } }),
+          _c("font-awesome-icon", {
+            staticClass: "hg-star",
+            attrs: { icon: "star" }
+          }),
           _vm._v(" "),
-          _c("p", [
-            _vm._v(_vm._s(_vm.houseguestDetails.currentRating) + " / 10")
+          _c("span", { staticClass: "num-wrap flex-row" }, [
+            _c("span", { staticClass: "hg-star-rating" }, [
+              _vm._v(_vm._s(_vm.houseguestDetails.currentRating))
+            ]),
+            _vm._v(" "),
+            _c("span", [_vm._v(" / 10")])
           ])
         ],
         1
       )
     ]),
     _vm._v(" "),
-    _c("div", [
-      _c("h2", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))]),
+    _c("div", { staticClass: "hg-price" }, [
+      _c("span", { staticClass: "price-wrap" }, [
+        _c("h3", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))])
+      ]),
       _vm._v(" "),
       _c(
         "span",
-        { staticClass: "price-change-wrap" },
+        {
+          staticClass: "price-change-wrap flex-row",
+          class: [_vm.isPos ? "green" : "red"]
+        },
         [
           _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
           _vm._v(" "),
-          _c("p", [_vm._v("5 from last week")])
+          _c("p", [
+            _vm._v(
+              _vm._s(_vm.houseguestDetails.priceDifference) + " from last week"
+            )
+          ])
         ],
         1
       )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hg-img" }, [
+      _c("img", { attrs: { src: "/storage/avatar-default.svg" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
