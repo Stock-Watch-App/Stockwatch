@@ -13,10 +13,10 @@ class AddExtaNameColumnsToHouseguests extends Migration
      */
     public function up()
     {
-        Schema::table('houseguests', function (Blueprint $table) {
+        Schema::table('houseguests', static function (Blueprint $table) {
             $table->renameColumn('name', 'first_name');
-            $table->string('last_name')->after('first_name');
-            $table->string('nick_name')->after('last_name');
+            $table->string('last_name');
+            $table->string('nick_name');
         });
     }
 
@@ -27,7 +27,7 @@ class AddExtaNameColumnsToHouseguests extends Migration
      */
     public function down()
     {
-        Schema::table('houseguests', function (Blueprint $table) {
+        Schema::table('houseguests', static function (Blueprint $table) {
             $table->renameColumn('first_name', 'name');
             $table->dropColumn('last_name');
             $table->dropColumn('nick_name');

@@ -7,6 +7,6 @@ class Season extends BaseModel
     //=== RELATIONSHIPS ===//
     public function houseguests()
     {
-        $this->hasMany(Houseguest::class);
+        return $this->hasMany(Houseguest::class);
     }
 }

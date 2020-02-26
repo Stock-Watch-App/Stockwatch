@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Avatar;
 
 class User extends Resource
 {
@@ -24,9 +25,7 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-
-            Gravatar::make(),
+            Avatar::make('Avatar')->disk('public'),
 
             Text::make('Name')
                 ->sortable()
