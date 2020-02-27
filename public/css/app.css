@@ -938,6 +938,9 @@ a:active {
   position: relative;
 }
 .num-input-wrap .num-input {
+  background-color: hsl(224, 90%, 53%);
+  border: solid 1px hsl(224, 90%, 53%);
+  color: hsl(0, 0%, 100%);
   padding-left: 3.375rem;
   padding-right: 3.375rem;
   text-align: center;
@@ -960,6 +963,7 @@ a:active {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: hsl(224, 90%, 45%);
 }
 .num-input-wrap .control-btn.decrease {
   border-top-right-radius: 0;
@@ -973,7 +977,7 @@ a:active {
 .stockcard {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
-  grid-template-columns: 65px 1fr auto;
+  grid-template-columns: 80px 1fr auto;
   grid-gap: 0.5rem;
   grid-auto-flow: dense;
   overflow: hidden;
@@ -1013,13 +1017,13 @@ a:active {
 }
 .stockcard .hg-details {
   grid-column: 2/3;
-  justify-content: space-between;
 }
 .stockcard .rating-wrap {
   align-items: baseline;
 }
 .stockcard .rating-wrap .hg-star {
   color: hsl(55, 100%, 49%);
+  margin-right: 0.25rem;
 }
 .stockcard .rating-wrap .hg-star-rating {
   font-variation-settings: "wght" 700;
@@ -1034,10 +1038,29 @@ a:active {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+.stockcard .hg-price.green-bg {
+  background-color: hsl(146, 84%, 90%);
+}
+.stockcard .hg-price.red-bg {
+  background-color: hsl(22.5, 95.1%, 90%);
 }
 .stockcard .input-wrap {
   grid-column: 1 / -1;
   grid-row: 2 / 3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.stockcard .input-wrap .buy {
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+.stockcard .input-wrap .sell {
+  margin-left: 0.5rem;
+  white-space: nowrap;
 }
 .stockcard .btn-wrap {
   grid-column: 1 / -1;
@@ -1045,14 +1068,13 @@ a:active {
   place-content: space-between;
   display: flex;
 }
-.stockcard p {
+.stockcard .price-diff {
   font-size: 0.875rem;
 }
-.stockcard svg {
+.stockcard .price-diff-icon {
   margin-right: 0.25rem;
 }
 .stockcard .price-wrap {
-  background: hsl(55, 100%, 49%);
   border-radius: 4px;
   padding: 0.5em 1em 0.5em 1em;
 }

@@ -13,26 +13,28 @@
                 </span>
             </span>
         </div>
-        <div class="hg-price">
+        <div class="hg-price" v-bind:class="[isPos ? 'green-bg' : 'red-bg']">
             <span class="price-wrap">
                 <h3>${{ houseguestDetails.currentPrice }}</h3>
             </span>
             <span class="price-change-wrap flex-row" v-bind:class="[isPos ? 'green' : 'red']">
-                <font-awesome-icon icon="arrow-up"/>
+                <font-awesome-icon icon="arrow-up" class="price-diff-icon" />
                 <!-- need a check for up, down, no-change -->
                 <!-- <font-awesome-icon icon="arrow-down"/>
                 <font-awesome-icon icon="arrow-right"/> -->
-                <p>{{ houseguestDetails.priceDifference }} from last week</p>
+                <p class="price-diff">{{ houseguestDetails.priceDifference }} from last week</p>
             </span>
         </div>
         <div class="input-wrap">
+            <button class="button-base primary ghost small buy">Sell all</button>
             <number-input v-model="value" controls>
             </number-input>
+            <button class="button-base primary ghost small sell">Buy all</button>
         </div>
-        <div class="btn-wrap">
+        <!-- <div class="btn-wrap">
             <button class="button-base primary ghost xsmall">Sell all</button>
             <button class="button-base primary ghost xsmall">Buy all</button>
-        </div>
+        </div> -->
     </li>
 </template>
 

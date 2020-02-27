@@ -15109,6 +15109,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguestDetails: {
@@ -51108,35 +51110,46 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "hg-price" }, [
-        _c("span", { staticClass: "price-wrap" }, [
-          _c("h3", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))])
-        ]),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "price-change-wrap flex-row",
-            class: [_vm.isPos ? "green" : "red"]
-          },
-          [
-            _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                _vm._s(_vm.houseguestDetails.priceDifference) +
-                  " from last week"
-              )
-            ])
-          ],
-          1
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "hg-price", class: [_vm.isPos ? "green-bg" : "red-bg"] },
+        [
+          _c("span", { staticClass: "price-wrap" }, [
+            _c("h3", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))])
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "price-change-wrap flex-row",
+              class: [_vm.isPos ? "green" : "red"]
+            },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "price-diff-icon",
+                attrs: { icon: "arrow-up" }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "price-diff" }, [
+                _vm._v(
+                  _vm._s(_vm.houseguestDetails.priceDifference) +
+                    " from last week"
+                )
+              ])
+            ],
+            1
+          )
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "input-wrap" },
         [
+          _c("button", { staticClass: "button-base primary ghost small buy" }, [
+            _vm._v("Sell all")
+          ]),
+          _vm._v(" "),
           _c("number-input", {
             attrs: { controls: "" },
             model: {
@@ -51146,12 +51159,16 @@ var render = function() {
               },
               expression: "value"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "button-base primary ghost small sell" },
+            [_vm._v("Buy all")]
+          )
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm._m(1)
+      )
     ]
   )
 }
@@ -51162,20 +51179,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "hg-img" }, [
       _c("img", { attrs: { src: "/storage/avatar-default.svg" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "btn-wrap" }, [
-      _c("button", { staticClass: "button-base primary ghost xsmall" }, [
-        _vm._v("Sell all")
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "button-base primary ghost xsmall" }, [
-        _vm._v("Buy all")
-      ])
     ])
   }
 ]
