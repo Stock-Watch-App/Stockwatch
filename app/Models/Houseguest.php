@@ -7,6 +7,6 @@ class Houseguest extends BaseModel
     //=== RELATIONSHIPS ===//
     public function season()
     {
-        $this->belongsTo(Season::class);
+        return $this->belongsTo(Season::class);
     }
 }

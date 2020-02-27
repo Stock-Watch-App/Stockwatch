@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "685e82cf22b0e70301ad98514cf37d70",
+    "content-hash": "dfb61c8d24dd4938d8ebb85080700531",
     "packages": [
         {
             "name": "brick/math",
@@ -1573,6 +1573,47 @@
                 "twitter"
             ],
             "time": "2016-08-17T00:36:58+00:00"
+        },
+        {
+            "name": "michielkempen/nova-polymorphic-field",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michielkempen/nova-polymorphic-field.git",
+                "reference": "a9564d28fd6d9d5ad8a074627d41e36d9ee934cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michielkempen/nova-polymorphic-field/zipball/a9564d28fd6d9d5ad8a074627d41e36d9ee934cc",
+                "reference": "a9564d28fd6d9d5ad8a074627d41e36d9ee934cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MichielKempen\\NovaPolymorphicField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MichielKempen\\NovaPolymorphicField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field container allowing to depend on other fields values",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-11-23T13:21:55+00:00"
         },
         {
             "name": "monolog/monolog",

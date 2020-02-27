@@ -7,6 +7,6 @@ class Rating extends BaseModel
     //=== RELATIONSHIPS ===//
     public function rater()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

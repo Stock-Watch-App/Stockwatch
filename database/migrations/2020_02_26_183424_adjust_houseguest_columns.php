@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCurrentPriceColumnToTransactionTable extends Migration
+class AdjustHouseguestColumns extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddCurrentPriceColumnToTransactionTable extends Migration
      */
     public function up()
     {
-        Schema::table('transactions', static function (Blueprint $table) {
-            $table->decimal('current_price');
+        Schema::table('houseguests', static function (Blueprint $table) {
+            $table->renameColumn('nick_name', 'nickname');
         });
     }
 
@@ -25,8 +25,8 @@ class AddCurrentPriceColumnToTransactionTable extends Migration
      */
     public function down()
     {
-        Schema::table('transactions', static function (Blueprint $table) {
-            $table->dropColumn('current_price');
+        Schema::table('houseguests', static function (Blueprint $table) {
+            $table->renameColumn('nickname', 'nick_name');
         });
     }
 }

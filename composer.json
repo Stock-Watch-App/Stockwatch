@@ -21,6 +21,7 @@
         "laravel/nova": "~2.0",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
+        "michielkempen/nova-polymorphic-field": "^1.0",
         "socialiteproviders/discord": "^2.0",
         "socialiteproviders/facebook": "^1.0",
         "socialiteproviders/google": "^3.0",

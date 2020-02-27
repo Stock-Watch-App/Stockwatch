@@ -7,6 +7,8 @@ use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
+
+    public static $group = '';
     /**
      * Build an "index" query for the given resource.
      *

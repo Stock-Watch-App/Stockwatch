@@ -12,10 +12,11 @@ class Season extends Resource
 {
     public static $model = \App\Models\Season::class;
 
-    public static $title = 'id';
+    public static $title = 'name';
 
     public static $search = [
-        'id',
+        'name',
+        'short_name',
     ];
 
     public function fields(Request $request)
