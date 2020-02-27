@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('password.confirm') }}">
             @csrf
             <label for="password" class="label label-hidden">{{ __('Password') }}</label>
-            <input id="password" type="password" class="mg-btm-sm text-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Current password') }}">
+            <input id="password" type="password" class="mg-btm-sm input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Current password') }}">
 
             @error('password')
                 <span class="invalid-feedback" role="alert">

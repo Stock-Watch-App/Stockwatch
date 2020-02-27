@@ -6,7 +6,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
                 <label for="name" class="label label-hidden">{{ __('Name') }}</label>
-                <input id="name" type="text" class="mg-btm-sm text-input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Full name') }}">
+                <input id="name" type="text" class="mg-btm-sm input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Full name') }}">
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -14,7 +14,7 @@
                 @enderror
 
                 <label for="email" class="label label-hidden">{{ __('E-Mail Address') }}</label>
-                <input id="email" type="email" class="mg-btm-sm text-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email address') }}">
+                <input id="email" type="email" class="mg-btm-sm input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email address') }}">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -22,7 +22,7 @@
                 @enderror
 
                 <label for="password" class="label label-hidden">{{ __('Password') }}</label>
-                <input id="password" type="password" class="mg-btm-sm text-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Create password') }}">
+                <input id="password" type="password" class="mg-btm-sm input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Create password') }}">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
                 @enderror
 
                 <label for="password-confirm" class="label label-hidden">{{ __('Confirm Password') }}</label>
-                <input id="password-confirm" type="password" class="mg-btm-sm text-input" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm password') }}">
+                <input id="password-confirm" type="password" class="mg-btm-sm input" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm password') }}">
 
                 <button type="submit" class="button-base primary full-width mg-btm-lg">
                     {{ __('Sign up') }}

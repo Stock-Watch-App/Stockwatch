@@ -22,7 +22,7 @@
     grid-template:
         "aside" 60px
         "content" auto
-        "footer" auto
+        "footer" minmax(60px, min-content)
         ~'/ auto';
 
     // toggle nav
@@ -145,7 +145,7 @@
         grid-template:
             "aside ." 60px
             "sidebar content" auto
-            "sidebar footer" auto
+            "sidebar footer" minmax(60px, min-content)
             ~'/ auto 9fr';
 
         aside {

@@ -1,5 +1,5 @@
 <template>
-    <li class="card stockcard">
+    <li class="card stockcard" v-bind:class="[houseguestDetails.isActive ? '' : 'inactive']">
         <div class="hg-img">
             <img src="/storage/avatar-default.svg" />
         </div>
@@ -25,6 +25,14 @@
                 <p>{{ houseguestDetails.priceDifference }} from last week</p>
             </span>
         </div>
+        <div class="input-wrap">
+            <number-input v-model="value" controls>
+            </number-input>
+        </div>
+        <div class="btn-wrap">
+            <button class="button-base primary ghost xsmall">Sell all</button>
+            <button class="button-base primary ghost xsmall">Buy all</button>
+        </div>
     </li>
 </template>
 
@@ -36,7 +44,8 @@
                 currentRating: Number,
                 currentPrice: Number,
                 priceDifference: Number,
-                photo: '/storage/avatar-default.svg'
+                photo: '/storage/avatar-default.svg',
+                isActive: Boolean
             }
         }
     }

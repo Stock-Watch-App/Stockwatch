@@ -14818,6 +14818,250 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NumberInput.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NumberInput.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var isNaN = Number.isNaN || window.isNaN;
+var REGEXP_NUMBER = /^-?(?:\d+|\d+\.\d+|\.\d+)(?:[eE][-+]?\d+)?$/;
+var REGEXP_DECIMALS = /\.\d*(?:0|9){10}\d*$/;
+
+var normalizeDecimalNumber = function normalizeDecimalNumber(value) {
+  var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100000000000;
+  return REGEXP_DECIMALS.test(value) ? Math.round(value * times) / times : value;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'NumberInput',
+  model: {
+    event: 'change'
+  },
+  props: {
+    attrs: {
+      type: Object,
+      "default": undefined
+    },
+    controls: Boolean,
+    disabled: Boolean,
+    inputtable: {
+      type: Boolean,
+      "default": true
+    },
+    max: {
+      type: Number,
+      "default": Infinity
+    },
+    min: {
+      type: Number,
+      "default": -Infinity
+    },
+    name: {
+      type: String,
+      "default": undefined
+    },
+    placeholder: {
+      type: String,
+      "default": undefined
+    },
+    readonly: Boolean,
+    rounded: Boolean,
+    size: {
+      type: String,
+      "default": undefined
+    },
+    step: {
+      type: Number,
+      "default": 1
+    },
+    value: {
+      type: Number,
+      "default": NaN
+    }
+  },
+  data: function data() {
+    return {
+      currentValue: NaN
+    };
+  },
+  computed: {
+    /**
+     * Indicate if the value is increasable.
+     * @returns {boolean} Return `true` if it is decreasable, else `false`.
+     */
+    increasable: function increasable() {
+      var num = this.currentValue;
+      return isNaN(num) || num < this.max;
+    },
+
+    /**
+     * Indicate if the value is decreasable.
+     * @returns {boolean} Return `true` if it is decreasable, else `false`.
+     */
+    decreasable: function decreasable() {
+      var num = this.currentValue;
+      return isNaN(num) || num > this.min;
+    },
+
+    /**
+     * Filter listeners
+     * @returns {Object} Return filtered listeners.
+     */
+    listeners: function listeners() {
+      var listeners = _objectSpread({}, this.$listeners);
+
+      delete listeners.change;
+      return listeners;
+    }
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler: function handler(newValue, oldValue) {
+        if ( // Avoid triggering change event when created
+        !(isNaN(newValue) && typeof oldValue === 'undefined') // Avoid infinite loop
+        && newValue !== this.currentValue) {
+          this.setValue(newValue);
+        }
+      }
+    }
+  },
+  methods: {
+    /**
+     * Change event handler.
+     * @param {string} value - The new value.
+     */
+    change: function change(event) {
+      this.setValue(Math.min(this.max, Math.max(this.min, event.target.value)));
+    },
+
+    /**
+     * Paste event handler.
+     * @param {Event} event - Event object.
+     */
+    paste: function paste(event) {
+      var clipboardData = event.clipboardData || window.clipboardData;
+
+      if (clipboardData && !REGEXP_NUMBER.test(clipboardData.getData('text'))) {
+        event.preventDefault();
+      }
+    },
+
+    /**
+     * Decrease the value.
+     */
+    decrease: function decrease() {
+      if (this.decreasable) {
+        var currentValue = this.currentValue;
+
+        if (isNaN(currentValue)) {
+          currentValue = 0;
+        }
+
+        this.setValue(Math.min(this.max, Math.max(this.min, normalizeDecimalNumber(currentValue - this.step))));
+      }
+    },
+
+    /**
+     * Increase the value.
+     */
+    increase: function increase() {
+      if (this.increasable) {
+        var currentValue = this.currentValue;
+
+        if (isNaN(currentValue)) {
+          currentValue = 0;
+        }
+
+        this.setValue(Math.min(this.max, Math.max(this.min, normalizeDecimalNumber(currentValue + this.step))));
+      }
+    },
+
+    /**
+     * Set new value and dispatch change event.
+     * @param {number} value - The new value to set.
+     */
+    setValue: function setValue(value) {
+      var oldValue = this.currentValue;
+      var newValue = this.rounded ? Math.round(value) : value;
+
+      if (this.min <= this.max) {
+        newValue = Math.min(this.max, Math.max(this.min, newValue));
+      }
+
+      this.currentValue = newValue;
+
+      if (newValue === oldValue) {
+        // Force to override the number in the input box (#13).
+        this.$refs.input.value = newValue;
+      }
+
+      this.$emit('change', newValue, oldValue);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/StockCard.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/StockCard.vue?vue&type=script&lang=js& ***!
@@ -14857,6 +15101,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguestDetails: {
@@ -14864,7 +15116,8 @@ __webpack_require__.r(__webpack_exports__);
       currentRating: Number,
       currentPrice: Number,
       priceDifference: Number,
-      photo: '/storage/avatar-default.svg'
+      photo: '/storage/avatar-default.svg',
+      isActive: Boolean
     }
   }
 });
@@ -14903,25 +15156,29 @@ __webpack_require__.r(__webpack_exports__);
         name: "Jess",
         currentPrice: "30",
         currentRating: "5",
-        priceDifference: "2"
+        priceDifference: "2",
+        isActive: true
       }, {
         image: 'https://source.unsplash.com/collection/190727/400x400?2',
         name: "Jerry",
         currentPrice: "300",
         currentRating: "5",
-        priceDifference: "12"
+        priceDifference: "12",
+        isActive: false
       }, {
         image: 'https://source.unsplash.com/collection/190727/400x400?3',
         name: "Matt",
         currentPrice: "330",
         currentRating: "8",
-        priceDifference: "20"
+        priceDifference: "20",
+        isActive: true
       }, {
         image: 'https://source.unsplash.com/collection/190727/400x400?4',
         name: "Justin",
         currentPrice: "10",
         currentRating: "9",
-        priceDifference: "0"
+        priceDifference: "0",
+        isActive: true
       }]
     };
   }
@@ -50703,6 +50960,106 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NumberInput.vue?vue&type=template&id=b5ab7734&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NumberInput.vue?vue&type=template&id=b5ab7734& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _obj
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._g(
+      {
+        staticClass: "num-input-wrap",
+        class:
+          ((_obj = {
+            "number-input--controls": _vm.controls
+          }),
+          (_obj["number-input--" + _vm.size] = _vm.size),
+          _obj)
+      },
+      _vm.listeners
+    ),
+    [
+      _vm.controls
+        ? _c(
+            "button",
+            {
+              staticClass: "button-base primary control-btn decrease",
+              attrs: {
+                type: "button",
+                tabindex: "-1",
+                disabled: _vm.disabled || _vm.readonly || !_vm.decreasable
+              },
+              on: { click: _vm.decrease }
+            },
+            [_c("font-awesome-icon", { attrs: { icon: "minus" } })],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "input",
+        _vm._b(
+          {
+            ref: "input",
+            staticClass: "input num-input",
+            attrs: {
+              type: "number",
+              name: _vm.name,
+              min: _vm.min,
+              max: _vm.max,
+              step: _vm.step,
+              readonly: _vm.readonly || !_vm.inputtable,
+              disabled: _vm.disabled || (!_vm.decreasable && !_vm.increasable),
+              placeholder: _vm.placeholder,
+              autocomplete: "off"
+            },
+            domProps: { value: _vm.currentValue },
+            on: { change: _vm.change, paste: _vm.paste }
+          },
+          "input",
+          _vm.attrs,
+          false
+        )
+      ),
+      _vm._v(" "),
+      _vm.controls
+        ? _c(
+            "button",
+            {
+              staticClass: "button-base primary control-btn increase",
+              attrs: {
+                type: "button",
+                tabindex: "-1",
+                disabled: _vm.disabled || _vm.readonly || !_vm.increasable
+              },
+              on: { click: _vm.increase }
+            },
+            [_c("font-awesome-icon", { attrs: { icon: "plus" } })],
+            1
+          )
+        : _vm._e()
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/StockCard.vue?vue&type=template&id=5ac5fb2a&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/StockCard.vue?vue&type=template&id=5ac5fb2a& ***!
@@ -50718,57 +51075,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "card stockcard" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "hg-details flex-col" }, [
-      _c("p", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
+  return _c(
+    "li",
+    {
+      staticClass: "card stockcard",
+      class: [_vm.houseguestDetails.isActive ? "" : "inactive"]
+    },
+    [
+      _vm._m(0),
       _vm._v(" "),
-      _c(
-        "span",
-        { staticClass: "rating-wrap flex-row" },
-        [
-          _c("font-awesome-icon", {
-            staticClass: "hg-star",
-            attrs: { icon: "star" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "num-wrap flex-row" }, [
-            _c("span", { staticClass: "hg-star-rating" }, [
-              _vm._v(_vm._s(_vm.houseguestDetails.currentRating))
-            ]),
+      _c("div", { staticClass: "hg-details flex-col" }, [
+        _c("p", [_vm._v(_vm._s(_vm.houseguestDetails.name))]),
+        _vm._v(" "),
+        _c(
+          "span",
+          { staticClass: "rating-wrap flex-row" },
+          [
+            _c("font-awesome-icon", {
+              staticClass: "hg-star",
+              attrs: { icon: "star" }
+            }),
             _vm._v(" "),
-            _c("span", [_vm._v(" / 10")])
-          ])
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "hg-price" }, [
-      _c("span", { staticClass: "price-wrap" }, [
-        _c("h3", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))])
+            _c("span", { staticClass: "num-wrap flex-row" }, [
+              _c("span", { staticClass: "hg-star-rating" }, [
+                _vm._v(_vm._s(_vm.houseguestDetails.currentRating))
+              ]),
+              _vm._v(" "),
+              _c("span", [_vm._v(" / 10")])
+            ])
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "hg-price" }, [
+        _c("span", { staticClass: "price-wrap" }, [
+          _c("h3", [_vm._v("$" + _vm._s(_vm.houseguestDetails.currentPrice))])
+        ]),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "price-change-wrap flex-row",
+            class: [_vm.isPos ? "green" : "red"]
+          },
+          [
+            _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.houseguestDetails.priceDifference) +
+                  " from last week"
+              )
+            ])
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c(
-        "span",
-        {
-          staticClass: "price-change-wrap flex-row",
-          class: [_vm.isPos ? "green" : "red"]
-        },
+        "div",
+        { staticClass: "input-wrap" },
         [
-          _c("font-awesome-icon", { attrs: { icon: "arrow-up" } }),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              _vm._s(_vm.houseguestDetails.priceDifference) + " from last week"
-            )
-          ])
+          _c("number-input", {
+            attrs: { controls: "" },
+            model: {
+              value: _vm.value,
+              callback: function($$v) {
+                _vm.value = $$v
+              },
+              expression: "value"
+            }
+          })
         ],
         1
-      )
-    ])
-  ])
+      ),
+      _vm._v(" "),
+      _vm._m(1)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -50777,6 +51162,20 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "hg-img" }, [
       _c("img", { attrs: { src: "/storage/avatar-default.svg" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "btn-wrap" }, [
+      _c("button", { staticClass: "button-base primary ghost xsmall" }, [
+        _vm._v("Sell all")
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "button-base primary ghost xsmall" }, [
+        _vm._v("Buy all")
+      ])
     ])
   }
 ]
@@ -80964,6 +81363,7 @@ module.exports = function(module) {
 
 var map = {
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
+	"./components/NumberInput.vue": "./resources/js/components/NumberInput.vue",
 	"./components/StockCard.vue": "./resources/js/components/StockCard.vue",
 	"./components/StockCardList.vue": "./resources/js/components/StockCardList.vue"
 };
@@ -81022,7 +81422,7 @@ Vue.use(vue_tailwind__WEBPACK_IMPORTED_MODULE_0___default.a); // font awesome ic
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);
 /**
  * The following block of code may be used to automatically register your
@@ -81178,6 +81578,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/NumberInput.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/NumberInput.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NumberInput.vue?vue&type=template&id=b5ab7734& */ "./resources/js/components/NumberInput.vue?vue&type=template&id=b5ab7734&");
+/* harmony import */ var _NumberInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumberInput.vue?vue&type=script&lang=js& */ "./resources/js/components/NumberInput.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NumberInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/NumberInput.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/NumberInput.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/NumberInput.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NumberInput.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NumberInput.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NumberInput.vue?vue&type=template&id=b5ab7734&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/NumberInput.vue?vue&type=template&id=b5ab7734& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NumberInput.vue?vue&type=template&id=b5ab7734& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NumberInput.vue?vue&type=template&id=b5ab7734&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

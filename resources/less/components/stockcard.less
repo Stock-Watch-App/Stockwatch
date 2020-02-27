@@ -9,6 +9,21 @@
     grid-auto-flow: dense;
     overflow: hidden;
 
+    // inactive player
+    &.inactive {
+        box-shadow: none;
+
+        &:after {
+            content: '';
+            background-color: @gray-hint;
+            opacity: 55%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
 
     // this is not scalable katie!
     h1, h2, h3, h4, h5, h6, p, label {
@@ -17,7 +32,7 @@
     }
 
     .hg-img {
-        grid-column: 1;
+        grid-column: ~'1/2';
         border: solid 1px @border;
 
         img {
@@ -28,7 +43,7 @@
     }
 
     .hg-details {
-        grid-column: ~'2 / 5';
+        grid-column: ~'2/3';
         justify-content: space-between;
     }
 
@@ -50,11 +65,23 @@
     }
 
     .hg-price {
-        grid-column: ~'5 / 6';
+        grid-column: ~'3/4';
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .input-wrap {
+        grid-column: ~'1 / -1';
+        grid-row: ~'2 / 3';
+    }
+
+    .btn-wrap {
+        grid-column: ~'1 / -1';
+        grid-row: ~'3 / 4';
+        place-content: space-between;
+        display: flex;
     }
 
     p {
