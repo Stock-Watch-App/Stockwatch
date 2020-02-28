@@ -12,7 +12,7 @@ class BBCan8Seeder extends Seeder
      */
     public function run()
     {
-        $bbcan8 = \App\Models\Season::firstOrCreate(['name' => 'Big Brother Canada 8', 'short_name' => 'bbcan8']);
+        $bbcan8 = \App\Models\Season::firstOrCreate(['name' => 'Big Brother Canada 8', 'short_name' => 'bbcan8', 'status' => 'pre-season']);
 
         Houseguest::create(['first_name' => 'chris', 'last_name' => 'wyllie', 'nickname' => 'chris', 'season_id' => $bbcan8->id]);
         Houseguest::create(['first_name' => 'minh-ly', 'last_name' => 'nguyen-cao', 'nickname' => 'minh-ly', 'season_id' => $bbcan8->id]);
