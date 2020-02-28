@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -24,6 +25,12 @@ class Season extends Resource
         return [
             Text::make('Name'),
             Text::make('Short Name'),
+            Select::make('Status')->options([
+                'pre-season' => 'Pre Season',
+                'open' => 'Open',
+                'closed' => 'Closed',
+                'ended' => 'Ended',
+            ]),
             HasMany::make('Houseguests', 'houseguests', Houseguest::class)
         ];
     }

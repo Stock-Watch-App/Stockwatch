@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import StockCard from './StockCard.vue';
+    import StockCard from './dashboard/StockCard.vue';
 
     export default {
         components: {

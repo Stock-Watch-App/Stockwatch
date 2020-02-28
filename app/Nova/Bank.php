@@ -10,7 +10,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Bank extends Resource
 {
-    public static $model = 'App\Bank';
+    public static $model = 'App\Models\Bank';
 
     public static $title = 'id';
 

@@ -15,4 +15,13 @@ class Season extends BaseModel
     {
         return $this->hasMany(Bank::class);
     }
+
+    //=== SCOPES ===/
+    public function scopeCurrent($query)
+    {
+        return $query->orWhere('status', 'pre-season')
+            ->orWhere('status', 'open')
+            ->orWhere('status', 'closed')
+            ->first();
+    }
 }

@@ -36,7 +36,9 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // Vue.component('slideout-nav', require('./components/SlideoutNav.vue').default);
-// Vue.component('stock-card', require('./components/StockCard.vue').default);
+Vue.component('stock-card', require('./components/dashboard/StockCard.vue').default);
+Vue.component('dashboard-panel', require('./components/dashboard/Panel.vue').default);
+
 
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
