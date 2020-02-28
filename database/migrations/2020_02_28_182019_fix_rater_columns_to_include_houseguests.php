@@ -14,7 +14,7 @@ class FixRaterColumnsToIncludeHouseguests extends Migration
     public function up()
     {
         Schema::table('ratings', static function (Blueprint $table) {
-            $table->renameColumn('rater' , 'houseguest_id');
+            $table->integer('houseguest_id');
         });
     }
 
@@ -26,7 +26,7 @@ class FixRaterColumnsToIncludeHouseguests extends Migration
     public function down()
     {
         Schema::table('ratings', static function (Blueprint $table) {
-            $table->renameColumn('houseguest_id' , 'rater');
+            $table->dropColumn('houseguest_id');
         });
     }
 }
