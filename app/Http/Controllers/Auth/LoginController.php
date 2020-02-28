@@ -90,22 +90,11 @@ class LoginController extends Controller
                 ]);
                 $user->provider = $provider;
                 $user->provider_user_id = $providerUser->getId();
+                $user->setAvatar($providerUser->getAvatar());
                 $user->save();
-                $this->saveImageAvatar($providerUser->getAvatar(), $user->id);
             }
 
             return $user;
         }
-    }
-
-    private function saveImageAvatar($avatar, $userId)
-    {
-        $path = "/users/images/{$userId}_avatar.jpg";
-        Storage::disk('local')->put($path, file_get_contents($avatar));
-        Image::create([
-            'path'           => $path,
-            'imageable_type' => User::class,
-            'imageable_id'   => $userId
-        ]);
     }
 }

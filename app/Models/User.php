@@ -42,4 +42,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Rating::class);
     }
+
+    public function setAvatar($avatar)
+    {
+        $path = "/users/images/user-{$this->id}_avatar.jpg";
+        Storage::disk('local')->put($path, file_get_contents($avatar));
+        $this->avatar = $path;
+        return $this;
+    }
 }
