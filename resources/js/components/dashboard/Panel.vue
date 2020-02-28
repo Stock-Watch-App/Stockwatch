@@ -1,5 +1,5 @@
 <template>
- <ul class="stock-cards">
+    <ul class="stock-cards">
         <stock-card
             v-for="stock in stocks"
             :key="stock.id"
@@ -10,10 +10,17 @@
 
 <script>
     import StockCard from './StockCard.vue';
+
     export default {
-        props: [
-            'stocks'
-        ]
+        props: {
+            stocks: Array,
+            bank: Object,
+            market: String,
+            user: Object
+        },
+        // mounted() {
+        //     alert(this.market);
+        // }
     }
 </script>
 

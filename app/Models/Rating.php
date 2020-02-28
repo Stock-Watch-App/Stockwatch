@@ -9,4 +9,8 @@ class Rating extends BaseModel
     {
         return $this->belongsTo(User::class);
     }
+    public function houseguest()
+    {
+        return $this->belongsTo(Houseguest::class);
+    }
 }

@@ -29,7 +29,16 @@ class DashboardController extends Controller
 
         $stocks = $user->stocks->load('houseguest');
 
-        return view('dashboard', compact('user', 'bank', 'stocks'));
+        $stocks->each(static function ($stock, $key) {
+           $stock->houseguest->load('ratings', 'prices');
+        });
+
+//        dump($stocks);
+        $market = Season::current()->status;
+
+//        dd($market);
+
+        return view('dashboard', compact('user', 'bank', 'stocks', 'market'));
     }
 
     protected function initGame($user)

@@ -10,6 +10,16 @@ class Houseguest extends BaseModel
         return $this->belongsTo(Season::class);
     }
 
+    public function prices()
+    {
+        return $this->hasMany(Price::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
     //=== ATTRIBUTES ===//
     public function getNameAttribute()
     {
