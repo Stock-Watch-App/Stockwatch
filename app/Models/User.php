@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Bank;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,4 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'banned'            => 'boolean'
     ];
 
+    public function bank()
+    {
+        return $this->hasOne(Bank::class);
+    }
 }
