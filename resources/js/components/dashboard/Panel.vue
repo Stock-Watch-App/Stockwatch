@@ -1,7 +1,7 @@
 <template>
     <ul class="stock-cards">
         <stock-card
-            v-for="stock in stocks"
+            v-for="stock in mutableStocks"
             :key="stock.id"
             :stock="stock"
         />
@@ -18,6 +18,11 @@
             market: String,
             user: Object
         },
+        data() {
+            return {
+                mutableStocks: _.cloneDeep(this.stocks),
+            }
+        }
         // mounted() {
         //     alert(this.market);
         // }

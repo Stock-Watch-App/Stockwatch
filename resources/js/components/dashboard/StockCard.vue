@@ -22,10 +22,10 @@
             </span>
         </div>
         <div class="input-wrap">
-            <button class="button-base primary ghost small buy">Sell all</button>
-            <number-input v-model="value" controls>
+            <button class="button-base primary ghost small buy" @click="sellAll">Sell all</button>
+            <number-input v-model="stock.quantity" controls>
             </number-input>
-            <button class="button-base primary ghost small sell">Buy max</button>
+            <button class="button-base primary ghost small sell" @click="buyMax">Buy max</button>
         </div>
         <!-- <div class="btn-wrap">
             <button class="button-base primary ghost xsmall">Sell all</button>
@@ -39,16 +39,36 @@
         props: {
             stock: Object
         },
+        data() {
+            return {
+                //
+            }
+        },
+        methods: {
+            reset: function() {
+                //ask parent to reset the card data
+            },
+            buyMax: function() {
+                //this needs to be mutated from the parent because of the bank
+            },
+            sellAll: function() {
+                //this needs to be mutated from the parent because of the bank
+            },
+        },
         computed: {
+            isPos: function () {
+              return true;
+            },
             currentPrice: function () {
-                // let current;
-                // this.
+                //find latest week
                 return 13;
             },
             currentRating: function () {
+                //find latest week
                 return 6;
             },
             priceDifference: function () {
+                //find latest week and week before
                 return {
                     icon: 'arrow-up',
                     amount: 3

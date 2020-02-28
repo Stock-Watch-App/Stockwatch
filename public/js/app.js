@@ -15110,6 +15110,11 @@ __webpack_require__.r(__webpack_exports__);
     bank: Object,
     market: String,
     user: Object
+  },
+  data: function data() {
+    return {
+      mutableStocks: _.cloneDeep(this.stocks)
+    };
   } // mounted() {
   //     alert(this.market);
   // }
@@ -15167,16 +15172,32 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     stock: Object
   },
+  data: function data() {
+    return {//
+    };
+  },
+  methods: {
+    reset: function reset() {//ask parent to reset the card data
+    },
+    buyMax: function buyMax() {//this needs to be mutated from the parent because of the bank
+    },
+    sellAll: function sellAll() {//this needs to be mutated from the parent because of the bank
+    }
+  },
   computed: {
+    isPos: function isPos() {
+      return true;
+    },
     currentPrice: function currentPrice() {
-      // let current;
-      // this.
+      //find latest week
       return 13;
     },
     currentRating: function currentRating() {
+      //find latest week
       return 6;
     },
     priceDifference: function priceDifference() {
+      //find latest week and week before
       return {
         icon: 'arrow-up',
         amount: 3
@@ -50694,7 +50715,7 @@ var render = function() {
   return _c(
     "ul",
     { staticClass: "stock-cards" },
-    _vm._l(_vm.stocks, function(stock) {
+    _vm._l(_vm.mutableStocks, function(stock) {
       return _c("stock-card", { key: stock.id, attrs: { stock: stock } })
     }),
     1
@@ -50799,24 +50820,32 @@ var render = function() {
         "div",
         { staticClass: "input-wrap" },
         [
-          _c("button", { staticClass: "button-base primary ghost small buy" }, [
-            _vm._v("Sell all")
-          ]),
+          _c(
+            "button",
+            {
+              staticClass: "button-base primary ghost small buy",
+              on: { click: _vm.sellAll }
+            },
+            [_vm._v("Sell all")]
+          ),
           _vm._v(" "),
           _c("number-input", {
             attrs: { controls: "" },
             model: {
-              value: _vm.value,
+              value: _vm.stock.quantity,
               callback: function($$v) {
-                _vm.value = $$v
+                _vm.$set(_vm.stock, "quantity", $$v)
               },
-              expression: "value"
+              expression: "stock.quantity"
             }
           }),
           _vm._v(" "),
           _c(
             "button",
-            { staticClass: "button-base primary ghost small sell" },
+            {
+              staticClass: "button-base primary ghost small sell",
+              on: { click: _vm.buyMax }
+            },
             [_vm._v("Buy max")]
           )
         ],
@@ -80888,15 +80917,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/components/dashboard/Panel.vue ***!
   \*****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Panel_vue_vue_type_template_id_59f752ae_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Panel.vue?vue&type=template&id=59f752ae&scoped=true& */ "./resources/js/components/dashboard/Panel.vue?vue&type=template&id=59f752ae&scoped=true&");
 /* harmony import */ var _Panel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Panel.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/Panel.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Panel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Panel_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -80926,7 +80954,7 @@ component.options.__file = "resources/js/components/dashboard/Panel.vue"
 /*!******************************************************************************!*\
   !*** ./resources/js/components/dashboard/Panel.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80958,15 +80986,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/js/components/dashboard/StockCard.vue ***!
   \*********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StockCard_vue_vue_type_template_id_9a502c20___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StockCard.vue?vue&type=template&id=9a502c20& */ "./resources/js/components/dashboard/StockCard.vue?vue&type=template&id=9a502c20&");
 /* harmony import */ var _StockCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StockCard.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/StockCard.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _StockCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _StockCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -80996,7 +81023,7 @@ component.options.__file = "resources/js/components/dashboard/StockCard.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/dashboard/StockCard.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -81051,7 +81078,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
-  console.log(value);
   if (!value) return '';
   return '$' + parseInt(value);
 });
