@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                     <label for="name" class="label">{{ __('Display Name') }}</label>
-                    <input id="name" type="text" class="mg-btm-md input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Full name') }}">
+                    <input id="name" type="text" class="mg-btm-md input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Display Name') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
