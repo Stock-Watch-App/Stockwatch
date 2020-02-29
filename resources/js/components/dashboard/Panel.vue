@@ -1,11 +1,22 @@
 <template>
-    <ul class="stock-cards">
-        <stock-card
-            v-for="stock in mutableStocks"
-            :key="stock.id"
-            :stock="stock"
-        />
-    </ul>
+    <div>
+
+        <div class="user-details">
+            <funds
+                :bank="mutablebank"
+                :networth="networth"
+            ></funds>
+        </div>
+        <div class="stock-cards-wrap">
+            <ul class="stock-cards">
+                <stock-card
+                    v-for="stock in mutableStocks"
+                    :key="stock.id"
+                    :stock="stock"
+                />
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -21,11 +32,16 @@
         data() {
             return {
                 mutableStocks: _.cloneDeep(this.stocks),
+                mutablebank: _.cloneDeep(this.bank),
             }
+        },
+        computed: {
+            networth: function () {
+                let stockTotal = 0;
+                // add up all the stock and multiply by their prices
+                return this.bank.money + stockTotal;
+            },
         }
-        // mounted() {
-        //     alert(this.market);
-        // }
     }
 </script>
 

@@ -2,11 +2,11 @@
     <div class="user-panel">
         <div class="funds">
             <p>Available Funds</p>
-            <h1>{{ fluidCash | currency }}</h1>
+            <h1>{{ bank.money | currency }}</h1>
         </div>
         <div class="fund-history">
-            <p>Net worth: {{ netWorth | currency }}</p>
-            <p>Leaderboard rank: {{ rank }}</p>
+            <p>Net worth: {{ networth | currency }}</p>
+<!--            <p>Leaderboard rank: {{ rank }}</p>-->
         </div>
         <div class="flex-col trade">
             <!-- enable button when input fields become active -->
@@ -20,8 +20,8 @@
 <script>
    export default {
         props: {
-            fluidCash: String,
-            netWorth: String
+            bank: Object,
+            networth: Number
         },
         data() {
             return {
@@ -32,17 +32,9 @@
            //
         },
         computed: {
-            fluidCash: function () {
-              return 200;
-            },
-
-            netWorth: function() {
-                return 200;
-            },
-
-            rank: function () {
-                return 40;
-            }
+            // rank: function () {
+            //     return 40;
+            // }
         }
    }
 </script>

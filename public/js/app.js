@@ -15113,8 +15113,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    fluidCash: String,
-    netWorth: String
+    bank: Object,
+    networth: Number
   },
   data: function data() {
     return {//
@@ -15122,16 +15122,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {//
   },
-  computed: {
-    fluidCash: function fluidCash() {
-      return 200;
-    },
-    netWorth: function netWorth() {
-      return 200;
-    },
-    rank: function rank() {
-      return 40;
-    }
+  computed: {// rank: function () {
+    //     return 40;
+    // }
   }
 });
 
@@ -15157,6 +15150,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -15167,12 +15171,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      mutableStocks: _.cloneDeep(this.stocks)
+      mutableStocks: _.cloneDeep(this.stocks),
+      mutablebank: _.cloneDeep(this.bank)
     };
-  } // mounted() {
-  //     alert(this.market);
-  // }
+  },
+  computed: {
+    networth: function networth() {
+      var stockTotal = 0; // add up all the stock and multiply by their prices
 
+      return this.bank.money + stockTotal;
+    }
+  }
 });
 
 /***/ }),
@@ -50770,15 +50779,13 @@ var render = function() {
     _c("div", { staticClass: "funds" }, [
       _c("p", [_vm._v("Available Funds")]),
       _vm._v(" "),
-      _c("h1", [_vm._v(_vm._s(_vm._f("currency")(_vm.fluidCash)))])
+      _c("h1", [_vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "fund-history" }, [
       _c("p", [
-        _vm._v("Net worth: " + _vm._s(_vm._f("currency")(_vm.netWorth)))
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Leaderboard rank: " + _vm._s(_vm.rank))])
+        _vm._v("Net worth: " + _vm._s(_vm._f("currency")(_vm.networth)))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "flex-col trade" }, [
@@ -50820,14 +50827,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "ul",
-    { staticClass: "stock-cards" },
-    _vm._l(_vm.mutableStocks, function(stock) {
-      return _c("stock-card", { key: stock.id, attrs: { stock: stock } })
-    }),
-    1
-  )
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "user-details" },
+      [
+        _c("funds", {
+          attrs: { bank: _vm.mutablebank, networth: _vm.networth }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "stock-cards-wrap" }, [
+      _c(
+        "ul",
+        { staticClass: "stock-cards" },
+        _vm._l(_vm.mutableStocks, function(stock) {
+          return _c("stock-card", { key: stock.id, attrs: { stock: stock } })
+        }),
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
