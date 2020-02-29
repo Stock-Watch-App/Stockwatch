@@ -1,6 +1,5 @@
 <template>
-    <div>
-
+    <div class="dashboard-wrap">
         <div class="user-details">
             <funds
                 :bank="mutablebank"

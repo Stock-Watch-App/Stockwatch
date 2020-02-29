@@ -1,6 +1,15 @@
 @import (reference)  './_variables.less';
 @import (reference) './_mixins.less';
 
+.dashboard-wrap {
+    grid-column: ~'1/-1';
+    padding: 2rem;
+    display: grid;
+    // dashboard content grid def
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 1rem;
+}
+
 .stock-cards-wrap {
     grid-column: ~'1/-1';
     grid-row: ~'2/3';
