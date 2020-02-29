@@ -13,10 +13,10 @@
                 </span>
             </span>
         </div>
-        <div class="hg-price" v-bind:class="[isPos ? 'green-bg' : 'red-bg']">
+        <div class="hg-price" v-bind:class="[priceDifference.isIncrease ? 'green-bg' : 'red-bg']">
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
-            </span> <span class="price-change-wrap flex-row" v-bind:class="[isPos ? 'green' : 'red']">
+            </span> <span class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
                 <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
                 <p class="price-diff">{{ priceDifference.amount | currency }} from last week</p>
             </span>
@@ -45,23 +45,26 @@
             }
         },
         methods: {
-            reset: function() {
+            reset: function () {
                 //ask parent to reset the card data
             },
-            buyMax: function() {
+            buyMax: function () {
                 //this needs to be mutated from the parent because of the bank
             },
-            sellAll: function() {
+            sellAll: function () {
                 //this needs to be mutated from the parent because of the bank
-            },
+            }
         },
         computed: {
-            isPos: function () {
-              return true;
-            },
             currentPrice: function () {
                 //find latest week
-                return 13;
+                let currentWeek;
+                this.stock.houseguest.prices.forEach(week => {
+                    if (typeof currentWeek === 'undefined' || week.week > currentWeek.week) {
+                        currentWeek = week;
+                    }
+                });
+                return currentWeek.price;
             },
             currentRating: function () {
                 //find latest week
@@ -69,9 +72,23 @@
             },
             priceDifference: function () {
                 //find latest week and week before
+                let currentWeek;
+                let lastWeek;
+                this.stock.houseguest.prices.forEach(week => {
+                    if (typeof currentWeek === 'undefined') {
+                        currentWeek = week;
+                    } else if (week.week > currentWeek.week) {
+                        lastWeek = currentWeek;
+                        currentWeek = week;
+                    }
+                });
+
+                let diff = currentWeek.price - lastWeek.price;
+                let isIncrease = (diff > 0);
                 return {
-                    icon: 'arrow-up',
-                    amount: 3
+                    isIncrease: isIncrease,
+                    amount: Math.abs(diff),
+                    icon: 'arrow-'+(isIncrease ? 'up' : 'down')
                 };
             }
         }

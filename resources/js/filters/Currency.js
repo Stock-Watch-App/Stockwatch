@@ -1,4 +1,4 @@
 export default function (value) {
     if (!value) return '';
-    return '$' + parseInt(value);
+    return '$' + parseFloat(value).toFixed(2);
 }

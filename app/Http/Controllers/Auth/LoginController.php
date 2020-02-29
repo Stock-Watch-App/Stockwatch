@@ -55,8 +55,6 @@ class LoginController extends Controller
 
     /**
      * Obtain the user information from GitHub.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function handleProviderCallback($provider)
     {

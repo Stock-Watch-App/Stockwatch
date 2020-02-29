@@ -15247,12 +15247,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    isPos: function isPos() {
-      return true;
-    },
     currentPrice: function currentPrice() {
       //find latest week
-      return 13;
+      var currentWeek;
+      this.stock.houseguest.prices.forEach(function (week) {
+        if (typeof currentWeek === 'undefined' || week.week > currentWeek.week) {
+          currentWeek = week;
+        }
+      });
+      return currentWeek.price;
     },
     currentRating: function currentRating() {
       //find latest week
@@ -15260,9 +15263,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     priceDifference: function priceDifference() {
       //find latest week and week before
+      var currentWeek;
+      var lastWeek;
+      this.stock.houseguest.prices.forEach(function (week) {
+        if (typeof currentWeek === 'undefined') {
+          currentWeek = week;
+        } else if (week.week > currentWeek.week) {
+          lastWeek = currentWeek;
+          currentWeek = week;
+        }
+      });
+      var diff = currentWeek.price - lastWeek.price;
+      var isIncrease = diff > 0;
       return {
-        icon: 'arrow-up',
-        amount: 3
+        isIncrease: isIncrease,
+        amount: Math.abs(diff),
+        icon: 'arrow-' + (isIncrease ? 'up' : 'down')
       };
     }
   }
@@ -50915,7 +50931,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "hg-price", class: [_vm.isPos ? "green-bg" : "red-bg"] },
+        {
+          staticClass: "hg-price",
+          class: [_vm.priceDifference.isIncrease ? "green-bg" : "red-bg"]
+        },
         [
           _c("span", { staticClass: "price-wrap" }, [
             _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
@@ -50925,7 +50944,7 @@ var render = function() {
             "span",
             {
               staticClass: "price-change-wrap flex-row",
-              class: [_vm.isPos ? "green" : "red"]
+              class: [_vm.priceDifference.isIncrease ? "green" : "red"]
             },
             [
               _c("font-awesome-icon", {
@@ -81278,7 +81297,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
   if (!value) return '';
-  return '$' + parseInt(value);
+  return '$' + parseFloat(value).toFixed(2);
 });
 
 /***/ }),
@@ -81301,8 +81320,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })
