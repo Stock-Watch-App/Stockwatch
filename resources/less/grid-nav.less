@@ -1,5 +1,5 @@
-@import './_variables.less';
-@import './_mixins.less';
+@import (reference)  './_variables.less';
+@import (reference) './_mixins.less';
 
 // animations
 
@@ -115,6 +115,7 @@
         display: grid;
         // main content grid def
         grid-template-columns: repeat(8, 1fr);
+        grid-gap: 1rem;
     }
 
     footer {

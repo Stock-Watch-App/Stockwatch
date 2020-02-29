@@ -44,7 +44,7 @@
 
             <ul class="sidebar-nav-list">
             <li>
-                <a href="/home" title="Dashboard" class="item-wrap">
+                <a href="/dashboard" title="Dashboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="columns" fixed-width />
                     </figure>

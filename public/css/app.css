@@ -292,36 +292,6 @@ a:active {
   font-display: swap;
   src: url('/storage/WOFF2/VAR/SourceSansVariable-Italic.ttf.woff2') format('woff2'), url('/storage/WOFF/VAR/SourceSansVariable-Italic.ttf.woff') format('woff'), url('/storage/VAR/SourceSansVariable-Italic.ttf') format('truetype');
 }
-.fpo {
-  background-color: black;
-  text-align: center;
-  padding: 0.9375rem;
-  margin: 0.9375rem 0rem 0.9375rem 0rem;
-}
-.a11yOutline {
-  outline: 0;
-  box-shadow: 0 0 0 1pt hsl(224, 90%, 53%);
-}
-.screenReaderLabel {
-  font-size: 0;
-  height: 1px;
-  overflow: hidden;
-  display: block;
-}
-/**
- * @font-face LESS Mixin
- * use: .font-fa *   @file-path,   // absolute/relative URL to font files
- *   @font-weight, // 400/700
- *   @font-style   // italic/normal/inherit
- * )
- */
-/**
- * Media LESS Mixin
- * use: .media(
- *   @breakpoint, // Breakpoint Value
- *   @rules,   // Nested Rule Set for the media breakpoint
- * )
- */
 .mg-btm-xs {
   margin-bottom: 0.5rem;
 }
@@ -446,6 +416,7 @@ a:active {
   padding: 2rem;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
 }
 .app-wrapper footer {
   grid-area: footer;
@@ -572,9 +543,11 @@ a:active {
 @media only screen and (min-width: 1024px) {
   .stock-cards-wrap {
     grid-column: 1/7;
+    grid-row: 1/2;
   }
   .user-details {
     grid-column: 7/9;
+    grid-row: 1/2;
   }
 }
 @media only screen and (min-width: 1280px) {
@@ -607,7 +580,6 @@ a:active {
   }
 }
 .card {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   position: relative;
   display: flex;
@@ -668,6 +640,9 @@ a:active {
 .button-base:focus {
   outline: 0;
   box-shadow: 0 0 0 1pt hsl(224, 90%, 53%);
+}
+.button-base.link {
+  color: hsl(224, 90%, 53%);
 }
 .button-base.full-width {
   width: 100%;
@@ -977,6 +952,7 @@ a:active {
 .stockcard {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
+  box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
   grid-template-columns: 80px 1fr auto;
   grid-gap: 0.5rem;
   grid-auto-flow: dense;
@@ -1095,6 +1071,29 @@ a:active {
 }
 .stockcard .price-change-wrap.neutral {
   color: hsl(240, 4%, 60%);
+}
+.user-panel {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 16px;
+}
+.funds {
+  border: solid 1px hsl(224, 90%, 53%);
+  box-shadow: 1px 1px 0px hsl(224, 90%, 53%);
+  border-radius: 4px;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.fund-history {
+  border: solid 1px hsl(173, 90%, 53%);
+  box-shadow: 1px 1px 0px hsl(173, 90%, 53%);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.trade {
+  align-items: center;
 }
 body {
   color: #25282F;

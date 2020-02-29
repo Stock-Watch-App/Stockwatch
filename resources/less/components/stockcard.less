@@ -1,9 +1,10 @@
-@import '../_variables.less';
-@import '../_mixins.less';
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
 
 .stockcard {
     display: grid;
     border: solid 1px @gray-hint;
+    box-shadow: 1px 1px 0px @gray-hint;
     grid-template-columns: 80px 1fr auto;
     grid-gap: .5rem;
     grid-auto-flow: dense;

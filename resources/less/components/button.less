@@ -1,5 +1,5 @@
-@import '../_variables.less';
-@import '../_mixins.less';
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
 
 
 // button mixins
@@ -32,6 +32,10 @@
 
     &:focus {
         .a11yOutline;
+    }
+
+    &.link {
+        color: @link;
     }
 
     &.full-width {

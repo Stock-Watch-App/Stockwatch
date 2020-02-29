@@ -1,5 +1,5 @@
-@import './_variables.less';
-@import './_mixins.less';
+@import (reference)  './_variables.less';
+@import (reference) './_mixins.less';
 
 .stock-cards-wrap {
     grid-column: ~'1/-1';
@@ -35,10 +35,12 @@
 .media(@min-desktop, {
     .stock-cards-wrap {
         grid-column: ~'1/7';
+        grid-row: ~'1/2';
     }
 
     .user-details {
         grid-column: ~'7/9';
+        grid-row: ~'1/2';
     }
 
 });

@@ -1,0 +1,28 @@
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
+
+.user-panel {
+    position: sticky;
+    top: 16px;
+}
+
+.funds {
+    border: solid 1px @primary-blue;
+    box-shadow: 1px 1px 0px @primary-blue;
+    border-radius: @border-radius;
+    text-align: center;
+    .px-rem(padding, 16);
+    .px-rem(margin-bottom, 32);
+}
+
+.fund-history {
+    border: solid 1px @secondary-blue;
+    box-shadow: 1px 1px 0px @secondary-blue;
+    border-radius: @border-radius;
+    .px-rem(padding, 16);
+    .px-rem(margin-bottom, 32);
+}
+
+.trade {
+    align-items: center;
+}
