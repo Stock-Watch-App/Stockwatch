@@ -5,8 +5,8 @@
     @component('loginflow')
         <form method="POST" action="{{ route('register') }}">
             @csrf
-                <label for="name" class="label label-hidden">{{ __('Name') }}</label>
-                <input id="name" type="text" class="mg-btm-sm input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Full name') }}">
+                <label for="name" class="label label-hidden">{{ __('Display Name') }}</label>
+                <input id="name" type="text" class="mg-btm-sm input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Display name') }}">
                 @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
