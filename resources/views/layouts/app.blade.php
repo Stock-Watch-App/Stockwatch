@@ -37,7 +37,6 @@
                     <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />
                     <div class="profile-name">
                         <span>{{ Auth::user()->name }}</span>
-                        <span>@RobotKatie</span>
                     </div>
                 </div>
             @endguest
@@ -76,7 +75,7 @@
                 </a>
             </li>
             <li>
-                <a href="/" title="Admin" class="item-wrap">
+                <a href="/admin" title="Admin" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="user-shield" fixed-width />
                     </figure>

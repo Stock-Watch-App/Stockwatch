@@ -23,6 +23,10 @@ Route::get('/account', function () {
     return view('account');
 });
 
+Route::get('/projections', function () {
+    return view('projections');
+});
+
 Route::get('/styleguide', function () {
     return view('styleguide');
 });

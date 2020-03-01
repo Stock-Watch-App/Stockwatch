@@ -11,7 +11,7 @@
                 <button type="submit" class="button-base secondary ghost mg-btm-sm">
                     {{ __('Upload Photo') }}
                 </button>
-                <p>image requirements</p>
+                <!-- <p>image requirements</p> -->
             </div>
         </div>
 
@@ -19,15 +19,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                     <label for="name" class="label">{{ __('Display Name') }}</label>
-                    <input id="name" type="text" class="mg-btm-md input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Full name') }}">
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-
-                    <label for="username" class="label">{{ __('Username') }}</label>
-                    <input id="name" type="text" class="mg-btm-md input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Username') }}">
+                    <input id="name" type="text" class="mg-btm-md input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Display Name') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
