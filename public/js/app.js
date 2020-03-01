@@ -15164,6 +15164,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -50831,7 +50833,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "user-panel" }, [
+  return _c("div", [
     _c("div", { staticClass: "funds" }, [
       _c("p", [_vm._v("Available Funds")]),
       _vm._v(" "),
@@ -50870,32 +50872,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dashboard-wrap" }, [
-    _c(
-      "div",
-      { staticClass: "user-details" },
-      [
-        _c("funds", {
-          attrs: { bank: _vm.mutablebank, networth: _vm.networth }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex-col trade" }, [
+    _c("div", { staticClass: "user-details" }, [
       _c(
-        "button",
-        {
-          staticClass: "button-base secondary",
-          attrs: { disabled: "" },
-          on: { click: _vm.submit }
-        },
-        [_vm._v("Submit trade")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "button-base link", on: { click: _vm.resetAll } },
-        [_vm._v("Cancel")]
+        "div",
+        { staticClass: "user-panel" },
+        [
+          _c("funds", {
+            attrs: { bank: _vm.mutablebank, networth: _vm.networth }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex-col trade" }, [
+            _c(
+              "button",
+              {
+                staticClass: "button-base secondary",
+                attrs: { disabled: "" },
+                on: { click: _vm.submit }
+              },
+              [_vm._v("Submit trade")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "button-base link", on: { click: _vm.resetAll } },
+              [_vm._v("Cancel")]
+            )
+          ])
+        ],
+        1
       )
     ]),
     _vm._v(" "),

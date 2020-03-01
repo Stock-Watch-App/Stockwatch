@@ -1,16 +1,18 @@
 <template>
     <div class="dashboard-wrap">
         <div class="user-details">
-            <funds
-                :bank="mutablebank"
-                :networth="networth"
-            ></funds>
-        </div>
-        <div class="flex-col trade">
-            <!-- enable button when input fields become active -->
-            <button class="button-base secondary" @click="submit" disabled>Submit trade</button>
-            <!-- enable button when submit button becomes active -->
-            <button class="button-base link" @click="resetAll">Cancel</button>
+            <div class="user-panel">
+                <funds
+                    :bank="mutablebank"
+                    :networth="networth"
+                ></funds>
+                <div class="flex-col trade">
+                    <!-- enable button when input fields become active -->
+                    <button class="button-base secondary" @click="submit" disabled>Submit trade</button>
+                    <!-- enable button when submit button becomes active -->
+                    <button class="button-base link" @click="resetAll">Cancel</button>
+                </div>
+            </div>
         </div>
         <div class="stock-cards-wrap">
             <ul class="stock-cards">

@@ -1,5 +1,5 @@
 <template>
-    <div class="user-panel">
+    <div>
         <div class="funds">
             <p>Available Funds</p>
             <h1 v-bind:class="[this.inthered() ? 'red-text' : '']">{{ bank.money | currency }}</h1>
