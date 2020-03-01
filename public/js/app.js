@@ -15259,6 +15259,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     stock: Object
@@ -50948,10 +50954,8 @@ var render = function() {
       class: [_vm.stock.houseguest.status === "active" ? "" : "inactive"]
     },
     [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "hg-details flex-col" }, [
-        _c("p", [
+      _c("div", { staticClass: "hg-details" }, [
+        _c("h5", [
           _vm._v(
             _vm._s(
               _vm._f("capitalize")(
@@ -50959,23 +50963,46 @@ var render = function() {
               )
             )
           )
-        ]),
-        _vm._v(" "),
-        _c(
-          "span",
-          { staticClass: "rating-wrap flex-row" },
-          [
-            _c("font-awesome-icon", {
-              staticClass: "hg-star",
-              attrs: { icon: "star" }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "num-wrap flex-row" }, [
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "hg-rating" }, [
+        _c("span", { staticClass: "rating-wrap" }, [
+          _c(
+            "h3",
+            { staticClass: "num-wrap flex-row" },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "hg-star",
+                attrs: { icon: "star" }
+              }),
+              _vm._v(" "),
               _c("span", { staticClass: "hg-star-rating" }, [
                 _vm._v(_vm._s(_vm.currentRating))
               ]),
               _vm._v(" "),
-              _c("span", [_vm._v(" / 10")])
+              _c("span", { staticClass: "hg-star-outof" }, [_vm._v(" /10")])
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "price-change-wrap flex-row",
+            class: [_vm.priceDifference.isIncrease ? "green" : "red"]
+          },
+          [
+            _c("font-awesome-icon", {
+              staticClass: "price-diff-icon",
+              attrs: { icon: _vm.priceDifference.icon }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "price-diff" }, [
+              _vm._v(_vm._s(_vm._f("currency")(_vm.priceDifference.amount)))
             ])
           ],
           1
@@ -51006,10 +51033,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("p", { staticClass: "price-diff" }, [
-                _vm._v(
-                  _vm._s(_vm._f("currency")(_vm.priceDifference.amount)) +
-                    " from last week"
-                )
+                _vm._v(_vm._s(_vm._f("currency")(_vm.priceDifference.amount)))
               ])
             ],
             1
@@ -51024,7 +51048,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "button-base primary ghost small buy",
+              staticClass: "button-base primary ghost small sell",
               on: { click: _vm.sellAll }
             },
             [_vm._v("Sell all")]
@@ -51044,10 +51068,20 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "button-base primary ghost small sell",
+              staticClass: "button-base primary ghost small buy",
               on: { click: _vm.buyMax }
             },
             [_vm._v("Buy max")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button-base link small",
+              on: { click: _vm.buyMax }
+            },
+            [_c("font-awesome-icon", { attrs: { icon: "undo-alt" } })],
+            1
           )
         ],
         1
@@ -80881,7 +80915,7 @@ Vue.use(vue_tailwind__WEBPACK_IMPORTED_MODULE_0___default.a); // font awesome ic
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUndoAlt"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);
 /**
  * The following block of code may be used to automatically register your

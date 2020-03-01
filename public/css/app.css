@@ -413,7 +413,7 @@ a:active {
 }
 .app-wrapper .app-content {
   grid-area: content;
-  padding: 2rem;
+  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1rem;
@@ -486,6 +486,7 @@ a:active {
   }
   .app-wrapper .app-content {
     border-radius: 30px 0 0 0;
+    padding: 2rem;
   }
 }
 .landingWrap {
@@ -518,9 +519,9 @@ a:active {
 }
 .dashboard-wrap {
   grid-column: 1/-1;
-  padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: auto minmax(-webkit-min-content, 150px);
+  grid-template-columns: auto minmax(min-content, 150px);
   grid-gap: 1rem;
 }
 .stock-cards-wrap {
@@ -540,20 +541,19 @@ a:active {
 }
 @media only screen and (min-width: 768px) {
   .stock-cards-wrap .stock-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(400px, -webkit-max-content));
+    grid-template-columns: repeat(auto-fill, minmax(400px, max-content));
     grid-template-rows: minmax(100px, -webkit-max-content);
     grid-template-rows: minmax(100px, max-content);
-    grid-gap: 2rem;
   }
 }
 @media only screen and (min-width: 1024px) {
   .stock-cards-wrap {
-    grid-column: 1/7;
+    grid-column: 1/2;
     grid-row: 1/2;
   }
   .user-details {
-    grid-column: 7/9;
+    grid-column: 2/3;
     grid-row: 1/2;
   }
 }
@@ -875,6 +875,7 @@ table tr:nth-child(even) td {
   height: 2.75rem;
   padding: 0 0.625rem;
   width: 100%;
+  min-width: 150px;
 }
 .input::-webkit-input-placeholder {
   color: hsl(240, 5%, 30%);
@@ -935,6 +936,7 @@ table tr:nth-child(even) td {
   max-width: 100%;
   overflow: hidden;
   position: relative;
+  flex: 1 1 auto;
 }
 .num-input-wrap .num-input {
   background-color: hsl(224, 90%, 53%);
@@ -977,7 +979,7 @@ table tr:nth-child(even) td {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
   box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
-  grid-template-columns: 80px 1fr auto;
+  grid-template-columns: 80px auto auto;
   grid-gap: 0.5rem;
   grid-auto-flow: dense;
   overflow: hidden;
@@ -1016,10 +1018,21 @@ table tr:nth-child(even) td {
      object-fit: cover;
 }
 .stockcard .hg-details {
+  grid-column: 1/-1;
+  grid-row: 1/2;
+}
+.stockcard .hg-rating {
   grid-column: 2/3;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.5rem;
 }
 .stockcard .rating-wrap {
   align-items: baseline;
+  padding: 0.5em 1em 0.5em 1em;
 }
 .stockcard .rating-wrap .hg-star {
   color: hsl(55, 100%, 49%);
@@ -1029,38 +1042,32 @@ table tr:nth-child(even) td {
   font-variation-settings: "wght" 700;
   margin-right: 0.125rem;
 }
+.stockcard .rating-wrap .hg-star-outof {
+  font-variation-settings: "wght" 400;
+  font-size: 0.5em;
+  letter-spacing: 0.005em;
+}
 .stockcard .rating-wrap .num-wrap {
-  line-height: 1;
+  align-items: baseline;
 }
 .stockcard .hg-price {
   grid-column: 3/4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: end;
   padding: 0.5rem;
   border-radius: 4px;
 }
 .stockcard .hg-price.green-bg {
-  background-color: hsl(146, 84%, 90%);
+  background: linear-gradient(90deg, rgba(131, 58, 180, 0) 0%, hsl(146, 84%, 90%) 62%);
 }
 .stockcard .hg-price.red-bg {
-  background-color: hsl(22.5, 95.1%, 90%);
+  background: linear-gradient(90deg, rgba(131, 58, 180, 0) 0%, hsl(22.5, 95.1%, 90%) 62%);
 }
 .stockcard .input-wrap {
   grid-column: 1 / -1;
-  grid-row: 2 / 3;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.stockcard .input-wrap .buy {
-  margin-right: 0.5rem;
-  white-space: nowrap;
-}
-.stockcard .input-wrap .sell {
-  margin-left: 0.5rem;
-  white-space: nowrap;
+  grid-row: 3 / 4;
 }
 .stockcard .btn-wrap {
   grid-column: 1 / -1;
@@ -1095,6 +1102,47 @@ table tr:nth-child(even) td {
 }
 .stockcard .price-change-wrap.neutral {
   color: hsl(240, 4%, 60%);
+}
+@media only screen and (max-width: 499px) {
+  .stockcard .input-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .stockcard .input-wrap .num-input-wrap {
+    order: 1;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+  .stockcard .input-wrap .buy {
+    margin: 0rem 0.5rem 0rem 0.5rem;
+    white-space: nowrap;
+    order: 3;
+  }
+  .stockcard .input-wrap .sell {
+    white-space: nowrap;
+    order: 2;
+  }
+  .stockcard .input-wrap .link {
+    order: 4;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .stockcard .input-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .stockcard .input-wrap .buy {
+    margin: 0rem 0rem 0rem 0.5rem;
+    white-space: nowrap;
+  }
+  .stockcard .input-wrap .sell {
+    margin-right: 0.5rem;
+    white-space: nowrap;
+  }
 }
 .user-panel {
   position: -webkit-sticky;

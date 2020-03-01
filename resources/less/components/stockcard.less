@@ -5,7 +5,7 @@
     display: grid;
     border: solid 1px @gray-hint;
     box-shadow: 1px 1px 0px @gray-hint;
-    grid-template-columns: 80px 1fr auto;
+    grid-template-columns: 80px auto auto; // 80px auto
     grid-gap: .5rem;
     grid-auto-flow: dense;
     overflow: hidden;
@@ -44,12 +44,25 @@
     }
 
     .hg-details {
-        grid-column: ~'2/3';
+        grid-column: ~'1/-1';
+        grid-row: ~'1/2';
+        // grid-column: ~'2/3';
         // justify-content: space-between;
+    }
+
+    .hg-rating {
+        grid-column: ~'2/3';
+        grid-row: ~'2/3';
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        .px-rem(padding, 8);
     }
 
     .rating-wrap {
         align-items: baseline;
+        .px-em-padding(8, 16, 8, 16);
 
         .hg-star {
             color: @yellow;
@@ -61,45 +74,56 @@
             .px-rem(margin-right, 2);
         }
 
+        .hg-star-outof {
+            font-variation-settings: "wght" 400;
+            font-size: .5em;
+            letter-spacing: .005em;
+        }
+
         .num-wrap {
-            line-height: 1;
+            // line-height: 1;
+            align-items: baseline;
         }
     }
 
     .hg-price {
         grid-column: ~'3/4';
+        // grid-column: ~'2/3';
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        // align-items: center;
+        align-items: end;
         .px-rem(padding, 8);
         border-radius: @border-radius;
 
         &.green-bg {
-            background-color: @green-01;
+            // background-color: @green-01;
+            background: linear-gradient(90deg, rgba(131,58,180,0) 0%, @green-01 62%)
         }
 
         &.red-bg {
-            background-color: @red-01;
+            // background-color: @red-01;
+            background: linear-gradient(90deg, rgba(131,58,180,0) 0%, @red-01 62%)
         }
     }
 
     .input-wrap {
         grid-column: ~'1 / -1';
-        grid-row: ~'2 / 3';
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        grid-row: ~'3 / 4';
+        // display: flex;
+        // flex-direction: row;
+        // align-items: center;
 
-        .buy {
-            .px-rem(margin-right, 8);
-            white-space: nowrap;
-        }
+        // .buy {
+        //     .px-rem(margin-right, 8);
+        //     white-space: nowrap;
+        // }
 
-        .sell {
-            .px-rem(margin-left, 8);
-            white-space: nowrap;
-        }
+        // .sell {
+        //     .px-rem(margin-left, 8);
+        //     white-space: nowrap;
+        // }
     }
 
     .btn-wrap {
@@ -146,4 +170,60 @@
             color: @gray-light;
         }
     }
+
+    .media(~'only screen and (max-width: 499px)', {
+        .input-wrap {
+            // grid-column: ~'1 / -1';
+            // grid-row: ~'3 / 4';
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+
+            .num-input-wrap {
+                order: 1;
+                margin-bottom: .5rem;
+                width: 100%;
+            }
+
+            .buy {
+                .px-rem-margin(0, 8, 0, 8);
+                white-space: nowrap;
+                order: 3;
+            }
+
+            .sell {
+                // .px-rem-margin(0, 8, 0, 8);
+                white-space: nowrap;
+                order: 2;
+            }
+
+            .link {
+                order: 4;
+            }
+        }
+    });
+
+    .media(~'only screen and (min-width: 500px)', {
+        .input-wrap {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .buy {
+                .px-rem-margin(0, 0, 0, 8);
+                white-space: nowrap;
+            }
+
+            .sell {
+                .px-rem(margin-right, 8);
+                white-space: nowrap;
+            }
+        }
+    });
+
+    .media(@min-tablet, {
+
+    });
 }

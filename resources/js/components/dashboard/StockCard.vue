@@ -1,36 +1,42 @@
 <template>
     <li class="card stockcard" v-bind:class="[stock.houseguest.status === 'active' ? '' : 'inactive']">
+        <div class="hg-details">
+            <h5>{{ stock.houseguest.nickname || stock.houseguest.first_name | capitalize }}</h5>
+        </div>
         <div class="hg-img">
             <img src="/storage/avatar-default.svg"/>
         </div>
-        <div class="hg-details flex-col">
-            <p>{{ stock.houseguest.nickname || stock.houseguest.first_name | capitalize }}</p>
-            <span class="rating-wrap flex-row">
-                <font-awesome-icon icon="star" class="hg-star"/>
-                <span class="num-wrap flex-row">
+        <div class="hg-rating">
+            <span class="rating-wrap">
+                <h3 class="num-wrap flex-row">
+                    <font-awesome-icon icon="star" class="hg-star"/>
                     <span class="hg-star-rating">{{ currentRating }}</span>
-                    <span> / 10</span>
-                </span>
+                    <span class="hg-star-outof"> /10</span>
+                </h3>
+            </span>
+            <span class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
+                <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
+                <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
         </div>
         <div class="hg-price" v-bind:class="[priceDifference.isIncrease ? 'green-bg' : 'red-bg']">
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
-            </span> <span class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
+            </span>
+            <span class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
                 <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
-                <p class="price-diff">{{ priceDifference.amount | currency }} from last week</p>
+                <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
         </div>
         <div class="input-wrap">
-            <button class="button-base primary ghost small buy" @click="sellAll">Sell all</button>
+            <button class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
             <number-input v-model="stock.quantity" controls>
             </number-input>
-            <button class="button-base primary ghost small sell" @click="buyMax">Buy max</button>
+            <button class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
+            <button class="button-base link small" @click="buyMax">
+                <font-awesome-icon icon="undo-alt" />
+            </button>
         </div>
-        <!-- <div class="btn-wrap">
-            <button class="button-base primary ghost xsmall">Sell all</button>
-            <button class="button-base primary ghost xsmall">Buy all</button>
-        </div> -->
     </li>
 </template>
 
