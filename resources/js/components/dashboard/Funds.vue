@@ -29,7 +29,9 @@
             }
         },
         methods: {
-           //
+           x() {
+
+           }
         },
         computed: {
             // rank: function () {
