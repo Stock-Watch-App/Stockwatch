@@ -15166,6 +15166,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -15177,7 +15179,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       mutableStocks: _.cloneDeep(this.stocks),
-      mutablebank: _.cloneDeep(this.bank),
+      mutableBank: _.cloneDeep(this.bank),
       prices: []
     };
   },
@@ -15189,7 +15191,7 @@ __webpack_require__.r(__webpack_exports__);
         mutatedStocks.forEach(function (stock) {
           stockTotal += stock.quantity * prices[stock.houseguest_id];
         });
-        this.mutablebank.money = this.networth - stockTotal;
+        this.mutableBank.money = this.networth - stockTotal;
       },
       deep: true
     }
@@ -15197,6 +15199,24 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     saveCurrentPrice: function saveCurrentPrice(value) {
       this.prices[value.houseguest] = parseFloat(value.price);
+    },
+    buyMax: function buyMax(value) {
+      var _this = this;
+
+      this.mutableStocks.forEach(function (stock) {
+        if (stock.houseguest_id === value.houseguest) {
+          var remainingCash = _this.mutableBank.money;
+          var currentPrice = _this.prices[value.houseguest];
+          stock.quantity = Math.floor(remainingCash / currentPrice);
+        }
+      });
+    },
+    sellAll: function sellAll(value) {
+      this.mutableStocks.forEach(function (stock) {
+        if (stock.houseguest_id === value.houseguest) {
+          stock.quantity = 0;
+        }
+      });
     },
     submit: function submit() {//save to DB
     },
@@ -15266,15 +15286,25 @@ __webpack_require__.r(__webpack_exports__);
     stock: Object
   },
   data: function data() {
-    return {//
+    return {
+      originalStock: _.cloneDeep(this.stock)
     };
   },
   methods: {
-    reset: function reset() {//ask parent to reset the card data
+    reset: function reset() {
+      this.stock.quantity = this.originalStock.quantity;
     },
-    buyMax: function buyMax() {//this needs to be mutated from the parent because of the bank
+    buyMax: function buyMax() {
+      //this needs to be mutated from the parent because of the bank
+      this.$emit('buy-max', {
+        houseguest: this.stock.houseguest_id
+      });
     },
-    sellAll: function sellAll() {//this needs to be mutated from the parent because of the bank
+    sellAll: function sellAll() {
+      //this needs to be mutated from the parent because of the bank
+      this.$emit('sell-all', {
+        houseguest: this.stock.houseguest_id
+      });
     }
   },
   computed: {
@@ -50882,7 +50912,11 @@ var render = function() {
           return _c("stock-card", {
             key: stock.id,
             attrs: { stock: stock },
-            on: { "current-price": _vm.saveCurrentPrice }
+            on: {
+              "current-price": _vm.saveCurrentPrice,
+              "buy-max": _vm.buyMax,
+              "sell-all": _vm.sellAll
+            }
           })
         }),
         1
@@ -50895,7 +50929,7 @@ var render = function() {
         { staticClass: "user-panel" },
         [
           _c("funds", {
-            attrs: { bank: _vm.mutablebank, networth: _vm.networth }
+            attrs: { bank: _vm.mutableBank, networth: _vm.networth }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "flex-col trade" }, [
@@ -50903,7 +50937,7 @@ var render = function() {
               "button",
               {
                 staticClass: "button-base secondary",
-                attrs: { disabled: "" },
+                attrs: { disabled: _vm.mutableBank.money < 0 },
                 on: { click: _vm.submit }
               },
               [_vm._v("Submit trade")]
@@ -51053,10 +51087,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "button",
-            {
-              staticClass: "button-base link small",
-              on: { click: _vm.buyMax }
-            },
+            { staticClass: "button-base link small", on: { click: _vm.reset } },
             [_c("font-awesome-icon", { attrs: { icon: "undo-alt" } })],
             1
           )
@@ -81360,7 +81391,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
-  if (!value) return '';
+  if (!value && value !== 0) return '';
   return '$' + parseFloat(value).toFixed(2);
 });
 
@@ -81384,8 +81415,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })
