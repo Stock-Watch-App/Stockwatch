@@ -12,23 +12,33 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
-        Permission::create(['name' => 'create houseguest']);
-        Permission::create(['name' => 'edit houseguest']);
-        Permission::create(['name' => 'delete houseguest']);
+        $models = [
+            'bank',
+            'houseguest',
+            'price',
+            'rating',
+            'season',
+            'stock',
+            'transaction',
+            'user',
+        ];
+        foreach ($models as $model) {
+            Permission::create(['name' => "view {$model}"]);
+            Permission::create(['name' => "create {$model}"]);
+            Permission::create(['name' => "update {$model}"]);
+            Permission::create(['name' => "delete {$model}"]);
+            Permission::create(['name' => "restore {$model}"]);
+            Permission::create(['name' => "force delete {$model}"]);
 
-        Permission::create(['name' => 'create user']);
-        Permission::create(['name' => 'edit user']);
+            Role::create(["manage {$model}"])
+                ->givePermissionTo(["view {$model}","create {$model}","update {$model}","delete {$model}","restore {$model}","force delete {$model}"]);
+        }
+
+
         Permission::create(['name' => 'ban user']);
-        Permission::create(['name' => 'delete user']);
-
-        Permission::create(['name' => 'add rank']);
-        Permission::create(['name' => 'edit rank']);
-        Permission::create(['name' => 'delete rank']);
-        Permission::create(['name' => 'show rank']);
 
         Permission::create(['name' => 'open market']);
         Permission::create(['name' => 'close market']);
-        Permission::create(['name' => 'edit stock']);
 
         Permission::create(['name' => 'edit permissions']);
         Permission::create(['name' => 'impersonate']);
@@ -36,14 +46,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // create roles and assign created permissions
         Role::create(['name' => 'super admin']);
-        Role::create(['name' => 'admin'])
-            ->givePermissionTo(['edit permissions','impersonate','create houseguest','edit houseguest','delete houseguest']);
-        Role::create(['name' => 'lfc'])
-            ->givePermissionTo(['add rank','edit rank','delete rank','show rank']);
-        Role::create(['name' => 'user moderator'])
-            ->givePermissionTo(['create user','edit user','ban user','delete user']);
-        Role::create(['name' => 'market moderator'])
-            ->givePermissionTo(['open market','close market','edit stock']);
-
+        Role::create(['name' => 'admin']);
     }
 }

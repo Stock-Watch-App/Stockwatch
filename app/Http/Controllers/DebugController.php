@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Houseguest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DebugController extends Controller
 {
@@ -38,14 +39,10 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $hgs = Houseguest::all();
-        foreach ($hgs as $hg) {
-            dump($hg->projection);
-        }
-
-//        $hg = Houseguest::find(1);
-//            dump($hg->projection);
-//        dump($hg);
-
+        $me = Auth::user();
+        dump($me->permissions);
+        dump($me->roles);
+        dump(!$me->permissions->isEmpty());
+        dump(!$me->roles->isEmpty());
     }
 }
