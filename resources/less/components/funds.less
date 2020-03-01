@@ -4,6 +4,17 @@
 .user-panel {
     position: sticky;
     top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.funds-wrap {
+    .px-rem-margin(16, 0, 16, 0);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    order: 2;
 }
 
 .funds {
@@ -12,7 +23,10 @@
     border-radius: @border-radius;
     text-align: center;
     .px-rem(padding, 16);
-    .px-rem(margin-bottom, 32);
+
+    h1 {
+        .fluid-typography-rem(@small-screen, @large-screen, @base, 1.5rem, 3rem, 1.75rem);
+    }
 }
 
 .fund-history {
@@ -20,13 +34,45 @@
     box-shadow: 1px 1px 0px @secondary-blue;
     border-radius: @border-radius;
     .px-rem(padding, 16);
-    .px-rem(margin-bottom, 32);
+    .px-rem(margin-left, 8);
 }
 
 .trade {
     align-items: center;
+    justify-content: center;
+    .px-rem-margin(0, 16, 0, 0);
+    order: 1;
 }
 
 .red-text {
     color: @red;
 }
+
+.media(@min-desktop, {
+    .funds {
+        .px-rem-margin(0, 0, 32, 0);
+    }
+
+    .fund-history {
+        .px-rem(margin-bottom, 32);
+        margin-left: 0;
+    }
+
+    .trade {
+        align-items: center;
+        order: unset;
+        margin-right: 0;
+    }
+
+    .user-panel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .funds-wrap {
+        order: unset;
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+});

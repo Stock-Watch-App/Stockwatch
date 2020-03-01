@@ -121,3 +121,25 @@
         @rules();
     }
 }
+
+.fluid-typography-rem(@min-screen: 320px, @max-screen: 1600px, @base-font: 16px, @min-font, @max-font, @fallbackFontSize) {
+    // min size font
+    font-size: @min-font;
+
+    @media screen and (min-width: unit((@min-screen / @base-font), ~'rem')) {
+        /* stylelint-disable */
+        font-size: ~'@{fallbackFontSize}';
+        font-size: calc(
+            @min-font ~' + ' unit(@max-font - @min-font) ~' * ((100vw - '
+                unit((@min-screen / @base-font), ~'rem') ~') /' unit(
+                    (@max-screen / @base-font) - (@min-screen / @base-font)
+                ) ~')'
+        );
+        /* stylelint-enable */
+    }
+
+    @media screen and (min-width: unit((@max-screen / @base-font), ~'rem')) {
+        // max size font
+        font-size: @max-font;
+    }
+}

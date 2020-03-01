@@ -1,5 +1,15 @@
 <template>
     <div class="dashboard-wrap">
+        <div class="stock-cards-wrap">
+            <ul class="stock-cards">
+                <stock-card
+                    v-for="stock in mutableStocks"
+                    :key="stock.id"
+                    :stock="stock"
+                    v-on:current-price="saveCurrentPrice"
+                />
+            </ul>
+        </div>
         <div class="user-details">
             <div class="user-panel">
                 <funds
@@ -13,16 +23,6 @@
                     <button class="button-base link" @click="resetAll">Cancel</button>
                 </div>
             </div>
-        </div>
-        <div class="stock-cards-wrap">
-            <ul class="stock-cards">
-                <stock-card
-                    v-for="stock in mutableStocks"
-                    :key="stock.id"
-                    :stock="stock"
-                    v-on:current-price="saveCurrentPrice"
-                />
-            </ul>
         </div>
     </div>
 </template>

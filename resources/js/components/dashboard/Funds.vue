@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="funds-wrap">
         <div class="funds">
             <p>Available Funds</p>
             <h1 v-bind:class="[this.inthered() ? 'red-text' : '']">{{ bank.money | currency }}</h1>

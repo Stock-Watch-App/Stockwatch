@@ -50839,7 +50839,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "funds-wrap" }, [
     _c("div", { staticClass: "funds" }, [
       _c("p", [_vm._v("Available Funds")]),
       _vm._v(" "),
@@ -50878,6 +50878,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dashboard-wrap" }, [
+    _c("div", { staticClass: "stock-cards-wrap" }, [
+      _c(
+        "ul",
+        { staticClass: "stock-cards" },
+        _vm._l(_vm.mutableStocks, function(stock) {
+          return _c("stock-card", {
+            key: stock.id,
+            attrs: { stock: stock },
+            on: { "current-price": _vm.saveCurrentPrice }
+          })
+        }),
+        1
+      )
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "user-details" }, [
       _c(
         "div",
@@ -50905,21 +50920,6 @@ var render = function() {
             )
           ])
         ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "stock-cards-wrap" }, [
-      _c(
-        "ul",
-        { staticClass: "stock-cards" },
-        _vm._l(_vm.mutableStocks, function(stock) {
-          return _c("stock-card", {
-            key: stock.id,
-            attrs: { stock: stock },
-            on: { "current-price": _vm.saveCurrentPrice }
-          })
-        }),
         1
       )
     ])

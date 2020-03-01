@@ -159,6 +159,21 @@ h1,
     font-size: 3rem;
   }
 }
+@media screen and (min-width: 20rem) {
+  h1,
+  .header1 {
+    /* stylelint-disable */
+    font-size: 1.75rem;
+    font-size: calc(2.5rem  +  0.5  * ((100vw -  20rem ) / 70 ));
+    /* stylelint-enable */
+  }
+}
+@media screen and (min-width: 90rem) {
+  h1,
+  .header1 {
+    font-size: 3rem;
+  }
+}
 h2,
 .header2 {
   color: #25282F;
@@ -167,6 +182,21 @@ h2,
   margin-top: 0;
   margin-bottom: 0.5em;
   font-size: 2rem;
+}
+@media screen and (min-width: 20rem) {
+  h2,
+  .header2 {
+    /* stylelint-disable */
+    font-size: 1.4rem;
+    font-size: calc(2rem  +  0.441  * ((100vw -  20rem ) / 70 ));
+    /* stylelint-enable */
+  }
+}
+@media screen and (min-width: 90rem) {
+  h2,
+  .header2 {
+    font-size: 2.441rem;
+  }
 }
 @media screen and (min-width: 20rem) {
   h2,
@@ -207,6 +237,21 @@ h3,
     font-size: 1.953rem;
   }
 }
+@media screen and (min-width: 20rem) {
+  h3,
+  .header3 {
+    /* stylelint-disable */
+    font-size: 1.3rem;
+    font-size: calc(1.2rem  +  0.753  * ((100vw -  20rem ) / 70 ));
+    /* stylelint-enable */
+  }
+}
+@media screen and (min-width: 90rem) {
+  h3,
+  .header3 {
+    font-size: 1.953rem;
+  }
+}
 h4,
 .header4 {
   color: #25282F;
@@ -215,6 +260,21 @@ h4,
   margin-top: 0;
   margin-bottom: 0.5em;
   font-size: 1rem;
+}
+@media screen and (min-width: 20rem) {
+  h4,
+  .header4 {
+    /* stylelint-disable */
+    font-size: 1rem;
+    font-size: calc(1rem  +  0.563  * ((100vw -  20rem ) / 70 ));
+    /* stylelint-enable */
+  }
+}
+@media screen and (min-width: 90rem) {
+  h4,
+  .header4 {
+    font-size: 1.563rem;
+  }
 }
 @media screen and (min-width: 20rem) {
   h4,
@@ -526,7 +586,7 @@ a:active {
 }
 .stock-cards-wrap {
   grid-column: 1/-1;
-  grid-row: 2/3;
+  grid-row: 1/2;
 }
 .stock-cards-wrap .stock-cards {
   display: grid;
@@ -537,14 +597,25 @@ a:active {
 }
 .user-details {
   grid-column: 1/-1;
-  grid-row: 1/2;
+  grid-row: 2/3;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background-color: hsl(0, 0%, 100%);
+  border-top: solid 1px hsl(0, 0%, 0%);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding: 0 1rem;
 }
 @media only screen and (min-width: 768px) {
   .stock-cards-wrap .stock-cards {
-    grid-template-columns: repeat(auto-fill, minmax(400px, -webkit-max-content));
-    grid-template-columns: repeat(auto-fill, minmax(400px, max-content));
+    grid-template-columns: repeat(auto-fill, minmax(400px, auto));
     grid-template-rows: minmax(100px, -webkit-max-content);
     grid-template-rows: minmax(100px, max-content);
+  }
+  .user-details {
+    margin-left: -2rem;
+    margin-right: -2rem;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -555,9 +626,11 @@ a:active {
   .user-details {
     grid-column: 2/3;
     grid-row: 1/2;
+    position: relative;
+    margin: 0;
+    border-top: none;
+    padding: 0;
   }
-}
-@media only screen and (min-width: 1280px) {
 }
 .user-account {
   display: grid;
@@ -651,6 +724,7 @@ table tr:nth-child(even) td {
   transition: all 0.2s ease-in-out;
   display: inline-block;
   position: relative;
+  white-space: nowrap;
   cursor: pointer;
   font-size: 1rem;
   padding: 0em 1.25em 0em 1.25em;
@@ -1044,7 +1118,7 @@ table tr:nth-child(even) td {
 }
 .stockcard .rating-wrap .hg-star-outof {
   font-variation-settings: "wght" 400;
-  font-size: 0.5em;
+  font-size: 1rem;
   letter-spacing: 0.005em;
 }
 .stockcard .rating-wrap .num-wrap {
@@ -1148,6 +1222,16 @@ table tr:nth-child(even) td {
   position: -webkit-sticky;
   position: sticky;
   top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.funds-wrap {
+  margin: 1rem 0rem 1rem 0rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  order: 2;
 }
 .funds {
   border: solid 1px hsl(224, 90%, 53%);
@@ -1155,20 +1239,74 @@ table tr:nth-child(even) td {
   border-radius: 4px;
   text-align: center;
   padding: 1rem;
-  margin-bottom: 2rem;
+}
+.funds h1 {
+  font-size: 1.5rem;
+}
+@media screen and (min-width: 20rem) {
+  .funds h1 {
+    /* stylelint-disable */
+    font-size: 1.75rem;
+    font-size: calc(1.5rem  +  1.5  * ((100vw -  20rem ) / 70 ));
+    /* stylelint-enable */
+  }
+}
+@media screen and (min-width: 90rem) {
+  .funds h1 {
+    font-size: 3rem;
+  }
+}
+@media screen and (min-width: 20rem) {
+  .funds h1 {
+    /* stylelint-disable */
+    font-size: 1.75rem;
+    font-size: calc(1.5rem  +  1.5  * ((100vw -  20rem ) / 70 ));
+    /* stylelint-enable */
+  }
+}
+@media screen and (min-width: 90rem) {
+  .funds h1 {
+    font-size: 3rem;
+  }
 }
 .fund-history {
   border: solid 1px hsl(173, 90%, 53%);
   box-shadow: 1px 1px 0px hsl(173, 90%, 53%);
   border-radius: 4px;
   padding: 1rem;
-  margin-bottom: 2rem;
+  margin-left: 0.5rem;
 }
 .trade {
   align-items: center;
+  justify-content: center;
+  margin: 0rem 1rem 0rem 0rem;
+  order: 1;
 }
 .red-text {
   color: hsl(22.5, 95.1%, 40.2%);
+}
+@media only screen and (min-width: 1024px) {
+  .funds {
+    margin: 0rem 0rem 2rem 0rem;
+  }
+  .fund-history {
+    margin-bottom: 2rem;
+    margin-left: 0;
+  }
+  .trade {
+    align-items: center;
+    order: unset;
+    margin-right: 0;
+  }
+  .user-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+  .funds-wrap {
+    order: unset;
+    flex-direction: column;
+    margin-top: 0;
+  }
 }
 body {
   color: #25282F;
