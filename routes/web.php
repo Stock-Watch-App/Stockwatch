@@ -24,7 +24,8 @@ Route::get('/account', function () {
 });
 
 Route::get('/projections', function () {
-    return view('projections');
+    $houseguests = \App\Models\Houseguest::where('season_id', \App\Models\Season::current()->id)->get();
+    return view('projections_alt', compact('houseguests'));
 });
 
 Route::get('/styleguide', function () {
