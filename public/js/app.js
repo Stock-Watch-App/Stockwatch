@@ -15121,7 +15121,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    x: function x() {}
+    x: function x() {},
+    inthered: function inthered() {
+      return this.bank.money < 0;
+    }
   },
   computed: {// rank: function () {
     //     return 40;
@@ -50831,7 +50834,9 @@ var render = function() {
     _c("div", { staticClass: "funds" }, [
       _c("p", [_vm._v("Available Funds")]),
       _vm._v(" "),
-      _c("h1", [_vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))])
+      _c("h1", { class: [this.inthered() ? "red-text" : ""] }, [
+        _vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "fund-history" }, [
