@@ -1,2 +1,74 @@
 @import (reference)  './_variables.less';
 @import (reference) './_mixins.less';
+
+
+.projection-wrap {
+    grid-column: ~'1/-1';
+}
+
+table {
+
+    // display: grid;
+    // grid-gap: 1rem;
+    // min-width: 100vw;
+    // width: auto;
+    // flex: 1;
+    border: solid 1px @gray-hint;
+    box-shadow: 1px 1px 0px @gray-hint;
+    border-collapse: collapse;
+    width: 100%;
+    // align-items: center;
+    // justify-items: center;
+    // grid-template-columns: repeat(13, 1fr);
+    // grid-template-rows: minmax(40px, max-content) minmax(40px, max-content) minmax(40px, max-content);
+    // grid-template-columns:
+    //     minmax(150px, min-content)
+    //     minmax(100px, max-content)
+    //     minmax(100px, max-content)
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content
+    //     max-content;
+
+    // thead,
+    // tbody,
+    // tr {
+        // display: contents;
+    // }
+
+    td, th {
+        vertical-align: middle;
+    }
+
+    tr:nth-child(even) td {
+        background: @gray-hint;
+        vertical-align: middle;
+      }
+
+    // .hg {
+    //     grid-column: ~'1/2';
+    //     grid-row: ~'1/4';
+    // }
+
+    // .rating {
+    //     grid-column: ~'2/3';
+    // }
+
+    // .this-week {
+    //     grid-column: ~'3/4';
+    // }
+
+    // .next-week {
+    //     grid-column: ~'4/-1';
+    // }
+
+    // .hg-name {
+    //     grid-row: ~'2/4';
+    // }
+}

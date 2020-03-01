@@ -586,6 +586,23 @@ a:active {
     grid-template: "headline headline" auto "photo photo" auto "fields ." auto / 1fr 1fr;
   }
 }
+.projection-wrap {
+  grid-column: 1/-1;
+}
+table {
+  border: solid 1px hsl(240, 4%, 90%);
+  box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
+  border-collapse: collapse;
+  width: 100%;
+}
+table td,
+table th {
+  vertical-align: middle;
+}
+table tr:nth-child(even) td {
+  background: hsl(240, 4%, 90%);
+  vertical-align: middle;
+}
 .card {
   border-radius: 4px;
   position: relative;
@@ -1101,6 +1118,9 @@ a:active {
 }
 .trade {
   align-items: center;
+}
+.red-text {
+  color: hsl(22.5, 95.1%, 40.2%);
 }
 body {
   color: #25282F;
