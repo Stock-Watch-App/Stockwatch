@@ -6,6 +6,12 @@
                 :networth="networth"
             ></funds>
         </div>
+        <div class="flex-col trade">
+            <!-- enable button when input fields become active -->
+            <button class="button-base secondary" @click="submit" disabled>Submit trade</button>
+            <!-- enable button when submit button becomes active -->
+            <button class="button-base link" @click="resetAll">Cancel</button>
+        </div>
         <div class="stock-cards-wrap">
             <ul class="stock-cards">
                 <stock-card
@@ -37,27 +43,27 @@
             }
         },
         watch: {
-          mutableStocks: {
-              handler(mutatedStocks, oldVal) {
-                  let stockTotal = 0;
-                  let prices = this.prices;
-                  mutatedStocks.forEach((stock) => {
-                      stockTotal += stock.quantity * prices[stock.houseguest_id];
-                  });
-                  this.mutablebank.money = this.networth - stockTotal;
-              },
-              deep: true
-          }
+            mutableStocks: {
+                handler(mutatedStocks, oldVal) {
+                    let stockTotal = 0;
+                    let prices = this.prices;
+                    mutatedStocks.forEach((stock) => {
+                        stockTotal += stock.quantity * prices[stock.houseguest_id];
+                    });
+                    this.mutablebank.money = this.networth - stockTotal;
+                },
+                deep: true
+            }
         },
         methods: {
             saveCurrentPrice(value) {
                 this.prices[value.houseguest] = parseFloat(value.price);
             },
-            buy(stock) {
-
+            submit() {
+                //save to DB
             },
-            sell(stock) {
-
+            resetAll() {
+                //reset to initial values
             }
         },
         computed: {

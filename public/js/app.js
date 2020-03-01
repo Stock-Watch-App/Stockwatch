@@ -15105,12 +15105,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     bank: Object,
@@ -15121,7 +15115,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    x: function x() {},
     inthered: function inthered() {
       return this.bank.money < 0;
     }
@@ -15144,6 +15137,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StockCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StockCard.vue */ "./resources/js/components/dashboard/StockCard.vue");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15197,8 +15196,10 @@ __webpack_require__.r(__webpack_exports__);
     saveCurrentPrice: function saveCurrentPrice(value) {
       this.prices[value.houseguest] = parseFloat(value.price);
     },
-    buy: function buy(stock) {},
-    sell: function sell(stock) {}
+    submit: function submit() {//save to DB
+    },
+    resetAll: function resetAll() {//reset to initial values
+    }
   },
   computed: {
     networth: function networth() {
@@ -50843,22 +50844,6 @@ var render = function() {
       _c("p", [
         _vm._v("Net worth: " + _vm._s(_vm._f("currency")(_vm.networth)))
       ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex-col trade" }, [
-      _c(
-        "button",
-        {
-          staticClass: "button-base secondary",
-          attrs: { disabled: "" },
-          on: { click: _vm.x }
-        },
-        [_vm._v("Submit trade")]
-      ),
-      _vm._v(" "),
-      _c("button", { staticClass: "button-base link", on: { click: _vm.x } }, [
-        _vm._v("Cancel")
-      ])
     ])
   ])
 }
@@ -50895,6 +50880,24 @@ var render = function() {
       ],
       1
     ),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex-col trade" }, [
+      _c(
+        "button",
+        {
+          staticClass: "button-base secondary",
+          attrs: { disabled: "" },
+          on: { click: _vm.submit }
+        },
+        [_vm._v("Submit trade")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "button-base link", on: { click: _vm.resetAll } },
+        [_vm._v("Cancel")]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "stock-cards-wrap" }, [
       _c(

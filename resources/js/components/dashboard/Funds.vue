@@ -8,12 +8,6 @@
             <p>Net worth: {{ networth | currency }}</p>
 <!--            <p>Leaderboard rank: {{ rank }}</p>-->
         </div>
-        <div class="flex-col trade">
-            <!-- enable button when input fields become active -->
-            <button class="button-base secondary" @click="x" disabled>Submit trade</button>
-            <!-- enable button when submit button becomes active -->
-            <button class="button-base link" @click="x">Cancel</button>
-        </div>
     </div>
 </template>
 
@@ -29,9 +23,6 @@
             }
         },
         methods: {
-           x() {
-
-           },
             inthered() {
                return (this.bank.money < 0);
             }
