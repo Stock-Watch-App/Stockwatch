@@ -18,7 +18,7 @@
                 ></funds>
                 <div class="flex-col trade">
                     <!-- enable button when input fields become active -->
-                    <button class="button-base secondary" @click="submit" disabled>Submit trade</button>
+                    <button class="button-base secondary" @click="submit" :disabled="mutablebank.money < 0">Submit trade</button>
                     <!-- enable button when submit button becomes active -->
                     <button class="button-base link" @click="resetAll">Cancel</button>
                 </div>

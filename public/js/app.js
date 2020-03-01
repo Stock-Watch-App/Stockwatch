@@ -50907,7 +50907,7 @@ var render = function() {
               "button",
               {
                 staticClass: "button-base secondary",
-                attrs: { disabled: "" },
+                attrs: { disabled: _vm.mutablebank.money < 0 },
                 on: { click: _vm.submit }
               },
               [_vm._v("Submit trade")]
@@ -81383,7 +81383,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
-  if (!value) return '';
+  if (!value && value !== 0) return '';
   return '$' + parseFloat(value).toFixed(2);
 });
 
@@ -81407,8 +81407,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })
