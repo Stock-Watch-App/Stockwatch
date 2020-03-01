@@ -68,7 +68,18 @@
             },
             currentRating: function () {
                 //find latest week
-                return 6;
+                let currentWeek = [];
+                this.stock.houseguest.ratings.forEach(week => {
+                    if (typeof currentWeek[week.user_id] === 'undefined' || week.week > currentWeek[week.user_id].week) {
+                        currentWeek[week.user_id]  = week;
+                    }
+                });
+
+                let total = 0;
+                currentWeek.forEach(rating => {
+                    total += rating.rating;
+                });
+                return Math.round(total/4);
             },
             priceDifference: function () {
                 //find latest week and week before

@@ -15259,7 +15259,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     currentRating: function currentRating() {
       //find latest week
-      return 6;
+      var currentWeek = [];
+      this.stock.houseguest.ratings.forEach(function (week) {
+        if (typeof currentWeek[week.user_id] === 'undefined' || week.week > currentWeek[week.user_id].week) {
+          currentWeek[week.user_id] = week;
+        }
+      });
+      var total = 0;
+      currentWeek.forEach(function (rating) {
+        total += rating.rating;
+      });
+      return Math.round(total / 4);
     },
     priceDifference: function priceDifference() {
       //find latest week and week before
