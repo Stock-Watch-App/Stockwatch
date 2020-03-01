@@ -64,6 +64,12 @@
                         currentWeek = week;
                     }
                 });
+
+                this.$emit('current-price', {
+                    houseguest: this.stock.houseguest_id,
+                    price: currentWeek.price
+                });
+
                 return currentWeek.price;
             },
             currentRating: function () {
@@ -71,7 +77,7 @@
                 let currentWeek = [];
                 this.stock.houseguest.ratings.forEach(week => {
                     if (typeof currentWeek[week.user_id] === 'undefined' || week.week > currentWeek[week.user_id].week) {
-                        currentWeek[week.user_id]  = week;
+                        currentWeek[week.user_id] = week;
                     }
                 });
 

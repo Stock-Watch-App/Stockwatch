@@ -15120,7 +15120,11 @@ __webpack_require__.r(__webpack_exports__);
     return {//
     };
   },
-  methods: {//
+  methods: {
+    x: function x() {},
+    inthered: function inthered() {
+      return this.bank.money < 0;
+    }
   },
   computed: {// rank: function () {
     //     return 40;
@@ -15160,6 +15164,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -15171,14 +15176,35 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       mutableStocks: _.cloneDeep(this.stocks),
-      mutablebank: _.cloneDeep(this.bank)
+      mutablebank: _.cloneDeep(this.bank),
+      prices: []
     };
+  },
+  watch: {
+    mutableStocks: {
+      handler: function handler(mutatedStocks, oldVal) {
+        var stockTotal = 0;
+        var prices = this.prices;
+        mutatedStocks.forEach(function (stock) {
+          stockTotal += stock.quantity * prices[stock.houseguest_id];
+        });
+        this.mutablebank.money = this.networth - stockTotal;
+      },
+      deep: true
+    }
+  },
+  methods: {
+    saveCurrentPrice: function saveCurrentPrice(value) {
+      this.prices[value.houseguest] = parseFloat(value.price);
+    },
+    buy: function buy(stock) {},
+    sell: function sell(stock) {}
   },
   computed: {
     networth: function networth() {
       var stockTotal = 0; // add up all the stock and multiply by their prices
 
-      return this.bank.money + stockTotal;
+      return parseFloat(this.bank.money + stockTotal);
     }
   }
 });
@@ -15254,6 +15280,10 @@ __webpack_require__.r(__webpack_exports__);
         if (typeof currentWeek === 'undefined' || week.week > currentWeek.week) {
           currentWeek = week;
         }
+      });
+      this.$emit('current-price', {
+        houseguest: this.stock.houseguest_id,
+        price: currentWeek.price
       });
       return currentWeek.price;
     },
@@ -50804,7 +50834,9 @@ var render = function() {
     _c("div", { staticClass: "funds" }, [
       _c("p", [_vm._v("Available Funds")]),
       _vm._v(" "),
-      _c("h1", [_vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))])
+      _c("h1", { class: [this.inthered() ? "red-text" : ""] }, [
+        _vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "fund-history" }, [
@@ -50869,7 +50901,11 @@ var render = function() {
         "ul",
         { staticClass: "stock-cards" },
         _vm._l(_vm.mutableStocks, function(stock) {
-          return _c("stock-card", { key: stock.id, attrs: { stock: stock } })
+          return _c("stock-card", {
+            key: stock.id,
+            attrs: { stock: stock },
+            on: { "current-price": _vm.saveCurrentPrice }
+          })
         }),
         1
       )

@@ -2,7 +2,7 @@
     <div class="user-panel">
         <div class="funds">
             <p>Available Funds</p>
-            <h1>{{ bank.money | currency }}</h1>
+            <h1 v-bind:class="[this.inthered() ? 'red-text' : '']">{{ bank.money | currency }}</h1>
         </div>
         <div class="fund-history">
             <p>Net worth: {{ networth | currency }}</p>
@@ -29,7 +29,12 @@
             }
         },
         methods: {
-           //
+           x() {
+
+           },
+            inthered() {
+               return (this.bank.money < 0);
+            }
         },
         computed: {
             // rank: function () {
