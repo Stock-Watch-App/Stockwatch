@@ -33,7 +33,7 @@
             <number-input v-model="stock.quantity" controls>
             </number-input>
             <button class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
-            <button class="button-base link small" @click="buyMax">
+            <button class="button-base link small" @click="reset">
                 <font-awesome-icon icon="undo-alt" />
             </button>
         </div>
@@ -47,18 +47,24 @@
         },
         data() {
             return {
-                //
+                originalStock: _.cloneDeep(this.stock),
             }
         },
         methods: {
             reset: function () {
-                //ask parent to reset the card data
+                this.stock.quantity = this.originalStock.quantity;
             },
             buyMax: function () {
                 //this needs to be mutated from the parent because of the bank
+                this.$emit('buy-max', {
+                    houseguest: this.stock.houseguest_id
+                })
             },
             sellAll: function () {
                 //this needs to be mutated from the parent because of the bank
+                this.$emit('sell-all', {
+                    houseguest: this.stock.houseguest_id
+                })
             }
         },
         computed: {
