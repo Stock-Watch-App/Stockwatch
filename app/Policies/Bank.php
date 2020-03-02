@@ -9,4 +9,6 @@ class Bank extends BasePolicy
 {
     use HandlesAuthorization;
 
+    protected $model = 'bank';
+
 }

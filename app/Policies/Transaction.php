@@ -9,4 +9,7 @@ class Transaction extends BasePolicy
 {
     use HandlesAuthorization;
 
+
+    protected $model = 'transaction';
+
 }

@@ -9,4 +9,7 @@ class Houseguest extends BasePolicy
 {
     use HandlesAuthorization;
 
+
+    protected $model = 'houseguest';
+
 }

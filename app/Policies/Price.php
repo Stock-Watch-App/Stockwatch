@@ -9,4 +9,7 @@ class Price extends BasePolicy
 {
     use HandlesAuthorization;
 
+    protected $model = 'price';
+
+
 }

@@ -9,4 +9,7 @@ class Rating extends BasePolicy
 {
     use HandlesAuthorization;
 
+    protected $model = 'rating';
+
+
 }

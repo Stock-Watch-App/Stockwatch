@@ -75,7 +75,7 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span>
                 </a>
             </li>
-            @can('viewNova')
+            @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
                 <li>
                     <a href="/admin" title="Admin" class="item-wrap">
                         <figure>
@@ -84,7 +84,7 @@
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span>
                     </a>
                 </li>
-            @endcan
+            @endif
 
             @guest
                 <li>

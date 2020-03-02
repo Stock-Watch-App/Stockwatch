@@ -9,6 +9,9 @@ class Permission
 {
     use HandlesAuthorization;
 
+    protected $model = 'permission';
+
+
     public function viewAny(User $user)
     {
         if ($user->can('edit permissions')) {

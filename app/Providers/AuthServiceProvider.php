@@ -12,6 +12,8 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,8 @@ class AuthServiceProvider extends ServiceProvider
         Stock::class => \App\Policies\Stock::class,
         Transaction::class => \App\Policies\Transaction::class,
         User::class => \App\Policies\User::class,
+        Role::class => \App\Policies\Role::class,
+        Permission::class => \App\Policies\Permission::class,
     ];
 
     /**

@@ -12,11 +12,6 @@ class BasePolicy
 
     protected $model;
 
-    public function __construct()
-    {
-        $this->model = get_class($this);
-    }
-
     public function viewAny(User $user)
     {
         if ($user->can("view {$this->model}")) {

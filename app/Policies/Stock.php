@@ -9,4 +9,7 @@ class Stock extends BasePolicy
 {
     use HandlesAuthorization;
 
+
+    protected $model = 'stock';
+
 }

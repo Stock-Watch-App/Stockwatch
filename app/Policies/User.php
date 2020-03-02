@@ -9,4 +9,7 @@ class User extends BasePolicy
 {
     use HandlesAuthorization;
 
+
+    protected $model = 'user';
+
 }

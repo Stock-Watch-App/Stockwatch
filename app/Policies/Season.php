@@ -9,4 +9,7 @@ class Season extends BasePolicy
 {
     use HandlesAuthorization;
 
+    protected $model = 'season';
+
+
 }
