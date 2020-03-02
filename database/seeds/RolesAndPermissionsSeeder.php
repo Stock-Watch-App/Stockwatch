@@ -45,5 +45,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         Permission::create(['name' => 'edit permissions']);
         Permission::create(['name' => 'impersonate']);
+
+        Role::create(['name' => 'lfc'])
+            ->givePermissionTo(['view houseguest','view season','view rating','create rating','update rating','delete rating']);
     }
 }

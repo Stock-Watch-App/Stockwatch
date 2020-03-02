@@ -26,27 +26,27 @@ class BBCan8Seeder extends Seeder
         $robottaran = User::create(['name' => 'Robot Taran', 'email' => 'robottaran@realitystockwatch.com']);
         $robotbrent = User::create(['name' => 'Robot Brent', 'email' => 'robotbrent@realitystockwatch.com']);
         $robotmelissa = User::create(['name' => 'Robot Melissa', 'email' => 'robotmelissa@realitystockwatch.com']);
-        $robotaudience = User::create(['name' => 'Robot Audience', 'email' => '$robotaudience@realitystockwatch.com']);
+        $robotaudience = User::create(['name' => 'Robot Audience', 'email' => 'robotaudience@realitystockwatch.com']);
 
         $bbcan8 = \App\Models\Season::firstOrCreate(['name' => 'Big Brother Canada 8', 'short_name' => 'bbcan8', 'status' => 'pre-season']);
 
         $houseguests = [
-            'chris'    => Houseguest::create(['first_name' => 'chris', 'last_name' => 'wyllie', 'nickname' => 'chris', 'season_id' => $bbcan8->id]),
-            'minh'     => Houseguest::create(['first_name' => 'minh-ly', 'last_name' => 'nguyen-cao', 'nickname' => 'minh-ly', 'season_id' => $bbcan8->id]),
-            'john'     => Houseguest::create(['first_name' => 'john luke', 'last_name' => 'kieper', 'nickname' => 'john luke', 'season_id' => $bbcan8->id]),
-            'carol'    => Houseguest::create(['first_name' => 'carol', 'last_name' => 'rosher', 'nickname' => 'carol', 'season_id' => $bbcan8->id]),
-            'jamar'    => Houseguest::create(['first_name' => 'jamar', 'last_name' => 'lee', 'nickname' => 'jamar', 'season_id' => $bbcan8->id]),
-            'rianne'   => Houseguest::create(['first_name' => 'rianne', 'last_name' => 'swanson', 'nickname' => 'rianne', 'season_id' => $bbcan8->id]),
-            'hira'     => Houseguest::create(['first_name' => 'hira', 'last_name' => 'deol', 'nickname' => 'hira', 'season_id' => $bbcan8->id]),
-            'angie'    => Houseguest::create(['first_name' => 'angie', 'last_name' => 'tackie', 'nickname' => 'angie', 'season_id' => $bbcan8->id]),
-            'micheal'  => Houseguest::create(['first_name' => 'micheal', 'last_name' => 'stubley', 'nickname' => 'micheal', 'season_id' => $bbcan8->id]),
-            'brooke'   => Houseguest::create(['first_name' => 'brooke', 'last_name' => 'warnock', 'nickname' => 'brooke', 'season_id' => $bbcan8->id]),
-            'sheldon'  => Houseguest::create(['first_name' => 'sheldon', 'last_name' => 'jean', 'nickname' => 'sheldon', 'season_id' => $bbcan8->id]),
-            'susanne'  => Houseguest::create(['first_name' => 'susanne', 'last_name' => 'fuda', 'nickname' => 'susanne', 'season_id' => $bbcan8->id]),
-            'kyle'     => Houseguest::create(['first_name' => 'kyle', 'last_name' => 'rozendal', 'nickname' => 'kyle', 'season_id' => $bbcan8->id]),
-            'vanessa'  => Houseguest::create(['first_name' => 'vanessa', 'last_name' => 'clements', 'nickname' => 'vanessa', 'season_id' => $bbcan8->id]),
-            'nico'     => Houseguest::create(['first_name' => 'nico', 'last_name' => 'vera', 'nickname' => 'nico', 'season_id' => $bbcan8->id]),
-            'madeline' => Houseguest::create(['first_name' => 'madeline', 'last_name' => 'di nunzio', 'nickname' => '', 'season_id' => $bbcan8->id]),
+            'chris'    => Houseguest::create(['first_name' => 'Chris', 'last_name' => 'Wyllie', 'nickname' => 'Chris', 'season_id' => $bbcan8->id]),
+            'minh'     => Houseguest::create(['first_name' => 'Minh-ly', 'last_name' => 'Nguyen-cao', 'nickname' => 'Minh-ly', 'season_id' => $bbcan8->id]),
+            'john'     => Houseguest::create(['first_name' => 'John luke', 'last_name' => 'Kieper', 'nickname' => 'John luke', 'season_id' => $bbcan8->id]),
+            'carol'    => Houseguest::create(['first_name' => 'Carol', 'last_name' => 'Rosher', 'nickname' => 'Carol', 'season_id' => $bbcan8->id]),
+            'jamar'    => Houseguest::create(['first_name' => 'Jamar', 'last_name' => 'Lee', 'nickname' => 'Jamar', 'season_id' => $bbcan8->id]),
+            'rianne'   => Houseguest::create(['first_name' => 'Rianne', 'last_name' => 'Swanson', 'nickname' => 'Rianne', 'season_id' => $bbcan8->id]),
+            'hira'     => Houseguest::create(['first_name' => 'Hira', 'last_name' => 'Deol', 'nickname' => 'Hira', 'season_id' => $bbcan8->id]),
+            'angie'    => Houseguest::create(['first_name' => 'Angie', 'last_name' => 'Tackie', 'nickname' => 'Angie', 'season_id' => $bbcan8->id]),
+            'micheal'  => Houseguest::create(['first_name' => 'Micheal', 'last_name' => 'Stubley', 'nickname' => 'Micheal', 'season_id' => $bbcan8->id]),
+            'brooke'   => Houseguest::create(['first_name' => 'Brooke', 'last_name' => 'Warnock', 'nickname' => 'Brooke', 'season_id' => $bbcan8->id]),
+            'sheldon'  => Houseguest::create(['first_name' => 'Sheldon', 'last_name' => 'Jean', 'nickname' => 'Sheldon', 'season_id' => $bbcan8->id]),
+            'susanne'  => Houseguest::create(['first_name' => 'Susanne', 'last_name' => 'Fuda', 'nickname' => 'Susanne', 'season_id' => $bbcan8->id]),
+            'kyle'     => Houseguest::create(['first_name' => 'Kyle', 'last_name' => 'Rozendal', 'nickname' => 'Kyle', 'season_id' => $bbcan8->id]),
+            'vanessa'  => Houseguest::create(['first_name' => 'Vanessa', 'last_name' => 'Clements', 'nickname' => 'Vanessa', 'season_id' => $bbcan8->id]),
+            'nico'     => Houseguest::create(['first_name' => 'Nico', 'last_name' => 'Vera', 'nickname' => 'Nico', 'season_id' => $bbcan8->id]),
+            'madeline' => Houseguest::create(['first_name' => 'Madeline', 'last_name' => 'Di Nunzio', 'nickname' => 'Madeline', 'season_id' => $bbcan8->id]),
         ];
 
         //rating

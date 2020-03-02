@@ -5,7 +5,7 @@ namespace App\Models;
 class Rating extends BaseModel
 {
     //=== RELATIONSHIPS ===//
-    public function rater()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

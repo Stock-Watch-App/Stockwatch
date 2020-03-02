@@ -15,10 +15,12 @@ class Houseguest extends Resource
 {
     public static $model = \App\Models\Houseguest::class;
 
-    public static $title = 'id';
+    public static $title = 'nickname';
 
     public static $search = [
-        'id',
+        'first_name',
+        'last_name',
+        'nickname',
     ];
     public static $perPageViaRelationship = 20; // incase there are more than 16 in a season for some reason
 

@@ -3,7 +3,10 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Transaction extends Resource
@@ -19,7 +22,11 @@ class Transaction extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            BelongsTo::make('User'),
+            BelongsTo::make('Houseguest'),
+            Text::make('Action'),
+            Number::make('Quantity'),
+            Currency::make('At Price', 'current_price')
         ];
     }
 }

@@ -20,9 +20,9 @@ class Rating extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('User', 'rater'),
+            BelongsTo::make('User'),
             BelongsTo::make('Houseguest'),
-            Number::make('Score')
+            Number::make('Rating')
         ];
     }
 }

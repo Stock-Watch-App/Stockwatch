@@ -25,7 +25,7 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            Avatar::make('Avatar')->disk('public'),
+//            Avatar::make('Avatar')->disk('public'),
 
             Text::make('Name')
                 ->sortable()
@@ -42,8 +42,10 @@ class User extends Resource
                     ->creationRules('required', 'string', 'min:8')
                     ->updateRules('nullable', 'string', 'min:8'),
 
-            MorphToMany::make('Roles', 'roles', \Vyuldashev\NovaPermission\Role::class),
-            MorphToMany::make('Permissions', 'permissions', \Vyuldashev\NovaPermission\Permission::class),
+//            Text::make('Logged In Via', 'provider'),
+
+            \Vyuldashev\NovaPermission\RoleBooleanGroup::make('Roles'),
+            \Vyuldashev\NovaPermission\PermissionBooleanGroup::make('Permissions'),
         ];
     }
 }
