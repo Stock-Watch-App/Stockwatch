@@ -53,6 +53,9 @@
                     let stockTotal = 0;
                     let prices = this.prices;
                     mutatedStocks.forEach((stock) => {
+                        if (stock.quantity < 0) {
+                            stock.quantity = 0;
+                        }
                         stockTotal += stock.quantity * prices[stock.houseguest_id];
                     });
                     this.mutableBank.money = this.networth - stockTotal;

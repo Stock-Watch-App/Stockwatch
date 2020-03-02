@@ -45,7 +45,7 @@ class DashboardController extends Controller
             })->sum();
 
         $proposedTransactionValue = collect($data['stocks'])->map(function ($order) use ($stocks) {
-            return $order['quantity'] * $stocks->first(function ($value) use ($order) {
+            return max(0, $order['quantity']) * $stocks->first(function ($value) use ($order) {
                     return $value->houseguest_id === $order['houseguest'];
                 })->houseguest->current_price;
         })->sum();
@@ -58,9 +58,9 @@ class DashboardController extends Controller
 
         $stocks->each(function ($stock) use ($data, &$transactions, $user) {
             $oldQuantity = $stock->quantity;
-            $newQuantity = collect($data['stocks'])->first(function ($value) use ($stock) {
+            $newQuantity = max(0, collect($data['stocks'])->first(function ($value) use ($stock) {
                 return $value['houseguest'] === $stock->houseguest_id;
-            })['quantity'];
+            })['quantity']);
 
             if ($oldQuantity === $newQuantity) {
                 return;
@@ -80,7 +80,7 @@ class DashboardController extends Controller
 
             $stock->save();
         });
-        
+
         Transaction::insert($transactions);
 
         $bank->money = $networth - $proposedTransactionValue;
