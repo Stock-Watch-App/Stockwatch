@@ -617,8 +617,8 @@ a:active {
 .dashboard-wrap {
   grid-column: 1/-1;
   display: grid;
-  grid-template-columns: auto minmax(-webkit-min-content, 150px);
-  grid-template-columns: auto minmax(min-content, 150px);
+  grid-template-columns: auto minmax(-webkit-min-content, 200px);
+  grid-template-columns: auto minmax(min-content, 200px);
   grid-gap: 2rem;
 }
 .stock-cards-wrap {
@@ -1078,6 +1078,11 @@ table tr:nth-child(even) td {
   justify-content: center;
   background-color: hsl(224, 90%, 45%);
 }
+.num-input-wrap .control-btn:disabled {
+  cursor: not-allowed;
+  top: -1px;
+  bottom: -1px;
+}
 .num-input-wrap .control-btn.decrease {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -1338,7 +1343,6 @@ table tr:nth-child(even) td {
   }
   .user-panel {
     flex-direction: column;
-    align-items: center;
   }
   .funds-wrap {
     order: unset;

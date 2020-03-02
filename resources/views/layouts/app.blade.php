@@ -34,7 +34,8 @@
             @guest
             @else
                 <div class="profile-wrap">
-                    <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />
+                    <!-- turn back on when profile pics work -->
+                    <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" /> -->
                     <div class="profile-name">
                         <span>{{ Auth::user()->name }}</span>
                     </div>
@@ -50,22 +51,22 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="/" title="Leaderboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="award" fixed-width />
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Leaderboard</span>
                 </a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
                 <a href="/" title="History" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="history" fixed-width />
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">History</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="/account" title="Account" class="item-wrap">
                     <figure>

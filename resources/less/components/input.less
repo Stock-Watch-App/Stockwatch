@@ -105,6 +105,14 @@
         justify-content: center;
         background-color: @primary-blue-02;
 
+        &:disabled {
+            // background-color: @gray-light;
+            // border-color: @gray-light;
+            cursor: not-allowed;
+            top: -1px;
+            bottom: -1px;
+        }
+
         &.decrease {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
