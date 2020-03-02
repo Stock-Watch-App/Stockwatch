@@ -25,6 +25,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                    <div style="font-size:10px;color:grey;">Impersonation of another user may result in action being taken against your account</div>
 
 {{--                    <label for="email" class="label">{{ __('E-Mail Address') }}</label>--}}
 {{--                    <input disabled id="email" type="email" class="mg-btm-md input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email address') }}">--}}

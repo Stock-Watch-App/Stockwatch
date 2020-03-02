@@ -19,6 +19,10 @@ class UserController extends Controller
         $user = $request->user();
         $data = $request->all();
 
+        $request->validate([
+            'name' => 'required|unique:users',
+        ]);
+
         $user->name = $data['name'];
         $user->save();
 
