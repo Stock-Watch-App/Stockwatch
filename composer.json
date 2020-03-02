@@ -29,7 +29,8 @@
         "socialiteproviders/twitch": "^5.1",
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
-        "vyuldashev/nova-permission": "^2.5"
+        "vyuldashev/nova-permission": "^2.5",
+      "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
