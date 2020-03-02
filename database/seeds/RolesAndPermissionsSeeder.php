@@ -11,6 +11,10 @@ class RolesAndPermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
+        // create roles and assign created permissions
+        Role::create(['name' => 'super admin']);
+        Role::create(['name' => 'admin']);
+
         // create permissions
         $models = [
             'bank',
@@ -23,17 +27,16 @@ class RolesAndPermissionsSeeder extends Seeder
             'user',
         ];
         foreach ($models as $model) {
-            Permission::create(['name' => "view {$model}"]);
-            Permission::create(['name' => "create {$model}"]);
-            Permission::create(['name' => "update {$model}"]);
-            Permission::create(['name' => "delete {$model}"]);
-            Permission::create(['name' => "restore {$model}"]);
-            Permission::create(['name' => "force delete {$model}"]);
+            $view = Permission::create(['name' => "view {$model}"]);
+            $create = Permission::create(['name' => "create {$model}"]);
+            $update = Permission::create(['name' => "update {$model}"]);
+            $delete = Permission::create(['name' => "delete {$model}"]);
+            $restore = Permission::create(['name' => "restore {$model}"]);
+            $force = Permission::create(['name' => "force delete {$model}"]);
 
-            Role::create(["manage {$model}"])
-                ->givePermissionTo(["view {$model}","create {$model}","update {$model}","delete {$model}","restore {$model}","force delete {$model}"]);
+            Role::create(['name' => "manage {$model}"])
+                ->givePermissionTo([$view, $create, $update, $delete, $restore, $force]);
         }
-
 
         Permission::create(['name' => 'ban user']);
 
@@ -42,10 +45,5 @@ class RolesAndPermissionsSeeder extends Seeder
 
         Permission::create(['name' => 'edit permissions']);
         Permission::create(['name' => 'impersonate']);
-
-
-        // create roles and assign created permissions
-        Role::create(['name' => 'super admin']);
-        Role::create(['name' => 'admin']);
     }
 }

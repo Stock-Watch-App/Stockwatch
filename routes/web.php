@@ -22,7 +22,7 @@ Route::get('/tos', [LegalController::class, 'tos']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return route('dashboard');
+        return redirect()->route('dashboard');
     });
 
     Route::get('/account', function () {
@@ -36,7 +36,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/savestocks', [DashboardController::class, 'savestocks']);
     Route::post('/dashboard/savestocks', [DashboardController::class, 'savestocks']);
     Route::get('/landing', [HomeController::class, 'landing']);
 
