@@ -47,6 +47,10 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'impersonate']);
 
         Role::create(['name' => 'lfc'])
-            ->givePermissionTo(['view houseguest','view season','view rating','create rating','update rating','delete rating']);
+            ->givePermissionTo(['view houseguest', 'view season', 'view rating', 'create rating', 'update rating', 'delete rating']);
+
+        if (env('APP_ENV', 'production') === 'local') {
+            \App\Models\User::find(1)->assignRole('super admin');
+        }
     }
 }
