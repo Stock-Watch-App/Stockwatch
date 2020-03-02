@@ -22,7 +22,7 @@
                     <!-- enable button when input fields become active -->
                     <button class="button-base secondary" @click="submit" :disabled="mutableBank.money < 0">Submit trade</button>
                     <!-- enable button when submit button becomes active -->
-                    <button class="button-base link" @click="resetAll">Cancel</button>
+                    <button class="button-base link" @click="resetAll">Reset All</button>
                 </div>
             </div>
         </div>
@@ -37,7 +37,8 @@
             stocks: Array,
             bank: Object,
             market: String,
-            user: Object
+            user: Object,
+            networth: Number,
         },
         data() {
             return {
@@ -64,12 +65,11 @@
                 this.prices[value.houseguest] = parseFloat(value.price);
             },
             buyMax(value) {
-
                 this.mutableStocks.forEach((stock) => {
                     if (stock.houseguest_id === value.houseguest) {
                         let remainingCash = this.mutableBank.money;
                         let currentPrice = this.prices[value.houseguest];
-                        stock.quantity = Math.floor(remainingCash/currentPrice);
+                        stock.quantity += Math.floor(remainingCash / currentPrice);
                     }
                 });
             },
@@ -82,17 +82,24 @@
             },
             submit() {
                 //save to DB
+                if (this.mutableBank.money > 0) {
+                    let stocks = [];
+                    this.mutableStocks.forEach(function (stock) {
+                        stocks.push({
+                            houseguest: stock.houseguest_id,
+                            quantity: stock.quantity
+                        });
+                    });
+                    axios.post('/dashboard/savestocks', {stocks});
+                }
             },
             resetAll() {
                 //reset to initial values
+                this.mutableStocks = _.cloneDeep(this.stocks);
             }
         },
         computed: {
-            networth: function () {
-                let stockTotal = 0;
-                // add up all the stock and multiply by their prices
-                return parseFloat(this.bank.money + stockTotal);
-            },
+            //
         }
     }
 </script>

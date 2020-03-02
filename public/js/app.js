@@ -15174,7 +15174,8 @@ __webpack_require__.r(__webpack_exports__);
     stocks: Array,
     bank: Object,
     market: String,
-    user: Object
+    user: Object,
+    networth: Number
   },
   data: function data() {
     return {
@@ -15207,7 +15208,7 @@ __webpack_require__.r(__webpack_exports__);
         if (stock.houseguest_id === value.houseguest) {
           var remainingCash = _this.mutableBank.money;
           var currentPrice = _this.prices[value.houseguest];
-          stock.quantity = Math.floor(remainingCash / currentPrice);
+          stock.quantity += Math.floor(remainingCash / currentPrice);
         }
       });
     },
@@ -15218,17 +15219,27 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    submit: function submit() {//save to DB
+    submit: function submit() {
+      //save to DB
+      if (this.mutableBank.money > 0) {
+        var stocks = [];
+        this.mutableStocks.forEach(function (stock) {
+          stocks.push({
+            houseguest: stock.houseguest_id,
+            quantity: stock.quantity
+          });
+        });
+        axios.post('/dashboard/savestocks', {
+          stocks: stocks
+        });
+      }
     },
-    resetAll: function resetAll() {//reset to initial values
+    resetAll: function resetAll() {
+      //reset to initial values
+      this.mutableStocks = _.cloneDeep(this.stocks);
     }
   },
-  computed: {
-    networth: function networth() {
-      var stockTotal = 0; // add up all the stock and multiply by their prices
-
-      return parseFloat(this.bank.money + stockTotal);
-    }
+  computed: {//
   }
 });
 
@@ -50950,7 +50961,7 @@ var render = function() {
             _c(
               "button",
               { staticClass: "button-base link", on: { click: _vm.resetAll } },
-              [_vm._v("Cancel")]
+              [_vm._v("Reset All")]
             )
           ])
         ],

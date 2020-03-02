@@ -36,7 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    Route::get('/dashboard/savestocks', [DashboardController::class, 'savestocks']);
+    Route::post('/dashboard/savestocks', [DashboardController::class, 'savestocks']);
     Route::get('/landing', [HomeController::class, 'landing']);
 
 });
