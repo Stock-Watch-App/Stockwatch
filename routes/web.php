@@ -25,9 +25,8 @@ Route::group(['middleware' => ['auth']], function () {
         return redirect()->route('dashboard');
     });
 
-    Route::get('/account', function () {
-        return view('account');
-    });
+    Route::get('/account', [UserController::class, 'account'])->name('account.edit');
+    Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
 
     Route::get('/projections', function () {
         $houseguests = \App\Models\Houseguest::where('season_id', \App\Models\Season::current()->id)->get();
