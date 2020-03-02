@@ -21,6 +21,8 @@ class DashboardController extends Controller
         $bank = $user->bank;
         if ($bank === null) {
             $stocks = $this->initGame($user);
+            $user->load('bank');
+            $bank = $user->bank;
         }
 
         $stocks = $this->getStocks($user);
