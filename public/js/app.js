@@ -15292,10 +15292,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     stock: Object
@@ -51032,26 +51028,7 @@ var render = function() {
             ],
             1
           )
-        ]),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "price-change-wrap flex-row",
-            class: [_vm.priceDifference.isIncrease ? "green" : "red"]
-          },
-          [
-            _c("font-awesome-icon", {
-              staticClass: "price-diff-icon",
-              attrs: { icon: _vm.priceDifference.icon }
-            }),
-            _vm._v(" "),
-            _c("p", { staticClass: "price-diff" }, [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.priceDifference.amount)))
-            ])
-          ],
-          1
-        )
+        ])
       ]),
       _vm._v(" "),
       _c(

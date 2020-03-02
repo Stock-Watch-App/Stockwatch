@@ -14,10 +14,6 @@
                     <span class="hg-star-outof"> /10</span>
                 </h3>
             </span>
-            <span class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
-                <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
-                <p class="price-diff">{{ priceDifference.amount | currency }}</p>
-            </span>
         </div>
         <div class="hg-price" v-bind:class="[priceDifference.isIncrease ? 'green-bg' : 'red-bg']">
             <span class="price-wrap">
