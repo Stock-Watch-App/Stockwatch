@@ -15,13 +15,15 @@
       :disabled="disabled || readonly || !decreasable"
       @click="decrease"
     >
-        <font-awesome-icon icon="minus"/>
+      <font-awesome-icon icon="minus" />
     </button>
     <input
       ref="input"
       class="input num-input"
       v-bind="attrs"
-      type="number"
+      type="text"
+      inputmode="numeric"
+      pattern="[0-9]*"
       :name="name"
       :value="currentValue"
       :min="min"
@@ -33,7 +35,7 @@
       autocomplete="off"
       @change="change"
       @paste="paste"
-    >
+    />
     <button
       v-if="controls"
       class="button-base primary control-btn increase"
@@ -42,7 +44,7 @@
       :disabled="disabled || readonly || !increasable"
       @click="increase"
     >
-        <font-awesome-icon icon="plus"/>
+      <font-awesome-icon icon="plus" />
     </button>
   </div>
 </template>
@@ -51,59 +53,58 @@
 const isNaN = Number.isNaN || window.isNaN;
 const REGEXP_NUMBER = /^-?(?:\d+|\d+\.\d+|\.\d+)(?:[eE][-+]?\d+)?$/;
 const REGEXP_DECIMALS = /\.\d*(?:0|9){10}\d*$/;
-const normalizeDecimalNumber = (value, times = 100000000000) => (
-  REGEXP_DECIMALS.test(value) ? (Math.round(value * times) / times) : value
-);
+const normalizeDecimalNumber = (value, times = 100000000000) =>
+  REGEXP_DECIMALS.test(value) ? Math.round(value * times) / times : value;
 export default {
-  name: 'NumberInput',
+  name: "NumberInput",
   model: {
-    event: 'change',
+    event: "change"
   },
   props: {
     attrs: {
       type: Object,
-      default: undefined,
+      default: undefined
     },
     controls: Boolean,
     disabled: Boolean,
     inputtable: {
       type: Boolean,
-      default: true,
+      default: true
     },
     max: {
       type: Number,
-      default: Infinity,
+      default: Infinity
     },
     min: {
       type: Number,
-      default: -Infinity,
+      default: -Infinity
     },
     name: {
       type: String,
-      default: undefined,
+      default: undefined
     },
     placeholder: {
       type: String,
-      default: undefined,
+      default: undefined
     },
     readonly: Boolean,
     rounded: Boolean,
     size: {
       type: String,
-      default: undefined,
+      default: undefined
     },
     step: {
       type: Number,
-      default: 1,
+      default: 1
     },
     value: {
       type: Number,
-      default: NaN,
-    },
+      default: NaN
+    }
   },
   data() {
     return {
-      currentValue: NaN,
+      currentValue: NaN
     };
   },
   computed: {
@@ -131,7 +132,7 @@ export default {
       const listeners = { ...this.$listeners };
       delete listeners.change;
       return listeners;
-    },
+    }
   },
   watch: {
     value: {
@@ -139,14 +140,14 @@ export default {
       handler(newValue, oldValue) {
         if (
           // Avoid triggering change event when created
-          !(isNaN(newValue) && typeof oldValue === 'undefined')
+          !(isNaN(newValue) && typeof oldValue === "undefined") &&
           // Avoid infinite loop
-          && newValue !== this.currentValue
+          newValue !== this.currentValue
         ) {
           this.setValue(newValue);
         }
-      },
-    },
+      }
+    }
   },
   methods: {
     /**
@@ -162,7 +163,7 @@ export default {
      */
     paste(event) {
       const clipboardData = event.clipboardData || window.clipboardData;
-      if (clipboardData && !REGEXP_NUMBER.test(clipboardData.getData('text'))) {
+      if (clipboardData && !REGEXP_NUMBER.test(clipboardData.getData("text"))) {
         event.preventDefault();
       }
     },
@@ -175,10 +176,12 @@ export default {
         if (isNaN(currentValue)) {
           currentValue = 0;
         }
-        this.setValue(Math.min(this.max, Math.max(
-          this.min,
-          normalizeDecimalNumber(currentValue - this.step),
-        )));
+        this.setValue(
+          Math.min(
+            this.max,
+            Math.max(this.min, normalizeDecimalNumber(currentValue - this.step))
+          )
+        );
       }
     },
     /**
@@ -190,10 +193,12 @@ export default {
         if (isNaN(currentValue)) {
           currentValue = 0;
         }
-        this.setValue(Math.min(this.max, Math.max(
-          this.min,
-          normalizeDecimalNumber(currentValue + this.step),
-        )));
+        this.setValue(
+          Math.min(
+            this.max,
+            Math.max(this.min, normalizeDecimalNumber(currentValue + this.step))
+          )
+        );
       }
     },
     /**
@@ -211,8 +216,8 @@ export default {
         // Force to override the number in the input box (#13).
         this.$refs.input.value = newValue;
       }
-      this.$emit('change', newValue, oldValue);
-    },
-  },
+      this.$emit("change", newValue, oldValue);
+    }
+  }
 };
 </script>

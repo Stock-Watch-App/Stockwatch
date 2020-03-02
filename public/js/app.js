@@ -14841,6 +14841,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 var isNaN = Number.isNaN || window.isNaN;
 var REGEXP_NUMBER = /^-?(?:\d+|\d+\.\d+|\.\d+)(?:[eE][-+]?\d+)?$/;
 var REGEXP_DECIMALS = /\.\d*(?:0|9){10}\d*$/;
@@ -14851,9 +14853,9 @@ var normalizeDecimalNumber = function normalizeDecimalNumber(value) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'NumberInput',
+  name: "NumberInput",
   model: {
-    event: 'change'
+    event: "change"
   },
   props: {
     attrs: {
@@ -14937,8 +14939,8 @@ var normalizeDecimalNumber = function normalizeDecimalNumber(value) {
       immediate: true,
       handler: function handler(newValue, oldValue) {
         if ( // Avoid triggering change event when created
-        !(isNaN(newValue) && typeof oldValue === 'undefined') // Avoid infinite loop
-        && newValue !== this.currentValue) {
+        !(isNaN(newValue) && typeof oldValue === "undefined") && // Avoid infinite loop
+        newValue !== this.currentValue) {
           this.setValue(newValue);
         }
       }
@@ -14960,7 +14962,7 @@ var normalizeDecimalNumber = function normalizeDecimalNumber(value) {
     paste: function paste(event) {
       var clipboardData = event.clipboardData || window.clipboardData;
 
-      if (clipboardData && !REGEXP_NUMBER.test(clipboardData.getData('text'))) {
+      if (clipboardData && !REGEXP_NUMBER.test(clipboardData.getData("text"))) {
         event.preventDefault();
       }
     },
@@ -15014,7 +15016,7 @@ var normalizeDecimalNumber = function normalizeDecimalNumber(value) {
         this.$refs.input.value = newValue;
       }
 
-      this.$emit('change', newValue, oldValue);
+      this.$emit("change", newValue, oldValue);
     }
   }
 });
@@ -50785,7 +50787,9 @@ var render = function() {
             ref: "input",
             staticClass: "input num-input",
             attrs: {
-              type: "number",
+              type: "text",
+              inputmode: "numeric",
+              pattern: "[0-9]*",
               name: _vm.name,
               min: _vm.min,
               max: _vm.max,

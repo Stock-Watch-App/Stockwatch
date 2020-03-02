@@ -1061,6 +1061,7 @@ table tr:nth-child(even) td {
   display: block;
   min-height: 1.5rem;
   min-width: 3rem;
+  -webkit-appearance: textfield;
   -moz-appearance: textfield;
 }
 .num-input-wrap .num-input:active,
@@ -1069,7 +1070,7 @@ table tr:nth-child(even) td {
   outline: solid 2px hsl(224, 90%, 53%);
   outline-offset: -2px;
 }
-.num-input-wrap .control-btn {
+.control-btn {
   position: absolute;
   width: 2.5rem;
   top: 1px;
@@ -1079,16 +1080,16 @@ table tr:nth-child(even) td {
   justify-content: center;
   background-color: hsl(224, 90%, 45%);
 }
-.num-input-wrap .control-btn:disabled {
+.control-btn:disabled {
   cursor: not-allowed;
   top: -1px;
   bottom: -1px;
 }
-.num-input-wrap .control-btn.decrease {
+.control-btn.decrease {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.num-input-wrap .control-btn.increase {
+.control-btn.increase {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   right: 1px;
