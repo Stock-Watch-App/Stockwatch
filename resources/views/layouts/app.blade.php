@@ -74,14 +74,16 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span>
                 </a>
             </li>
-            <li>
-                <a href="/admin" title="Admin" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="user-shield" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span>
-                </a>
-            </li>
+            @can('viewNova')
+                <li>
+                    <a href="/admin" title="Admin" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="user-shield" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span>
+                    </a>
+                </li>
+            @endcan
             @guest
                 <li>
                     <a class="item-wrap" title="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
