@@ -15,11 +15,13 @@ class BBCan8Seeder extends Seeder
      */
     public function run()
     {
-        /**
-         * U: test@test.com
-         * P: password
-         */
-        User::create(['name' => 'Test', 'email' => 'test@test.com', 'password' => '$2y$10$TIvv.vwQkGiVgKLtLQjDiuJXfsCIIK/VseGropRW.Z0k36JwU.YyC']);
+        if (env('APP_ENV', 'production') === 'local') {
+            /**
+             * U: test@test.com
+             * P: password
+             */
+            User::create(['name' => 'Test', 'email' => 'test@test.com', 'password' => '$2y$10$TIvv.vwQkGiVgKLtLQjDiuJXfsCIIK/VseGropRW.Z0k36JwU.YyC']);
+        }
 
         $robottaran = User::create(['name' => 'Robot Taran', 'email' => 'robottaran@realitystockwatch.com']);
         $robotbrent = User::create(['name' => 'Robot Brent', 'email' => 'robotbrent@realitystockwatch.com']);
