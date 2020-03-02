@@ -26,11 +26,10 @@
         </div>
         <div class="input-wrap">
             <button class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
-            <number-input v-model="stock.quantity" controls>
-            </number-input>
+            <number-input v-model="stock.quantity" :min="0" controls></number-input>
             <button class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
             <button class="button-base link small" @click="reset">
-                <font-awesome-icon icon="undo-alt" />
+                <font-awesome-icon icon="undo-alt"/>
             </button>
         </div>
     </li>
@@ -93,7 +92,7 @@
                 currentWeek.forEach(rating => {
                     total += rating.rating;
                 });
-                return Math.round(total/4);
+                return Math.round(total / 4);
             },
             priceDifference: function () {
                 //find latest week and week before
@@ -113,7 +112,7 @@
                 return {
                     isIncrease: isIncrease,
                     amount: Math.abs(diff),
-                    icon: 'arrow-'+(isIncrease ? 'up' : 'down')
+                    icon: 'arrow-' + (isIncrease ? 'up' : 'down')
                 };
             }
         }

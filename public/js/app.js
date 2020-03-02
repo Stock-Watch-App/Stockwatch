@@ -15190,6 +15190,10 @@ __webpack_require__.r(__webpack_exports__);
         var stockTotal = 0;
         var prices = this.prices;
         mutatedStocks.forEach(function (stock) {
+          if (stock.quantity < 0) {
+            stock.quantity = 0;
+          }
+
           stockTotal += stock.quantity * prices[stock.houseguest_id];
         });
         this.mutableBank.money = this.networth - stockTotal;
@@ -15254,7 +15258,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -51077,7 +51080,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("number-input", {
-            attrs: { controls: "" },
+            attrs: { min: 0, controls: "" },
             model: {
               value: _vm.stock.quantity,
               callback: function($$v) {
