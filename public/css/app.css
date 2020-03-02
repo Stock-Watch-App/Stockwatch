@@ -473,7 +473,6 @@ a:active {
 }
 .app-wrapper .app-content {
   grid-area: content;
-  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1rem;
@@ -617,13 +616,13 @@ a:active {
 .dashboard-wrap {
   grid-column: 1/-1;
   display: grid;
-  grid-template-columns: auto minmax(-webkit-min-content, 200px);
-  grid-template-columns: auto minmax(min-content, 200px);
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
 }
 .stock-cards-wrap {
   grid-column: 1/-1;
   grid-row: 1/2;
+  padding: 1rem;
 }
 .stock-cards-wrap .stock-cards {
   display: grid;
@@ -640,8 +639,6 @@ a:active {
   bottom: 0;
   background-color: hsl(0, 0%, 100%);
   border-top: solid 1px hsl(0, 0%, 0%);
-  margin-left: -1rem;
-  margin-right: -1rem;
   padding: 0 1rem;
 }
 @media only screen and (min-width: 768px) {
@@ -656,6 +653,10 @@ a:active {
   }
 }
 @media only screen and (min-width: 1024px) {
+  .dashboard-wrap {
+    grid-template-columns: auto minmax(-webkit-min-content, 200px);
+    grid-template-columns: auto minmax(min-content, 200px);
+  }
   .stock-cards-wrap {
     grid-column: 1/2;
     grid-row: 1/2;
@@ -1262,9 +1263,6 @@ table tr:nth-child(even) td {
   }
 }
 .user-panel {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 16px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1312,6 +1310,9 @@ table tr:nth-child(even) td {
     font-size: 3rem;
   }
 }
+.net-worth {
+  font-size: 0.875rem;
+}
 .fund-history {
   border: solid 1px hsl(173, 90%, 53%);
   box-shadow: 1px 1px 0px hsl(173, 90%, 53%);
@@ -1343,6 +1344,9 @@ table tr:nth-child(even) td {
   }
   .user-panel {
     flex-direction: column;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 16px;
   }
   .funds-wrap {
     order: unset;

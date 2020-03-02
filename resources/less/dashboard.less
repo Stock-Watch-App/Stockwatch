@@ -5,13 +5,14 @@
     grid-column: ~'1/-1';
     display: grid;
     // dashboard content grid def
-    grid-template-columns: auto minmax(min-content, 200px);
+    grid-template-columns: 1fr;
     grid-gap: 2rem;
 }
 
 .stock-cards-wrap {
     grid-column: ~'1/-1';
     grid-row: ~'1/2';
+    padding: 1rem;
 
     .stock-cards {
         display: grid;
@@ -29,8 +30,8 @@
     bottom: 0;
     background-color: @white;
     border-top: solid 1px @black;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    // margin-left: -1rem;
+    // margin-right: -1rem;
     padding: 0 1rem;
 }
 
@@ -51,6 +52,11 @@
 });
 
 .media(@min-desktop, {
+
+    .dashboard-wrap {
+        grid-template-columns: auto minmax(min-content, 200px);
+    }
+
     .stock-cards-wrap {
         grid-column: ~'1/2';
         grid-row: ~'1/2';

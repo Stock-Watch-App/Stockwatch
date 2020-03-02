@@ -50885,11 +50885,9 @@ var render = function() {
       _vm._v(" "),
       _c("h1", { class: [this.inthered() ? "red-text" : ""] }, [
         _vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "fund-history" }, [
-      _c("p", [
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "net-worth" }, [
         _vm._v("Net worth: " + _vm._s(_vm._f("currency")(_vm.networth)))
       ])
     ])
