@@ -85,6 +85,7 @@
                     </a>
                 </li>
             @endcan
+
             @guest
                 <li>
                     <a class="item-wrap" title="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -110,6 +111,14 @@
                     </form>
                 </li>
             @endguest
+            <li>
+                <a href="{{ env('FEEDBACK_URL') }}" title="Feedback" class="item-wrap">
+{{--                    <figure>--}}
+{{--                        <font-awesome-icon icon="user-circle" fixed-width />--}}
+{{--                    </figure>--}}
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Feedback</span>
+                </a>
+            </li>
         </nav>
         <main id="panel" class="app-content">
             @yield('content')
