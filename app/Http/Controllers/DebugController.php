@@ -39,10 +39,6 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $me = Auth::user();
-        dump($me->permissions);
-        dump($me->roles);
-        dump(!$me->permissions->isEmpty());
-        dump(!$me->roles->isEmpty());
+        new \App\Formula();
     }
 }
