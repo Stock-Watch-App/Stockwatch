@@ -6,6 +6,47 @@
     grid-column: ~'1/-1';
 }
 
+.projection-card {
+    display: grid;
+    border: solid 1px @gray-hint;
+    box-shadow: 1px 1px 0px @gray-hint;
+    grid-template-columns: 80px max-content auto; // 80px auto
+    grid-gap: .5rem;
+    grid-auto-flow: dense;
+    overflow: hidden;
+
+    .hg-img {
+        grid-column: ~'1/2';
+        border: solid 1px @border;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .hg-details {
+        grid-column: ~'1/-1';
+        grid-row: ~'1/2';
+    }
+
+    .this-week {
+        grid-column: ~'2/3';
+        grid-row: ~'2/3';
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        .px-rem(padding, 8);
+    }
+
+    .next-week {
+        grid-column: ~'3/4';
+        grid-row: ~'2/3';
+    }
+}
+
 table {
 
     // display: grid;

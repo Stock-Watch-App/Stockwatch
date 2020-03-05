@@ -709,6 +709,43 @@ a:active {
 .projection-wrap {
   grid-column: 1/-1;
 }
+.projection-card {
+  display: grid;
+  border: solid 1px hsl(240, 4%, 90%);
+  box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
+  grid-template-columns: 80px -webkit-max-content auto;
+  grid-template-columns: 80px max-content auto;
+  grid-gap: 0.5rem;
+  grid-auto-flow: dense;
+  overflow: hidden;
+}
+.projection-card .hg-img {
+  grid-column: 1/2;
+  border: solid 1px hsl(240, 4%, 75%);
+}
+.projection-card .hg-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.projection-card .hg-details {
+  grid-column: 1/-1;
+  grid-row: 1/2;
+}
+.projection-card .this-week {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0.5rem;
+}
+.projection-card .next-week {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
 table {
   border: solid 1px hsl(240, 4%, 90%);
   box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
@@ -1389,7 +1426,7 @@ table tr:nth-child(even) td {
 body {
   color: #25282F;
   font-family: "Source Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
-  font-weight: "wght" 400;
+  font-variation-settings: "wght" 400;
   font-size: 1em;
   line-height: 1.5;
   background: hsl(0, 0%, 100%);
