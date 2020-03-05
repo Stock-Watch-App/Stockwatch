@@ -2,7 +2,7 @@
 
 use App\Http\Admin\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DebugController;
 use Illuminate\Support\Facades\Route;
@@ -33,9 +33,10 @@ Route::group(['middleware' => ['auth']], function () {
         return view('projections_alt', compact('houseguests'));
     });
 
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/dashboard/savestocks', [DashboardController::class, 'savestocks']);
+
+    Route::get('/trades', [TradeController::class, 'index'])->name('trade');
+    Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);
     Route::get('/landing', [HomeController::class, 'landing']);
 
 });

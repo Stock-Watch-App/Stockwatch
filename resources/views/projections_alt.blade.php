@@ -17,7 +17,7 @@
                     <span class="rating-wrap">
                         <h3 class="num-wrap flex-row">
                             <font-awesome-icon icon="star" class="hg-star"/>
-                            <span class="hg-star-rating">{$houseguest->current_rate}</span>
+                            <span class="hg-star-rating">{{$houseguest->current_rate}}</span>
                             <span class="hg-star-outof"> /10</span>
                         </h3>
                     </span>
@@ -48,16 +48,16 @@
                         </tr>
                         <tr>
                             <th>Price:</th>
-                            <td>${{ $houseguest->projection['to1'] }}</td>
-                            <td>${{ $houseguest->projection['to2'] }}</td>
-                            <td>${{ $houseguest->projection['to3'] }}</td>
-                            <td>${{ $houseguest->projection['to4'] }}</td>
-                            <td>${{ $houseguest->projection['to5'] }}</td>
-                            <td>${{ $houseguest->projection['to6'] }}</td>
-                            <td>${{ $houseguest->projection['to7'] }}</td>
-                            <td>${{ $houseguest->projection['to8'] }}</td>
-                            <td>${{ $houseguest->projection['to9'] }}</td>
-                            <td>${{ $houseguest->projection['to10'] }}</td>
+                            <td>${{ $houseguest->projections['to1'] }}</td>
+                            <td>${{ $houseguest->projections['to2'] }}</td>
+                            <td>${{ $houseguest->projections['to3'] }}</td>
+                            <td>${{ $houseguest->projections['to4'] }}</td>
+                            <td>${{ $houseguest->projections['to5'] }}</td>
+                            <td>${{ $houseguest->projections['to6'] }}</td>
+                            <td>${{ $houseguest->projections['to7'] }}</td>
+                            <td>${{ $houseguest->projections['to8'] }}</td>
+                            <td>${{ $houseguest->projections['to9'] }}</td>
+                            <td>${{ $houseguest->projections['to10'] }}</td>
                         </tr>
                         </tbody>
                     </table>

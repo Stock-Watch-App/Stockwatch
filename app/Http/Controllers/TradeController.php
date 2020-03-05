@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class TradeController extends Controller
 {
     //=== ROUTES ===//
     public function index(Request $request)
@@ -33,7 +33,7 @@ class DashboardController extends Controller
 
         $market = Season::current()->status;
 
-        return view('dashboard', compact('user', 'bank', 'stocks', 'networth', 'market'));
+        return view('trades', compact('user', 'bank', 'stocks', 'networth', 'market'));
     }
 
     public function savestocks(Request $request)

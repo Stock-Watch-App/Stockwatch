@@ -52,6 +52,14 @@
                 </a>
             </li>
             <li>
+                <a href="/trades" title="Trades" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="chart-line" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Trades</span>
+                </a>
+            </li>
+            <li>
                 <a href="/projections" title="Projections" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="eye" fixed-width />
