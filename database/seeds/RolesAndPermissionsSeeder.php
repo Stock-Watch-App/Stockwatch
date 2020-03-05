@@ -12,8 +12,8 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create roles and assign created permissions
-        Role::create(['name' => 'super admin']);
-        Role::create(['name' => 'admin']);
+        Role::firstOrCreate(['name' => 'super admin']);
+        Role::firstOrCreate(['name' => 'admin']);
 
         // create permissions
         $models = [
@@ -27,26 +27,26 @@ class RolesAndPermissionsSeeder extends Seeder
             'user',
         ];
         foreach ($models as $model) {
-            $view = Permission::create(['name' => "view {$model}"]);
-            $create = Permission::create(['name' => "create {$model}"]);
-            $update = Permission::create(['name' => "update {$model}"]);
-            $delete = Permission::create(['name' => "delete {$model}"]);
-            $restore = Permission::create(['name' => "restore {$model}"]);
-            $force = Permission::create(['name' => "force delete {$model}"]);
+            $view = Permission::firstOrCreate(['name' => "view {$model}"]);
+            $create = Permission::firstOrCreate(['name' => "create {$model}"]);
+            $update = Permission::firstOrCreate(['name' => "update {$model}"]);
+            $delete = Permission::firstOrCreate(['name' => "delete {$model}"]);
+            $restore = Permission::firstOrCreate(['name' => "restore {$model}"]);
+            $force = Permission::firstOrCreate(['name' => "force delete {$model}"]);
 
-            Role::create(['name' => "manage {$model}"])
+            Role::firstOrCreate(['name' => "manage {$model}"])
                 ->givePermissionTo([$view, $create, $update, $delete, $restore, $force]);
         }
 
-        Permission::create(['name' => 'ban user']);
+        Permission::firstOrCreate(['name' => 'ban user']);
 
-        Permission::create(['name' => 'open market']);
-        Permission::create(['name' => 'close market']);
+        Permission::firstOrCreate(['name' => 'open market']);
+        Permission::firstOrCreate(['name' => 'close market']);
 
-        Permission::create(['name' => 'edit permissions']);
-        Permission::create(['name' => 'impersonate']);
+        Permission::firstOrCreate(['name' => 'edit permissions']);
+        Permission::firstOrCreate(['name' => 'impersonate']);
 
-        Role::create(['name' => 'lfc'])
+        Role::firstOrCreate(['name' => 'lfc'])
             ->givePermissionTo(['view houseguest', 'view season', 'view rating', 'create rating', 'update rating', 'delete rating']);
 
         if (env('APP_ENV', 'production') === 'local') {

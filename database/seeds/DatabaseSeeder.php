@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(BBCan8Seeder::class);
          $this->call(RolesAndPermissionsSeeder::class);
+         $this->call(FormulaSeeder::class);
     }
 }

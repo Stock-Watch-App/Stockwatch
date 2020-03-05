@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Formula;
 use App\Models\Houseguest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,13 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        new \App\Formula();
+//        $f = new Formula();
+//        $res = 10;
+//        for ($i = 1; $i < 100; $i++) {
+//            dump($i);
+//            $o = $res;
+//            $res = $f->calculate(10, 10, $res, 0);
+//            dump(number_format($res-$o, 2));
+//        }
     }
 }

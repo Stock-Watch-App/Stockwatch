@@ -11,14 +11,12 @@ class Formula
 
     public function __construct()
     {
-        $ref = DB::table('formula_reference')
-                 ->select('from', 'penalty', 'bonus', 'multiplier', 'to')
-                 ->get()
-                 ->mapToAssoc(static function ($value, $key) {
-                     return [$value->from.$value->to,$value];
-                 });
-        dump($ref);
-        //fetch lookup table into memory
+        $this->lookup_table = DB::table('formula_reference')
+                                ->select('from', 'penalty', 'bonus', 'multiplier', 'to')
+                                ->get()
+                                ->mapToAssoc(static function ($value, $key) {
+                                    return [$value->from . $value->to, $value];
+                                });
     }
 
     public function calculate($from, $to, $previousPrice, $strikes)
@@ -32,17 +30,12 @@ class Formula
          * L3 - Strikes (weeks <= 4)
          */
 
-        $ref = $this->lookup_table[$from.$to];
+        $ref = $this->lookup_table[$from . $to];
 
         $multiplier = $ref->multiplier;
         $penalty = $ref->penalty;
         $bonus = $ref->bonus;
 
-        $x = (($previousPrice*$multiplier)*($bonus*(0.9^($previousPrice*$multiplier))+1));
-        $y= (1-($penalty*(1-(0.97^($strikes)))));
-        $z = $x * $y;
-        $round = round($z,2);
-
-        return number_format(round($previousPrice * ($to / $from), 2), 2);
+        return number_format((($previousPrice * $multiplier) * ($bonus * pow(0.9, $previousPrice * $multiplier) + 1)) * (1 - ($penalty * (1 - (0.97 ^ ($strikes))))), 2);
     }
 }
