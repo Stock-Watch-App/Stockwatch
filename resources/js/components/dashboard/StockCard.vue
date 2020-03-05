@@ -19,7 +19,7 @@
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
             </span>
-            <span class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
+            <span v-if="priceDifference" class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
                 <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
                 <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
@@ -28,8 +28,9 @@
             <button class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
             <number-input v-model="stock.quantity" :min="0" controls></number-input>
             <button class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
-            <button class="button-base link small" @click="reset">
+            <button class="button-base link icon-col small" @click="reset">
                 <font-awesome-icon icon="undo-alt"/>
+                reset
             </button>
         </div>
     </li>

@@ -95,15 +95,14 @@
         align-items: flex-end;
         .px-rem(padding, 8);
         border-radius: @border-radius;
+        background: linear-gradient(90deg, @white 0%, @gray-hint 62%);
 
         &.green-bg {
-            // background-color: @green-01;
-            background: linear-gradient(90deg, @white 0%, @green-01 62%)
+            background: linear-gradient(90deg, @white 0%, @green-01 62%);
         }
 
         &.red-bg {
-            // background-color: @red-01;
-            background: linear-gradient(90deg, @white 0%, @red-01 62%)
+            background: linear-gradient(90deg, @white 0%, @red-01 62%);
         }
     }
 
@@ -165,9 +164,6 @@
             color: @red;
         }
 
-        &.neutral {
-            color: @gray-light;
-        }
     }
 
     .media(~'only screen and (max-width: 499px)', {

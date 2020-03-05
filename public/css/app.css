@@ -790,6 +790,11 @@ table tr:nth-child(even) td {
 .button-base.link {
   color: hsl(224, 90%, 53%);
 }
+.button-base.icon-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .button-base.full-width {
   width: 100%;
 }
@@ -1205,6 +1210,7 @@ table tr:nth-child(even) td {
   align-items: flex-end;
   padding: 0.5rem;
   border-radius: 4px;
+  background: linear-gradient(90deg, hsl(0, 0%, 100%) 0%, hsl(240, 4%, 90%) 62%);
 }
 .stockcard .hg-price.green-bg {
   background: linear-gradient(90deg, hsl(0, 0%, 100%) 0%, hsl(146, 84%, 90%) 62%);
@@ -1246,9 +1252,6 @@ table tr:nth-child(even) td {
 }
 .stockcard .price-change-wrap.red {
   color: hsl(22.5, 95.1%, 40.2%);
-}
-.stockcard .price-change-wrap.neutral {
-  color: hsl(240, 4%, 60%);
 }
 @media only screen and (max-width: 499px) {
   .stockcard .input-wrap {

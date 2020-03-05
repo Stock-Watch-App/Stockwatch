@@ -51,6 +51,14 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
                 </a>
             </li>
+            <li>
+                <a href="/projections" title="Projections" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="eye" fixed-width />
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span>
+                </a>
+            </li>
             <!-- <li>
                 <a href="/" title="Leaderboard" class="item-wrap">
                     <figure>

@@ -15297,6 +15297,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     stock: Object
@@ -51047,24 +51048,28 @@ var render = function() {
             _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
           ]),
           _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "price-change-wrap flex-row",
-              class: [_vm.priceDifference.isIncrease ? "green" : "red"]
-            },
-            [
-              _c("font-awesome-icon", {
-                staticClass: "price-diff-icon",
-                attrs: { icon: _vm.priceDifference.icon }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "price-diff" }, [
-                _vm._v(_vm._s(_vm._f("currency")(_vm.priceDifference.amount)))
-              ])
-            ],
-            1
-          )
+          _vm.priceDifference
+            ? _c(
+                "span",
+                {
+                  staticClass: "price-change-wrap flex-row",
+                  class: [_vm.priceDifference.isIncrease ? "green" : "red"]
+                },
+                [
+                  _c("font-awesome-icon", {
+                    staticClass: "price-diff-icon",
+                    attrs: { icon: _vm.priceDifference.icon }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "price-diff" }, [
+                    _vm._v(
+                      _vm._s(_vm._f("currency")(_vm.priceDifference.amount))
+                    )
+                  ])
+                ],
+                1
+              )
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
@@ -51103,8 +51108,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "button",
-            { staticClass: "button-base link small", on: { click: _vm.reset } },
-            [_c("font-awesome-icon", { attrs: { icon: "undo-alt" } })],
+            {
+              staticClass: "button-base link icon-col small",
+              on: { click: _vm.reset }
+            },
+            [
+              _c("font-awesome-icon", { attrs: { icon: "undo-alt" } }),
+              _vm._v("\n            reset\n        ")
+            ],
             1
           )
         ],
@@ -80939,7 +80950,7 @@ Vue.use(vue_tailwind__WEBPACK_IMPORTED_MODULE_0___default.a); // font awesome ic
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUndoAlt"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUndoAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEye"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);
 /**
  * The following block of code may be used to automatically register your

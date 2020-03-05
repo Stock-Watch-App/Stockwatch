@@ -16,10 +16,10 @@ Vue.use(VueTailwind)
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faStar, faArrowUp, faArrowDown, faBars, faColumns, faAward, faHistory, faUserCircle, faUserShield, faSignOutAlt, faMinus, faPlus, faUndoAlt } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faArrowUp, faArrowDown, faBars, faColumns, faAward, faHistory, faUserCircle, faUserShield, faSignOutAlt, faMinus, faPlus, faUndoAlt, faEye } from '@fortawesome/free-solid-svg-icons'
 import { faTwitch, faTwitter, faDiscord, faFacebookF, faReddit } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faStar, faArrowUp, faArrowDown, faBars, faColumns, faTwitch, faTwitter, faDiscord, faFacebookF, faReddit, faAward, faHistory, faUserCircle, faUserShield, faSignOutAlt, faMinus, faPlus, faUndoAlt)
+library.add(faStar, faArrowUp, faArrowDown, faBars, faColumns, faTwitch, faTwitter, faDiscord, faFacebookF, faReddit, faAward, faHistory, faUserCircle, faUserShield, faSignOutAlt, faMinus, faPlus, faUndoAlt, faEye)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
