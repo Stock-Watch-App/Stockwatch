@@ -235,6 +235,24 @@
         .disabled;
     }
 
+    &.google {
+        border: 2px solid @google;
+        color: @black;
+        font-weight: 700;
+
+        figure {
+            border-right: 2px solid @google;
+            background-color: @white;
+        }
+
+        &:hover,
+        &:active {
+            background-color: @gray-hint;
+        }
+
+        .disabled;
+    }
+
     &.toggle {
         background: transparent;
         color: @white;

@@ -983,6 +983,25 @@ table tr:nth-child(even) td {
   color: hsl(240, 5%, 30%);
   cursor: default;
 }
+.button-base.google {
+  border: 2px solid hsl(217, 89%, 61%);
+  color: hsl(0, 0%, 0%);
+  font-weight: 700;
+}
+.button-base.google figure {
+  border-right: 2px solid hsl(217, 89%, 61%);
+  background-color: hsl(0, 0%, 100%);
+}
+.button-base.google:hover,
+.button-base.google:active {
+  background-color: hsl(240, 4%, 90%);
+}
+.button-base.google:disabled {
+  background-color: hsl(240, 4%, 90%);
+  border-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
+  cursor: default;
+}
 .button-base.toggle {
   background: transparent;
   color: hsl(0, 0%, 100%);
