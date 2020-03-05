@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Admin\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
