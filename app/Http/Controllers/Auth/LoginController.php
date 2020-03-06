@@ -74,14 +74,14 @@ class LoginController extends Controller
             //Return account if found
             return $user;
         } else {
-
+            $email = $providerUser->getEmail() ?? $providerUser->user['email'];
             //Check if user with same email address exist
-            $user = User::where('email', $providerUser->getEmail())->first();
+            $user = User::where('email', $email)->first();
 
             //Create user if dont'exist
             if (!$user) {
                 $user = User::create([
-                    'email'            => $providerUser->getEmail(),
+                    'email'            => $email,
                     'name'             => $providerUser->getName(),
                 ]);
                 $user->provider = $provider;
