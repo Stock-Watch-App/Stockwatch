@@ -4,7 +4,7 @@
             <h5>{{ stock.houseguest.nickname || stock.houseguest.first_name | capitalize }}</h5>
         </div>
         <div class="hg-img">
-            <img src="/storage/avatar-default.svg"/>
+            <img :src="houseguestImage"/>
         </div>
         <div class="hg-rating">
             <span class="rating-wrap">
@@ -64,6 +64,9 @@
             }
         },
         computed: {
+            houseguestImage: function () {
+              return '/storage'+this.stock.houseguest.image;
+            },
             currentPrice: function () {
                 //find latest week
                 let currentWeek;
