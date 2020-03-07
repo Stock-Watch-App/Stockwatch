@@ -45,26 +45,32 @@ class BBCan8Seeder extends Seeder
             'susanne'  => Houseguest::create(['first_name' => 'Susanne', 'last_name' => 'Fuda', 'nickname' => 'Susanne', 'season_id' => $bbcan8->id, 'image' => '/houseguests/bbcan8/susanne.jpg']),
             'kyle'     => Houseguest::create(['first_name' => 'Kyle', 'last_name' => 'Rozendal', 'nickname' => 'Kyle', 'season_id' => $bbcan8->id, 'image' => '/houseguests/bbcan8/kyle.jpg']),
             'vanessa'  => Houseguest::create(['first_name' => 'Vanessa', 'last_name' => 'Clements', 'nickname' => 'Vanessa', 'season_id' => $bbcan8->id, 'image' => '/houseguests/bbcan8/vanessa.jpg']),
-            'nico'     => Houseguest::create(['first_name' => 'Nico', 'last_name' => 'Vera', 'nickname' => 'Nico', 'season_id' => $bbcan8->id, 'image' => '/houseguests/bbcan8/nico.jpg']),
+            'nico'     => Houseguest::create(['first_name' => 'Nico', 'last_name' => 'Vera', 'nickname' => 'Nico', 'season_id' => $bbcan8->id, 'status' => 'evicted', 'image' => '/houseguests/bbcan8/nico.jpg']),
             'madeline' => Houseguest::create(['first_name' => 'Madeline', 'last_name' => 'Di Nunzio', 'nickname' => 'Madeline', 'season_id' => $bbcan8->id, 'image' => '/houseguests/bbcan8/madeline.jpg']),
         ];
 
         //rating
+        $price = 0;
+        $old = 0;
+        $f = new \App\Formula();
         foreach ($houseguests as $houseguest) {
-            for ($i = 1; $i <= 4; $i++) {
-                Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robottaran->id]);
-                Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotbrent->id]);
-                Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotmelissa->id]);
-                Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotaudience->id]);
+            for ($i = 1; $i <= 1; $i++) {
+                $t = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robottaran->id])->rating;
+                $b = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotbrent->id])->rating;
+                $m = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotmelissa->id])->rating;
+                $a = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotaudience->id])->rating;
+                $rating = round(($t+$b+$m+$a)/4);
+
+                if ($i === 1) {
+                    $price = round(($t+$b+$m+$a)/4);
+                } else {
+                    $price = $f->calculate($old, $rating, $price, $houseguest->strikes);
+                }
+
+                Price::create(['price' => $price, 'houseguest_id' => $houseguest->id, 'week' => $i]);
+                $old = $rating;
             }
         }
 
-        //prices
-        foreach ($houseguests as $houseguest) {
-            Price::create(['price' => mt_rand (0.1*10, 20*10) / 10, 'houseguest_id' => $houseguest->id, 'week' => 1]);
-            Price::create(['price' => mt_rand (0.1*10, 20*10) / 10, 'houseguest_id' => $houseguest->id, 'week' => 2]);
-            Price::create(['price' => mt_rand (0.1*10, 20*10) / 10, 'houseguest_id' => $houseguest->id, 'week' => 3]);
-            Price::create(['price' => mt_rand (0.1*10, 20*10) / 10, 'houseguest_id' => $houseguest->id, 'week' => 4]);
-        }
     }
 }
