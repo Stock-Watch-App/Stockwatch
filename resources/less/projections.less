@@ -14,6 +14,13 @@
     grid-gap: .5rem;
     grid-auto-flow: dense;
     overflow: hidden;
+    .px-rem(margin-bottom, 32);
+
+    // use card class later
+    border-radius: @border-radius;
+    position: relative;
+    background: @white;
+    .px-rem(padding, 12);
 
     .hg-img {
         grid-column: ~'1/2';
@@ -37,8 +44,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: flex-end;
-        .px-rem(padding, 8);
+        align-items: flex-start;
+        // .px-rem(padding, 8);
     }
 
     .next-week {
