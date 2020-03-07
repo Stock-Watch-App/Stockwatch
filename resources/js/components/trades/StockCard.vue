@@ -15,11 +15,11 @@
                 </h3>
             </span>
         </div>
-        <div class="hg-price" v-bind:class="[priceDifference.isIncrease ? 'green-bg' : 'red-bg']">
+        <div class="hg-price" v-bind:class="priceDifference.class">
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
             </span>
-            <span v-if="priceDifference" class="price-change-wrap flex-row" v-bind:class="[priceDifference.isIncrease ? 'green' : 'red']">
+            <span v-if=" priceDifference.amount > 0" class="price-change-wrap flex-row" v-bind:class="priceDifference.class">
                 <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
                 <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
@@ -99,6 +99,14 @@
                 return Math.round(total / 4);
             },
             priceDifference: function () {
+                if (this.stock.houseguest.prices.length === 1) {
+                    return {
+                        amount: 0,
+                        icon: '',
+                        class: ''
+                    };
+                }
+
                 //find latest week and week before
                 let currentWeek;
                 let lastWeek;
@@ -113,10 +121,11 @@
 
                 let diff = currentWeek.price - lastWeek.price;
                 let isIncrease = (diff > 0);
+
                 return {
-                    isIncrease: isIncrease,
                     amount: Math.abs(diff),
-                    icon: 'arrow-' + (isIncrease ? 'up' : 'down')
+                    icon: (isIncrease ? 'arrow-up' : 'arrow-down'),
+                    class: (isIncrease ? 'green-bg' : 'red-bg')
                 };
             }
         }

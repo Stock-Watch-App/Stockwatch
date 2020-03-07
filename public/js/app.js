@@ -15412,7 +15412,15 @@ __webpack_require__.r(__webpack_exports__);
       return Math.round(total / 4);
     },
     priceDifference: function priceDifference() {
-      //find latest week and week before
+      if (this.stock.houseguest.prices.length === 1) {
+        return {
+          amount: 0,
+          icon: '',
+          "class": ''
+        };
+      } //find latest week and week before
+
+
       var currentWeek;
       var lastWeek;
       this.stock.houseguest.prices.forEach(function (week) {
@@ -15426,9 +15434,9 @@ __webpack_require__.r(__webpack_exports__);
       var diff = currentWeek.price - lastWeek.price;
       var isIncrease = diff > 0;
       return {
-        isIncrease: isIncrease,
         amount: Math.abs(diff),
-        icon: 'arrow-' + (isIncrease ? 'up' : 'down')
+        icon: isIncrease ? 'arrow-up' : 'arrow-down',
+        "class": isIncrease ? 'green-bg' : 'red-bg'
       };
     }
   }
@@ -51210,41 +51218,32 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "hg-price",
-          class: [_vm.priceDifference.isIncrease ? "green-bg" : "red-bg"]
-        },
-        [
-          _c("span", { staticClass: "price-wrap" }, [
-            _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
-          ]),
-          _vm._v(" "),
-          _vm.priceDifference
-            ? _c(
-                "span",
-                {
-                  staticClass: "price-change-wrap flex-row",
-                  class: [_vm.priceDifference.isIncrease ? "green" : "red"]
-                },
-                [
-                  _c("font-awesome-icon", {
-                    staticClass: "price-diff-icon",
-                    attrs: { icon: _vm.priceDifference.icon }
-                  }),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "price-diff" }, [
-                    _vm._v(
-                      _vm._s(_vm._f("currency")(_vm.priceDifference.amount))
-                    )
-                  ])
-                ],
-                1
-              )
-            : _vm._e()
-        ]
-      ),
+      _c("div", { staticClass: "hg-price", class: _vm.priceDifference.class }, [
+        _c("span", { staticClass: "price-wrap" }, [
+          _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
+        ]),
+        _vm._v(" "),
+        _vm.priceDifference.amount > 0
+          ? _c(
+              "span",
+              {
+                staticClass: "price-change-wrap flex-row",
+                class: _vm.priceDifference.class
+              },
+              [
+                _c("font-awesome-icon", {
+                  staticClass: "price-diff-icon",
+                  attrs: { icon: _vm.priceDifference.icon }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "price-diff" }, [
+                  _vm._v(_vm._s(_vm._f("currency")(_vm.priceDifference.amount)))
+                ])
+              ],
+              1
+            )
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c(
         "div",
