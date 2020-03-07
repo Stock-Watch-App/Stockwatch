@@ -15414,7 +15414,8 @@ __webpack_require__.r(__webpack_exports__);
     priceDifference: function priceDifference() {
       if (this.stock.houseguest.prices.length === 1) {
         return {
-          amount: 0,
+          amount: -1,
+          //because we use abs(), we will never have a negative number. Thus we can use it as a check.
           icon: '',
           "class": ''
         };
@@ -15435,8 +15436,8 @@ __webpack_require__.r(__webpack_exports__);
       var isIncrease = diff > 0;
       return {
         amount: Math.abs(diff),
-        icon: isIncrease ? 'arrow-up' : 'arrow-down',
-        "class": isIncrease ? 'green-bg' : 'red-bg'
+        icon: isIncrease | diff === 0 ? 'arrow-up' : 'arrow-down',
+        "class": isIncrease ? 'green-bg' : diff === 0 ? '' : 'red-bg'
       };
     }
   }
@@ -51223,7 +51224,7 @@ var render = function() {
           _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
         ]),
         _vm._v(" "),
-        _vm.priceDifference.amount > 0
+        _vm.priceDifference.amount >= 0
           ? _c(
               "span",
               {

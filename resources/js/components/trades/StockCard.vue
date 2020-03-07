@@ -19,7 +19,7 @@
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
             </span>
-            <span v-if=" priceDifference.amount > 0" class="price-change-wrap flex-row" v-bind:class="priceDifference.class">
+            <span v-if=" priceDifference.amount >= 0" class="price-change-wrap flex-row" v-bind:class="priceDifference.class">
                 <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
                 <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
@@ -101,7 +101,7 @@
             priceDifference: function () {
                 if (this.stock.houseguest.prices.length === 1) {
                     return {
-                        amount: 0,
+                        amount: -1, //because we use abs(), we will never have a negative number. Thus we can use it as a check.
                         icon: '',
                         class: ''
                     };
@@ -124,8 +124,8 @@
 
                 return {
                     amount: Math.abs(diff),
-                    icon: (isIncrease ? 'arrow-up' : 'arrow-down'),
-                    class: (isIncrease ? 'green-bg' : 'red-bg')
+                    icon: (isIncrease | diff === 0? 'arrow-up' : 'arrow-down'),
+                    class: (isIncrease ? 'green-bg' : (diff === 0 ? '' : 'red-bg'))
                 };
             }
         }
