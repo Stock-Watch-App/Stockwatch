@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes([
-    'verify' => true,
+    'verify'   => true,
     'register' => (env('APP_ENV', 'production') === 'local') //this needs to be removed when we go live
 ]);
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/projections', function () {
         $houseguests = \App\Models\Houseguest::where('season_id', \App\Models\Season::current()->id)->get();
+        $houseguests->load('ratings', 'prices');
         return view('projections_alt', compact('houseguests'));
     });
 

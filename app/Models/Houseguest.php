@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Formula;
+use Illuminate\Database\Eloquent\Builder;
 
 class Houseguest extends BaseModel
 {
@@ -15,6 +16,16 @@ class Houseguest extends BaseModel
         'current_price',
         'strikes',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('status', 'active')
+            ->orderBy('nickname', 'asc');
+        });
+    }
 
     //=== RELATIONSHIPS ===//
     public function season()
