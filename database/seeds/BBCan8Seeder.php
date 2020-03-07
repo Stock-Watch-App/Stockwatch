@@ -8,6 +8,9 @@ use App\Models\Houseguest;
 
 class BBCan8Seeder extends Seeder
 {
+
+    public $number_of_week_to_mock = 2;
+
     /**
      * Run the database seeds.
      *
@@ -54,7 +57,7 @@ class BBCan8Seeder extends Seeder
         $old = 0;
         $f = new \App\Formula();
         foreach ($houseguests as $houseguest) {
-            for ($i = 1; $i <= 1; $i++) {
+            for ($i = 1; $i <= $this->number_of_week_to_mock; $i++) {
                 $t = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robottaran->id])->rating;
                 $b = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotbrent->id])->rating;
                 $m = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotmelissa->id])->rating;
