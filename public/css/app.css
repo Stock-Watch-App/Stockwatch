@@ -718,6 +718,11 @@ a:active {
   grid-gap: 0.5rem;
   grid-auto-flow: dense;
   overflow: hidden;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  position: relative;
+  background: hsl(0, 0%, 100%);
+  padding: 0.75rem;
 }
 .projection-card .hg-img {
   grid-column: 1/2;
@@ -739,8 +744,7 @@ a:active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 0.5rem;
+  align-items: flex-start;
 }
 .projection-card .next-week {
   grid-column: 3/4;
