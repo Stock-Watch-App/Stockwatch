@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="user-account app-content-max">
-        <h2>Account Settings</h2>
+        <h3 class="mg-btm-lg">Account Settings</h3>
 
 {{--        <div class="profile-image-edit">--}}
 {{--            <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />--}}
