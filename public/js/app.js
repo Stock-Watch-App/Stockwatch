@@ -15095,7 +15095,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setbg: function setbg(projections) {
-      var red = '249,98,7,';
+      var red = '235, 61, 61,';
       var green = '17,192,93,';
       var alpha = Math.abs(projections / this.currentPrice - 1);
       return {

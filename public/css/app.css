@@ -804,6 +804,7 @@ a:active {
 .projection-card .rating-table dd {
   text-align: center;
   padding: 0 1rem;
+  color: hsl(0, 0%, 0%);
 }
 @media only screen and (min-width: 1024px) {
   .projection-card {
@@ -1135,7 +1136,7 @@ a:active {
 }
 .input.is-invalid {
   border: solid 1px transparent;
-  outline: solid 2px hsl(22.5, 95.1%, 40.2%);
+  outline: solid 2px hsl(0, 81%, 58%);
   outline-offset: -2px;
 }
 .input.is-invalid:invalid {
@@ -1308,7 +1309,7 @@ a:active {
   background: linear-gradient(90deg, hsl(0, 0%, 100%) 0%, hsl(146, 84%, 90%) 62%);
 }
 .stockcard .hg-price.red-bg {
-  background: linear-gradient(90deg, hsl(0, 0%, 100%) 0%, hsl(22.5, 95.1%, 90%) 62%);
+  background: linear-gradient(90deg, hsl(0, 0%, 100%) 0%, hsl(0, 81%, 90%) 62%);
 }
 .stockcard .input-wrap {
   grid-column: 1 / -1;
@@ -1343,7 +1344,7 @@ a:active {
   color: hsl(146, 84%, 31%);
 }
 .stockcard .price-change-wrap.red {
-  color: hsl(22.5, 95.1%, 40.2%);
+  color: hsl(0, 81%, 58%);
 }
 @media only screen and (max-width: 499px) {
   .stockcard .input-wrap {

@@ -63,7 +63,7 @@
         },
         methods: {
             setbg: function (projections) {
-                let red = '249,98,7,';
+                let red = '235, 61, 61,';
                 let green = '17,192,93,';
                 let alpha = Math.abs((projections / this.currentPrice) - 1);
                 return {
