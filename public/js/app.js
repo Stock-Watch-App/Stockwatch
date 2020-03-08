@@ -15086,13 +15086,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguest: Object
@@ -50945,120 +50938,107 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "this-week" }, [
-      _c("h5", [_vm._v("This week")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "rating-wrap" }, [
-        _c(
-          "h3",
-          { staticClass: "num-wrap flex-row" },
-          [
-            _c("font-awesome-icon", {
-              staticClass: "hg-star",
-              attrs: { icon: "star" }
-            })
-          ],
-          1
-        ),
+      _c("div", { staticClass: "this-week-details flex-col" }, [
+        _c("h5", [_vm._v("This week")]),
         _vm._v(" "),
-        _c("span", { staticClass: "hg-star-rating" }, [
-          _vm._v(_vm._s(_vm.currentRating))
+        _c("span", { staticClass: "rating-wrap" }, [
+          _c(
+            "h5",
+            { staticClass: "num-wrap flex-row" },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "hg-star",
+                attrs: { icon: "star" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "hg-star-rating" }, [
+                _vm._v(_vm._s(_vm.currentRating))
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "hg-star-outof" }, [_vm._v(" /10")])
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
-        _c("span", { staticClass: "hg-star-outof" }, [_vm._v(" /10")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "price" }, [
-        _vm._v("$ " + _vm._s(_vm.currentPrice))
+        _c("span", { staticClass: "price-wrap" }, [
+          _c("h5", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
+        ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "next-week" }, [
       _c("h5", [_vm._v("Next Week")]),
       _vm._v(" "),
-      _c("table", [
-        _c("tbody", [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("Price:")]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(_vm._f("currency")(_vm.houseguest.projections.to10))
-              )
-            ])
-          ])
+      _c("dl", { staticClass: "rating-table" }, [
+        _c("dt", { staticClass: "dt" }, [_vm._v("Rating")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("1")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("2")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("3")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("4")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("5")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("6")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("7")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("8")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("9")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("10")]),
+        _vm._v(" "),
+        _c("dt", { staticClass: "dt" }, [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to10)))
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Rating:")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("1")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("2")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("3")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("4")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("5")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("6")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("7")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("8")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("9")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("10")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

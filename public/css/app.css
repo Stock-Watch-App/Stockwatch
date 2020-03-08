@@ -713,19 +713,23 @@ a:active {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
   box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
-  grid-template-columns: 80px -webkit-max-content auto;
-  grid-template-columns: 80px max-content auto;
-  grid-gap: 0.5rem;
+  grid-template-columns: 65px 1fr;
+  grid-gap: 0.25rem 1rem;
   grid-auto-flow: dense;
-  overflow: hidden;
+  overflow: scroll;
   margin-bottom: 2rem;
   border-radius: 4px;
   position: relative;
   background: hsl(0, 0%, 100%);
   padding: 0.75rem;
 }
+.projection-card h5 {
+  margin-bottom: 0;
+  font-variation-settings: "wght" 700;
+}
 .projection-card .hg-img {
   grid-column: 1/2;
+  grid-row: 2/3;
   border: solid 1px hsl(240, 4%, 75%);
 }
 .projection-card .hg-img img {
@@ -737,32 +741,67 @@ a:active {
 .projection-card .hg-details {
   grid-column: 1/-1;
   grid-row: 1/2;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+}
+.projection-card .rating-wrap {
+  align-items: baseline;
+  overflow-x: scroll;
+}
+.projection-card .rating-wrap .hg-star {
+  color: hsl(55, 100%, 49%);
+  margin-right: 0.25rem;
+}
+.projection-card .rating-wrap .hg-star-rating {
+  font-variation-settings: "wght" 700;
+  margin-right: 0.125rem;
+}
+.projection-card .rating-wrap .hg-star-outof {
+  font-variation-settings: "wght" 400;
+  font-size: 1rem;
+  letter-spacing: 0.005em;
+}
+.projection-card .rating-wrap .num-wrap {
+  align-items: baseline;
 }
 .projection-card .this-week {
   grid-column: 2/3;
   grid-row: 2/3;
-  display: flex;
-  flex-direction: column;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: flex-start;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
 }
 .projection-card .next-week {
-  grid-column: 3/4;
-  grid-row: 2/3;
+  grid-column: 1/-1;
+  grid-row: 3/4;
 }
-table {
-  border: solid 1px hsl(240, 4%, 90%);
-  box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
-  border-collapse: collapse;
-  width: 100%;
+.projection-card .this-week-details > * {
+  margin-right: 1rem;
 }
-table td,
-table th {
-  vertical-align: middle;
+.projection-card .rating-table {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(-webkit-max-content, auto));
+  grid-template-columns: repeat(11, minmax(max-content, auto));
 }
-table tr:nth-child(even) td {
+.projection-card .rating-table > *:nth-of-type(even):not(.dt) {
   background: hsl(240, 4%, 90%);
-  vertical-align: middle;
+}
+.projection-card .rating-table dd {
+  text-align: center;
+  padding: 0 1rem;
+}
+@media only screen and (min-width: 1024px) {
+  .projection-card {
+    grid-template-columns: 65px -webkit-max-content auto;
+    grid-template-columns: 65px max-content auto;
+  }
+  .projection-card .next-week {
+    grid-column: 3/-1;
+    grid-row: 2/3;
+  }
 }
 .card {
   border-radius: 4px;
