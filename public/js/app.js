@@ -15085,7 +15085,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguest: Object
@@ -15094,7 +15093,15 @@ __webpack_require__.r(__webpack_exports__);
     return {//
     };
   },
-  methods: {//
+  methods: {
+    setbg: function setbg(projections) {
+      var red = '254,223,205,';
+      var green = '208,251,227,';
+      var alpha = Math.abs(projections / this.currentPrice - 1);
+      return {
+        'background-color': 'rgb(' + (projections / this.currentPrice > 1 ? green : red) + alpha + ')'
+      };
+    }
   },
   computed: {
     houseguestImage: function houseguestImage() {
@@ -50995,43 +51002,43 @@ var render = function() {
         _vm._v(" "),
         _c("dt", { staticClass: "dt" }, [_vm._v("Price")]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to1) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to2) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to3) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to4) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to5) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to6) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to7) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to8) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to9) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
         ]),
         _vm._v(" "),
-        _c("dd", [
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to10) }, [
           _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to10)))
         ])
       ])

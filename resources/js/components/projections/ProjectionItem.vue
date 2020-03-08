@@ -15,8 +15,7 @@
                         <span class="hg-star-rating">{{currentRating}}</span>
                         <span class="hg-star-outof"> /10</span>
                     </h5>
-                </span>
-                <span class="price-wrap">
+                </span> <span class="price-wrap">
                     <h5>{{ currentPrice | currency }}</h5>
                 </span>
             </div>
@@ -37,37 +36,44 @@
                 <dd>9</dd>
                 <dd>10</dd>
                 <dt class="dt">Price</dt>
-                <dd>{{ houseguest.projections.to1 | currency }}</dd>
-                <dd>{{ houseguest.projections.to2 | currency }}</dd>
-                <dd>{{ houseguest.projections.to3 | currency }}</dd>
-                <dd>{{ houseguest.projections.to4 | currency }}</dd>
-                <dd>{{ houseguest.projections.to5 | currency }}</dd>
-                <dd>{{ houseguest.projections.to6 | currency }}</dd>
-                <dd>{{ houseguest.projections.to7 | currency }}</dd>
-                <dd>{{ houseguest.projections.to8 | currency }}</dd>
-                <dd>{{ houseguest.projections.to9 | currency }}</dd>
-                <dd>{{ houseguest.projections.to10 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to1)">{{ houseguest.projections.to1 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to2)">{{ houseguest.projections.to2 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to3)">{{ houseguest.projections.to3 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to4)">{{ houseguest.projections.to4 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to5)">{{ houseguest.projections.to5 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to6)">{{ houseguest.projections.to6 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to7)">{{ houseguest.projections.to7 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to8)">{{ houseguest.projections.to8 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to9)">{{ houseguest.projections.to9 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to10)">{{ houseguest.projections.to10 | currency }}</dd>
             </dl>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-  props: {
-      houseguest: Object
-  },
-  data() {
-    return {
-      //
-    };
-  },
-  methods: {
-    //
-  },
+    export default {
+        props: {
+            houseguest: Object
+        },
+        data() {
+            return {
+                //
+            };
+        },
+        methods: {
+            setbg: function (projections) {
+                let red = '254,223,205,';
+                let green = '208,251,227,';
+                let alpha = Math.abs((projections / this.currentPrice) - 1);
+                return {
+                    'background-color': 'rgb(' + (((projections / this.currentPrice) > 1) ? green : red) + alpha + ')'
+                }
+            }
+        },
         computed: {
             houseguestImage: function () {
-              return '/storage'+this.houseguest.image;
+                return '/storage' + this.houseguest.image;
             },
             currentPrice: function () {
                 //find latest week
@@ -101,5 +107,5 @@ export default {
                 return Math.round(total / 4);
             },
         }
-};
+    };
 </script>
