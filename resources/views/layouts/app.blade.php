@@ -43,98 +43,146 @@
             @endguest
 
             <ul class="sidebar-nav-list">
-            <li>
-                <a href="/dashboard" title="Dashboard" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="columns" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/trades" title="Trades" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="chart-line" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Trades</span>
-                </a>
-            </li>
-            <li>
-                <a href="/projections" title="Projections" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="eye" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span>
-                </a>
-            </li>
-            <!-- <li>
-                <a href="/" title="Leaderboard" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="award" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Leaderboard</span>
-                </a>
-            </li> -->
-            <!-- <li>
-                <a href="/" title="History" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="history" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">History</span>
-                </a>
-            </li> -->
-            <li>
-                <a href="/account" title="Account" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="user-circle" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span>
-                </a>
-            </li>
-            @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
                 <li>
-                    <a href="/admin" title="Admin" class="item-wrap">
+                    <a href="/dashboard" title="Dashboard" class="item-wrap">
                         <figure>
-                            <font-awesome-icon icon="user-shield" fixed-width />
+                            <font-awesome-icon icon="columns" fixed-width />
                         </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
                     </a>
                 </li>
-            @endif
-
-            @guest
                 <li>
-                    <a class="item-wrap" title="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a href="/trades" title="Trades" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="chart-line" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Trades</span>
+                    </a>
                 </li>
-                @if (Route::has('register'))
+                <li>
+                    <a href="/projections" title="Projections" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="eye" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="/" title="Leaderboard" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="award" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Leaderboard</span>
+                    </a>
+                </li> -->
+                <!-- <li>
+                    <a href="/" title="History" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="history" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">History</span>
+                    </a>
+                </li> -->
+                <li>
+                    <a href="/account" title="Account" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="user-circle" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/faq" title="Account" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="info-circle" fixed-width />
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">FAQ</span>
+                    </a>
+                </li>
+                @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
                     <li>
-                        <a class="item-wrap" title="Register" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a href="/admin" title="Admin" class="item-wrap">
+                            <figure>
+                                <font-awesome-icon icon="user-shield" fixed-width />
+                            </figure>
+                            <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span>
+                        </a>
                     </li>
                 @endif
-            @else
-                <li>
-                    <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                    <figure>
-                        <font-awesome-icon icon="sign-out-alt" fixed-width />
-                    </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span>
-                    </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            @endguest
-            <li>
-                <a href="{{ env('FEEDBACK_URL') }}" title="Feedback" class="item-wrap">
-{{--                    <figure>--}}
-{{--                        <font-awesome-icon icon="user-circle" fixed-width />--}}
-{{--                    </figure>--}}
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Feedback</span>
-                </a>
-            </li>
+                @guest
+                    <li>
+                        <a class="item-wrap" title="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li>
+                            <a class="item-wrap" title="Register" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li>
+                        <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        <figure>
+                            <font-awesome-icon icon="sign-out-alt" fixed-width />
+                        </figure>
+                            <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
+            </ul>
+            <div class="native-collapse-wrap sidebar-collapse">
+                <details>
+                    <summary class="chevron"><span v-bind:class="[isActive ? 'full' : 'mini']">RHAP</span> <font-awesome-icon class="chevron-icon" icon="chevron-down" fixed-width /></summary>
+                    <ul class="sidebar-nav-list">
+                        <li>
+                            <a href="https://robhasawebsite.com/shows/big-brother-podcast-rhap/big-brother-canada-big-brother/" title="Rob Has a Podcast" class="item-wrap">
+                                <figure>
+                                    <font-awesome-icon icon="microphone" fixed-width />
+                                </figure>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Podcasts</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitch.tv/taranarmstrong/" title="Taran's Twitch Stream" class="item-wrap">
+                                <figure>
+                                    <font-awesome-icon :icon="['fab', 'twitch']" fixed-width />
+                                </figure>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Taran on Twitch</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/ArmstrongTaran" title="Taran on Twitter" class="item-wrap">
+                                <figure>
+                                    <font-awesome-icon :icon="['fab', 'twitter']" fixed-width />
+                                </figure>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Follow Taran</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/itsmelissaaa" title="Melissa on Twitter" class="item-wrap">
+                                <figure>
+                                    <font-awesome-icon :icon="['fab', 'twitter']" fixed-width />
+                                </figure>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Follow Melissa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/OneLuckyGay" title="Brent on Twitter" class="item-wrap">
+                                <figure>
+                                    <font-awesome-icon :icon="['fab', 'twitter']" fixed-width />
+                                </figure>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Follow Brent</span>
+                            </a>
+                        </li>
+                    </ul>
+                </details>
+            </div>
         </nav>
         <main id="panel" class="app-content">
             @yield('content')

@@ -1,0 +1,70 @@
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
+
+.native-collapse-wrap {
+    details {
+        border-top: solid 1px @border;
+
+        &:last-child {
+            border-bottom: solid 1px @border;
+        }
+
+        // if details is open transition to a minus symbol
+        &[open] {
+            .plus-icon::after {
+                transform: translateY(-50%) rotate(180deg);
+            }
+
+            .chevron-icon {
+                transform: rotate(180deg);
+                transition: transform 0.2s ease-in-out;
+            }
+        }
+
+        &:not([open]) {
+            .chevron-icon {
+                transition: transform 0.2s ease-in-out;
+            }
+        }
+
+        summary {
+            position: relative;
+            display: block;
+            font-variation-settings: @base-font-weight-bold;
+            .px-em-padding(8, 0, 8, 0);
+
+            &.plus-icon {
+                // creates a plus sign
+                &::before,
+                &::after {
+                    width: 1em; // match the font size of the summary text
+                    height: 2px; // adjusts boldness of lines
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    content: '';
+                    background-color: currentColor;
+                    text-align: right;
+                    transform: translateY(-50%);
+                    transition: transform 0.2s ease-in-out;
+                }
+
+                &::after {
+                    transform: translateY(-50%) rotate(90deg);
+                }
+            }
+
+            &.chevron {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            // hide default marker
+            &::-webkit-details-marker {
+                display: none;
+            }
+        }
+    }
+}
