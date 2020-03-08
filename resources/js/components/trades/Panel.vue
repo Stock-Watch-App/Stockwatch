@@ -20,7 +20,10 @@
                 ></funds>
                 <div class="flex-col trade">
                     <!-- enable button when input fields become active -->
-                    <button class="button-base secondary" @click="submit" :disabled="mutableBank.money < 0">Submit trade</button>
+                    <button class="button-base secondary" @click="submit" :disabled="mutableBank.money < 0">
+                        <font-awesome-icon v-if="saving" icon="spinner" class="fa-pulse"/>
+                        Submit trade
+                    </button>
                     <!-- enable button when submit button becomes active -->
                     <button class="button-base link" @click="resetAll">Reset All</button>
                 </div>
@@ -45,6 +48,7 @@
                 mutableStocks: _.cloneDeep(this.stocks),
                 mutableBank: _.cloneDeep(this.bank),
                 prices: [],
+                saving: false
             }
         },
         watch: {
@@ -84,6 +88,7 @@
                 });
             },
             submit() {
+                this.saving = true;
                 //save to DB
                 if (this.mutableBank.money > 0) {
                     let stocks = [];
@@ -93,7 +98,13 @@
                             quantity: stock.quantity
                         });
                     });
-                    axios.post('/dashboard/savestocks', {stocks});
+                    axios.post('/trades/savestocks', {stocks}).then(res => {
+                        console.log(typeof res.success);
+                        console.log(res.success);
+                        if (res.success) {
+                            this.saving = false;
+                        }
+                    });
                 }
             },
             resetAll() {

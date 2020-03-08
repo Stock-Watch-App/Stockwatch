@@ -41,11 +41,14 @@ class DebugController extends Controller
     public function xyz()
     {
         $f = new Formula();
-        $price = 9;
-        for($i = 10; $i >= 5; $i--) {
-            dump($i);
-            $price = dump($f->calculate($i+1,$i,$price,0));
+        $price = 6;
+            $price = dump($f->calculate(6,5,$price,0));
+            $price = dump($f->calculate(5,5,$price,0));
+            $price = dump($f->calculate(5,5,$price,0));
+            $price = dump($f->calculate(5,4,$price,0));
+            $price = dump($f->calculate(4,5,$price,0));
+            $price = dump($f->calculate(5,5,$price,0));
+            $price = dump($f->calculate(5,5,$price,0));
 
-        }
     }
 }
