@@ -1191,7 +1191,8 @@ a:active {
 }
 .num-input-wrap .num-input {
   background-color: hsl(224, 90%, 53%);
-  border: solid 1px hsl(224, 90%, 53%);
+  border-top: solid 1px hsl(224, 90%, 53%);
+  border-bottom: solid 1px hsl(224, 90%, 53%);
   color: hsl(0, 0%, 100%);
   padding-left: 3.375rem;
   padding-right: 3.375rem;
