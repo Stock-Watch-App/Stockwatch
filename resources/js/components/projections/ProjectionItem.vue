@@ -24,7 +24,6 @@
         <div class="next-week">
             <h5>Next Week</h5>
             <dl class="rating-table">
-                <dt class="dt">Rating</dt>
                 <dd>1</dd>
                 <dd>2</dd>
                 <dd>3</dd>
@@ -35,17 +34,16 @@
                 <dd>8</dd>
                 <dd>9</dd>
                 <dd>10</dd>
-                <dt class="dt">Price</dt>
-                <dd :style="setbg(houseguest.projections.to1)">{{ houseguest.projections.to1 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to2)">{{ houseguest.projections.to2 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to3)">{{ houseguest.projections.to3 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to4)">{{ houseguest.projections.to4 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to5)">{{ houseguest.projections.to5 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to6)">{{ houseguest.projections.to6 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to7)">{{ houseguest.projections.to7 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to8)">{{ houseguest.projections.to8 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to9)">{{ houseguest.projections.to9 | currency }}</dd>
-                <dd :style="setbg(houseguest.projections.to10)">{{ houseguest.projections.to10 | currency }}</dd>
+                <dd :style="setbg(houseguest.projections.to1)">{{ Math.round((houseguest.projections.to1/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to2)">{{ Math.round((houseguest.projections.to2/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to3)">{{ Math.round((houseguest.projections.to3/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to4)">{{ Math.round((houseguest.projections.to4/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to5)">{{ Math.round((houseguest.projections.to5/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to6)">{{ Math.round((houseguest.projections.to6/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to7)">{{ Math.round((houseguest.projections.to7/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to8)">{{ Math.round((houseguest.projections.to8/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to9)">{{ Math.round((houseguest.projections.to9/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to10)">{{ Math.round((houseguest.projections.to10/currentPrice-1)*100) }}%</dd>
             </dl>
         </div>
     </div>

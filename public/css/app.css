@@ -807,8 +807,8 @@ a:active {
 }
 .projection-card .rating-table {
   display: grid;
-  grid-template-columns: repeat(11, minmax(-webkit-max-content, auto));
-  grid-template-columns: repeat(11, minmax(max-content, auto));
+  grid-template-columns: repeat(10, minmax(-webkit-max-content, auto));
+  grid-template-columns: repeat(10, minmax(max-content, auto));
 }
 .projection-card .rating-table > *:nth-of-type(even):not(.dt) {
   background: hsl(240, 4%, 90%);

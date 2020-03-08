@@ -15083,8 +15083,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguest: Object
@@ -50990,8 +50988,6 @@ var render = function() {
       _c("h5", [_vm._v("Next Week")]),
       _vm._v(" "),
       _c("dl", { staticClass: "rating-table" }, [
-        _c("dt", { staticClass: "dt" }, [_vm._v("Rating")]),
-        _vm._v(" "),
         _c("dd", [_vm._v("1")]),
         _vm._v(" "),
         _c("dd", [_vm._v("2")]),
@@ -51012,46 +51008,104 @@ var render = function() {
         _vm._v(" "),
         _c("dd", [_vm._v("10")]),
         _vm._v(" "),
-        _c("dt", { staticClass: "dt" }, [_vm._v("Price")]),
-        _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to1) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to1 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to2) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to2 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to3) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to3 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to4) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to4 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to5) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to5 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to6) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to6 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to7) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to7 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to8) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to8 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to9) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to9 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ]),
         _vm._v(" "),
         _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to10) }, [
-          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to10)))
+          _vm._v(
+            _vm._s(
+              Math.round(
+                (_vm.houseguest.projections.to10 / _vm.currentPrice - 1) * 100
+              )
+            ) + "%"
+          )
         ])
       ])
     ])
@@ -81643,8 +81697,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })
