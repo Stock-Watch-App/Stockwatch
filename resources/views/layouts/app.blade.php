@@ -142,7 +142,7 @@
                     <summary class="chevron"><span v-bind:class="[isActive ? 'full' : 'mini']">RHAP</span> <font-awesome-icon class="chevron-icon" icon="chevron-down" fixed-width /></summary>
                     <ul class="sidebar-nav-list">
                         <li>
-                            <a href="https://robhasawebsite.com/shows/big-brother-podcast-rhap/big-brother-canada-big-brother/" title="Rob Has a Podcast" class="item-wrap">
+                            <a href="https://robhasawebsite.com/shows/big-brother-podcast-rhap/big-brother-canada-big-brother/" title="Rob Has a Podcast" class="item-wrap" target="_blank" rel="noreferrer noopener">
                                 <figure>
                                     <font-awesome-icon icon="microphone" fixed-width />
                                 </figure>
@@ -150,7 +150,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.twitch.tv/taranarmstrong/" title="Taran's Twitch Stream" class="item-wrap">
+                            <a href="https://www.twitch.tv/taranarmstrong/" title="Taran's Twitch Stream" class="item-wrap" target="_blank" rel="noreferrer noopener">
                                 <figure>
                                     <font-awesome-icon :icon="['fab', 'twitch']" fixed-width />
                                 </figure>
@@ -158,27 +158,27 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/ArmstrongTaran" title="Taran on Twitter" class="item-wrap">
+                            <a href="https://twitter.com/ArmstrongTaran" title="Taran on Twitter" class="item-wrap" target="_blank" rel="noreferrer noopener">
                                 <figure>
                                     <font-awesome-icon :icon="['fab', 'twitter']" fixed-width />
                                 </figure>
-                                <span v-bind:class="[isActive ? 'full' : 'mini']">Follow Taran</span>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Taran</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/itsmelissaaa" title="Melissa on Twitter" class="item-wrap">
+                            <a href="https://twitter.com/itsmelissaaa" title="Melissa on Twitter" class="item-wrap" target="_blank" rel="noreferrer noopener">
                                 <figure>
                                     <font-awesome-icon :icon="['fab', 'twitter']" fixed-width />
                                 </figure>
-                                <span v-bind:class="[isActive ? 'full' : 'mini']">Follow Melissa</span>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Melissa</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/OneLuckyGay" title="Brent on Twitter" class="item-wrap">
+                            <a href="https://twitter.com/OneLuckyGay" title="Brent on Twitter" class="item-wrap" target="_blank" rel="noreferrer noopener">
                                 <figure>
                                     <font-awesome-icon :icon="['fab', 'twitter']" fixed-width />
                                 </figure>
-                                <span v-bind:class="[isActive ? 'full' : 'mini']">Follow Brent</span>
+                                <span v-bind:class="[isActive ? 'full' : 'mini']">Brent</span>
                             </a>
                         </li>
                     </ul>
