@@ -32,7 +32,7 @@
         // make this better
         position: sticky;
         top: 0;
-        padding-left: 1rem;
+        padding: 1rem 0 0 1rem;
         z-index: 2;
         display: flex;
         align-items: center;
@@ -41,9 +41,25 @@
 
     .logo {
         color: @white;
-        text-transform: uppercase;
+        display: flex;
         margin-left: 2rem;
         font-weight: 700;
+
+        svg {
+            width: 105px;
+        }
+
+        .logo-s {
+            fill: @primary-blue;
+        }
+
+        .logo-chevron {
+            fill: @white;
+        }
+
+        .logo-text {
+            fill: @white;
+        }
 
         // placeholder untill we render a smaller img
         // this is hacky and clunky for now

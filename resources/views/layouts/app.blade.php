@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Stock Watch') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,7 +27,8 @@
             </button>
 
             <a class="logo" v-bind:class="[isActive ? 'full' : 'mini']" href="{{ url('/') }}">
-                {{ config('app.name', 'Stock Watch') }}
+                @component('logo')
+                @endcomponent
             </a>
         </aside>
         <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
