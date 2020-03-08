@@ -419,23 +419,35 @@ a:active {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  padding-left: 1rem;
+  padding: 1rem 0 0 1rem;
   z-index: 2;
   display: flex;
   align-items: center;
-  background: #32333D;
+  background: #25282F;
 }
 .app-wrapper .logo {
   color: hsl(0, 0%, 100%);
-  text-transform: uppercase;
+  display: flex;
   margin-left: 2rem;
   font-weight: 700;
+}
+.app-wrapper .logo svg {
+  width: 105px;
+}
+.app-wrapper .logo .logo-s {
+  fill: hsl(224, 90%, 53%);
+}
+.app-wrapper .logo .logo-chevron {
+  fill: hsl(0, 0%, 100%);
+}
+.app-wrapper .logo .logo-text {
+  fill: hsl(0, 0%, 100%);
 }
 .app-wrapper .logo.mini {
   display: none;
 }
 .app-wrapper .sidebar-nav {
-  background: #32333D;
+  background: #25282F;
   color: hsl(0, 0%, 100%);
   padding: 2rem 1rem;
   top: 0;
@@ -834,7 +846,7 @@ a:active {
   padding: 1rem;
 }
 .card.dark {
-  background: #32333D;
+  background: #25282F;
 }
 .card.deep {
   padding: 2rem;
