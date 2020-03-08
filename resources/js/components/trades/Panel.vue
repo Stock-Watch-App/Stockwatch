@@ -99,10 +99,10 @@
                         });
                     });
                     axios.post('/trades/savestocks', {stocks}).then(res => {
-                        console.log(typeof res.success);
-                        console.log(res.success);
-                        if (res.success) {
-                            this.saving = false;
+                        if (res.data.success) {
+                            setTimeout(()=>{
+                                this.saving = false;
+                            }, 2000);
                         }
                     });
                 }

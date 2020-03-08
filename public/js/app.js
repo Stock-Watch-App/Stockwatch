@@ -15194,8 +15194,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StockCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StockCard.vue */ "./resources/js/components/trades/StockCard.vue");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 //
 //
 //
@@ -15302,11 +15300,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         axios.post('/trades/savestocks', {
           stocks: stocks
         }).then(function (res) {
-          console.log(_typeof(res.success));
-          console.log(res.success);
-
-          if (res.success) {
-            _this2.saving = false;
+          if (res.data.success) {
+            setTimeout(function () {
+              _this2.saving = false;
+            }, 2000);
           }
         });
       }
