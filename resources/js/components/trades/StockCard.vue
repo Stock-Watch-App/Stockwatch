@@ -15,18 +15,23 @@
                 </h3>
             </span>
         </div>
-        <div class="hg-price" v-bind:class="priceDifference.class">
+        <div class="hg-price" v-bind:class="priceDifference.class.background">
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
             </span>
-            <span v-if=" priceDifference.amount >= 0" class="price-change-wrap flex-row" v-bind:class="priceDifference.class">
+            <span v-if=" priceDifference.amount >= 0" class="price-change-wrap flex-row" v-bind:class="priceDifference.class.text">
                 <font-awesome-icon :icon="priceDifference.icon" class="price-diff-icon"/>
                 <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
         </div>
         <div class="input-wrap">
             <button class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
-            <number-input v-model="stock.quantity" :min="0" controls></number-input>
+            <number-input
+                v-model="stock.quantity"
+                :min="0"
+                controls
+                :disabled="bank.money < parseFloat(currentPrice)"
+            ></number-input>
             <button class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
             <button class="button-base link icon-col small" @click="reset">
                 <font-awesome-icon icon="undo-alt"/>
@@ -39,7 +44,8 @@
 <script>
     export default {
         props: {
-            stock: Object
+            stock: Object,
+            bank: Object
         },
         data() {
             return {
@@ -125,7 +131,10 @@
                 return {
                     amount: Math.abs(diff),
                     icon: (isIncrease | diff === 0? 'arrow-up' : 'arrow-down'),
-                    class: (isIncrease ? 'green-bg' : (diff === 0 ? '' : 'red-bg'))
+                    class: {
+                        background: (isIncrease ? 'green-bg' : (diff === 0 ? '' : 'red-bg')),
+                        text: (isIncrease ? 'green' : (diff === 0 ? '' : 'red'))
+                    }
                 };
             }
         }

@@ -15228,6 +15228,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -15257,7 +15258,12 @@ __webpack_require__.r(__webpack_exports__);
 
           stockTotal += stock.quantity * prices[stock.houseguest_id];
         });
-        this.mutableBank.money = this.networth - stockTotal;
+
+        if (this.networth < stockTotal) {
+          this.mutableStocks = oldVal;
+        } else {
+          this.mutableBank.money = this.networth - stockTotal;
+        }
       },
       deep: true
     }
@@ -15366,9 +15372,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    stock: Object
+    stock: Object,
+    bank: Object
   },
   data: function data() {
     return {
@@ -15450,7 +15462,10 @@ __webpack_require__.r(__webpack_exports__);
       return {
         amount: Math.abs(diff),
         icon: isIncrease | diff === 0 ? 'arrow-up' : 'arrow-down',
-        "class": isIncrease ? 'green-bg' : diff === 0 ? '' : 'red-bg'
+        "class": {
+          background: isIncrease ? 'green-bg' : diff === 0 ? '' : 'red-bg',
+          text: isIncrease ? 'green' : diff === 0 ? '' : 'red'
+        }
       };
     }
   }
@@ -51108,7 +51123,7 @@ var render = function() {
         _vm._l(_vm.mutableStocks, function(stock) {
           return _c("stock-card", {
             key: stock.id,
-            attrs: { stock: stock },
+            attrs: { stock: stock, bank: _vm.mutableBank },
             on: {
               "current-price": _vm.saveCurrentPrice,
               "buy-max": _vm.buyMax,
@@ -51227,32 +51242,41 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "hg-price", class: _vm.priceDifference.class }, [
-        _c("span", { staticClass: "price-wrap" }, [
-          _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
-        ]),
-        _vm._v(" "),
-        _vm.priceDifference.amount >= 0
-          ? _c(
-              "span",
-              {
-                staticClass: "price-change-wrap flex-row",
-                class: _vm.priceDifference.class
-              },
-              [
-                _c("font-awesome-icon", {
-                  staticClass: "price-diff-icon",
-                  attrs: { icon: _vm.priceDifference.icon }
-                }),
-                _vm._v(" "),
-                _c("p", { staticClass: "price-diff" }, [
-                  _vm._v(_vm._s(_vm._f("currency")(_vm.priceDifference.amount)))
-                ])
-              ],
-              1
-            )
-          : _vm._e()
-      ]),
+      _c(
+        "div",
+        {
+          staticClass: "hg-price",
+          class: _vm.priceDifference.class.background
+        },
+        [
+          _c("span", { staticClass: "price-wrap" }, [
+            _c("h3", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
+          ]),
+          _vm._v(" "),
+          _vm.priceDifference.amount >= 0
+            ? _c(
+                "span",
+                {
+                  staticClass: "price-change-wrap flex-row",
+                  class: _vm.priceDifference.class.text
+                },
+                [
+                  _c("font-awesome-icon", {
+                    staticClass: "price-diff-icon",
+                    attrs: { icon: _vm.priceDifference.icon }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "price-diff" }, [
+                    _vm._v(
+                      _vm._s(_vm._f("currency")(_vm.priceDifference.amount))
+                    )
+                  ])
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -51268,7 +51292,11 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("number-input", {
-            attrs: { min: 0, controls: "" },
+            attrs: {
+              min: 0,
+              controls: "",
+              disabled: _vm.bank.money < parseFloat(_vm.currentPrice)
+            },
             model: {
               value: _vm.stock.quantity,
               callback: function($$v) {
@@ -81615,8 +81643,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })

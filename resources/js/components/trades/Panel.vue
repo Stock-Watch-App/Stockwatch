@@ -6,6 +6,7 @@
                     v-for="stock in mutableStocks"
                     :key="stock.id"
                     :stock="stock"
+                    :bank="mutableBank"
                     v-on:current-price="saveCurrentPrice"
                     v-on:buy-max="buyMax"
                     v-on:sell-all="sellAll"
@@ -21,7 +22,7 @@
                 <div class="flex-col trade">
                     <!-- enable button when input fields become active -->
                     <button class="button-base secondary" @click="submit" :disabled="mutableBank.money < 0">
-                        <font-awesome-icon v-if="saving" icon="spinner" pull="right" pulse />
+                        <font-awesome-icon v-if="saving" icon="spinner" pull="right" pulse/>
                         Submit trade
                     </button>
                     <!-- enable button when submit button becomes active -->
@@ -56,13 +57,18 @@
                 handler(mutatedStocks, oldVal) {
                     let stockTotal = 0;
                     let prices = this.prices;
+
                     mutatedStocks.forEach((stock) => {
                         if (stock.quantity < 0) {
                             stock.quantity = 0;
                         }
                         stockTotal += stock.quantity * prices[stock.houseguest_id];
                     });
-                    this.mutableBank.money = this.networth - stockTotal;
+                    if (this.networth < stockTotal) {
+                        this.mutableStocks = oldVal;
+                    } else {
+                        this.mutableBank.money = this.networth - stockTotal;
+                    }
                 },
                 deep: true
             }
@@ -100,7 +106,7 @@
                     });
                     axios.post('/trades/savestocks', {stocks}).then(res => {
                         if (res.data.success) {
-                            setTimeout(()=>{
+                            setTimeout(() => {
                                 this.saving = false;
                             }, 2000);
                         }
