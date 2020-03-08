@@ -740,7 +740,7 @@ a:active {
   grid-template-columns: 65px 1fr;
   grid-gap: 0.25rem 1rem;
   grid-auto-flow: dense;
-  overflow: scroll;
+  overflow-x: auto;
   margin-bottom: 2rem;
   border-radius: 4px;
   position: relative;
@@ -771,7 +771,6 @@ a:active {
 }
 .projection-card .rating-wrap {
   align-items: baseline;
-  overflow-x: scroll;
 }
 .projection-card .rating-wrap .hg-star {
   color: hsl(55, 100%, 49%);
