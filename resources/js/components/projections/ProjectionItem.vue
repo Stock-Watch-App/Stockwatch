@@ -63,8 +63,8 @@
         },
         methods: {
             setbg: function (projections) {
-                let red = '254,223,205,';
-                let green = '208,251,227,';
+                let red = '249,98,7,';
+                let green = '17,192,93,';
                 let alpha = Math.abs((projections / this.currentPrice) - 1);
                 return {
                     'background-color': 'rgb(' + (((projections / this.currentPrice) > 1) ? green : red) + alpha + ')'

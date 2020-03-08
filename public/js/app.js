@@ -15095,8 +15095,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setbg: function setbg(projections) {
-      var red = '254,223,205,';
-      var green = '208,251,227,';
+      var red = '249,98,7,';
+      var green = '17,192,93,';
       var alpha = Math.abs(projections / this.currentPrice - 1);
       return {
         'background-color': 'rgb(' + (projections / this.currentPrice > 1 ? green : red) + alpha + ')'
@@ -51143,8 +51143,7 @@ var render = function() {
               [
                 _vm.saving
                   ? _c("font-awesome-icon", {
-                      staticClass: "fa-pulse",
-                      attrs: { icon: "spinner" }
+                      attrs: { icon: "spinner", pull: "right", pulse: "" }
                     })
                   : _vm._e(),
                 _vm._v("\n                    Submit trade\n                ")
