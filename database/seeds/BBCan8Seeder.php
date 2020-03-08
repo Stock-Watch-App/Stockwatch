@@ -9,7 +9,7 @@ use App\Models\Houseguest;
 class BBCan8Seeder extends Seeder
 {
 
-    public $number_of_week_to_mock = 2;
+    public $number_of_week_to_mock = 1;
 
     /**
      * Run the database seeds.
