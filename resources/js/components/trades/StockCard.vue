@@ -116,7 +116,7 @@
                 return {
                     isIncrease: isIncrease,
                     amount: Math.abs(diff),
-                    icon: 'arrow-' + (isIncrease ? 'up' : 'down')
+                    icon: 'arrow-right'
                 };
             }
         }

@@ -15086,13 +15086,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguest: Object
@@ -15428,7 +15421,7 @@ __webpack_require__.r(__webpack_exports__);
       return {
         isIncrease: isIncrease,
         amount: Math.abs(diff),
-        icon: 'arrow-' + (isIncrease ? 'up' : 'down')
+        icon: 'arrow-right'
       };
     }
   }
@@ -50920,120 +50913,107 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "this-week" }, [
-      _c("h5", [_vm._v("This week")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "rating-wrap" }, [
-        _c(
-          "h3",
-          { staticClass: "num-wrap flex-row" },
-          [
-            _c("font-awesome-icon", {
-              staticClass: "hg-star",
-              attrs: { icon: "star" }
-            })
-          ],
-          1
-        ),
+      _c("div", { staticClass: "this-week-details flex-col" }, [
+        _c("h5", [_vm._v("This week")]),
         _vm._v(" "),
-        _c("span", { staticClass: "hg-star-rating" }, [
-          _vm._v(_vm._s(_vm.currentRating))
+        _c("span", { staticClass: "rating-wrap" }, [
+          _c(
+            "h5",
+            { staticClass: "num-wrap flex-row" },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "hg-star",
+                attrs: { icon: "star" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "hg-star-rating" }, [
+                _vm._v(_vm._s(_vm.currentRating))
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "hg-star-outof" }, [_vm._v(" /10")])
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
-        _c("span", { staticClass: "hg-star-outof" }, [_vm._v(" /10")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "price" }, [
-        _vm._v("$ " + _vm._s(_vm.currentPrice))
+        _c("span", { staticClass: "price-wrap" }, [
+          _c("h5", [_vm._v(_vm._s(_vm._f("currency")(_vm.currentPrice)))])
+        ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "next-week" }, [
       _c("h5", [_vm._v("Next Week")]),
       _vm._v(" "),
-      _c("table", [
-        _c("tbody", [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("Price:")]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(_vm._f("currency")(_vm.houseguest.projections.to10))
-              )
-            ])
-          ])
+      _c("dl", { staticClass: "rating-table" }, [
+        _c("dt", { staticClass: "dt" }, [_vm._v("Rating")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("1")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("2")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("3")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("4")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("5")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("6")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("7")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("8")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("9")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("10")]),
+        _vm._v(" "),
+        _c("dt", { staticClass: "dt" }, [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
+        ]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to10)))
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Rating:")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("1")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("2")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("3")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("4")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("5")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("6")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("7")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("8")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("9")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("10")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -81114,7 +81094,7 @@ Vue.use(vue_tailwind__WEBPACK_IMPORTED_MODULE_0___default.a); // font awesome ic
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUndoAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEye"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faUndoAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faEye"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faExchangeAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faArrowRight"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);
 /**
  * The following block of code may be used to automatically register your
@@ -81607,8 +81587,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })
