@@ -7,6 +7,7 @@
                     :key="stock.id"
                     :stock="stock"
                     :bank="mutableBank"
+                    :disabled="season.status !== 'open'"
                     v-on:current-price="saveCurrentPrice"
                     v-on:buy-max="buyMax"
                     v-on:sell-all="sellAll"
@@ -19,7 +20,7 @@
                     :bank="mutableBank"
                     :networth="networth"
                 ></funds>
-                <div class="flex-col trade">
+                <div v-if="season.status === 'open'" class="flex-col trade">
                     <!-- enable button when input fields become active -->
                     <button class="button-base secondary" @click="submit" :disabled="mutableBank.money < 0">
                         <font-awesome-icon v-if="saving" icon="spinner" pull="right" pulse/>
@@ -40,7 +41,7 @@
         props: {
             stocks: Array,
             bank: Object,
-            market: String,
+            season: Object,
             user: Object,
             networth: Number,
         },

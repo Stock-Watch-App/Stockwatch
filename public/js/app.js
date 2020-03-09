@@ -15227,12 +15227,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     stocks: Array,
     bank: Object,
-    market: String,
+    season: Object,
     user: Object,
     networth: Number
   },
@@ -15378,7 +15379,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     stock: Object,
-    bank: Object
+    bank: Object,
+    disabled: Boolean
   },
   data: function data() {
     return {
@@ -51177,7 +51179,11 @@ var render = function() {
         _vm._l(_vm.mutableStocks, function(stock) {
           return _c("stock-card", {
             key: stock.id,
-            attrs: { stock: stock, bank: _vm.mutableBank },
+            attrs: {
+              stock: stock,
+              bank: _vm.mutableBank,
+              disabled: _vm.season.status !== "open"
+            },
             on: {
               "current-price": _vm.saveCurrentPrice,
               "buy-max": _vm.buyMax,
@@ -51198,31 +51204,38 @@ var render = function() {
             attrs: { bank: _vm.mutableBank, networth: _vm.networth }
           }),
           _vm._v(" "),
-          _c("div", { staticClass: "flex-col trade" }, [
-            _c(
-              "button",
-              {
-                staticClass: "button-base secondary",
-                attrs: { disabled: _vm.mutableBank.money < 0 },
-                on: { click: _vm.submit }
-              },
-              [
-                _vm.saving
-                  ? _c("font-awesome-icon", {
-                      attrs: { icon: "spinner", pull: "right", pulse: "" }
-                    })
-                  : _vm._e(),
-                _vm._v("\n                    Submit trade\n                ")
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "button-base link", on: { click: _vm.resetAll } },
-              [_vm._v("Reset All")]
-            )
-          ])
+          _vm.season.status === "open"
+            ? _c("div", { staticClass: "flex-col trade" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button-base secondary",
+                    attrs: { disabled: _vm.mutableBank.money < 0 },
+                    on: { click: _vm.submit }
+                  },
+                  [
+                    _vm.saving
+                      ? _c("font-awesome-icon", {
+                          attrs: { icon: "spinner", pull: "right", pulse: "" }
+                        })
+                      : _vm._e(),
+                    _vm._v(
+                      "\n                    Submit trade\n                "
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "button-base link",
+                    on: { click: _vm.resetAll }
+                  },
+                  [_vm._v("Reset All")]
+                )
+              ])
+            : _vm._e()
         ],
         1
       )
@@ -51336,20 +51349,23 @@ var render = function() {
         "div",
         { staticClass: "input-wrap" },
         [
-          _c(
-            "button",
-            {
-              staticClass: "button-base primary ghost small sell",
-              on: { click: _vm.sellAll }
-            },
-            [_vm._v("Sell all")]
-          ),
+          !_vm.disabled
+            ? _c(
+                "button",
+                {
+                  staticClass: "button-base primary ghost small sell",
+                  on: { click: _vm.sellAll }
+                },
+                [_vm._v("Sell all")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("number-input", {
             attrs: {
               min: 0,
               controls: "",
-              disabled: _vm.bank.money < parseFloat(_vm.currentPrice)
+              disabled:
+                _vm.bank.money < parseFloat(_vm.currentPrice) || _vm.disabled
             },
             model: {
               value: _vm.stock.quantity,
@@ -51360,27 +51376,31 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button-base primary ghost small buy",
-              on: { click: _vm.buyMax }
-            },
-            [_vm._v("Buy max")]
-          ),
+          !_vm.disabled
+            ? _c(
+                "button",
+                {
+                  staticClass: "button-base primary ghost small buy",
+                  on: { click: _vm.buyMax }
+                },
+                [_vm._v("Buy max")]
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button-base link icon-col small",
-              on: { click: _vm.reset }
-            },
-            [
-              _c("font-awesome-icon", { attrs: { icon: "undo-alt" } }),
-              _vm._v("\n            reset\n        ")
-            ],
-            1
-          )
+          !_vm.disabled
+            ? _c(
+                "button",
+                {
+                  staticClass: "button-base link icon-col small",
+                  on: { click: _vm.reset }
+                },
+                [
+                  _c("font-awesome-icon", { attrs: { icon: "undo-alt" } }),
+                  _vm._v("\n            reset\n        ")
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
       )
@@ -81697,8 +81717,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
 
 
 /***/ })

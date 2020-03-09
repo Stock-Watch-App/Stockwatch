@@ -25,15 +25,15 @@
             </span>
         </div>
         <div class="input-wrap">
-            <button class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
+            <button v-if="!disabled" class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
             <number-input
                 v-model="stock.quantity"
                 :min="0"
                 controls
-                :disabled="bank.money < parseFloat(currentPrice)"
+                :disabled="(bank.money < parseFloat(currentPrice)) || disabled"
             ></number-input>
-            <button class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
-            <button class="button-base link icon-col small" @click="reset">
+            <button v-if="!disabled" class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
+            <button v-if="!disabled" class="button-base link icon-col small" @click="reset">
                 <font-awesome-icon icon="undo-alt"/>
                 reset
             </button>
@@ -45,7 +45,8 @@
     export default {
         props: {
             stock: Object,
-            bank: Object
+            bank: Object,
+            disabled: Boolean
         },
         data() {
             return {

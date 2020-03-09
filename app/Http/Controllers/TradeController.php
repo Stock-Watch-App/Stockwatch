@@ -31,9 +31,9 @@ class TradeController extends Controller
                 return $stock->quantity * $stock->houseguest->current_price;
             })->sum();
 
-        $market = Season::current()->status;
+        $season = Season::current();
 
-        return view('trades', compact('user', 'bank', 'stocks', 'networth', 'market'));
+        return view('trades', compact('user', 'bank', 'stocks', 'networth', 'season'));
     }
 
     public function savestocks(Request $request)

@@ -2,7 +2,7 @@
 
 @section('content')
         <trade-panel
-            market="{{ $market }}"
+            :season="{{ $season }}"
             :networth="{{ $networth }}"
             :stocks="{{ $stocks }}"
             :bank="{{ $bank }}"
