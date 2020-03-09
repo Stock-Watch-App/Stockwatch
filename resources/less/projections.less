@@ -10,7 +10,7 @@
     display: grid;
     border: solid 1px @gray-hint;
     box-shadow: 1px 1px 0px @gray-hint;
-    grid-template-columns: 65px 1fr;
+    grid-template-columns: 85px 1fr;
     grid-gap: .25rem 1rem;
     grid-auto-flow: dense;
     overflow-x: auto;
@@ -105,8 +105,12 @@
         }
     }
 
-    .media(@min-desktop, {
-        grid-template-columns: 65px max-content auto;
+    // .media(@min-desktop, {
+    //     grid-template-columns: 85px min-content auto;
+    // });
+
+    .media(@min-lg-desktop, {
+        grid-template-columns: 85px max-content auto;
 
         .next-week {
             grid-column: ~'3/-1';
