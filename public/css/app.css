@@ -1239,7 +1239,7 @@ a:active {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
   box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
-  grid-template-columns: 80px auto auto;
+  grid-template-columns: 76px auto auto;
   grid-gap: 0.5rem;
   grid-auto-flow: dense;
   overflow: hidden;
@@ -1287,7 +1287,7 @@ a:active {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   padding: 0.5rem;
 }
 .stockcard .rating-wrap {
@@ -1356,10 +1356,10 @@ a:active {
   font-size: 0.75rem;
 }
 .stockcard .price-change-wrap.green {
-  color: hsl(146, 84%, 31%);
+  color: hsl(146, 84%, 26%);
 }
 .stockcard .price-change-wrap.red {
-  color: hsl(0, 81%, 58%);
+  color: hsl(0, 81%, 50%);
 }
 @media only screen and (max-width: 499px) {
   .stockcard .input-wrap {
@@ -1532,7 +1532,7 @@ a:active {
 .native-collapse-wrap details summary.plus-icon::after {
   transform: translateY(-50%) rotate(90deg);
 }
-.native-collapse-wrap details summary.chevron {
+.native-collapse-wrap details summary .chevron {
   display: flex;
   display: -webkit-flex;
   flex-direction: row;

@@ -139,7 +139,11 @@
             </ul>
             <div class="native-collapse-wrap sidebar-collapse">
                 <details>
-                    <summary class="chevron"><span v-bind:class="[isActive ? 'full' : 'mini']">RHAP</span> <font-awesome-icon class="chevron-icon" icon="chevron-down" fixed-width /></summary>
+                    <summary>
+                        <div class="chevron">
+                            <span v-bind:class="[isActive ? 'full' : 'mini']">RHAP</span> <font-awesome-icon class="chevron-icon" icon="chevron-down" fixed-width />
+                        </div>
+                    </summary>
                     <ul class="sidebar-nav-list">
                         <li>
                             <a href="https://robhasawebsite.com/shows/big-brother-podcast-rhap/big-brother-canada-big-brother/" title="Rob Has a Podcast" class="item-wrap" target="_blank" rel="noreferrer noopener">
