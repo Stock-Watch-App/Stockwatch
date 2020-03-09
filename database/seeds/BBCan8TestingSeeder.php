@@ -3,13 +3,14 @@
 use App\Models\Price;
 use App\Models\Rating;
 use App\Models\User;
+use App\Models\Week;
 use Illuminate\Database\Seeder;
 use App\Models\Houseguest;
 
-class BBCan8Seeder extends Seeder
+class BBCan8TestingSeeder extends Seeder
 {
 
-    public $number_of_week_to_mock = 2;
+    public $number_of_week_to_mock = 1;
 
     /**
      * Run the database seeds.
@@ -32,6 +33,19 @@ class BBCan8Seeder extends Seeder
         $robotaudience = User::create(['name' => 'Robot Audience', 'email' => 'robotaudience@realitystockwatch.com']);
 
         $bbcan8 = \App\Models\Season::firstOrCreate(['name' => 'Big Brother Canada 8', 'short_name' => 'bbcan8', 'status' => 'pre-season']);
+
+        Week::create(['week' => 1, 'week_start' => '2020-02-29', 'week_end' => '2020-03-05', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 2, 'week_start' => '2020-03-06', 'week_end' => '2020-03-12', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 3, 'week_start' => '2020-03-13', 'week_end' => '2020-03-19', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 4, 'week_start' => '2020-03-20', 'week_end' => '2020-03-26', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 5, 'week_start' => '2020-03-27', 'week_end' => '2020-04-02', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 6, 'week_start' => '2020-04-03', 'week_end' => '2020-04-09', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 7, 'week_start' => '2020-04-10', 'week_end' => '2020-04-16', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 8, 'week_start' => '2020-04-17', 'week_end' => '2020-04-23', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 9, 'week_start' => '2020-04-24', 'week_end' => '2020-04-30', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 10, 'week_start' => '2020-05-01', 'week_end' => '2020-05-07', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 11, 'week_start' => '2020-05-08', 'week_end' => '2020-05-14', "season_id" => $bbcan8->id]);
+        Week::create(['week' => 12, 'week_start' => '2020-05-15', 'week_end' => '2020-05-21', "season_id" => $bbcan8->id]);
 
         $houseguests = [
             'chris'    => Houseguest::create(['first_name' => 'Chris', 'last_name' => 'Wyllie', 'nickname' => 'Chris', 'season_id' => $bbcan8->id, 'image' => '/houseguests/bbcan8/chris.jpg']),
@@ -64,13 +78,15 @@ class BBCan8Seeder extends Seeder
                 $a = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotaudience->id])->rating;
                 $rating = round(($t+$b+$m+$a)/4);
 
-                if ($i === 1) {
-                    $price = round(($t+$b+$m+$a)/4);
-                } else {
-                    $price = $f->calculate($old, $rating, $price, $houseguest->strikes);
-                }
-
-                Price::create(['price' => $price, 'houseguest_id' => $houseguest->id, 'week' => $i]);
+//                if ($i === 1) {
+//                    $price = round(($t + $b + $m + $a) / 4);
+//                } else if ($i === $this->number_of_week_to_mock) {
+//                    continue;
+//                } else {
+//                    $price = $f->calculate($old, $rating, $price, $houseguest->strikes);
+//                }
+//
+//                Price::create(['price' => $price, 'houseguest_id' => $houseguest->id, 'week' => $i]);
                 $old = $rating;
             }
         }

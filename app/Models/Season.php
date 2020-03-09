@@ -15,6 +15,10 @@ class Season extends BaseModel
     {
         return $this->hasMany(Bank::class);
     }
+    public function weeks()
+    {
+        return $this->hasMany(Week::class);
+    }
 
     //=== SCOPES ===/
     public function scopeCurrent($query)

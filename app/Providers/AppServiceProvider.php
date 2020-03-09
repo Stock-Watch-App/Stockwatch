@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Houseguest;
+use App\Models\Season;
 use App\Observers\HouseguestObserver;
+use App\Observers\SeasonObserver;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Houseguest::observe(HouseguestObserver::class);
+        Season::observe(SeasonObserver::class);
 
         Collection::macro('toAssoc', function () {
             return $this->reduce(static function ($assoc, $keyValuePair) {

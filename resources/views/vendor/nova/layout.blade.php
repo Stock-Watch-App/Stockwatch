@@ -25,6 +25,7 @@
     @foreach(Nova::themeStyles() as $publicPath)
         <link rel="stylesheet" href="{{ $publicPath }}">
     @endforeach
+    <link rel="stylesheet" href="{{mix('css/nova.css')}}">
 </head>
 <body class="min-w-site bg-40 text-black min-h-full">
     <div id="nova">
