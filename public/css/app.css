@@ -740,7 +740,7 @@ a:active {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
   box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
-  grid-template-columns: 65px 1fr;
+  grid-template-columns: 85px 1fr;
   grid-gap: 0.25rem 1rem;
   grid-auto-flow: dense;
   overflow-x: auto;
@@ -820,10 +820,10 @@ a:active {
   padding: 0 1rem;
   color: hsl(0, 0%, 0%);
 }
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1280px) {
   .projection-card {
-    grid-template-columns: 65px -webkit-max-content auto;
-    grid-template-columns: 65px max-content auto;
+    grid-template-columns: 85px -webkit-max-content auto;
+    grid-template-columns: 85px max-content auto;
   }
   .projection-card .next-week {
     grid-column: 3/-1;

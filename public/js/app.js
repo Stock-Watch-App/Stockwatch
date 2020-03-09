@@ -15083,6 +15083,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguest: Object
@@ -51106,6 +51116,46 @@ var render = function() {
               )
             ) + "%"
           )
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to1) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to1)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to2) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to2)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to3) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to3)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to4) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to4)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to5) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to5)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to6) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to6)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to7) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to7)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to8) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to8)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to9) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to9)))
+        ]),
+        _vm._v(" "),
+        _c("dd", { style: _vm.setbg(_vm.houseguest.projections.to10) }, [
+          _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.projections.to10)))
         ])
       ])
     ])

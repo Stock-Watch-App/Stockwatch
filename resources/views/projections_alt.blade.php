@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="projection-wrap">
-        <h3 class="mg-btm-lg">Price Projections: Week X</h3>
+        <h3 class="mg-btm-lg">Price Projections</h3>
         @foreach($houseguests as $houseguest)
             @php
 
