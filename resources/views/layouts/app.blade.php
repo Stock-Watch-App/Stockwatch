@@ -175,6 +175,7 @@
         </nav>
         <main id="panel" class="app-content">
             @yield('content')
+            <flash-message class="myCustomClass"></flash-message>
         </main>
         <footer class="footer">
             <ul>

@@ -12,6 +12,11 @@ window.Vue = require('vue');
 import VueTailwind from 'vue-tailwind'
 Vue.use(VueTailwind)
 
+import VueFlashMessage from 'vue-flash-message';
+Vue.use(VueFlashMessage);
+
+const myMessage = this.flash('My message', 'info');
+
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -34,8 +39,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('slideout-nav', require('./components/SlideoutNav.vue').default);
+
 Vue.component('stock-card', require('./components/trades/StockCard.vue').default);
 Vue.component('trade-panel', require('./components/trades/Panel.vue').default);
 
@@ -71,6 +75,7 @@ const app = new Vue({
         toggleNavbar: function(event){
            this.isActive = !this.isActive;
         }
+
     }
 });
 

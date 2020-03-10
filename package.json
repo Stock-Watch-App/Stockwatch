@@ -41,6 +41,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.12.1",
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "less": "^3.11.1",
+        "vue-flash-message": "^0.7.2",
         "vue-tailwind": "^0.4.2"
     }
 }
