@@ -190,7 +190,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="mailto:hello@realitystockwatch.com" title="Privacy Policy">
+                    <a href="mailto:hello@realitystockwatch.com" title="Email StockWatch">
                         hello@realitystockwatch.com
                     </a>
                 </li>

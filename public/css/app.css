@@ -833,6 +833,9 @@ a:active {
     grid-row: 2/3;
   }
 }
+.faq-wrap {
+  grid-column: 2/8;
+}
 .card {
   border-radius: 4px;
   position: relative;
