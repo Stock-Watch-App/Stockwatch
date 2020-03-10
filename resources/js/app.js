@@ -15,7 +15,6 @@ Vue.use(VueTailwind)
 import VueFlashMessage from 'vue-flash-message';
 Vue.use(VueFlashMessage);
 
-const myMessage = this.flash('My message', 'info');
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
@@ -27,8 +26,6 @@ library.add(faStar, faArrowUp, faArrowDown, faBars, faColumns, faTwitch, faTwitt
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-import VueFlashMessage from 'vue-flash-message';
-Vue.use(VueFlashMessage);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
