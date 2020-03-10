@@ -60,7 +60,7 @@
             <summary class="plus-icon">
                 Can I sign in using my Reddit or Patreon account?
             </summary>
-            <p>Unfortunately Reddit and Patreon do not currently support Single Sign On. Should this change in the future, we will include them as options.</p>
+            <p>Unfortunately Reddit and Patreon do not currently support this feature. Should this change in the future, we will include them as options.</p>
         </details>
     </div>
 @endsection

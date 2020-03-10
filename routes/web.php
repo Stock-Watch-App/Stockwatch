@@ -23,7 +23,7 @@ Route::get('/tos', [LegalController::class, 'tos']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return redirect()->route('dashboard');
+        return redirect()->route('trade');
     });
 
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
@@ -35,8 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
         return view('projections_alt', compact('houseguests'));
     });
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/trades', [TradeController::class, 'index'])->name('dashboard');
     Route::get('/trades', [TradeController::class, 'index'])->name('trade');
     Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);
     Route::get('/landing', [HomeController::class, 'landing']);

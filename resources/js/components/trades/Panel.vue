@@ -106,18 +106,12 @@
                         });
                     });
                     axios.post('/trades/savestocks', {stocks}).then(res => {
-                        if (res.data.success) {
-                            setTimeout(() => {
-                                this.saving = false;
-                            }, 2000);
-                        }
+                        this.saving = false;
 
                         if (res.data.success) {
-                            this.flash('Trade submitted!', 'goodjob', {
-                            });
+                            this.flash('Trade submitted!', 'goodjob', {});
                         } else {
-                            this.flash('Trade submission failed, please try again', 'ohno', {
-                            });
+                            this.flash('Trade submission failed, please try again', 'ohno', {});
                         }
                     });
                 }

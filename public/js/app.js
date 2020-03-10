@@ -15315,11 +15315,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/trades/savestocks', {
           stocks: stocks
         }).then(function (res) {
-          if (res.data.success) {
-            setTimeout(function () {
-              _this2.saving = false;
-            }, 2000);
-          }
+          _this2.saving = false;
 
           if (res.data.success) {
             _this2.flash('Trade submitted!', 'goodjob', {});

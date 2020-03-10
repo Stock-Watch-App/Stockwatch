@@ -458,7 +458,7 @@ a:active {
   left: -250px;
   top: 60px;
   z-index: 2;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 .app-wrapper .sidebar-nav.open {
@@ -1576,9 +1576,11 @@ a:active {
 .native-collapse-wrap details summary::-webkit-details-marker {
   display: none;
 }
+.flash__message.success,
 .flash__message.goodjob {
   background-color: hsl(146, 84%, 90%);
 }
+.flash__message.error,
 .flash__message.ohno {
   background-color: hsl(0, 81%, 90%);
 }
