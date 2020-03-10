@@ -834,7 +834,12 @@ a:active {
   }
 }
 .faq-wrap {
-  grid-column: 2/8;
+  grid-column: 1/-1;
+}
+@media only screen and (min-width: 768px) {
+  .faq-wrap {
+    grid-column: 2/8;
+  }
 }
 .card {
   border-radius: 4px;
