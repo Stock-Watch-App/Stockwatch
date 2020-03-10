@@ -419,7 +419,7 @@ a:active {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  padding: 1rem 0 0 1rem;
+  padding: 0.5rem 0 0.5rem 1rem;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -458,6 +458,8 @@ a:active {
   left: -250px;
   top: 60px;
   z-index: 2;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .app-wrapper .sidebar-nav.open {
   transform: translateX(250px);
@@ -495,7 +497,7 @@ a:active {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 .app-wrapper footer {
   grid-area: footer;
@@ -513,6 +515,7 @@ a:active {
 }
 .app-wrapper footer ul {
   display: flex;
+  flex-wrap: wrap;
 }
 .app-wrapper footer ul li {
   margin-right: 1rem;
@@ -1235,6 +1238,11 @@ a:active {
   border-bottom-left-radius: 0;
   right: 1px;
 }
+@media only screen and (max-width: 320px) {
+  .stockard .hg-rating {
+    display: block;
+  }
+}
 .stockcard {
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
@@ -1284,11 +1292,15 @@ a:active {
 .stockcard .hg-rating {
   grid-column: 2/3;
   grid-row: 2/3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   padding: 0.5rem;
+}
+@media only screen and (min-width: 768px) {
+  .stockcard .hg-rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 .stockcard .rating-wrap {
   align-items: baseline;
@@ -1408,7 +1420,9 @@ a:active {
   justify-content: space-between;
 }
 .funds-wrap {
-  margin: 1rem 0rem 1rem 0rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1419,7 +1433,7 @@ a:active {
   box-shadow: 1px 1px 0px hsl(224, 90%, 53%);
   border-radius: 4px;
   text-align: center;
-  padding: 1rem;
+  padding: 0.625rem;
 }
 .funds h1 {
   font-size: 1.5rem;
@@ -1450,6 +1464,11 @@ a:active {
     font-size: 3rem;
   }
 }
+.avail-funds {
+  visibility: hidden;
+  height: 0;
+  margin-bottom: 0;
+}
 .net-worth {
   font-size: 0.875rem;
 }
@@ -1472,6 +1491,12 @@ a:active {
 @media only screen and (min-width: 1024px) {
   .funds {
     margin: 0rem 0rem 2rem 0rem;
+    padding: 1rem;
+  }
+  .avail-funds {
+    visibility: visible;
+    height: unset;
+    margin-bottom: 0.5em;
   }
   .fund-history {
     margin-bottom: 2rem;
@@ -1492,6 +1517,7 @@ a:active {
     order: unset;
     flex-direction: column;
     margin-top: 0;
+    margin-left: 0;
   }
 }
 .native-collapse-wrap details {

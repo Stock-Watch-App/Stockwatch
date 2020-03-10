@@ -32,7 +32,7 @@
         // make this better
         position: sticky;
         top: 0;
-        padding: 1rem 0 0 1rem;
+        padding: .5rem 0 .5rem 1rem;
         z-index: 2;
         display: flex;
         align-items: center;
@@ -80,6 +80,8 @@
         left: -250px;
         top: 60px;
         z-index: 2;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
 
         &.open {
             transform: translateX(250px);
@@ -133,7 +135,7 @@
         // main content grid def
         grid-template-columns: repeat(8, 1fr);
         grid-gap: 1rem;
-        padding: 1rem;
+        padding: 1rem 1rem 0 1rem;
     }
 
     footer {
@@ -152,6 +154,7 @@
 
         ul {
             display: flex;
+            flex-wrap: wrap;
 
             li {
                 margin-right: 1rem;

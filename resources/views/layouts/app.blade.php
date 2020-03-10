@@ -59,7 +59,7 @@
                         <figure>
                             <font-awesome-icon icon="chart-line" fixed-width />
                         </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Trades</span>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span>
                     </a>
                 </li>
                 <li>
@@ -139,7 +139,7 @@
                     </li>
                 @endguest
             </ul>
-            <div class="native-collapse-wrap sidebar-collapse">
+            <div class="native-collapse-wrap sidebar-collapse mg-btm-md">
                 <details>
                     <summary>
                         <div class="chevron">
@@ -177,6 +177,7 @@
         </nav>
         <main id="panel" class="app-content">
             @yield('content')
+            <flash-message class="myCustomClass"></flash-message>
         </main>
         <footer class="footer">
             <ul>
