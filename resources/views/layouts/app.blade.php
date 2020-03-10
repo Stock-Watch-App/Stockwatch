@@ -21,8 +21,7 @@
 </head>
 <body>
     <div id="app" class="app-wrapper">
-
-        <flash-message class="myCustomClass"></flash-message>
+        <!-- <flash-message class="myCustomClass"></flash-message> -->
         <aside>
             <button class="button-base toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <font-awesome-icon icon="bars" size="lg" />
@@ -46,14 +45,14 @@
             @endguest
 
             <ul class="sidebar-nav-list">
-                <li>
+                <!-- <li>
                     <a href="/dashboard" title="Dashboard" class="item-wrap">
                         <figure>
                             <font-awesome-icon icon="columns" fixed-width />
                         </figure>
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="/trades" title="Trades" class="item-wrap">
                         <figure>
@@ -177,7 +176,6 @@
         </nav>
         <main id="panel" class="app-content">
             @yield('content')
-            <flash-message class="myCustomClass"></flash-message>
         </main>
         <footer class="footer">
             <ul>

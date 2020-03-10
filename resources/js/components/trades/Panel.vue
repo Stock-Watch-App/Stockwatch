@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard-wrap">t
+    <div class="dashboard-wrap">
         <div class="stock-cards-wrap">
             <ul class="stock-cards">
                 <stock-card
@@ -29,6 +29,7 @@
                     <!-- enable button when submit button becomes active -->
                     <button class="button-base link" @click="resetAll">Reset All</button>
                 </div>
+                <flash-message class="myCustomClass"></flash-message>
             </div>
         </div>
     </div>
@@ -51,7 +52,6 @@
                 saving: false
             }
         }, mounted() {
-            console.log(this.flash('Data loaded', 'success'));
         },
         watch: {
             mutableStocks: {
@@ -110,6 +110,14 @@
                             setTimeout(() => {
                                 this.saving = false;
                             }, 2000);
+                        }
+
+                        if (res.data.success) {
+                            this.flash('Trade submitted!', 'goodjob', {
+                            });
+                        } else {
+                            this.flash('Trade submission failed, please try again', 'ohno', {
+                            });
                         }
                     });
                 }

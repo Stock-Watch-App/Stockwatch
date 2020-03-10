@@ -1571,6 +1571,12 @@ a:active {
 .native-collapse-wrap details summary::-webkit-details-marker {
   display: none;
 }
+.flash__message.goodjob {
+  background-color: hsl(146, 84%, 90%);
+}
+.flash__message.ohno {
+  background-color: hsl(0, 81%, 90%);
+}
 body {
   color: #25282F;
   font-family: "Source Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
