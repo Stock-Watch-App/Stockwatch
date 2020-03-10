@@ -29,8 +29,9 @@
             <number-input
                 v-model="stock.quantity"
                 :min="0"
+                :max="bank.money < parseFloat(currentPrice)?stock.quantity:stock.quantity+1"
                 controls
-                :disabled="(bank.money < parseFloat(currentPrice)) || disabled"
+                :disabled="disabled"
             ></number-input>
             <button v-if="!disabled" class="button-base primary ghost small buy" @click="buyMax">Buy max</button>
             <button v-if="!disabled" class="button-base link icon-col small" @click="reset">
