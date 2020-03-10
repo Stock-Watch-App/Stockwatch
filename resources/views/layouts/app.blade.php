@@ -21,6 +21,8 @@
 </head>
 <body>
     <div id="app" class="app-wrapper">
+
+        <flash-message class="myCustomClass"></flash-message>
         <aside>
             <button class="button-base toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <font-awesome-icon icon="bars" size="lg" />

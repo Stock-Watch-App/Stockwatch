@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard-wrap">
+    <div class="dashboard-wrap">t
         <div class="stock-cards-wrap">
             <ul class="stock-cards">
                 <stock-card
@@ -35,8 +35,6 @@
 </template>
 
 <script>
-    import StockCard from './StockCard.vue';
-
     export default {
         props: {
             stocks: Array,
@@ -52,6 +50,8 @@
                 prices: [],
                 saving: false
             }
+        }, mounted() {
+            console.log(this.flash('Data loaded', 'success'));
         },
         watch: {
             mutableStocks: {
