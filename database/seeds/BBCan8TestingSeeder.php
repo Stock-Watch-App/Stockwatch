@@ -78,15 +78,15 @@ class BBCan8TestingSeeder extends Seeder
                 $a = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotaudience->id])->rating;
                 $rating = round(($t+$b+$m+$a)/4);
 
-//                if ($i === 1) {
-//                    $price = round(($t + $b + $m + $a) / 4);
-//                } else if ($i === $this->number_of_week_to_mock) {
-//                    continue;
-//                } else {
-//                    $price = $f->calculate($old, $rating, $price, $houseguest->strikes);
-//                }
-//
-//                Price::create(['price' => $price, 'houseguest_id' => $houseguest->id, 'week' => $i]);
+                if ($i === 1) {
+                    $price = round(($t + $b + $m + $a) / 4);
+                } else if ($i === $this->number_of_week_to_mock) {
+                    continue;
+                } else {
+                    $price = $f->calculate($old, $rating, $price, $houseguest->strikes);
+                }
+
+                Price::create(['price' => $price, 'houseguest_id' => $houseguest->id, 'week' => $i]);
                 $old = $rating;
             }
         }

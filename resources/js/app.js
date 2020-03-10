@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-
+require('vue-flash-message/dist/vue-flash-message.min.css');
 window.Vue = require('vue');
 
 // import tailwind globally
@@ -15,7 +15,6 @@ Vue.use(VueTailwind)
 import VueFlashMessage from 'vue-flash-message';
 Vue.use(VueFlashMessage);
 
-const myMessage = this.flash('My message', 'info');
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
@@ -23,7 +22,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faStar, faArrowUp, faArrowDown, faBars, faColumns, faAward, faHistory, faUserCircle, faUserShield, faSignOutAlt, faMinus, faPlus, faUndoAlt, faEye, faSpinner, faChartLine, faInfoCircle, faChevronDown, faMicrophone } from '@fortawesome/free-solid-svg-icons'
 import { faTwitch, faTwitter, faDiscord, faFacebookF, faReddit } from '@fortawesome/free-brands-svg-icons'
-
 library.add(faStar, faArrowUp, faArrowDown, faBars, faColumns, faTwitch, faTwitter, faDiscord, faFacebookF, faReddit, faAward, faHistory, faUserCircle, faUserShield, faSignOutAlt, faMinus, faPlus, faUndoAlt, faEye, faSpinner, faChartLine, faInfoCircle, faChevronDown, faMicrophone)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
