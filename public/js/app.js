@@ -51921,7 +51921,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "button-base secondary",
+                    staticClass: "button-base secondary mg-btm-sm",
                     attrs: { disabled: _vm.mutableBank.money < 0 },
                     on: { click: _vm.submit }
                   },
@@ -51949,7 +51949,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("flash-message", { staticClass: "myCustomClass" })
+          _c("flash-message", { staticClass: "alert-custom-class" })
         ],
         1
       )

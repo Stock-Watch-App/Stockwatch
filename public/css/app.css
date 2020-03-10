@@ -1577,6 +1577,20 @@ a:active {
 .flash__message.ohno {
   background-color: hsl(0, 81%, 90%);
 }
+.alert-custom-class {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  z-index: 1;
+}
+@media only screen and (min-width: 768px) {
+  .alert-custom-class {
+    position: relative;
+    right: unset;
+    bottom: unset;
+    z-index: 1;
+  }
+}
 body {
   color: #25282F;
   font-family: "Source Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;

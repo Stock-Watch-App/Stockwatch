@@ -22,14 +22,14 @@
                 ></funds>
                 <div v-if="season.status === 'open'" class="flex-col trade">
                     <!-- enable button when input fields become active -->
-                    <button class="button-base secondary" @click="submit" :disabled="mutableBank.money < 0">
+                    <button class="button-base secondary mg-btm-sm" @click="submit" :disabled="mutableBank.money < 0">
                         <font-awesome-icon v-if="saving" icon="spinner" pull="right" pulse/>
                         Submit trade
                     </button>
                     <!-- enable button when submit button becomes active -->
                     <button class="button-base link" @click="resetAll">Reset All</button>
                 </div>
-                <flash-message class="myCustomClass"></flash-message>
+                <flash-message class="alert-custom-class"></flash-message>
             </div>
         </div>
     </div>
