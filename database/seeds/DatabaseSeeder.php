@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $this->call(FormulaSeeder::class);
-//         $this->call(BBCan8Seeder::class);
-         $this->call(BBCan8TestingSeeder::class);
+         $this->call(BBCan8Seeder::class);
+//         $this->call(BBCan8TestingSeeder::class);
          $this->call(RolesAndPermissionsSeeder::class);
     }
 }
