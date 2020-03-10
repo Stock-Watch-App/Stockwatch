@@ -61,7 +61,7 @@ class LoginController extends Controller
         $user = $this->createOrGetUser(Socialite::driver($provider)->user(), $provider);
         Auth::login($user);
 
-        return redirect()->route('trades');
+        return redirect()->route('trade');
     }
 
     private function createOrGetUser($providerUser, $provider)
