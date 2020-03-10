@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
+Route::get('/faq', function () {
+   return view('faq');
+});
+
 
 Route::group(['middleware' => ['local']], function () {
     Route::get('/styleguide', function () {

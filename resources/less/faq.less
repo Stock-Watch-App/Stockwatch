@@ -1,0 +1,12 @@
+@import (reference)  './_variables.less';
+@import (reference) './_mixins.less';
+
+.faq-wrap {
+    grid-column: ~'1/-1';
+}
+
+.media(@min-tablet, {
+    .faq-wrap {
+        grid-column: ~'2/8';
+    }
+});

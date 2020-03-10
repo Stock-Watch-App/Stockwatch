@@ -833,6 +833,14 @@ a:active {
     grid-row: 2/3;
   }
 }
+.faq-wrap {
+  grid-column: 1/-1;
+}
+@media only screen and (min-width: 768px) {
+  .faq-wrap {
+    grid-column: 2/8;
+  }
+}
 .card {
   border-radius: 4px;
   position: relative;
@@ -1567,6 +1575,26 @@ a:active {
 }
 .native-collapse-wrap details summary::-webkit-details-marker {
   display: none;
+}
+.flash__message.goodjob {
+  background-color: hsl(146, 84%, 90%);
+}
+.flash__message.ohno {
+  background-color: hsl(0, 81%, 90%);
+}
+.alert-custom-class {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  z-index: 1;
+}
+@media only screen and (min-width: 768px) {
+  .alert-custom-class {
+    position: relative;
+    right: unset;
+    bottom: unset;
+    z-index: 1;
+  }
 }
 body {
   color: #25282F;

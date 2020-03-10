@@ -15237,6 +15237,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     stocks: Array,
@@ -15253,9 +15254,7 @@ __webpack_require__.r(__webpack_exports__);
       saving: false
     };
   },
-  mounted: function mounted() {
-    console.log(this.flash('Data loaded', 'success'));
-  },
+  mounted: function mounted() {},
   watch: {
     mutableStocks: {
       handler: function handler(mutatedStocks, oldVal) {
@@ -15320,6 +15319,12 @@ __webpack_require__.r(__webpack_exports__);
             setTimeout(function () {
               _this2.saving = false;
             }, 2000);
+          }
+
+          if (res.data.success) {
+            _this2.flash('Trade submitted!', 'goodjob', {});
+          } else {
+            _this2.flash('Trade submission failed, please try again', 'ohno', {});
           }
         });
       }
@@ -51879,7 +51884,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dashboard-wrap" }, [
-    _vm._v("t\n    "),
     _c("div", { staticClass: "stock-cards-wrap" }, [
       _c(
         "ul",
@@ -51917,7 +51921,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "button-base secondary",
+                    staticClass: "button-base secondary mg-btm-sm",
                     attrs: { disabled: _vm.mutableBank.money < 0 },
                     on: { click: _vm.submit }
                   },
@@ -51943,7 +51947,9 @@ var render = function() {
                   [_vm._v("Reset All")]
                 )
               ])
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("flash-message", { staticClass: "alert-custom-class" })
         ],
         1
       )
@@ -82440,9 +82446,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

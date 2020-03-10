@@ -1,0 +1,26 @@
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
+
+.flash__message.goodjob {
+    background-color: @green-01;
+}
+
+.flash__message.ohno {
+    background-color: @red-01;
+}
+
+.alert-custom-class {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    z-index: 1;
+}
+
+.media(@min-tablet, {
+    .alert-custom-class {
+        position: relative;
+        right: unset;
+        bottom: unset;
+        z-index: 1;
+    }
+});
