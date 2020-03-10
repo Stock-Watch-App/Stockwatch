@@ -22,7 +22,8 @@ class Rating extends Resource
         return [
             BelongsTo::make('User'),
             BelongsTo::make('Houseguest'),
-            Number::make('Rating')
+            Number::make('Rating'),
+            Number::make('Week'),
         ];
     }
 }
