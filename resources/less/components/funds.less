@@ -8,7 +8,9 @@
 }
 
 .funds-wrap {
-    .px-rem-margin(16, 0, 16, 0);
+    .px-rem(margin-top, 16);
+    .px-rem(margin-bottom, 16);
+    margin-left: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,11 +22,17 @@
     box-shadow: 1px 1px 0px @primary-blue;
     border-radius: @border-radius;
     text-align: center;
-    .px-rem(padding, 16);
+    .px-rem(padding, 10);
 
     h1 {
         .fluid-typography-rem(@small-screen, @large-screen, @base, 1.5rem, 3rem, 1.75rem);
     }
+}
+
+.avail-funds {
+    visibility: hidden;
+    height: 0;
+    margin-bottom: 0;
 }
 
 .net-worth {
@@ -53,6 +61,13 @@
 .media(@min-desktop, {
     .funds {
         .px-rem-margin(0, 0, 32, 0);
+        .px-rem(padding, 16);
+    }
+
+    .avail-funds {
+        visibility: visible;
+        height: unset;
+        margin-bottom: 0.5em;
     }
 
     .fund-history {

@@ -51187,7 +51187,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "funds-wrap" }, [
     _c("div", { staticClass: "funds" }, [
-      _c("p", [_vm._v("Available Funds")]),
+      _c("p", { staticClass: "avail-funds" }, [_vm._v("Available Funds")]),
       _vm._v(" "),
       _c("h1", { class: [this.inthered() ? "red-text" : ""] }, [
         _vm._v(_vm._s(_vm._f("currency")(_vm.bank.money)))
@@ -81778,9 +81778,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

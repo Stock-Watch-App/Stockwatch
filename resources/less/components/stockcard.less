@@ -1,6 +1,14 @@
 @import (reference) '../_variables.less';
 @import (reference) '../_mixins.less';
 
+.media(@iPhone5OrSmaller, {
+    .stockard {
+        .hg-rating {
+            display: block;
+        }
+    }
+});
+
 .stockcard {
     display: grid;
     border: solid 1px @gray-hint;
@@ -51,11 +59,15 @@
     .hg-rating {
         grid-column: ~'2/3';
         grid-row: ~'2/3';
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+
         .px-rem(padding, 8);
+
+        .media(@min-tablet, {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        });
     }
 
     .rating-wrap {
