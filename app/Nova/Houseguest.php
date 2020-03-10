@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -35,7 +36,9 @@ class Houseguest extends Resource
                 'active' => 'Active',
                 'evicted' => 'Evicted'
             ]),
-            Avatar::make('Image')->disk('public')
+            Avatar::make('Image')->disk('public'),
+
+            HasMany::make('Ratings')
         ];
     }
 }

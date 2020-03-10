@@ -11,7 +11,7 @@ class Rating extends Resource
 {
     public static $model = 'App\Models\Rating';
 
-    public static $title = 'id';
+    public static $title = 'rating';
 
     public static $search = [
         'id',
@@ -20,10 +20,10 @@ class Rating extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('User'),
-            BelongsTo::make('Houseguest'),
+            BelongsTo::make('User')->sortable(),
+            BelongsTo::make('Houseguest')->sortable(),
             Number::make('Rating'),
-            Number::make('Week'),
+            Number::make('Week')->sortable(),
         ];
     }
 }

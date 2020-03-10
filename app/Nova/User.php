@@ -4,11 +4,13 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Avatar;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -42,10 +44,20 @@ class User extends Resource
                     ->creationRules('required', 'string', 'min:8')
                     ->updateRules('nullable', 'string', 'min:8'),
 
-//            Text::make('Logged In Via', 'provider'),
+            Text::make('Logged In Via', 'provider'),
+
+            HasMany::make('Ratings'),
 
             \Vyuldashev\NovaPermission\RoleBooleanGroup::make('Roles'),
             \Vyuldashev\NovaPermission\PermissionBooleanGroup::make('Permissions'),
         ];
+    }
+
+    public static function relatableQuery(NovaRequest $request, $query)
+    {
+        if ($request->route('resource') === 'ratings') {
+            return $query->role('lfc');
+        }
+        return $query;
     }
 }
