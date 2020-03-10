@@ -46,8 +46,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-//        Gate::before(static function ($user, $ability) {
-//            return $user->hasRole('super admin') || env('APP_ENV') === 'local' ? true : null;
-//        });
+        Gate::before(static function ($user, $ability) {
+            return $user->hasRole('super admin') || env('APP_ENV') === 'local' ? true : null;
+        });
     }
 }

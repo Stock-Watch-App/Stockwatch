@@ -48,10 +48,10 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'impersonate']);
 
         Role::firstOrCreate(['name' => 'lfc'])
-            ->givePermissionTo(['view houseguest', 'view season', 'view rating', 'create rating', 'update rating', 'delete rating']);
+            ->givePermissionTo(['view houseguest', 'view season', 'view rating', 'create rating', 'update rating', 'delete rating', 'view user']);
 
-//        if (env('APP_ENV', 'production') === 'local') {
-//            \App\Models\User::find(1)->assignRole('super admin');
-//        }
+        if (env('APP_ENV', 'production') === 'local') {
+            \App\Models\User::find(1)->assignRole('super admin');
+        }
     }
 }
