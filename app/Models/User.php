@@ -47,8 +47,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function setAvatar($avatar)
     {
         $path = "/users/images/user-{$this->id}_avatar.jpg";
-        Storage::disk('local')->put($path, file_get_contents($avatar));
-        $this->avatar = $path;
+        if ($contents = file_get_contents($avatar)) {
+            Storage::disk('local')->put($path, $contents);
+            $this->avatar = $path;
+        }
         return $this;
     }
 }
