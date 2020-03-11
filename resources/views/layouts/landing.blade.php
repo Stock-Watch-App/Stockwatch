@@ -25,5 +25,7 @@
             @yield('content')
         </main>
     </div>
+    @component('fathom')
+    @endcomponent
 </body>
 </html>
