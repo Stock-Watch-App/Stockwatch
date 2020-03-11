@@ -192,7 +192,6 @@
         <p>&copy; {{ date('Y') }} Reality Stock Watch. All Rights Reserved.</p>
     </footer>
 </div>
-@component('fathom')
-@endcomponent
+@include('fathom')
 </body>
 </html>
