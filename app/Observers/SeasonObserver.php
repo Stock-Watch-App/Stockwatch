@@ -31,7 +31,7 @@ class SeasonObserver
                         Price::create(['price' => $new_price, 'houseguest_id' => $houseguest->id, 'week' => $week]);
                     }
                     if ($season->getOriginal('status') === 'pre-season') {
-                        dump(Price::create(['price' => $houseguest->current_rate, 'houseguest_id' => $houseguest->id, 'week' => $week]));
+                        Price::create(['price' => $houseguest->current_rate, 'houseguest_id' => $houseguest->id, 'week' => $week]);
                     }
                 }
             }

@@ -97,7 +97,7 @@
             submit() {
                 this.saving = true;
                 //save to DB
-                if (this.mutableBank.money > 0) {
+                if (this.mutableBank.money >= 0) {
                     let stocks = [];
                     this.mutableStocks.forEach(function (stock) {
                         stocks.push({

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Formula;
 use App\Models\Houseguest;
+use App\Models\User;
 use App\Models\Week;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,10 +42,7 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $f = new Formula();
-        $week = Week::current()->week;
-        $h = Houseguest::find(1);
-        (int)round($h->ratings()->where('week', $week - 1)->pluck('rating')->sum() / 4);
-        $h->prices()->where('week', $week - 1)->first()->value('price');
+        $u = User::role('lfc')->get();
+            dump($u);
     }
 }
