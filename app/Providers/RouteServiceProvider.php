@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/trades'; // TODO: this should be the new dashboard page
 
     /**
      * Define your route model bindings, pattern filters, etc.
