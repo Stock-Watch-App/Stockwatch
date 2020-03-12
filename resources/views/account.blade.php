@@ -14,7 +14,14 @@
 {{--                <!-- <p>image requirements</p> -->--}}
 {{--            </div>--}}
 {{--        </div>--}}
-
+        <div>
+            Not {{ $user->name }}?
+            <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
         <div class="edit-profile">
             <form method="POST" action="{{ route('account.update') }}">
                 @csrf

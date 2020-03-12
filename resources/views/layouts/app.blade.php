@@ -126,8 +126,7 @@
                 </li>
                 <li>
                     <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <figure>
                             <font-awesome-icon icon="sign-out-alt" fixed-width/>
                         </figure>
