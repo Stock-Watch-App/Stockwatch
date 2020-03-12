@@ -5,21 +5,27 @@
     display: grid;
     grid-gap: 2rem;
     grid-template:
-        "headline" auto
-        "photo" auto
-        "fields" auto
+        "headline" min-content
+        "logout" min-content
+        // "photo" auto
+        "fields" min-content
         ~'/ 1fr';
 
-    h2 {
+    h3 {
         grid-area: headline;
+        margin-bottom: 0;
     }
 
-    .profile-image-edit {
-        grid-area: photo;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+    .logout {
+        grid-area: logout;
     }
+
+    // .profile-image-edit {
+    //     grid-area: photo;
+    //     display: flex;
+    //     flex-direction: row;
+    //     align-items: center;
+    // }
 
     .image-edit-button {
         display: flex;
@@ -34,7 +40,8 @@
     .media(@min-tablet, {
         grid-template:
             "headline headline" auto
-            "photo photo" auto
+            "logout ." auto
+            // "photo photo" auto
             "fields ." auto
             ~'/ 1fr 1fr';
     });

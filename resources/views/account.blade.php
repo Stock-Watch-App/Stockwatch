@@ -14,7 +14,7 @@
 {{--                <!-- <p>image requirements</p> -->--}}
 {{--            </div>--}}
 {{--        </div>--}}
-        <div>
+        <div class="logout">
             Not {{ $user->name }}?
             <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
