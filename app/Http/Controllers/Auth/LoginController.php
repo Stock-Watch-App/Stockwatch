@@ -7,9 +7,11 @@ use App\Models\User;
 use App\Models\Image;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Exception;
 
 class LoginController extends Controller
 {
@@ -66,6 +68,11 @@ class LoginController extends Controller
 
     private function createOrGetUser($providerUser, $provider)
     {
+        if (User::where('provider', $provider)->where('provider_user_id', $providerUser->getId())->get()->count() > 1) {
+            Session::flash('error', 'Unable to process request. Error: User Collision has occurred.', true);
+            abort(500);
+        }
+
         $user = User::where('provider', $provider)
                     ->where('provider_user_id', $providerUser->getId())
                     ->first();
@@ -75,14 +82,21 @@ class LoginController extends Controller
             return $user;
         } else {
             $email = $providerUser->getEmail() ?? $providerUser->user['email'];
+
+            if (User::where('email', $email)->get()->count() > 1) {
+                Session::flash('error', 'Unable to process request. Error: Account Collision has occurred.', true);
+                abort(500);
+            }
+
             //Check if user with same email address exist
             $user = User::where('email', $email)->first();
 
-            //Create user if dont'exist
+
+            //Create user if don't exist
             if (!$user) {
                 $user = User::create([
-                    'email'            => $email,
-                    'name'             => $providerUser->getName(),
+                    'email' => $email,
+                    'name'  => $providerUser->getName(),
                 ]);
                 $user->provider = $provider;
                 $user->provider_user_id = $providerUser->getId();

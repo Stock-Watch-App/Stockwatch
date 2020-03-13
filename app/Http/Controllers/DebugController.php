@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Week;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DebugController extends Controller
 {
@@ -42,7 +43,7 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $u = User::role('lfc')->get();
-            dump($u);
+            Session::flash('error', 'Unable to process request.Error: User Collision has occurred.', true);
+            abort(500);
     }
 }
