@@ -53,6 +53,13 @@ class User extends Resource
         ];
     }
 
+    public function cards(Request $request)
+    {
+        return [
+          new Metrics\UserCount
+        ];
+    }
+
     public static function relatableQuery(NovaRequest $request, $query)
     {
         if ($request->route('resource') === 'ratings') {
