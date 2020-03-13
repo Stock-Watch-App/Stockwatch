@@ -177,7 +177,9 @@
             <div id="collision-banner" class="ohno flash__message">
                 <p>
                     There has been an issue detected with this account. You may have experienced this as your
-                    username changing or the wrong stocks being purchased.
+                    username changing or the wrong stocks being purchased. (If you have observed neither of
+                    these effects and you think you may be seeing this message in error, you are welcome to
+                    reach out to us at the email below for confirmation)
                 </p>
                 <p>
                     Unfortunately, correcting the issue will result in the complete loss of any data associated
