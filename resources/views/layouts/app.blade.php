@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="app" class="app-wrapper">
-    <!-- <flash-message class="myCustomClass"></flash-message> -->
+<!-- <flash-message class="myCustomClass"></flash-message> -->
     <aside>
         <button class="button-base toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <font-awesome-icon icon="bars" size="lg"/>
@@ -173,6 +173,24 @@
         </div>
     </nav>
     <main id="panel" class="app-content">
+        @if(Auth::user()->id === 58)
+            <div id="collision-banner" class="ohno flash__message">
+                <p>
+                    There has been an issue detected with this account. You may have experienced this as your
+                    username changing or the wrong stocks being purchased.
+                </p>
+                <p>
+                    Unfortunately, correcting the issue will result in the complete loss of any data associated
+                    with this account. To continue playing the Stockwatch, please sign in using a different social network.
+                </p>
+                <p>
+                    Since the market is already closed for the week, if you email us us at
+                    <a href="mailto:hello@realitystockwatch.com">hello@realitystockwatch.com</a> with both your new
+                    username and the social network you signed in with, we will assign your account a credit to
+                    compensate for the loss of stocks.
+                </p>
+            </div>
+        @endif
         @yield('content')
     </main>
     <footer class="footer">
