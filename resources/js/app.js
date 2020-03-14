@@ -15,6 +15,10 @@ Vue.use(VueTailwind)
 import VueFlashMessage from 'vue-flash-message';
 Vue.use(VueFlashMessage);
 
+import SmartTable from 'vuejs-smart-table'
+Vue.use(SmartTable)
+
+
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)

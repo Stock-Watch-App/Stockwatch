@@ -1,0 +1,14 @@
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
+
+.tag {
+    .font-unit-rem(14);
+    font-variation-settings: @base-font-weight-bold;
+    border-radius: @border-radius;
+
+    &.lfc {
+        background-color: @purple;
+        color: @white;
+        .px-rem-padding(2, 4, 2, 4);
+    }
+}

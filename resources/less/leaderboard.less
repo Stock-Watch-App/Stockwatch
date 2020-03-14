@@ -1,0 +1,40 @@
+@import (reference)  './_variables.less';
+@import (reference) './_mixins.less';
+
+.leaderboard-wrap {
+    grid-column: ~'1/-1';
+    overflow-x: auto;
+}
+
+.leaderboard-table {
+    table-layout: auto;
+    border-collapse: collapse;
+    border: 1px solid @border;
+
+    th, td, tr {
+        .px-rem-padding(8, 16, 8, 16);
+        border: 1px solid @border;
+    }
+
+    tr {
+        &:nth-of-type(even) {
+            background: @gray-hint;
+        }
+    }
+
+    thead {
+        .font-unit-rem(14);
+    }
+
+    .user-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: none;
+
+        span {
+            .px-rem(margin-right, 8);
+        }
+    }
+
+}

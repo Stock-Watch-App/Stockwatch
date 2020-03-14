@@ -67,14 +67,14 @@
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span> </a>
             </li>
-            <!-- <li>
-                <a href="/" title="Leaderboard" class="item-wrap">
+            <li>
+                <a href="/leaderboard" title="Leaderboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="award" fixed-width />
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Leaderboard</span>
                 </a>
-            </li> -->
+            </li>
             <!-- <li>
                 <a href="/" title="History" class="item-wrap">
                     <figure>
