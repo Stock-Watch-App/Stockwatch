@@ -15107,8 +15107,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'BasicFiltering',
+  props: {
+    houseguest: Object
+  },
+  computed: {
+    houseguestImage: function houseguestImage() {
+      return '/storage' + this.houseguest.image;
+    }
+  },
   data: function data() {
     return {
       filters: {
@@ -52954,7 +52967,15 @@ var render = function() {
                   {},
                   _vm._l(displayData, function(row) {
                     return _c("tr", { key: row.guid }, [
-                      _c("td", [_vm._v(_vm._s(row.rank))]),
+                      _c("td", [
+                        _c("div", { staticClass: "rank-num rank-1" }, [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(row.rank) +
+                              "\n            "
+                          )
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("td", { staticClass: "user-row" }, [
                         _c("span", [_vm._v(_vm._s(row.username))]),
@@ -53008,15 +53029,27 @@ var render = function() {
             "thead",
             { attrs: { slot: "head" }, slot: "head" },
             [
-              _c("v-th", { attrs: { sortKey: "rank", defaultSort: "asc" } }, [
-                _vm._v("Rank")
-              ]),
+              _c(
+                "v-th",
+                {
+                  staticClass: "rank-sort",
+                  attrs: { sortKey: "rank", defaultSort: "asc" }
+                },
+                [_vm._v("Rank")]
+              ),
               _vm._v(" "),
               _c("th", [_vm._v("Username")]),
               _vm._v(" "),
               _c("th", [_vm._v("Networth")]),
               _vm._v(" "),
-              _c("th", [_vm._v("houseguest1")]),
+              _c("th", [
+                _c("img", {
+                  attrs: {
+                    src: _vm.houseguestImage,
+                    alt: _vm.houseguest.nickname
+                  }
+                })
+              ]),
               _vm._v(" "),
               _c("th", [_vm._v("houseguest2")]),
               _vm._v(" "),
@@ -84006,7 +84039,8 @@ files.keys().map(function (key) {
 });
 Vue.component('stock-card', __webpack_require__(/*! ./components/trades/StockCard.vue */ "./resources/js/components/trades/StockCard.vue")["default"]);
 Vue.component('trade-panel', __webpack_require__(/*! ./components/trades/Panel.vue */ "./resources/js/components/trades/Panel.vue")["default"]);
-Vue.component('projection-item', __webpack_require__(/*! ./components/projections/ProjectionItem.vue */ "./resources/js/components/projections/ProjectionItem.vue")["default"]); // import StockCard from './components/StockCard.vue';
+Vue.component('projection-item', __webpack_require__(/*! ./components/projections/ProjectionItem.vue */ "./resources/js/components/projections/ProjectionItem.vue")["default"]);
+Vue.component('leaderboard-table', __webpack_require__(/*! ./components/leaderboard/LeaderboardTable.vue */ "./resources/js/components/leaderboard/LeaderboardTable.vue")["default"]); // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
 // import Slideout from 'vue-slideout'
 //=== FILTERS ===//

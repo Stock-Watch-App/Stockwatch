@@ -9,21 +9,22 @@
 .leaderboard-table {
     table-layout: auto;
     border-collapse: collapse;
-    border: 1px solid @border;
 
     th, td, tr {
         .px-rem-padding(8, 16, 8, 16);
-        border: 1px solid @border;
     }
 
     tr {
-        &:nth-of-type(even) {
-            background: @gray-hint;
-        }
+        border-bottom: 1px solid @gray-barely;
     }
 
     thead {
         .font-unit-rem(14);
+        background-color: @gray-barely;
+    }
+
+    .rank-sort {
+        display: flex;
     }
 
     .user-row {
@@ -35,6 +36,31 @@
         span {
             .px-rem(margin-right, 8);
         }
+    }
+
+    .rank-num {
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        line-height: 1.5;
+        color: #fff;
+        text-align: center;
+        font-style: normal;
+        border-radius: 50%;
+        font-variation-settings: @base-font-weight-bold;
+        .font-unit-rem(16);
+    }
+
+    .rank-1 {
+        background-color: @primary-blue;
+    }
+
+    .rank-2 {
+        background-color: @primary-blue-desat-01;
+    }
+
+    .rank-3 {
+        background-color: @primary-blue-desat-02;
     }
 
 }

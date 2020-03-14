@@ -850,19 +850,21 @@ a:active {
 .leaderboard-table {
   table-layout: auto;
   border-collapse: collapse;
-  border: 1px solid hsl(240, 4%, 75%);
 }
 .leaderboard-table th,
 .leaderboard-table td,
 .leaderboard-table tr {
   padding: 0.5rem 1rem 0.5rem 1rem;
-  border: 1px solid hsl(240, 4%, 75%);
 }
-.leaderboard-table tr:nth-of-type(even) {
-  background: hsl(240, 4%, 90%);
+.leaderboard-table tr {
+  border-bottom: 1px solid hsl(240, 4%, 95%);
 }
 .leaderboard-table thead {
   font-size: 0.875rem;
+  background-color: hsl(240, 4%, 95%);
+}
+.leaderboard-table .rank-sort {
+  display: flex;
 }
 .leaderboard-table .user-row {
   display: flex;
@@ -872,6 +874,27 @@ a:active {
 }
 .leaderboard-table .user-row span {
   margin-right: 0.5rem;
+}
+.leaderboard-table .rank-num {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  font-style: normal;
+  border-radius: 50%;
+  font-variation-settings: "wght" 700;
+  font-size: 1rem;
+}
+.leaderboard-table .rank-1 {
+  background-color: hsl(224, 90%, 53%);
+}
+.leaderboard-table .rank-2 {
+  background-color: hsl(224, 80%, 60%);
+}
+.leaderboard-table .rank-3 {
+  background-color: hsl(224, 80%, 80%);
 }
 .card {
   border-radius: 4px;

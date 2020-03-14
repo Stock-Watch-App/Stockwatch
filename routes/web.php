@@ -2,6 +2,7 @@
 
 use App\Http\Admin\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
@@ -38,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
 //    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/trades', [TradeController::class, 'index'])->name('dashboard');
+
+    Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
+
     Route::get('/trades', [TradeController::class, 'index'])->name('trade');
     Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);
     Route::get('/landing', [HomeController::class, 'landing']);
@@ -48,9 +52,9 @@ Route::get('/faq', function () {
    return view('faq');
 });
 
-Route::get('/leaderboard', function () {
-    return view('leaderboard');
- });
+// Route::get('/leaderboard', function () {
+//     return view('leaderboard');
+//  });
 
 
 Route::group(['middleware' => ['local']], function () {

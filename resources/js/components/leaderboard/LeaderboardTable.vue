@@ -12,10 +12,10 @@
         class="leaderboard-table"
       >
         <thead slot="head">
-            <v-th sortKey="rank" defaultSort="asc">Rank</v-th>
+            <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
             <th>Username</th>
             <th>Networth</th>
-            <th>houseguest1</th>
+            <th><img :src="houseguestImage" :alt="houseguest.nickname"></th>
             <th>houseguest2</th>
             <th>houseguest3</th>
             <th>houseguest4</th>
@@ -32,7 +32,12 @@
         </thead>
         <tbody slot="body" slot-scope="{displayData}">
         <tr v-for="row in displayData" :key="row.guid">
-            <td>{{ row.rank }}</td>
+            <td>
+                <!-- rank-1 rank-2 rank-3 -->
+                <div class="rank-num rank-1">
+                    {{ row.rank }}
+                </div>
+            </td>
             <td class="user-row">
                 <span>{{ row.username }}</span>
                 <span class="tag lfc">{{ row.attribute }}</span>
@@ -76,6 +81,14 @@
 <script>
     export default {
         name: 'BasicFiltering',
+        props: {
+            houseguest: Object
+        },
+        computed: {
+            houseguestImage: function () {
+                return '/storage' + this.houseguest.image;
+            },
+        },
         data: () => ({
             filters: {
             name: { value: '', keys: ['username'] }
