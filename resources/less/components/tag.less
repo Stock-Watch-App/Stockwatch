@@ -3,12 +3,39 @@
 
 .tag {
     .font-unit-rem(14);
+    line-height: @smallerLineHeight;
     font-variation-settings: @base-font-weight-bold;
     border-radius: @border-radius;
+    .px-rem-padding(2, 6, 2, 6);
 
     &.lfc {
-        background-color: @purple;
+        background-color: @purple-01;
+        letter-spacing: .125em;
         color: @white;
-        .px-rem-padding(2, 4, 2, 4);
+    }
+
+    &.rank-1 {
+        background-color: @rank-1;
+        color: @white;
+    }
+
+    &.rank-2 {
+        background-color: @rank-2;
+        color: @white;
+    }
+
+    &.rank-3 {
+        background-color: @rank-3;
+        color: @white;
+    }
+
+    &.rank-4 {
+        background-color: @rank-4;
+        color: @white;
+    }
+
+    &.rank-5 {
+        background-color: @rank-5;
+        color: @white;
     }
 }
