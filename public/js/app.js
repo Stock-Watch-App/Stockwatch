@@ -52911,6 +52911,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "leader-grid" },
     [
       _c("label", { staticClass: "label-hidden" }, [_vm._v("Filter by Name:")]),
       _vm._v(" "),
@@ -52923,7 +52924,7 @@ var render = function() {
             expression: "filters.name.value"
           }
         ],
-        staticClass: "input inline-width input-sharp mg-btm-md",
+        staticClass: "input inline-width input-sharp input-light mg-btm-md",
         attrs: { placeholder: "Search user..." },
         domProps: { value: _vm.filters.name.value },
         on: {

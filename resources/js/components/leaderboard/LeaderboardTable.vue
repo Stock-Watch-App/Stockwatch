@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="leader-grid">
       <label class="label-hidden">Filter by Name:</label>
-      <input class="input inline-width input-sharp mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
+      <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
 
       <v-table
         :data="users"
