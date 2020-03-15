@@ -52911,6 +52911,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "leader-grid" },
     [
       _c("label", { staticClass: "label-hidden" }, [_vm._v("Filter by Name:")]),
       _vm._v(" "),
@@ -52923,7 +52924,7 @@ var render = function() {
             expression: "filters.name.value"
           }
         ],
-        staticClass: "input inline-width input-sharp mg-btm-md",
+        staticClass: "input inline-width input-sharp input-light mg-btm-md",
         attrs: { placeholder: "Search user..." },
         domProps: { value: _vm.filters.name.value },
         on: {
@@ -52984,7 +52985,16 @@ var render = function() {
                           _vm._v(_vm._s(row.attribute))
                         ]),
                         _vm._v(" "),
-                        _c("span", [_vm._v(_vm._s(row.winner))])
+                        _c(
+                          "span",
+                          { staticClass: "tag rank-1" },
+                          [
+                            _c("font-awesome-icon", {
+                              attrs: { icon: "trophy" }
+                            })
+                          ],
+                          1
+                        )
                       ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(row.netWorth))])
@@ -53010,7 +53020,7 @@ var render = function() {
                 [_vm._v("Rank")]
               ),
               _vm._v(" "),
-              _c("th", [_vm._v("Username")]),
+              _c("th", [_vm._v("User")]),
               _vm._v(" "),
               _c("th", [_vm._v("Networth")])
             ],
@@ -83959,7 +83969,7 @@ Vue.use(vuejs_smart_table__WEBPACK_IMPORTED_MODULE_2__["default"]); // font awes
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUndoAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faEye"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faSpinner"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faChartLine"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInfoCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faChevronDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faMicrophone"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faBug"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faStar"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faArrowUp"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faArrowDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faBars"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faColumns"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faTwitch"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faTwitter"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faDiscord"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faFacebookF"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["faReddit"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faAward"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faHistory"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUserCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUserShield"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faSignOutAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faMinus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faUndoAlt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faEye"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faSpinner"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faChartLine"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faInfoCircle"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faChevronDown"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faMicrophone"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faBug"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__["faTrophy"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeIcon"]);
 /**
  * The following block of code may be used to automatically register your

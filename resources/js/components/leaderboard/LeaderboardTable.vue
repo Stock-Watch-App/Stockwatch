@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="leader-grid">
       <label class="label-hidden">Filter by Name:</label>
-      <input class="input inline-width input-sharp mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
+      <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
 
       <v-table
         :data="leaderboard"
@@ -13,7 +13,7 @@
       >
         <thead slot="head">
             <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
-            <th>Username</th>
+            <th>User</th>
             <th>Networth</th>
 <!--            <th><img :src="houseguestImage" :alt="houseguest.nickname"></th>-->
 <!--            <th>houseguest2</th>-->
@@ -41,7 +41,7 @@
             <td class="user-row">
                 <span>{{ row.username }}</span>
                 <span class="tag lfc">{{ row.attribute }}</span>
-                <span>{{ row.winner }}</span>
+                <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span>
             </td>
             <td>{{ row.netWorth }}</td>
 <!--            <td>{{ row.houseguest1 }}</td>-->
