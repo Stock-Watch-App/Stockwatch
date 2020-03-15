@@ -15115,11 +15115,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'BasicFiltering',
   props: {
-    houseguest: Object
+    houseguests: Object
   },
   computed: {
     houseguestImage: function houseguestImage() {
-      return '/storage' + this.houseguest.image;
+      return '';
     }
   },
   data: function data() {
@@ -52941,7 +52941,7 @@ var render = function() {
         {
           staticClass: "leaderboard-table",
           attrs: {
-            data: _vm.users,
+            data: _vm.leaderboard,
             filters: _vm.filters,
             currentPage: _vm.currentPage,
             pageSize: 5
@@ -52970,9 +52970,9 @@ var render = function() {
                       _c("td", [
                         _c("div", { staticClass: "rank-num rank-1" }, [
                           _vm._v(
-                            "\n                " +
+                            "\n                    " +
                               _vm._s(row.rank) +
-                              "\n            "
+                              "\n                "
                           )
                         ])
                       ]),
@@ -52987,35 +52987,7 @@ var render = function() {
                         _c("span", [_vm._v(_vm._s(row.winner))])
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.netWorth))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest1))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest2))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest3))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest4))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest5))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest6))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest7))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest8))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest9))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest10))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest11))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest12))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest13))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.houseguest14))])
+                      _c("td", [_vm._v(_vm._s(row.netWorth))])
                     ])
                   }),
                   0
@@ -53040,42 +53012,7 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("Username")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Networth")]),
-              _vm._v(" "),
-              _c("th", [
-                _c("img", {
-                  attrs: {
-                    src: _vm.houseguestImage,
-                    alt: _vm.houseguest.nickname
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest2")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest3")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest4")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest5")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest6")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest7")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest8")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest9")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest10")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest11")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest12")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest13")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("houseguest14")])
+              _c("th", [_vm._v("Networth")])
             ],
             1
           )
@@ -84594,9 +84531,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

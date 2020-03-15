@@ -64,6 +64,7 @@ Route::group(['middleware' => ['local']], function () {
 
     //=== DEBUG ===//
     Route::get('/xyz', [DebugController::class, 'xyz']);
+    Route::get('/leaderboard/calculate', [LeaderboardController::class, 'calculate']);
     Route::get('/debug/showme/{blade}', [DebugController::class, 'showme'])->where('blade', '.*');
 
 });

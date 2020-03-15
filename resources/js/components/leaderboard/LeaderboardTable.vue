@@ -4,7 +4,7 @@
       <input class="input inline-width input-sharp mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
 
       <v-table
-        :data="users"
+        :data="leaderboard"
         :filters="filters"
         :currentPage.sync="currentPage"
         :pageSize="5"
@@ -15,20 +15,20 @@
             <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
             <th>Username</th>
             <th>Networth</th>
-            <th><img :src="houseguestImage" :alt="houseguest.nickname"></th>
-            <th>houseguest2</th>
-            <th>houseguest3</th>
-            <th>houseguest4</th>
-            <th>houseguest5</th>
-            <th>houseguest6</th>
-            <th>houseguest7</th>
-            <th>houseguest8</th>
-            <th>houseguest9</th>
-            <th>houseguest10</th>
-            <th>houseguest11</th>
-            <th>houseguest12</th>
-            <th>houseguest13</th>
-            <th>houseguest14</th>
+<!--            <th><img :src="houseguestImage" :alt="houseguest.nickname"></th>-->
+<!--            <th>houseguest2</th>-->
+<!--            <th>houseguest3</th>-->
+<!--            <th>houseguest4</th>-->
+<!--            <th>houseguest5</th>-->
+<!--            <th>houseguest6</th>-->
+<!--            <th>houseguest7</th>-->
+<!--            <th>houseguest8</th>-->
+<!--            <th>houseguest9</th>-->
+<!--            <th>houseguest10</th>-->
+<!--            <th>houseguest11</th>-->
+<!--            <th>houseguest12</th>-->
+<!--            <th>houseguest13</th>-->
+<!--            <th>houseguest14</th>-->
         </thead>
         <tbody slot="body" slot-scope="{displayData}">
         <tr v-for="row in displayData" :key="row.guid">
@@ -44,20 +44,20 @@
                 <span>{{ row.winner }}</span>
             </td>
             <td>{{ row.netWorth }}</td>
-            <td>{{ row.houseguest1 }}</td>
-            <td>{{ row.houseguest2 }}</td>
-            <td>{{ row.houseguest3 }}</td>
-            <td>{{ row.houseguest4 }}</td>
-            <td>{{ row.houseguest5 }}</td>
-            <td>{{ row.houseguest6 }}</td>
-            <td>{{ row.houseguest7 }}</td>
-            <td>{{ row.houseguest8 }}</td>
-            <td>{{ row.houseguest9 }}</td>
-            <td>{{ row.houseguest10 }}</td>
-            <td>{{ row.houseguest11 }}</td>
-            <td>{{ row.houseguest12 }}</td>
-            <td>{{ row.houseguest13 }}</td>
-            <td>{{ row.houseguest14 }}</td>
+<!--            <td>{{ row.houseguest1 }}</td>-->
+<!--            <td>{{ row.houseguest2 }}</td>-->
+<!--            <td>{{ row.houseguest3 }}</td>-->
+<!--            <td>{{ row.houseguest4 }}</td>-->
+<!--            <td>{{ row.houseguest5 }}</td>-->
+<!--            <td>{{ row.houseguest6 }}</td>-->
+<!--            <td>{{ row.houseguest7 }}</td>-->
+<!--            <td>{{ row.houseguest8 }}</td>-->
+<!--            <td>{{ row.houseguest9 }}</td>-->
+<!--            <td>{{ row.houseguest10 }}</td>-->
+<!--            <td>{{ row.houseguest11 }}</td>-->
+<!--            <td>{{ row.houseguest12 }}</td>-->
+<!--            <td>{{ row.houseguest13 }}</td>-->
+<!--            <td>{{ row.houseguest14 }}</td>-->
         </tr>
         </tbody>
       </v-table>
@@ -82,11 +82,11 @@
     export default {
         name: 'BasicFiltering',
         props: {
-            houseguest: Object
+            houseguests: Object
         },
         computed: {
             houseguestImage: function () {
-                return '/storage' + this.houseguest.image;
+                return '';
             },
         },
         data: () => ({
