@@ -15112,10 +15112,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'BasicFiltering',
   props: {
-    houseguests: Object
+    leaderboard: Array
   },
   computed: {
     houseguestImage: function houseguestImage() {
@@ -52966,39 +52969,46 @@ var render = function() {
                 return _c(
                   "tbody",
                   {},
-                  _vm._l(displayData, function(row) {
-                    return _c("tr", { key: row.guid }, [
-                      _c("td", [
-                        _c("div", { staticClass: "rank-num rank-1" }, [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(row.rank) +
-                              "\n                "
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "user-row" }, [
-                        _c("span", [_vm._v(_vm._s(row.username))]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "tag lfc" }, [
-                          _vm._v(_vm._s(row.attribute))
+                  _vm._l(displayData, function(leaderboard) {
+                    return _c(
+                      "tr",
+                      { key: leaderboard.id },
+                      [
+                        _c("td", [
+                          _c("div", { staticClass: "rank-num rank-1" }, [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(leaderboard.id) +
+                                "\n                "
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "span",
-                          { staticClass: "tag rank-1" },
-                          [
-                            _c("font-awesome-icon", {
-                              attrs: { icon: "trophy" }
-                            })
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(row.netWorth))])
-                    ])
+                        _c("td", { staticClass: "user-row" }, [
+                          _c("span", [_vm._v(_vm._s(leaderboard.user_id))]),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "tag rank-1" },
+                            [
+                              _c("font-awesome-icon", {
+                                attrs: { icon: "trophy" }
+                              })
+                            ],
+                            1
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(leaderboard.networth))]),
+                        _vm._v(" "),
+                        _vm._l(_vm.stocks, function(stock) {
+                          return _c("td", { key: stock.id }, [
+                            _vm._v(_vm._s(leaderboard.networth))
+                          ])
+                        })
+                      ],
+                      2
+                    )
                   }),
                   0
                 )
@@ -53027,19 +53037,7 @@ var render = function() {
             1
           )
         ]
-      ),
-      _vm._v(" "),
-      _c("smart-pagination", {
-        attrs: { currentPage: _vm.currentPage, totalPages: _vm.totalPages },
-        on: {
-          "update:currentPage": function($event) {
-            _vm.currentPage = $event
-          },
-          "update:current-page": function($event) {
-            _vm.currentPage = $event
-          }
-        }
-      })
+      )
     ],
     1
   )
@@ -84541,9 +84539,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

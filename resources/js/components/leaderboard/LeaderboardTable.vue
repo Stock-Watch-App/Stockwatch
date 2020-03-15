@@ -15,6 +15,8 @@
             <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
             <th>User</th>
             <th>Networth</th>
+            <!-- <th v-for="houseguest in houseguests" key="houseguest.id"
+            ></th> -->
 <!--            <th><img :src="houseguestImage" :alt="houseguest.nickname"></th>-->
 <!--            <th>houseguest2</th>-->
 <!--            <th>houseguest3</th>-->
@@ -31,19 +33,20 @@
 <!--            <th>houseguest14</th>-->
         </thead>
         <tbody slot="body" slot-scope="{displayData}">
-        <tr v-for="row in displayData" :key="row.guid">
+        <tr v-for="leaderboard in displayData" :key="leaderboard.id">
             <td>
                 <!-- rank-1 rank-2 rank-3 -->
                 <div class="rank-num rank-1">
-                    {{ row.rank }}
+                    {{ leaderboard.id }}
                 </div>
             </td>
             <td class="user-row">
-                <span>{{ row.username }}</span>
-                <span class="tag lfc">{{ row.attribute }}</span>
+                <span>{{ leaderboard.user_id }}</span>
+                <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
                 <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span>
             </td>
-            <td>{{ row.netWorth }}</td>
+            <td>{{ leaderboard.networth }}</td>
+            <td v-for="stock in stocks" v-bind:key="stock.id">{{ leaderboard.networth }}</td>
 <!--            <td>{{ row.houseguest1 }}</td>-->
 <!--            <td>{{ row.houseguest2 }}</td>-->
 <!--            <td>{{ row.houseguest3 }}</td>-->
@@ -61,10 +64,10 @@
         </tr>
         </tbody>
       </v-table>
-      <smart-pagination
+      <!-- <smart-pagination
         :currentPage.sync="currentPage"
         :totalPages="totalPages"
-      />
+      /> -->
       <!-- <nav class="smart-pagination">
         <ul class="pagination">
             <li class="page-item">
@@ -82,7 +85,7 @@
     export default {
         name: 'BasicFiltering',
         props: {
-            houseguests: Object
+            leaderboard: Array
         },
         computed: {
             houseguestImage: function () {
