@@ -15083,7 +15083,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     leaderboard: Array,
@@ -52870,7 +52869,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "table-wrap" },
+        { staticClass: "table-wrap mg-btm-md" },
         [
           _c(
             "v-table",
@@ -52907,13 +52906,26 @@ var render = function() {
                           { key: leaderboard.id },
                           [
                             _c("td", [
-                              _c("div", { staticClass: "rank-num rank-1" }, [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(leaderboard.id) +
-                                    "\n                    "
-                                )
-                              ])
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "rank-num",
+                                  class: {
+                                    "rank-1": leaderboard.id == 1,
+                                    "rank-2": leaderboard.id == 2,
+                                    "rank-3": leaderboard.id == 3,
+                                    "rank-4": leaderboard.id == 4,
+                                    "rank-5": leaderboard.id == 5
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(leaderboard.id) +
+                                      "\n                    "
+                                  )
+                                ]
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "user-row" }, [

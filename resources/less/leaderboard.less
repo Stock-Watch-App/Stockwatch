@@ -125,7 +125,6 @@
         width: 1.5em;
         height: 1.5em;
         line-height: 1.5;
-        color: #fff;
         text-align: center;
         font-style: normal;
         border-radius: 50%;
@@ -135,41 +134,76 @@
 
     .rank-1 {
         background-color: @rank-1;
+        color: @white;
     }
 
     .rank-2 {
         background-color: @rank-2;
+        color: @white;
     }
 
     .rank-3 {
         background-color: @rank-3;
+        color: @white;
     }
 
     .rank-4 {
         background-color: @rank-4;
+        color: @white;
     }
 
     .rank-5 {
         background-color: @rank-5;
+        color: @white;
     }
 }
 
 .pagination {
     display: flex;
     flex-direction: row;
+    .font-unit-rem(14);
 }
 
-.page-link {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+.page-item {
+    &.active {
+        .page-link {
+            background-color: @link;
+            color: @white;
+            cursor: not-allowed;
+        }
+    }
 
-    svg {
-        vertical-align: middle;
+    &:not(.active):not(.disabled) {
+        .page-link:hover {
+            background-color: @gray-barely;
+        }
+    }
+
+    &.disabled {
+        .page-link {
+            background-color: @disabled-bg;
+            color: @disabled-text;
+        }
+    }
+
+    &:first-child, &:last-child {
+        .page-link {
+            color: @black;
+        }
+    }
+
+    .page-link {
+        position: relative;
+        display: block;
+        padding: 4px 8px;
+        line-height: 1.25;
+        color: @link;
+        background-color: @white;
+        margin-right: 8px;
+
+        svg {
+            vertical-align: middle;
+            width: .5rem;
+        }
     }
 }

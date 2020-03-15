@@ -951,7 +951,6 @@ a:active {
   width: 1.5em;
   height: 1.5em;
   line-height: 1.5;
-  color: #fff;
   text-align: center;
   font-style: normal;
   border-radius: 50%;
@@ -960,35 +959,57 @@ a:active {
 }
 .leaderboard-table .rank-1 {
   background-color: hsl(146, 84%, 31%);
+  color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .rank-2 {
   background-color: hsl(169, 100%, 38%);
+  color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .rank-3 {
   background-color: hsl(209, 100%, 41%);
+  color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .rank-4 {
   background-color: hsl(217, 100%, 41%);
+  color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .rank-5 {
   background-color: hsl(287, 100%, 41%);
+  color: hsl(0, 0%, 100%);
 }
 .pagination {
   display: flex;
   flex-direction: row;
+  font-size: 0.875rem;
 }
-.page-link {
+.page-item.active .page-link {
+  background-color: hsl(224, 90%, 53%);
+  color: hsl(0, 0%, 100%);
+  cursor: not-allowed;
+}
+.page-item:not(.active):not(.disabled) .page-link:hover {
+  background-color: hsl(240, 4%, 95%);
+}
+.page-item.disabled .page-link {
+  background-color: hsl(240, 4%, 90%);
+  color: hsl(240, 5%, 30%);
+}
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+  color: hsl(0, 0%, 0%);
+}
+.page-item .page-link {
   position: relative;
   display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
+  padding: 4px 8px;
   line-height: 1.25;
-  color: #007bff;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  color: hsl(224, 90%, 53%);
+  background-color: hsl(0, 0%, 100%);
+  margin-right: 8px;
 }
-.page-link svg {
+.page-item .page-link svg {
   vertical-align: middle;
+  width: 0.5rem;
 }
 .card {
   border-radius: 4px;

@@ -3,7 +3,7 @@
       <label class="label-hidden">Filter by Name:</label>
       <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
 
-        <div class="table-wrap">
+        <div class="table-wrap mg-btm-md">
             <v-table
                 :data="leaderboard"
                 :filters="filters"
@@ -24,8 +24,7 @@
                 <tbody slot="body" slot-scope="{displayData}">
                 <tr v-for="leaderboard in displayData" :key="leaderboard.id">
                     <td>
-                        <!-- rank-1 rank-2 rank-3 -->
-                        <div class="rank-num rank-1">
+                        <div class="rank-num" v-bind:class="{'rank-1':leaderboard.id == 1, 'rank-2':leaderboard.id == 2, 'rank-3':leaderboard.id == 3, 'rank-4':leaderboard.id == 4, 'rank-5':leaderboard.id == 5}">
                             {{ leaderboard.id }}
                         </div>
                     </td>
