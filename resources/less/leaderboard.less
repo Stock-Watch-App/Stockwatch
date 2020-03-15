@@ -52,6 +52,10 @@
         }
     }
 
+    .table-wrap {
+        overflow-x: auto;
+    }
+
     .media(@min-tablet, {
         h3 {
             grid-column: ~'1/6';
@@ -76,10 +80,12 @@
 
     th, td, tr {
         .px-rem-padding(8, 16, 8, 16);
+        vertical-align: middle;
     }
 
     tr {
         border-bottom: 1px solid @gray-barely;
+        text-align: center;
     }
 
     thead {
@@ -88,7 +94,11 @@
     }
 
     .rank-sort {
-        display: flex;
+        min-width: 85px;
+    }
+
+    .networth {
+        font-variation-settings: @base-font-weight-bold;
     }
 
     .user-row {
@@ -100,6 +110,14 @@
         span {
             .px-rem(margin-right, 8);
         }
+    }
+
+    .hg-img-table {
+        width: 30px;
+        height: 30px;
+        border: solid 1px @border;
+        vertical-align: middle;
+        border-radius: @border-radius;
     }
 
     .rank-num {
@@ -134,5 +152,24 @@
     .rank-5 {
         background-color: @rank-5;
     }
+}
 
+.pagination {
+    display: flex;
+    flex-direction: row;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+
+    svg {
+        vertical-align: middle;
+    }
 }

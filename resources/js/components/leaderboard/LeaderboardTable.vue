@@ -3,54 +3,50 @@
       <label class="label-hidden">Filter by Name:</label>
       <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
 
-      <v-table
-        :data="leaderboard"
-        :filters="filters"
-        :currentPage.sync="currentPage"
-        :pageSize="5"
-        @totalPagesChanged="totalPages = $event"
-        class="leaderboard-table"
-      >
-        <thead slot="head">
-            <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
-            <th>User</th>
-            <th>Networth</th>
-            <th v-for="houseguest in houseguests" key="houseguest.id"
-            ><img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" height="25px" width="25px"></th>
-        </thead>
-        <tbody slot="body" slot-scope="{displayData}">
-        <tr v-for="leaderboard in displayData" :key="leaderboard.id">
-            <td>
-                <!-- rank-1 rank-2 rank-3 -->
-                <div class="rank-num rank-1">
-                    {{ leaderboard.id }}
-                </div>
-            </td>
-            <td class="user-row">
-                <span>{{ leaderboard.user.name }}</span>
-                <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
-                <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span>
-            </td>
-            <td>{{ leaderboard.networth }}</td>
-            <td v-for="houseguest in houseguests"
-            >{{ leaderboard.stocks[houseguest.id]}}</td>
-        </tr>
-        </tbody>
-      </v-table>
-      <!-- <smart-pagination
-        :currentPage.sync="currentPage"
-        :totalPages="totalPages"
-      /> -->
-      <!-- <nav class="smart-pagination">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link">1</a>
-                <a class="page-link">2</a>
-                <a class="page-link">3</a>
-            </li>
-        </ul>
-        </nav> -->
-        <!-- just put this here to test styles... -->
+        <div class="table-wrap">
+            <v-table
+                :data="leaderboard"
+                :filters="filters"
+                :currentPage.sync="currentPage"
+                :pageSize="3"
+                @totalPagesChanged="totalPages = $event"
+                class="leaderboard-table"
+            >
+                <thead slot="head">
+                    <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
+                    <th>Player</th>
+                    <th>Networth</th>
+                    <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
+                    >
+                        <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" class="hg-img-table">
+                    </th>
+                </thead>
+                <tbody slot="body" slot-scope="{displayData}">
+                <tr v-for="leaderboard in displayData" :key="leaderboard.id">
+                    <td>
+                        <!-- rank-1 rank-2 rank-3 -->
+                        <div class="rank-num rank-1">
+                            {{ leaderboard.id }}
+                        </div>
+                    </td>
+                    <td class="user-row">
+                        <span>{{ leaderboard.user.name }}</span>
+                        <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
+                        <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span>
+                    </td>
+                    <td class="networth">{{ leaderboard.networth | currency }}</td>
+                    <td v-for="houseguest in houseguests" v-bind:key="houseguest.id">
+                        {{ leaderboard.stocks[houseguest.id]}}
+                    </td>
+                </tr>
+                </tbody>
+            </v-table>
+        </div>
+
+        <smart-pagination
+            :currentPage.sync="currentPage"
+            :totalPages="totalPages"
+        />
     </div>
 </template>
 

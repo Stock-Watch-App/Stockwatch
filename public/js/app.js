@@ -15084,10 +15084,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     leaderboard: Array,
@@ -52873,116 +52869,144 @@ var render = function() {
       }),
       _vm._v(" "),
       _c(
-        "v-table",
-        {
-          staticClass: "leaderboard-table",
-          attrs: {
-            data: _vm.leaderboard,
-            filters: _vm.filters,
-            currentPage: _vm.currentPage,
-            pageSize: 5
-          },
-          on: {
-            "update:currentPage": function($event) {
-              _vm.currentPage = $event
-            },
-            "update:current-page": function($event) {
-              _vm.currentPage = $event
-            },
-            totalPagesChanged: function($event) {
-              _vm.totalPages = $event
-            }
-          },
-          scopedSlots: _vm._u([
-            {
-              key: "body",
-              fn: function(ref) {
-                var displayData = ref.displayData
-                return _c(
-                  "tbody",
-                  {},
-                  _vm._l(displayData, function(leaderboard) {
-                    return _c(
-                      "tr",
-                      { key: leaderboard.id },
-                      [
-                        _c("td", [
-                          _c("div", { staticClass: "rank-num rank-1" }, [
-                            _vm._v(
-                              "\n                " +
-                                _vm._s(leaderboard.id) +
-                                "\n            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "user-row" }, [
-                          _c("span", [_vm._v(_vm._s(leaderboard.user.name))]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            { staticClass: "tag rank-1" },
-                            [
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "trophy" }
-                              })
-                            ],
-                            1
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(leaderboard.networth))]),
-                        _vm._v(" "),
-                        _vm._l(_vm.houseguests, function(houseguest) {
-                          return _c("td", [
-                            _vm._v(_vm._s(leaderboard.stocks[houseguest.id]))
-                          ])
-                        })
-                      ],
-                      2
-                    )
-                  }),
-                  0
-                )
-              }
-            }
-          ])
-        },
+        "div",
+        { staticClass: "table-wrap" },
         [
           _c(
-            "thead",
-            { attrs: { slot: "head" }, slot: "head" },
+            "v-table",
+            {
+              staticClass: "leaderboard-table",
+              attrs: {
+                data: _vm.leaderboard,
+                filters: _vm.filters,
+                currentPage: _vm.currentPage,
+                pageSize: 3
+              },
+              on: {
+                "update:currentPage": function($event) {
+                  _vm.currentPage = $event
+                },
+                "update:current-page": function($event) {
+                  _vm.currentPage = $event
+                },
+                totalPagesChanged: function($event) {
+                  _vm.totalPages = $event
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "body",
+                  fn: function(ref) {
+                    var displayData = ref.displayData
+                    return _c(
+                      "tbody",
+                      {},
+                      _vm._l(displayData, function(leaderboard) {
+                        return _c(
+                          "tr",
+                          { key: leaderboard.id },
+                          [
+                            _c("td", [
+                              _c("div", { staticClass: "rank-num rank-1" }, [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(leaderboard.id) +
+                                    "\n                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "user-row" }, [
+                              _c("span", [
+                                _vm._v(_vm._s(leaderboard.user.name))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                { staticClass: "tag rank-1" },
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "trophy" }
+                                  })
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "networth" }, [
+                              _vm._v(
+                                _vm._s(_vm._f("currency")(leaderboard.networth))
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.houseguests, function(houseguest) {
+                              return _c("td", { key: houseguest.id }, [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(leaderboard.stocks[houseguest.id]) +
+                                    "\n                "
+                                )
+                              ])
+                            })
+                          ],
+                          2
+                        )
+                      }),
+                      0
+                    )
+                  }
+                }
+              ])
+            },
             [
               _c(
-                "v-th",
-                {
-                  staticClass: "rank-sort",
-                  attrs: { sortKey: "rank", defaultSort: "asc" }
-                },
-                [_vm._v("Rank")]
-              ),
-              _vm._v(" "),
-              _c("th", [_vm._v("User")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Networth")]),
-              _vm._v(" "),
-              _vm._l(_vm.houseguests, function(houseguest) {
-                return _c("th", { key: "houseguest.id" }, [
-                  _c("img", {
-                    attrs: {
-                      src: _vm.houseguestImage(houseguest),
-                      alt: houseguest.nickname,
-                      height: "25px",
-                      width: "25px"
-                    }
+                "thead",
+                { attrs: { slot: "head" }, slot: "head" },
+                [
+                  _c(
+                    "v-th",
+                    {
+                      staticClass: "rank-sort",
+                      attrs: { sortKey: "rank", defaultSort: "asc" }
+                    },
+                    [_vm._v("Rank")]
+                  ),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Player")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Networth")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.houseguests, function(houseguest) {
+                    return _c("th", { key: houseguest.id }, [
+                      _c("img", {
+                        staticClass: "hg-img-table",
+                        attrs: {
+                          src: _vm.houseguestImage(houseguest),
+                          alt: houseguest.nickname
+                        }
+                      })
+                    ])
                   })
-                ])
-              })
-            ],
-            2
+                ],
+                2
+              )
+            ]
           )
-        ]
-      )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("smart-pagination", {
+        attrs: { currentPage: _vm.currentPage, totalPages: _vm.totalPages },
+        on: {
+          "update:currentPage": function($event) {
+            _vm.currentPage = $event
+          },
+          "update:current-page": function($event) {
+            _vm.currentPage = $event
+          }
+        }
+      })
     ],
     1
   )
@@ -84484,9 +84508,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

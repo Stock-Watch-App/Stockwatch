@@ -889,6 +889,9 @@ a:active {
   position: sticky;
   left: 0;
 }
+.leaderboard-wrap .table-wrap {
+  overflow-x: auto;
+}
 @media only screen and (min-width: 768px) {
   .leaderboard-wrap h3 {
     grid-column: 1/6;
@@ -911,16 +914,21 @@ a:active {
 .leaderboard-table td,
 .leaderboard-table tr {
   padding: 0.5rem 1rem 0.5rem 1rem;
+  vertical-align: middle;
 }
 .leaderboard-table tr {
   border-bottom: 1px solid hsl(240, 4%, 95%);
+  text-align: center;
 }
 .leaderboard-table thead {
   font-size: 0.875rem;
   background-color: hsl(240, 4%, 95%);
 }
 .leaderboard-table .rank-sort {
-  display: flex;
+  min-width: 85px;
+}
+.leaderboard-table .networth {
+  font-variation-settings: "wght" 700;
 }
 .leaderboard-table .user-row {
   display: flex;
@@ -930,6 +938,13 @@ a:active {
 }
 .leaderboard-table .user-row span {
   margin-right: 0.5rem;
+}
+.leaderboard-table .hg-img-table {
+  width: 30px;
+  height: 30px;
+  border: solid 1px hsl(240, 4%, 75%);
+  vertical-align: middle;
+  border-radius: 4px;
 }
 .leaderboard-table .rank-num {
   display: inline-block;
@@ -957,6 +972,23 @@ a:active {
 }
 .leaderboard-table .rank-5 {
   background-color: hsl(287, 100%, 41%);
+}
+.pagination {
+  display: flex;
+  flex-direction: row;
+}
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+.page-link svg {
+  vertical-align: middle;
 }
 .card {
   border-radius: 4px;
