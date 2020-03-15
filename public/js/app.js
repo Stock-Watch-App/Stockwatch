@@ -15088,41 +15088,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'BasicFiltering',
   props: {
-    leaderboard: Array
+    leaderboard: Array,
+    houseguests: Array
   },
-  computed: {
-    houseguestImage: function houseguestImage() {
-      return '';
+  methods: {
+    houseguestImage: function houseguestImage(houseguest) {
+      return '/storage' + houseguest.image;
     }
   },
   data: function data() {
@@ -15134,48 +15107,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       currentPage: 1,
-      totalPages: 0,
-      users: [{
-        username: "Katie",
-        rank: "1",
-        netWorth: "200",
-        attribute: "LFC",
-        winner: "BB21",
-        houseguest1: "20",
-        houseguest2: "20",
-        houseguest3: "20",
-        houseguest4: "20",
-        houseguest5: "20",
-        houseguest6: "20",
-        houseguest7: "20",
-        houseguest8: "20",
-        houseguest9: "20",
-        houseguest10: "20",
-        houseguest11: "20",
-        houseguest12: "20",
-        houseguest13: "20",
-        houseguest14: "20"
-      }, {
-        username: "Timothy",
-        rank: "2",
-        netWorth: "200",
-        attribute: "LFC",
-        winner: "BB21",
-        houseguest1: "20",
-        houseguest2: "20",
-        houseguest3: "20",
-        houseguest4: "20",
-        houseguest5: "20",
-        houseguest6: "20",
-        houseguest7: "20",
-        houseguest8: "20",
-        houseguest9: "20",
-        houseguest10: "20",
-        houseguest11: "20",
-        houseguest12: "20",
-        houseguest13: "20",
-        houseguest14: "20"
-      }]
+      totalPages: 0
     };
   }
 });
@@ -52977,15 +52909,15 @@ var render = function() {
                         _c("td", [
                           _c("div", { staticClass: "rank-num rank-1" }, [
                             _vm._v(
-                              "\n                    " +
+                              "\n                " +
                                 _vm._s(leaderboard.id) +
-                                "\n                "
+                                "\n            "
                             )
                           ])
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "user-row" }, [
-                          _c("span", [_vm._v(_vm._s(leaderboard.user_id))]),
+                          _c("span", [_vm._v(_vm._s(leaderboard.user.name))]),
                           _vm._v(" "),
                           _c(
                             "span",
@@ -53001,9 +52933,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(leaderboard.networth))]),
                         _vm._v(" "),
-                        _vm._l(_vm.stocks, function(stock) {
-                          return _c("td", { key: stock.id }, [
-                            _vm._v(_vm._s(leaderboard.networth))
+                        _vm._l(_vm.houseguests, function(houseguest) {
+                          return _c("td", [
+                            _vm._v(_vm._s(leaderboard.stocks[houseguest.id]))
                           ])
                         })
                       ],
@@ -53032,9 +52964,22 @@ var render = function() {
               _vm._v(" "),
               _c("th", [_vm._v("User")]),
               _vm._v(" "),
-              _c("th", [_vm._v("Networth")])
+              _c("th", [_vm._v("Networth")]),
+              _vm._v(" "),
+              _vm._l(_vm.houseguests, function(houseguest) {
+                return _c("th", { key: "houseguest.id" }, [
+                  _c("img", {
+                    attrs: {
+                      src: _vm.houseguestImage(houseguest),
+                      alt: houseguest.nickname,
+                      height: "25px",
+                      width: "25px"
+                    }
+                  })
+                ])
+              })
             ],
-            1
+            2
           )
         ]
       )
@@ -84539,9 +84484,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

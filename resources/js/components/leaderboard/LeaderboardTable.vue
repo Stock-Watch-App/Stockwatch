@@ -15,22 +15,8 @@
             <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
             <th>User</th>
             <th>Networth</th>
-            <!-- <th v-for="houseguest in houseguests" key="houseguest.id"
-            ></th> -->
-<!--            <th><img :src="houseguestImage" :alt="houseguest.nickname"></th>-->
-<!--            <th>houseguest2</th>-->
-<!--            <th>houseguest3</th>-->
-<!--            <th>houseguest4</th>-->
-<!--            <th>houseguest5</th>-->
-<!--            <th>houseguest6</th>-->
-<!--            <th>houseguest7</th>-->
-<!--            <th>houseguest8</th>-->
-<!--            <th>houseguest9</th>-->
-<!--            <th>houseguest10</th>-->
-<!--            <th>houseguest11</th>-->
-<!--            <th>houseguest12</th>-->
-<!--            <th>houseguest13</th>-->
-<!--            <th>houseguest14</th>-->
+            <th v-for="houseguest in houseguests" key="houseguest.id"
+            ><img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" height="25px" width="25px"></th>
         </thead>
         <tbody slot="body" slot-scope="{displayData}">
         <tr v-for="leaderboard in displayData" :key="leaderboard.id">
@@ -41,26 +27,13 @@
                 </div>
             </td>
             <td class="user-row">
-                <span>{{ leaderboard.user_id }}</span>
+                <span>{{ leaderboard.user.name }}</span>
                 <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
                 <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span>
             </td>
             <td>{{ leaderboard.networth }}</td>
-            <td v-for="stock in stocks" v-bind:key="stock.id">{{ leaderboard.networth }}</td>
-<!--            <td>{{ row.houseguest1 }}</td>-->
-<!--            <td>{{ row.houseguest2 }}</td>-->
-<!--            <td>{{ row.houseguest3 }}</td>-->
-<!--            <td>{{ row.houseguest4 }}</td>-->
-<!--            <td>{{ row.houseguest5 }}</td>-->
-<!--            <td>{{ row.houseguest6 }}</td>-->
-<!--            <td>{{ row.houseguest7 }}</td>-->
-<!--            <td>{{ row.houseguest8 }}</td>-->
-<!--            <td>{{ row.houseguest9 }}</td>-->
-<!--            <td>{{ row.houseguest10 }}</td>-->
-<!--            <td>{{ row.houseguest11 }}</td>-->
-<!--            <td>{{ row.houseguest12 }}</td>-->
-<!--            <td>{{ row.houseguest13 }}</td>-->
-<!--            <td>{{ row.houseguest14 }}</td>-->
+            <td v-for="houseguest in houseguests"
+            >{{ leaderboard.stocks[houseguest.id]}}</td>
         </tr>
         </tbody>
       </v-table>
@@ -83,13 +56,13 @@
 
 <script>
     export default {
-        name: 'BasicFiltering',
         props: {
-            leaderboard: Array
+            leaderboard: Array,
+            houseguests: Array,
         },
-        computed: {
-            houseguestImage: function () {
-                return '';
+        methods: {
+            houseguestImage: function (houseguest) {
+                return '/storage' + houseguest.image;
             },
         },
         data: () => ({
@@ -98,50 +71,6 @@
             },
             currentPage: 1,
             totalPages: 0,
-            users: [
-                {
-                    username: "Katie",
-                    rank: "1",
-                    netWorth: "200",
-                    attribute: "LFC",
-                    winner: "BB21",
-                    houseguest1: "20",
-                    houseguest2: "20",
-                    houseguest3: "20",
-                    houseguest4: "20",
-                    houseguest5: "20",
-                    houseguest6: "20",
-                    houseguest7: "20",
-                    houseguest8: "20",
-                    houseguest9: "20",
-                    houseguest10: "20",
-                    houseguest11: "20",
-                    houseguest12: "20",
-                    houseguest13: "20",
-                    houseguest14: "20",
-                },
-                {
-                    username: "Timothy",
-                    rank: "2",
-                    netWorth: "200",
-                    attribute: "LFC",
-                    winner: "BB21",
-                    houseguest1: "20",
-                    houseguest2: "20",
-                    houseguest3: "20",
-                    houseguest4: "20",
-                    houseguest5: "20",
-                    houseguest6: "20",
-                    houseguest7: "20",
-                    houseguest8: "20",
-                    houseguest9: "20",
-                    houseguest10: "20",
-                    houseguest11: "20",
-                    houseguest12: "20",
-                    houseguest13: "20",
-                    houseguest14: "20",
-                }
-            ]
         })
     }
 </script>

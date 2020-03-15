@@ -17,7 +17,7 @@ class LeaderboardController extends Controller
         $season = Season::current();
         $houseguests = Houseguest::where('season_id', $season->id)->get();
 
-        $leaderboard = Leaderboard::where('week', $season->current_week)->orderBy('networth', 'desc')->get();;
+        $leaderboard = Leaderboard::where('week', $season->current_week)->with('user')->orderBy('networth', 'desc')->get();;
 
         return view('leaderboard', compact('houseguests', 'leaderboard'));
     }
