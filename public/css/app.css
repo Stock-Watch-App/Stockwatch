@@ -845,19 +845,18 @@ a:active {
 }
 .leaderboard-wrap {
   grid-column: 1/-1;
-  overflow-x: auto;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: -webkit-min-content;
-  grid-template-rows: min-content;
+  grid-template-rows: repeat(3, -webkit-min-content);
+  grid-template-rows: repeat(3, min-content);
 }
 .leaderboard-wrap h3 {
-  grid-column: 1/6;
+  grid-column: 1/-1;
   grid-row: 1/2;
 }
 .leaderboard-wrap .perfect-play {
-  grid-column: 7/9;
-  grid-row: 1/2;
+  grid-column: 1/-1;
+  grid-row: 2/3;
   display: grid;
   border: solid 1px hsl(240, 4%, 90%);
   box-shadow: 1px 1px 0px hsl(240, 4%, 90%);
@@ -869,6 +868,7 @@ a:active {
   position: relative;
   background: hsl(0, 0%, 100%);
   padding: 0.75rem;
+  margin-bottom: 1rem;
 }
 .leaderboard-wrap .perfect-play .heading {
   grid-column: 1/-1;
@@ -881,7 +881,27 @@ a:active {
 }
 .leaderboard-wrap .leader-grid {
   grid-column: 1/-1;
-  grid-row: 2/3;
+  grid-row: 3/4;
+  overflow-x: auto;
+}
+.leaderboard-wrap .leader-grid .input {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+}
+@media only screen and (min-width: 768px) {
+  .leaderboard-wrap h3 {
+    grid-column: 1/6;
+    grid-row: 1/2;
+  }
+  .leaderboard-wrap .perfect-play {
+    grid-column: 7/9;
+    grid-row: 1/2;
+    margin-bottom: 0;
+  }
+  .leaderboard-wrap .leader-grid {
+    grid-row: 2/3;
+  }
 }
 .leaderboard-table {
   table-layout: auto;
