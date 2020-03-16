@@ -38,6 +38,9 @@ class TradeController extends Controller
 
     public function savestocks(Request $request)
     {
+        if (Season::current()->status !== 'open') {
+            return json_encode(['success' => false]);
+        }
         $data = $request->all();
         $user = $request->user();
         $bank = $user->bank;

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Formula;
+use App\Http\Controllers\MarketController;
 use App\Models\Houseguest;
 use App\Models\Price;
 use App\Models\Season;
@@ -16,24 +17,8 @@ class SeasonObserver
     public function updating(Season $season){
         if ($season->isDirty('status')) {
             if ($season->status === 'open') {
-                $f = new Formula();
-                $week = Week::current()->week;
-
-                $houseguests = Houseguest::where('season_id', $season->id)->get();
-                foreach ($houseguests as $houseguest) {
-                    if ($season->getOriginal('status') === 'closed') {
-                        $rating = $houseguest->current_rate;
-                        $last_rating = (int)round($houseguest->ratings()->where('week', $week - 1)->pluck('rating')->sum() / 4);
-                        $last_price = $houseguest->prices()->where('week', $week - 1)->first()->value('price');
-
-                        $new_price = $f->calculate($last_rating, $rating, $last_price, $houseguest->strikes);
-
-                        Price::create(['price' => $new_price, 'houseguest_id' => $houseguest->id, 'week' => $week]);
-                    }
-                    if ($season->getOriginal('status') === 'pre-season') {
-                        Price::create(['price' => $houseguest->current_rate, 'houseguest_id' => $houseguest->id, 'week' => $week]);
-                    }
-                }
+                $m = new MarketController();
+                $m->open($season);
             }
         }
     }

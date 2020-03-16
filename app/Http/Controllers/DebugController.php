@@ -6,6 +6,8 @@ use App\Formula;
 use App\Models\Houseguest;
 use App\Models\User;
 use App\Models\Week;
+use App\Models\Season;
+//use App\Nova\Season;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -43,7 +45,7 @@ class DebugController extends Controller
 
     public function xyz()
     {
-            Session::flash('error', 'Unable to process request.Error: User Collision has occurred.', true);
-            abort(500);
+        $m = new MarketController();
+        $m->payStipend(Season::current());
     }
 }
