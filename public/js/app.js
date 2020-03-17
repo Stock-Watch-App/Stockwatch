@@ -15096,21 +15096,95 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       currentPage: 1,
-      totalPages: 0 // lastRank: 0,
-      // lastMoney: 0
+      totalPages: 0,
+      rank: {
+        rank: 0,
+        "class": null
+      } // lastMoney: 0
 
     };
   },
+  computed: {
+    rankedLeaderboard: function rankedLeaderboard() {
+      var rank = 1;
+      var ranked = [];
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.leaderboard[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var leaderboard = _step.value;
+          var newRank = {
+            rank: 0,
+            "class": null
+          };
+          newRank.rank = rank;
+
+          switch (rank) {
+            case 1:
+              newRank["class"] = 'rank-1';
+              break;
+
+            case 2:
+              newRank["class"] = 'rank-2';
+              break;
+
+            case 3:
+              newRank["class"] = 'rank-3';
+              break;
+
+            default:
+              newRank["class"] = '';
+              break;
+          }
+
+          leaderboard.rank = newRank;
+          ranked.push(leaderboard);
+          rank++;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return ranked;
+    }
+  },
   methods: {
-    // rankIterator: function(user) {
-    //     let lastRank = this.lastRank
-    //     if (this.lastMoney == user.networth) {
-    //         return 'T-'+this.lastRank;
-    //     }
-    //     this.lastRank++;
-    //     this.lastMoney = user.netWorth;
-    //     return this.lastRank; //because the iterator is above,
-    // },
+    getUserRank: function getUserRank() {
+      this.rank.rank++;
+
+      switch (this.rank.rank) {
+        case 1:
+          this.rank["class"] = 'rank-1';
+          break;
+
+        case 2:
+          this.rank["class"] = 'rank-2';
+          break;
+
+        case 3:
+          this.rank["class"] = 'rank-3';
+          break;
+
+        default:
+          this.rank["class"] = '';
+          break;
+      }
+
+      return this.rank.rank;
+    },
     houseguestImage: function houseguestImage(houseguest) {
       return '/storage' + houseguest.image;
     }
@@ -52886,7 +52960,7 @@ var render = function() {
             {
               staticClass: "leaderboard-table",
               attrs: {
-                data: _vm.leaderboard,
+                data: _vm.rankedLeaderboard,
                 filters: _vm.filters,
                 currentPage: _vm.currentPage,
                 pageSize: 100
@@ -52913,23 +52987,19 @@ var render = function() {
                       _vm._l(displayData, function(leaderboard) {
                         return _c(
                           "tr",
-                          { key: leaderboard.id },
+                          { key: leaderboard.user_id },
                           [
                             _c("td", [
                               _c(
                                 "div",
                                 {
                                   staticClass: "rank-num",
-                                  class: {
-                                    "rank-1": leaderboard.id == 1,
-                                    "rank-2": leaderboard.id == 2,
-                                    "rank-3": leaderboard.id == 3
-                                  }
+                                  class: leaderboard.rank.class
                                 },
                                 [
                                   _vm._v(
                                     "\n                        " +
-                                      _vm._s(leaderboard.id) +
+                                      _vm._s(leaderboard.rank.rank) +
                                       "\n                    "
                                   )
                                 ]

@@ -4,7 +4,7 @@
         <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
         <div class="table-wrap mg-btm-md">
             <v-table
-                :data="leaderboard"
+                :data="rankedLeaderboard"
                 :filters="filters"
                 :currentPage.sync="currentPage"
                 :pageSize="100"
@@ -21,10 +21,10 @@
                 </th>
                 </thead>
                 <tbody slot="body" slot-scope="{displayData}">
-                <tr v-for="leaderboard in displayData" :key="leaderboard.id">
+                <tr v-for="leaderboard in displayData" :key="leaderboard.user_id">
                     <td>
-                        <div class="rank-num" v-bind:class="{'rank-1':leaderboard.id == 1, 'rank-2':leaderboard.id == 2, 'rank-3':leaderboard.id == 3}">
-                            {{ leaderboard.id }}
+                        <div class="rank-num" :class="leaderboard.rank.class">
+                            {{ leaderboard.rank.rank }}
                         </div>
                     </td>
                     <td class="user-row">
@@ -60,19 +60,62 @@
             },
             currentPage: 1,
             totalPages: 0,
-            // lastRank: 0,
+            rank: {
+                rank: 0,
+                class: null
+            },
             // lastMoney: 0
         }),
+        computed: {
+            rankedLeaderboard: function () {
+                let rank = 1;
+                let ranked = [];
+                for (let leaderboard of this.leaderboard) {
+                    let newRank = {
+                        rank: 0,
+                        class: null
+                    };
+                    newRank.rank = rank;
+                    switch (rank) {
+                        case 1:
+                            newRank.class = 'rank-1';
+                            break;
+                        case 2:
+                            newRank.class = 'rank-2';
+                            break;
+                        case 3:
+                            newRank.class = 'rank-3';
+                            break;
+                        default:
+                            newRank.class = '';
+                            break;
+                    }
+                    leaderboard.rank = newRank;
+                    ranked.push(leaderboard);
+                    rank++;
+                }
+                return ranked;
+            }
+        },
         methods: {
-            // rankIterator: function(user) {
-            //     let lastRank = this.lastRank
-            //     if (this.lastMoney == user.networth) {
-            //         return 'T-'+this.lastRank;
-            //     }
-            //     this.lastRank++;
-            //     this.lastMoney = user.netWorth;
-            //     return this.lastRank; //because the iterator is above,
-            // },
+            getUserRank: function () {
+                this.rank.rank++;
+                switch (this.rank.rank) {
+                    case 1:
+                        this.rank.class = 'rank-1';
+                        break;
+                    case 2:
+                        this.rank.class = 'rank-2';
+                        break;
+                    case 3:
+                        this.rank.class = 'rank-3';
+                        break;
+                    default:
+                        this.rank.class = '';
+                        break;
+                }
+                return this.rank.rank;
+            },
             houseguestImage: function (houseguest) {
                 return '/storage' + houseguest.image;
             },
