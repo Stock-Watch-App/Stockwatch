@@ -2,7 +2,6 @@
     <div class="leader-grid">
         <label class="label-hidden">Filter by Name:</label>
         <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
-
         <div class="table-wrap mg-btm-md">
             <v-table
                 :data="leaderboard"
@@ -61,8 +60,8 @@
             },
             currentPage: 1,
             totalPages: 0,
-            lastRank: 0,
-            lastMoney: 0
+            // lastRank: 0,
+            // lastMoney: 0
         }),
         methods: {
             // rankIterator: function(user) {
