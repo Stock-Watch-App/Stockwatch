@@ -15084,6 +15084,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     leaderboard: Array,
@@ -52963,6 +52964,7 @@ var render = function() {
               staticClass: "leaderboard-table",
               attrs: {
                 data: _vm.rankedLeaderboard,
+                hideSortIcons: true,
                 filters: _vm.filters,
                 currentPage: _vm.currentPage,
                 pageSize: 100
@@ -53011,7 +53013,13 @@ var render = function() {
                             _c("td", { staticClass: "user-row" }, [
                               _c("span", [
                                 _vm._v(_vm._s(leaderboard.user.name))
-                              ])
+                              ]),
+                              _vm._v(" "),
+                              leaderboard.user.id === (4 || false || false)
+                                ? _c("span", { staticClass: "tag lfc" }, [
+                                    _vm._v("LFC")
+                                  ])
+                                : _vm._e()
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "networth" }, [
@@ -53044,14 +53052,7 @@ var render = function() {
                 _c(
                   "tr",
                   [
-                    _c(
-                      "v-th",
-                      {
-                        staticClass: "rank-sort",
-                        attrs: { sortKey: "rank", defaultSort: "asc" }
-                      },
-                      [_vm._v("Rank")]
-                    ),
+                    _c("v-th", { staticClass: "rank-sort" }, [_vm._v("Rank")]),
                     _vm._v(" "),
                     _c("th", { staticClass: "user-row-head" }, [
                       _vm._v("Player")
@@ -84592,9 +84593,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

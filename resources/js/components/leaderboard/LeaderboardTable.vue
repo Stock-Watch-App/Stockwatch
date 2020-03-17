@@ -5,6 +5,7 @@
         <div class="table-wrap mg-btm-md">
             <v-table
                 :data="rankedLeaderboard"
+                :hideSortIcons="true"
                 :filters="filters"
                 :currentPage.sync="currentPage"
                 :pageSize="100"
@@ -13,7 +14,7 @@
             >
                 <thead slot="head">
                     <tr>
-                        <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
+                        <v-th class="rank-sort">Rank</v-th>
                         <th class="user-row-head">Player</th>
                         <th>Networth</th>
                         <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
@@ -31,7 +32,7 @@
                     </td>
                     <td class="user-row">
                         <span>{{ leaderboard.user.name }}</span>
-                        <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
+                        <span v-if="leaderboard.user.id === (4 || 6 || 9)" class="tag lfc">LFC</span>
                         <!-- <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span> -->
                     </td>
                     <td class="networth">{{ leaderboard.networth | currency }}</td>
