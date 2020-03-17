@@ -967,12 +967,12 @@ a:active {
   border: none;
   background-color: hsl(0, 0%, 100%);
 }
-.leaderboard-table .user-row span {
+.leaderboard-table .user-row span:not(.tag) {
   margin-right: 0.5rem;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  width: 180px;
+  max-width: 180px;
   text-align: left;
 }
 .leaderboard-table .hg-img-table {

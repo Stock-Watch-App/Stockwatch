@@ -3,7 +3,7 @@
 @section('content')
     <div class="leaderboard-wrap">
         <h3 class="mg-btm-lg">Leaderboard</h3>
-            <div class="perfect-play">
+            <!-- <div class="perfect-play">
                 <p class="heading">Perfect Play</p>
                 <div class="hg-img">
                     <img src="{{ asset('/storage/avatar-default.svg') }}" alt="">
@@ -12,7 +12,7 @@
                     <p>Carol</p>
                     <p>$4,000</p>
                 </div>
-            </div>
+            </div> -->
             <leaderboard-table
                 :houseguests="{{ $houseguests }}"
                 :leaderboard="{{ $leaderboard }}"

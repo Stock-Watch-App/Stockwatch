@@ -31,7 +31,7 @@
                     </td>
                     <td class="user-row">
                         <span>{{ leaderboard.user.name }}</span>
-                        <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
+                        <span v-if="leaderboard.user.id === (4 || 6 || 9)" class="tag lfc">LFC</span>
                         <!-- <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span> -->
                     </td>
                     <td class="networth">{{ leaderboard.networth | currency }}</td>
