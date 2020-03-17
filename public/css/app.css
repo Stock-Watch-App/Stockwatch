@@ -948,7 +948,7 @@ a:active {
 .leaderboard-table td {
   z-index: 3;
 }
-.leaderboard-table td .user-row {
+.leaderboard-table td.user-row {
   position: -webkit-sticky;
   position: sticky;
   left: 0;
