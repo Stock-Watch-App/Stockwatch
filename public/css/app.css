@@ -1006,10 +1006,10 @@ a:active {
 .maintenance {
   grid-column: 1/-1;
 }
-.logo-text {
+.maintenance .logo-text {
   fill: hsl(0, 0%, 0%);
 }
-svg {
+.maintenance svg {
   margin-bottom: 2rem;
   width: 300px;
 }
