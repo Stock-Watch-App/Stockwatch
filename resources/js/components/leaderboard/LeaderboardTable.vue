@@ -14,7 +14,7 @@
                 <thead slot="head">
                     <tr>
                         <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
-                        <th>Player</th>
+                        <th class="user-row-head">Player</th>
                         <th>Networth</th>
                         <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
                         >

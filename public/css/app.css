@@ -891,6 +891,7 @@ a:active {
 }
 .leaderboard-wrap .table-wrap {
   overflow-x: auto;
+  max-height: 100vh;
 }
 @media only screen and (min-width: 768px) {
   .leaderboard-wrap h3 {
@@ -916,6 +917,12 @@ a:active {
   padding: 0.5rem 1rem 0.5rem 1rem;
   vertical-align: middle;
 }
+.leaderboard-table tr:hover tr,
+.leaderboard-table td:hover tr,
+.leaderboard-table tr:hover td,
+.leaderboard-table td:hover td {
+  background-color: hsl(240, 4%, 95%);
+}
 .leaderboard-table tr {
   border-bottom: 1px solid hsl(240, 4%, 95%);
   text-align: center;
@@ -929,8 +936,19 @@ a:active {
   position: sticky;
   top: 0;
   z-index: 2;
+  background-color: hsl(240, 4%, 95%);
 }
-.leaderboard-table th[scope=row] {
+.leaderboard-table th.user-row-head {
+  text-align: left;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 4;
+}
+.leaderboard-table td {
+  z-index: 3;
+}
+.leaderboard-table td.user-row {
   position: -webkit-sticky;
   position: sticky;
   left: 0;
@@ -947,6 +965,7 @@ a:active {
   flex-direction: row;
   align-items: center;
   border: none;
+  background-color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .user-row span {
   margin-right: 0.5rem;
