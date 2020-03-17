@@ -52879,7 +52879,7 @@ var render = function() {
                 data: _vm.leaderboard,
                 filters: _vm.filters,
                 currentPage: _vm.currentPage,
-                pageSize: 3
+                pageSize: 100
               },
               on: {
                 "update:currentPage": function($event) {
@@ -52913,9 +52913,7 @@ var render = function() {
                                   class: {
                                     "rank-1": leaderboard.id == 1,
                                     "rank-2": leaderboard.id == 2,
-                                    "rank-3": leaderboard.id == 3,
-                                    "rank-4": leaderboard.id == 4,
-                                    "rank-5": leaderboard.id == 5
+                                    "rank-3": leaderboard.id == 3
                                   }
                                 },
                                 [
@@ -52931,18 +52929,7 @@ var render = function() {
                             _c("td", { staticClass: "user-row" }, [
                               _c("span", [
                                 _vm._v(_vm._s(leaderboard.user.name))
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                { staticClass: "tag rank-1" },
-                                [
-                                  _c("font-awesome-icon", {
-                                    attrs: { icon: "trophy" }
-                                  })
-                                ],
-                                1
-                              )
+                              ])
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "networth" }, [
@@ -84520,9 +84507,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

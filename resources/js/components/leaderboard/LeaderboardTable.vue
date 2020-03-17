@@ -8,7 +8,7 @@
                 :data="leaderboard"
                 :filters="filters"
                 :currentPage.sync="currentPage"
-                :pageSize="3"
+                :pageSize="100"
                 @totalPagesChanged="totalPages = $event"
                 class="leaderboard-table"
             >
@@ -24,14 +24,14 @@
                 <tbody slot="body" slot-scope="{displayData}">
                 <tr v-for="leaderboard in displayData" :key="leaderboard.id">
                     <td>
-                        <div class="rank-num" v-bind:class="{'rank-1':leaderboard.id == 1, 'rank-2':leaderboard.id == 2, 'rank-3':leaderboard.id == 3, 'rank-4':leaderboard.id == 4, 'rank-5':leaderboard.id == 5}">
+                        <div class="rank-num" v-bind:class="{'rank-1':leaderboard.id == 1, 'rank-2':leaderboard.id == 2, 'rank-3':leaderboard.id == 3}">
                             {{ leaderboard.id }}
                         </div>
                     </td>
                     <td class="user-row">
                         <span>{{ leaderboard.user.name }}</span>
                         <!-- <span class="tag lfc">{{ row.attribute }}</span> -->
-                        <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span>
+                        <!-- <span class="tag rank-1"><font-awesome-icon icon="trophy"/></span> -->
                     </td>
                     <td class="networth">{{ leaderboard.networth | currency }}</td>
                     <td v-for="houseguest in houseguests" v-bind:key="houseguest.id">
