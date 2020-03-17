@@ -958,23 +958,15 @@ a:active {
   font-size: 1rem;
 }
 .leaderboard-table .rank-1 {
-  background-color: hsl(146, 84%, 31%);
+  background-color: #dd9a27;
   color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .rank-2 {
-  background-color: hsl(169, 100%, 38%);
+  background-color: #808a8d;
   color: hsl(0, 0%, 100%);
 }
 .leaderboard-table .rank-3 {
-  background-color: hsl(209, 100%, 41%);
-  color: hsl(0, 0%, 100%);
-}
-.leaderboard-table .rank-4 {
-  background-color: hsl(217, 100%, 41%);
-  color: hsl(0, 0%, 100%);
-}
-.leaderboard-table .rank-5 {
-  background-color: hsl(287, 100%, 41%);
+  background-color: #916928;
   color: hsl(0, 0%, 100%);
 }
 .pagination {
