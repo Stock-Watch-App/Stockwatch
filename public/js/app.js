@@ -52984,7 +52984,9 @@ var render = function() {
                       [_vm._v("Rank")]
                     ),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Player")]),
+                    _c("th", { staticClass: "user-row-head" }, [
+                      _vm._v("Player")
+                    ]),
                     _vm._v(" "),
                     _c("th", [_vm._v("Networth")]),
                     _vm._v(" "),

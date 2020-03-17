@@ -54,6 +54,7 @@
 
     .table-wrap {
         overflow-x: auto;
+        max-height: 100vh;
     }
 
     .media(@min-tablet, {
@@ -83,6 +84,15 @@
         vertical-align: middle;
     }
 
+    // this looks crazy to get around the z-index levels
+    tr, td {
+        &:hover {
+            tr, td {
+                background-color: @gray-barely;
+            }
+        }
+    }
+
     tr {
         border-bottom: 1px solid @gray-barely;
         text-align: center;
@@ -94,17 +104,27 @@
     }
 
     th {
-        position: -webkit-sticky;
         position: sticky;
         top: 0;
         z-index: 2;
+        background-color: @gray-barely;
+
+        &.user-row-head {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            z-index: 4; // topiest top
+        }
     }
 
-    th[scope=row] {
-        position: -webkit-sticky;
-        position: sticky;
-        left: 0;
-        z-index: 1;
+    td {
+        z-index: 3;
+
+        .user-row {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+        }
     }
 
     .rank-sort {
@@ -120,6 +140,7 @@
         flex-direction: row;
         align-items: center;
         border: none;
+        background-color: @white;
 
         span {
             .px-rem(margin-right, 8);
