@@ -924,6 +924,18 @@ a:active {
   font-size: 0.875rem;
   background-color: hsl(240, 4%, 95%);
 }
+.leaderboard-table th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.leaderboard-table th[scope=row] {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
 .leaderboard-table .rank-sort {
   min-width: 85px;
 }
