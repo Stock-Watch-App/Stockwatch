@@ -52,9 +52,9 @@ Route::get('/faq', function () {
    return view('faq');
 });
 
-// Route::get('/leaderboard', function () {
-//     return view('leaderboard');
-//  });
+Route::get('/maintenance', function () {
+    return view('maintenance');
+ });
 
 
 Route::group(['middleware' => ['local']], function () {
