@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.landing_light')
 
 @section('content')
     <div class="app-content-max">
+        <div class="mg-btm-md"><a href="/">Back home</a></div>
         <h2>Reality Stockwatch Terms of Service</h2>
         <h4>1. Terms</h4>
         <p>By accessing the website at
