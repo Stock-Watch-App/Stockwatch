@@ -938,6 +938,11 @@ a:active {
 }
 .leaderboard-table .user-row span {
   margin-right: 0.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 180px;
+  text-align: left;
 }
 .leaderboard-table .hg-img-table {
   width: 30px;

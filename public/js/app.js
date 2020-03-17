@@ -15083,6 +15083,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     leaderboard: Array,
@@ -52969,37 +52971,38 @@ var render = function() {
               ])
             },
             [
-              _c(
-                "thead",
-                { attrs: { slot: "head" }, slot: "head" },
-                [
-                  _c(
-                    "v-th",
-                    {
-                      staticClass: "rank-sort",
-                      attrs: { sortKey: "rank", defaultSort: "asc" }
-                    },
-                    [_vm._v("Rank")]
-                  ),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Player")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Networth")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.houseguests, function(houseguest) {
-                    return _c("th", { key: houseguest.id }, [
-                      _c("img", {
-                        staticClass: "hg-img-table",
-                        attrs: {
-                          src: _vm.houseguestImage(houseguest),
-                          alt: houseguest.nickname
-                        }
-                      })
-                    ])
-                  })
-                ],
-                2
-              )
+              _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                _c(
+                  "tr",
+                  [
+                    _c(
+                      "v-th",
+                      {
+                        staticClass: "rank-sort",
+                        attrs: { sortKey: "rank", defaultSort: "asc" }
+                      },
+                      [_vm._v("Rank")]
+                    ),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Player")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Networth")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.houseguests, function(houseguest) {
+                      return _c("th", { key: houseguest.id }, [
+                        _c("img", {
+                          staticClass: "hg-img-table",
+                          attrs: {
+                            src: _vm.houseguestImage(houseguest),
+                            alt: houseguest.nickname
+                          }
+                        })
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ])
             ]
           )
         ],
