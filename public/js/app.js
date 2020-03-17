@@ -15088,22 +15088,33 @@ __webpack_require__.r(__webpack_exports__);
     leaderboard: Array,
     houseguests: Array
   },
-  methods: {
-    houseguestImage: function houseguestImage(houseguest) {
-      return '/storage' + houseguest.image;
-    }
-  },
   data: function data() {
     return {
       filters: {
         name: {
           value: '',
-          keys: ['username']
+          keys: ['user.name']
         }
       },
       currentPage: 1,
-      totalPages: 0
+      totalPages: 0,
+      lastRank: 0,
+      lastMoney: 0
     };
+  },
+  methods: {
+    // rankIterator: function(user) {
+    //     let lastRank = this.lastRank
+    //     if (this.lastMoney == user.networth) {
+    //         return 'T-'+this.lastRank;
+    //     }
+    //     this.lastRank++;
+    //     this.lastMoney = user.netWorth;
+    //     return this.lastRank; //because the iterator is above,
+    // },
+    houseguestImage: function houseguestImage(houseguest) {
+      return '/storage' + houseguest.image;
+    }
   }
 });
 

@@ -1,7 +1,7 @@
 <template>
     <div class="leader-grid">
-      <label class="label-hidden">Filter by Name:</label>
-      <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
+        <label class="label-hidden">Filter by Name:</label>
+        <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
 
         <div class="table-wrap mg-btm-md">
             <v-table
@@ -13,13 +13,13 @@
                 class="leaderboard-table"
             >
                 <thead slot="head">
-                    <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
-                    <th>Player</th>
-                    <th>Networth</th>
-                    <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
-                    >
-                        <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" class="hg-img-table">
-                    </th>
+                <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
+                <th>Player</th>
+                <th>Networth</th>
+                <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
+                >
+                    <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" class="hg-img-table">
+                </th>
                 </thead>
                 <tbody slot="body" slot-scope="{displayData}">
                 <tr v-for="leaderboard in displayData" :key="leaderboard.id">
@@ -55,17 +55,28 @@
             leaderboard: Array,
             houseguests: Array,
         },
+        data: () => ({
+            filters: {
+                name: {value: '', keys: ['user.name']}
+            },
+            currentPage: 1,
+            totalPages: 0,
+            lastRank: 0,
+            lastMoney: 0
+        }),
         methods: {
+            // rankIterator: function(user) {
+            //     let lastRank = this.lastRank
+            //     if (this.lastMoney == user.networth) {
+            //         return 'T-'+this.lastRank;
+            //     }
+            //     this.lastRank++;
+            //     this.lastMoney = user.netWorth;
+            //     return this.lastRank; //because the iterator is above,
+            // },
             houseguestImage: function (houseguest) {
                 return '/storage' + houseguest.image;
             },
         },
-        data: () => ({
-            filters: {
-            name: { value: '', keys: ['username'] }
-            },
-            currentPage: 1,
-            totalPages: 0,
-        })
     }
 </script>
