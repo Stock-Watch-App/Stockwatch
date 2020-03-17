@@ -15082,6 +15082,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     leaderboard: Array,
@@ -15097,94 +15100,20 @@ __webpack_require__.r(__webpack_exports__);
       },
       currentPage: 1,
       totalPages: 0,
-      rank: {
-        rank: 0,
-        "class": null
-      } // lastMoney: 0
-
+      lastRank: 0,
+      lastMoney: 0
     };
   },
-  computed: {
-    rankedLeaderboard: function rankedLeaderboard() {
-      var rank = 1;
-      var ranked = [];
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.leaderboard[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var leaderboard = _step.value;
-          var newRank = {
-            rank: 0,
-            "class": null
-          };
-          newRank.rank = rank;
-
-          switch (rank) {
-            case 1:
-              newRank["class"] = 'rank-1';
-              break;
-
-            case 2:
-              newRank["class"] = 'rank-2';
-              break;
-
-            case 3:
-              newRank["class"] = 'rank-3';
-              break;
-
-            default:
-              newRank["class"] = '';
-              break;
-          }
-
-          leaderboard.rank = newRank;
-          ranked.push(leaderboard);
-          rank++;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-            _iterator["return"]();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      return ranked;
-    }
-  },
   methods: {
-    getUserRank: function getUserRank() {
-      this.rank.rank++;
-
-      switch (this.rank.rank) {
-        case 1:
-          this.rank["class"] = 'rank-1';
-          break;
-
-        case 2:
-          this.rank["class"] = 'rank-2';
-          break;
-
-        case 3:
-          this.rank["class"] = 'rank-3';
-          break;
-
-        default:
-          this.rank["class"] = '';
-          break;
-      }
-
-      return this.rank.rank;
-    },
+    // rankIterator: function(user) {
+    //     let lastRank = this.lastRank
+    //     if (this.lastMoney == user.networth) {
+    //         return 'T-'+this.lastRank;
+    //     }
+    //     this.lastRank++;
+    //     this.lastMoney = user.netWorth;
+    //     return this.lastRank; //because the iterator is above,
+    // },
     houseguestImage: function houseguestImage(houseguest) {
       return '/storage' + houseguest.image;
     }
@@ -52960,7 +52889,7 @@ var render = function() {
             {
               staticClass: "leaderboard-table",
               attrs: {
-                data: _vm.rankedLeaderboard,
+                data: _vm.leaderboard,
                 filters: _vm.filters,
                 currentPage: _vm.currentPage,
                 pageSize: 100
@@ -52987,19 +52916,23 @@ var render = function() {
                       _vm._l(displayData, function(leaderboard) {
                         return _c(
                           "tr",
-                          { key: leaderboard.user_id },
+                          { key: leaderboard.id },
                           [
                             _c("td", [
                               _c(
                                 "div",
                                 {
                                   staticClass: "rank-num",
-                                  class: leaderboard.rank.class
+                                  class: {
+                                    "rank-1": leaderboard.id == 1,
+                                    "rank-2": leaderboard.id == 2,
+                                    "rank-3": leaderboard.id == 3
+                                  }
                                 },
                                 [
                                   _vm._v(
                                     "\n                        " +
-                                      _vm._s(leaderboard.rank.rank) +
+                                      _vm._s(leaderboard.id) +
                                       "\n                    "
                                   )
                                 ]
@@ -53038,37 +52971,38 @@ var render = function() {
               ])
             },
             [
-              _c(
-                "thead",
-                { attrs: { slot: "head" }, slot: "head" },
-                [
-                  _c(
-                    "v-th",
-                    {
-                      staticClass: "rank-sort",
-                      attrs: { sortKey: "rank", defaultSort: "asc" }
-                    },
-                    [_vm._v("Rank")]
-                  ),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Player")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Networth")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.houseguests, function(houseguest) {
-                    return _c("th", { key: houseguest.id }, [
-                      _c("img", {
-                        staticClass: "hg-img-table",
-                        attrs: {
-                          src: _vm.houseguestImage(houseguest),
-                          alt: houseguest.nickname
-                        }
-                      })
-                    ])
-                  })
-                ],
-                2
-              )
+              _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+                _c(
+                  "tr",
+                  [
+                    _c(
+                      "v-th",
+                      {
+                        staticClass: "rank-sort",
+                        attrs: { sortKey: "rank", defaultSort: "asc" }
+                      },
+                      [_vm._v("Rank")]
+                    ),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Player")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Networth")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.houseguests, function(houseguest) {
+                      return _c("th", { key: houseguest.id }, [
+                        _c("img", {
+                          staticClass: "hg-img-table",
+                          attrs: {
+                            src: _vm.houseguestImage(houseguest),
+                            alt: houseguest.nickname
+                          }
+                        })
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ])
             ]
           )
         ],
@@ -84587,9 +84521,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

@@ -2,19 +2,18 @@
 
 .maintenance {
     grid-column: ~'1/-1';
-}
 
-.logo-text {
-    fill: @black;
-}
-
-svg {
-    margin-bottom: 2rem;
-    width: 300px;
-}
-
-.media(@min-tablet, {
-    .maintenance {
-        grid-column: ~'2/4';
+    .logo-text {
+        fill: @black;
     }
-});
+
+    svg {
+        margin-bottom: 2rem;
+        width: 300px;
+    }
+
+    .media(@min-tablet, {
+        grid-column: ~'2/4';
+    });
+}
+

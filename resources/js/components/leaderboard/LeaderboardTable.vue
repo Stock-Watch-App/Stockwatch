@@ -12,13 +12,15 @@
                 class="leaderboard-table"
             >
                 <thead slot="head">
-                <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
-                <th>Player</th>
-                <th>Networth</th>
-                <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
-                >
-                    <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" class="hg-img-table">
-                </th>
+                    <tr>
+                        <v-th sortKey="rank" defaultSort="asc" class="rank-sort">Rank</v-th>
+                        <th>Player</th>
+                        <th>Networth</th>
+                        <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
+                        >
+                            <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" class="hg-img-table">
+                        </th>
+                    </tr>
                 </thead>
                 <tbody slot="body" slot-scope="{displayData}">
                 <tr v-for="leaderboard in displayData" :key="leaderboard.user_id">
