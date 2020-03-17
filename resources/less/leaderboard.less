@@ -93,6 +93,20 @@
         background-color: @gray-barely;
     }
 
+    th {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    th[scope=row] {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        z-index: 1;
+    }
+
     .rank-sort {
         min-width: 85px;
     }
