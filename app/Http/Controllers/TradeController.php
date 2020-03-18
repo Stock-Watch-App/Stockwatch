@@ -39,13 +39,14 @@ class TradeController extends Controller
 
     public function savestocks(Request $request)
     {
-        if (Season::current()->status !== 'open') {
+        $season = Season::current();
+        if ($season->status !== 'open') {
             return json_encode(['success' => false]);
         }
         $data = $request->all();
         $user = $request->user();
         $bank = $user->bank;
-        $stocks = $this->getStocks($user);
+        $stocks = $this->getStocks($user, $season);
         $networth = $bank->money + $stocks->map(function ($stock) {
                 return $stock->quantity * $stock->houseguest->current_price;
             })->sum();
