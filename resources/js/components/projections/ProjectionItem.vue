@@ -12,11 +12,11 @@
                 <span class="rating-wrap">
                     <h5 class="num-wrap flex-row">
                         <font-awesome-icon icon="star" class="hg-star"/>
-                        <span class="hg-star-rating">{{currentRating}}</span>
+                        <span class="hg-star-rating">{{houseguest.current_rate}}</span>
                         <span class="hg-star-outof"> /10</span>
                     </h5>
                 </span> <span class="price-wrap">
-                    <h5>{{ currentPrice | currency }}</h5>
+                    <h5>{{ houseguest.current_price | currency }}</h5>
                 </span>
             </div>
         </div>
@@ -34,16 +34,16 @@
                 <dd>8</dd>
                 <dd>9</dd>
                 <dd>10</dd>
-                <dd :style="setbg(houseguest.projections.to1)">{{ Math.round((houseguest.projections.to1/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to2)">{{ Math.round((houseguest.projections.to2/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to3)">{{ Math.round((houseguest.projections.to3/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to4)">{{ Math.round((houseguest.projections.to4/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to5)">{{ Math.round((houseguest.projections.to5/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to6)">{{ Math.round((houseguest.projections.to6/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to7)">{{ Math.round((houseguest.projections.to7/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to8)">{{ Math.round((houseguest.projections.to8/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to9)">{{ Math.round((houseguest.projections.to9/currentPrice-1)*100) }}%</dd>
-                <dd :style="setbg(houseguest.projections.to10)">{{ Math.round((houseguest.projections.to10/currentPrice-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to1)">{{ Math.round((houseguest.projections.to1/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to2)">{{ Math.round((houseguest.projections.to2/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to3)">{{ Math.round((houseguest.projections.to3/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to4)">{{ Math.round((houseguest.projections.to4/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to5)">{{ Math.round((houseguest.projections.to5/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to6)">{{ Math.round((houseguest.projections.to6/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to7)">{{ Math.round((houseguest.projections.to7/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to8)">{{ Math.round((houseguest.projections.to8/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to9)">{{ Math.round((houseguest.projections.to9/houseguest.current_price-1)*100) }}%</dd>
+                <dd :style="setbg(houseguest.projections.to10)">{{ Math.round((houseguest.projections.to10/houseguest.current_price-1)*100) }}%</dd>
                 <dd :style="setbg(houseguest.projections.to1)">{{ houseguest.projections.to1 | currency }}</dd>
                 <dd :style="setbg(houseguest.projections.to2)">{{ houseguest.projections.to2 | currency }}</dd>
                 <dd :style="setbg(houseguest.projections.to3)">{{ houseguest.projections.to3 | currency }}</dd>
@@ -73,46 +73,15 @@
             setbg: function (projections) {
                 let red = '235, 61, 61,';
                 let green = '17,192,93,';
-                let alpha = Math.abs((projections / this.currentPrice) - 1);
+                let alpha = Math.abs((projections / this.houseguest.current_price) - 1);
                 return {
-                    'background-color': 'rgb(' + (((projections / this.currentPrice) > 1) ? green : red) + alpha + ')'
+                    'background-color': 'rgb(' + (((projections / this.houseguest.current_price) > 1) ? green : red) + alpha + ')'
                 }
             }
         },
         computed: {
             houseguestImage: function () {
                 return '/storage' + this.houseguest.image;
-            },
-            currentPrice: function () {
-                //find latest week
-                let currentWeek;
-                this.houseguest.prices.forEach(week => {
-                    if (typeof currentWeek === 'undefined' || week.week > currentWeek.week) {
-                        currentWeek = week;
-                    }
-                });
-
-                this.$emit('current-price', {
-                    houseguest: this.houseguest_id,
-                    price: currentWeek.price
-                });
-
-                return currentWeek.price;
-            },
-            currentRating: function () {
-                //find latest week
-                let currentWeek = [];
-                this.houseguest.ratings.forEach(week => {
-                    if (typeof currentWeek[week.user_id] === 'undefined' || week.week > currentWeek[week.user_id].week) {
-                        currentWeek[week.user_id] = week;
-                    }
-                });
-
-                let total = 0;
-                currentWeek.forEach(rating => {
-                    total += rating.rating;
-                });
-                return Math.round(total / 4);
             },
         }
     };

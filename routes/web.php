@@ -4,6 +4,7 @@ use App\Http\Admin\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectionController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DebugController;
@@ -30,11 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
     Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
 
-    Route::get('/projections', function () {
-        $houseguests = \App\Models\Houseguest::where('season_id', \App\Models\Season::current()->id)->get();
-        $houseguests->load('ratings', 'prices');
-        return view('projections_alt', compact('houseguests'));
-    });
+    Route::get('/projections', [ProjectionController::class, 'index']);
 
 //    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

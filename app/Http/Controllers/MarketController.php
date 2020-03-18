@@ -27,13 +27,12 @@ class MarketController extends Controller
     public function calculatePrices($season)
     {
         $f = new Formula();
-//        $week = $season->current_week;
-        $week = 2;
+        $week = $season->current_week;
 
         $houseguests = Houseguest::where('season_id', $season->id)->get();
         foreach ($houseguests as $houseguest) {
             if ($season->getOriginal('status') === 'closed') {
-                $rating = $houseguest->current_rate;
+                $rating = (int)round($houseguest->ratings()->where('week', $week)->pluck('rating')->sum() / 4);
                 $last_rating = (int)round($houseguest->ratings()->where('week', $week - 1)->pluck('rating')->sum() / 4);
                 $last_price = $houseguest->prices()->where('week', $week - 1)->first()->price;
 

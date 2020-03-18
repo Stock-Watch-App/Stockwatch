@@ -17,13 +17,18 @@ class Houseguest extends BaseModel
         'strikes',
     ];
 
+    protected $appends = [
+        'current_rate',
+        'current_price'
+    ];
+
     protected static function boot()
     {
         parent::boot();
 
         static::addGlobalScope('active', function (Builder $builder) {
             $builder->where('status', 'active')
-            ->orderBy('nickname', 'asc');
+                    ->orderBy('nickname', 'asc');
         });
     }
 
@@ -51,12 +56,12 @@ class Houseguest extends BaseModel
 
     public function getCurrentPriceAttribute()
     {
-        return (float)$this->prices()->limit(1)->orderBy('week', 'desc')->value('price');
+        return (float)$this->prices()->limit(1)->where('week', Season::current()->current_week)->value('price');
     }
 
     public function getCurrentRateAttribute()
     {
-        return (int)round($this->ratings()->limit(4)->orderBy('week', 'desc')->pluck('rating')->sum() / 4);
+        return (int)round($this->ratings()->limit(4)->where('week', Season::current()->current_week)->pluck('rating')->sum() / 4);
     }
 
     public function getStrikesAttribute()
@@ -77,11 +82,11 @@ class Houseguest extends BaseModel
     {
         $formula = new Formula();
 
-        $projections = [
-            'to1'  => $formula->calculate($this->current_rate, 1, $this->current_price, $this->strikes),
-            'to2'  => $formula->calculate($this->current_rate, 2, $this->current_price, $this->strikes),
-            'to3'  => $formula->calculate($this->current_rate, 3, $this->current_price, $this->strikes),
-            'to4'  => $formula->calculate($this->current_rate, 4, $this->current_price, $this->strikes),
+        return [
+            'to1'  => $formula->calculate($this->current_rate, 1, $this->current_price, $this->strikes + 1),
+            'to2'  => $formula->calculate($this->current_rate, 2, $this->current_price, $this->strikes + 1),
+            'to3'  => $formula->calculate($this->current_rate, 3, $this->current_price, $this->strikes + 1),
+            'to4'  => $formula->calculate($this->current_rate, 4, $this->current_price, $this->strikes + 1),
             'to5'  => $formula->calculate($this->current_rate, 5, $this->current_price, $this->strikes),
             'to6'  => $formula->calculate($this->current_rate, 6, $this->current_price, $this->strikes),
             'to7'  => $formula->calculate($this->current_rate, 7, $this->current_price, $this->strikes),
@@ -89,8 +94,6 @@ class Houseguest extends BaseModel
             'to9'  => $formula->calculate($this->current_rate, 9, $this->current_price, $this->strikes),
             'to10' => $formula->calculate($this->current_rate, 10, $this->current_price, $this->strikes),
         ];
-
-        return $projections;
     }
 
     //=== SCOPES ===/
