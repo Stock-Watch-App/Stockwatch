@@ -17,6 +17,8 @@ class TradeController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+        $season = Season::current();
+
         //is the user registered for the seasons?
         $bank = $user->bank;
         if ($bank === null) {
@@ -25,13 +27,12 @@ class TradeController extends Controller
             $bank = $user->bank;
         }
 
-        $stocks = $this->getStocks($user);
+        $stocks = $this->getStocks($user, $season);
 
         $networth = $bank->money + $stocks->map(function ($stock) {
                 return $stock->quantity * $stock->houseguest->current_price;
             })->sum();
 
-        $season = Season::current();
 
         return view('trades', compact('user', 'bank', 'stocks', 'networth', 'season'));
     }
@@ -121,7 +122,7 @@ class TradeController extends Controller
         return $stocks;
     }
 
-    protected function getStocks($user)
+    protected function getStocks($user, $season)
     {
         $user->load([
             'stocks' => function ($query) {
@@ -133,8 +134,11 @@ class TradeController extends Controller
 
         $stocks = $user->stocks->load('houseguest');
 
-        $stocks->each(static function ($stock, $key) {
-            $stock->houseguest->load('ratings', 'prices');
+        $stocks->each(static function ($stock, $key) use ($season) {
+            $stock->houseguest->load(['ratings' => function ($query) use ($season) {
+                $query->where('week', $season->current_week);
+            }]);
+            $stock->houseguest->load('prices');
         });
 
         return $stocks;
