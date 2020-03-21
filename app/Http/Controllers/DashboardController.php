@@ -12,8 +12,10 @@ class DashboardController extends Controller
     {
         $user = $request->user();
         $user->load('stocks', 'bank', 'transactions');
+        $season = Season::current();
 
-        $houseguests = Houseguest::where('season_id', Season::current()->id)->withoutGlobalScope('active')->get();
+        $houseguests = Houseguest::where('season_id', $season->id)->withoutGlobalScope('active')->get();
+        $houseguests->load('prices');
 
 
         return view('dashboard', compact('user', 'houseguests'));
