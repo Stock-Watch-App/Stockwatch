@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/projections', [ProjectionController::class, 'index']);
 
-//    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/trades', [TradeController::class, 'index'])->name('dashboard');
 

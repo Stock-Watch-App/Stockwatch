@@ -101,24 +101,6 @@
             }
         },
         methods: {
-            getUserRank: function () {
-                this.rank.rank++;
-                switch (this.rank.rank) {
-                    case 1:
-                        this.rank.class = 'rank-1';
-                        break;
-                    case 2:
-                        this.rank.class = 'rank-2';
-                        break;
-                    case 3:
-                        this.rank.class = 'rank-3';
-                        break;
-                    default:
-                        this.rank.class = '';
-                        break;
-                }
-                return this.rank.rank;
-            },
             houseguestImage: function (houseguest) {
                 return '/storage' + houseguest.image;
             },

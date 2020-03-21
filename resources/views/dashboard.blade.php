@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    Test
+    <dashboard-panel
+        :user="{{ $user  }}"
+        :houseguests="{{ $houseguests }}"
+    >
+    </dashboard-panel>
 @endsection
