@@ -1060,6 +1060,7 @@ a:active {
 }
 .dashboard-wrap .leaderboard-table {
   width: 100%;
+  grid-column: 1/-1;
 }
 .dashboard-wrap .leaderboard-table tr {
   text-align: left;
@@ -1100,15 +1101,15 @@ a:active {
 }
 @media only screen and (min-width: 768px) {
   .dashboard-wrap .dash-cards-wrap .dash-cards {
-    grid-template-columns: repeat(auto-fill, minmax(-webkit-max-content, 170px));
-    grid-template-columns: repeat(auto-fill, minmax(max-content, 170px));
+    grid-template-columns: repeat(auto-fit, minmax(-webkit-max-content, 30%));
+    grid-template-columns: repeat(auto-fit, minmax(max-content, 30%));
     grid-template-rows: minmax(100px, -webkit-max-content);
     grid-template-rows: minmax(100px, max-content);
   }
 }
 @media only screen and (min-width: 1024px) {
   .dashboard-wrap {
-    grid-template-columns: auto;
+    grid-template-columns: 1fr 1fr;
   }
   .dashboard-wrap .dash-cards-wrap {
     grid-column: 1/2;
