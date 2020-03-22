@@ -31,6 +31,23 @@
     .stockcard {
         grid-template-columns: 76px auto;
 
+        .hg-details {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: baseline;
+
+            h4 {
+                font-variation-settings: @base-font-weight-normal;
+            }
+
+            span {
+                margin-left: 10px;
+                color: darken(@green, 3%);
+            }
+
+        }
+
         .user-holdings {
             grid-column: ~'2/3';
             display: flex;
@@ -46,6 +63,10 @@
                 font-variation-settings: "wght" 400;
                 font-size: 1rem;
                 letter-spacing: .005em;
+
+                &.small-price {
+                    .font-unit-rem(14);
+                }
             }
         }
     }
@@ -60,7 +81,7 @@
         .dash-cards-wrap {
             .dash-cards {
                 // grid-template-columns: repeat(auto-fill, minmax(250px, auto));
-                grid-template-columns: repeat(auto-fit, minmax(max-content, 30%));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 grid-template-rows: minmax(100px, max-content);
             }
         }

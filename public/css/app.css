@@ -1079,6 +1079,19 @@ a:active {
 .dashboard-wrap .stockcard {
   grid-template-columns: 76px auto;
 }
+.dashboard-wrap .stockcard .hg-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.dashboard-wrap .stockcard .hg-details h4 {
+  font-variation-settings: "wght" 400;
+}
+.dashboard-wrap .stockcard .hg-details span {
+  margin-left: 10px;
+  color: hsl(146, 84%, 28%);
+}
 .dashboard-wrap .stockcard .user-holdings {
   grid-column: 2/3;
   display: flex;
@@ -1094,6 +1107,9 @@ a:active {
   font-size: 1rem;
   letter-spacing: 0.005em;
 }
+.dashboard-wrap .stockcard .user-holdings .word.small-price {
+  font-size: 0.875rem;
+}
 .dashboard-wrap .transaction-history {
   grid-column: 1/-1;
   grid-row: 2/3;
@@ -1101,8 +1117,7 @@ a:active {
 }
 @media only screen and (min-width: 768px) {
   .dashboard-wrap .dash-cards-wrap .dash-cards {
-    grid-template-columns: repeat(auto-fit, minmax(-webkit-max-content, 30%));
-    grid-template-columns: repeat(auto-fit, minmax(max-content, 30%));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-rows: minmax(100px, -webkit-max-content);
     grid-template-rows: minmax(100px, max-content);
   }

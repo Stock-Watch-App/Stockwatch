@@ -15052,6 +15052,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguests: Object,
@@ -15097,7 +15100,37 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return houseguest;
-    }
+    } // priceDifference: function () {
+    //     if (this.stock.houseguest.prices.length === 1) {
+    //         return {
+    //             amount: -1, //because we use abs(), we will never have a negative number. Thus we can use it as a check.
+    //             icon: '',
+    //             class: ''
+    //         };
+    //     }
+    //     //find latest week and week before
+    //     let currentWeek;
+    //     let lastWeek;
+    //     this.stock.houseguest.prices.forEach(week => {
+    //         if (typeof currentWeek === 'undefined') {
+    //             currentWeek = week;
+    //         } else if (week.week > currentWeek.week) {
+    //             lastWeek = currentWeek;
+    //             currentWeek = week;
+    //         }
+    //     });
+    //     let diff = currentWeek.price - lastWeek.price;
+    //     let isIncrease = (diff > 0);
+    //     return {
+    //         amount: Math.abs(diff),
+    //         icon: (isIncrease | diff === 0? 'arrow-up' : 'arrow-down'),
+    //         class: {
+    //             background: (isIncrease ? 'green-bg' : (diff === 0 ? '' : 'red-bg')),
+    //             text: (isIncrease ? 'green' : (diff === 0 ? '' : 'red'))
+    //         }
+    //     };
+    // }
+
   }
 });
 
@@ -53070,7 +53103,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "card stockcard" }, [
     _c("div", { staticClass: "hg-details" }, [
-      _c("h5", [
+      _c("h4", [
         _vm._v(
           _vm._s(
             _vm._f("capitalize")(
@@ -53095,7 +53128,9 @@ var render = function() {
         _c("span", { staticClass: "num" }, [
           _vm._v(_vm._s(_vm.stock.quantity))
         ]),
-        _c("span", { staticClass: "word" }, [_vm._v(" shares")])
+        _c("span", { staticClass: "word" }, [
+          _vm._v(" share" + _vm._s(_vm.stock.quantity === 1 ? "" : "s"))
+        ])
       ]),
       _vm._v(" "),
       _c("div", [
