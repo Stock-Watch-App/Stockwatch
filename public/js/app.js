@@ -15023,6 +15023,110 @@ var normalizeDecimalNumber = function normalizeDecimalNumber(value) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/HoldingsCard.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/HoldingsCard.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    houseguests: Object,
+    stock: Object,
+    bank: Object,
+    disabled: Boolean
+  },
+  data: function data() {
+    return {// originalStock: _.cloneDeep(this.stock),
+    };
+  },
+  methods: {},
+  computed: {
+    houseguestImage: function houseguestImage() {
+      return '/storage' + this.stock.houseguest.image;
+    },
+    currentPrice: function currentPrice() {
+      //find latest week
+      var currentWeek;
+      this.stock.houseguest.prices.forEach(function (week) {
+        if (typeof currentWeek === 'undefined' || week.week > currentWeek.week) {
+          currentWeek = week;
+        }
+      });
+      this.$emit('current-price', {
+        houseguest: this.stock.houseguest_id,
+        price: currentWeek.price
+      });
+      return currentWeek.price;
+    },
+    currentRating: function currentRating() {
+      //find latest week
+      var currentWeek = [];
+      this.stock.houseguest.ratings.forEach(function (week) {
+        if (typeof currentWeek[week.user_id] === 'undefined' || week.week > currentWeek[week.user_id].week) {
+          currentWeek[week.user_id] = week;
+        }
+      });
+      var total = 0;
+      currentWeek.forEach(function (rating) {
+        total += rating.rating;
+      });
+      return Math.round(total / 4);
+    },
+    priceDifference: function priceDifference() {
+      if (this.stock.houseguest.prices.length === 1) {
+        return {
+          amount: -1,
+          //because we use abs(), we will never have a negative number. Thus we can use it as a check.
+          icon: '',
+          "class": ''
+        };
+      } //find latest week and week before
+
+
+      var currentWeek;
+      var lastWeek;
+      this.stock.houseguest.prices.forEach(function (week) {
+        if (typeof currentWeek === 'undefined') {
+          currentWeek = week;
+        } else if (week.week > currentWeek.week) {
+          lastWeek = currentWeek;
+          currentWeek = week;
+        }
+      });
+      var diff = currentWeek.price - lastWeek.price;
+      var isIncrease = diff > 0;
+      return {
+        amount: Math.abs(diff),
+        icon: isIncrease | diff === 0 ? 'arrow-up' : 'arrow-down',
+        "class": {
+          background: isIncrease ? 'green-bg' : diff === 0 ? '' : 'red-bg',
+          text: isIncrease ? 'green' : diff === 0 ? '' : 'red'
+        }
+      };
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/Panel.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/Panel.vue?vue&type=script&lang=js& ***!
@@ -15038,10 +15142,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: Object,
-    houseguests: Object
+    houseguests: Array,
+    bank: Object
+  },
+  data: function data() {
+    return {
+      mutableStocks: _.cloneDeep(this.stocks),
+      mutableBank: _.cloneDeep(this.bank),
+      prices: [],
+      filters: {
+        name: {
+          value: '',
+          keys: ['user.name']
+        }
+      },
+      currentPage: 1,
+      totalPages: 0
+    };
+  },
+  mounted: function mounted() {},
+  watch: {
+    mutableStocks: {
+      handler: function handler(mutatedStocks, oldVal) {
+        var stockTotal = 0;
+        var prices = this.prices;
+        mutatedStocks.forEach(function (stock) {
+          if (stock.quantity < 0) {
+            stock.quantity = 0;
+          }
+
+          stockTotal += stock.quantity * prices[stock.houseguest_id];
+        });
+
+        if (this.networth < stockTotal) {
+          this.mutableStocks = oldVal;
+        } else {
+          this.mutableBank.money = this.networth - stockTotal;
+        }
+      },
+      deep: true
+    }
+  },
+  methods: {
+    houseguestImage: function houseguestImage(houseguest) {
+      return '/storage' + houseguest.image;
+    }
+  },
+  computed: {//
   }
 });
 
@@ -52884,6 +53079,43 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/HoldingsCard.vue?vue&type=template&id=697d4b86&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/HoldingsCard.vue?vue&type=template&id=697d4b86& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "card stockcard" }, [
+      _c("div", { staticClass: "hg-details" }, [_c("p", [_vm._v("HG name")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "hg-img" }, [
+        _c("img", { attrs: { src: "/storage/avatar-default.svg" } })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/Panel.vue?vue&type=template&id=59f752ae&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard/Panel.vue?vue&type=template&id=59f752ae& ***!
@@ -52899,9 +53131,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Dashboard Panel\n")])
+  return _c("div", { staticClass: "dashboard-wrap" }, [
+    _c("div", { staticClass: "stock-cards-wrap" }, [
+      _c(
+        "ul",
+        { staticClass: "stock-cards" },
+        _vm._l(_vm.houseguests, function(houseguest) {
+          return _c(
+            "li",
+            { key: houseguest.id, staticClass: "card stockcard" },
+            [
+              _c("div", { staticClass: "hg-details" }, [
+                _c("h5", [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("capitalize")(
+                        houseguest.nickname || houseguest.first_name
+                      )
+                    )
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "hg-img" }, [
+                _c("img", {
+                  attrs: {
+                    src: _vm.houseguestImage(houseguest),
+                    alt: houseguest.nickname
+                  }
+                })
+              ])
+            ]
+          )
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "leaderboard-table" }, [
+      _c("thead", { attrs: { slot: "head" }, slot: "head" }, [_vm._m(0)]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.transactions, function(user) {
+          return _c("tr", { key: user.user_id }, [
+            _c("td", [_vm._v(_vm._s(_vm.transaction.created_at))]),
+            _vm._v(" "),
+            _c("td", [_vm._v("Sold Sheldon")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("2")]),
+            _vm._v(" "),
+            _c("td", [_vm._v("$20")])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Description")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Quantity")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Amount")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -83973,6 +84276,7 @@ module.exports = function(module) {
 
 var map = {
 	"./components/NumberInput.vue": "./resources/js/components/NumberInput.vue",
+	"./components/dashboard/HoldingsCard.vue": "./resources/js/components/dashboard/HoldingsCard.vue",
 	"./components/dashboard/Panel.vue": "./resources/js/components/dashboard/Panel.vue",
 	"./components/leaderboard/LeaderboardTable.vue": "./resources/js/components/leaderboard/LeaderboardTable.vue",
 	"./components/projections/ProjectionItem.vue": "./resources/js/components/projections/ProjectionItem.vue",
@@ -84205,6 +84509,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NumberInput_vue_vue_type_template_id_b5ab7734___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/HoldingsCard.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/dashboard/HoldingsCard.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HoldingsCard_vue_vue_type_template_id_697d4b86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HoldingsCard.vue?vue&type=template&id=697d4b86& */ "./resources/js/components/dashboard/HoldingsCard.vue?vue&type=template&id=697d4b86&");
+/* harmony import */ var _HoldingsCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HoldingsCard.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/HoldingsCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _HoldingsCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HoldingsCard_vue_vue_type_template_id_697d4b86___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _HoldingsCard_vue_vue_type_template_id_697d4b86___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/dashboard/HoldingsCard.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/HoldingsCard.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/dashboard/HoldingsCard.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HoldingsCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./HoldingsCard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/HoldingsCard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HoldingsCard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/dashboard/HoldingsCard.vue?vue&type=template&id=697d4b86&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/dashboard/HoldingsCard.vue?vue&type=template&id=697d4b86& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HoldingsCard_vue_vue_type_template_id_697d4b86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./HoldingsCard.vue?vue&type=template&id=697d4b86& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard/HoldingsCard.vue?vue&type=template&id=697d4b86&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HoldingsCard_vue_vue_type_template_id_697d4b86___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HoldingsCard_vue_vue_type_template_id_697d4b86___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -84686,9 +85059,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

@@ -45,14 +45,14 @@
         @endguest
 
         <ul class="sidebar-nav-list">
-            <!-- <li>
+            <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="columns" fixed-width />
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
                 </a>
-            </li> -->
+            </li>
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">
                     <figure>

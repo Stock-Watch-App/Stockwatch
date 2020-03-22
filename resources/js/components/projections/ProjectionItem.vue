@@ -4,7 +4,7 @@
             <h5>{{ houseguest.nickname }}</h5>
         </div>
         <div class="hg-img">
-            <img :src="houseguestImage" :alt="houseguest.nickname">
+            <img :src="houseguestImage" :alt="houseguest.nickname" />
         </div>
         <div class="this-week">
             <div class="this-week-details flex-col">
