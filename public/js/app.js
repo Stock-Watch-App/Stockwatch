@@ -15045,6 +15045,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguests: Object,
@@ -15105,6 +15112,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -53068,14 +53078,6 @@ var render = function() {
             )
           )
         )
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.stock.quantity) + " shares")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          _vm._s(_vm.stock.quantity * _vm.houseguest.current_price) + " value"
-        )
       ])
     ]),
     _vm._v(" "),
@@ -53086,6 +53088,27 @@ var render = function() {
           alt: _vm.houseguest.nickname
         }
       })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "user-holdings" }, [
+      _c("div", [
+        _c("span", { staticClass: "num" }, [
+          _vm._v(_vm._s(_vm.stock.quantity))
+        ]),
+        _c("span", { staticClass: "word" }, [_vm._v(" shares")])
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("span", { staticClass: "num" }, [
+          _vm._v(
+            _vm._s(
+              _vm._f("currency")(
+                _vm.stock.quantity * _vm.houseguest.current_price
+              )
+            )
+          )
+        ])
+      ])
     ])
   ])
 }
@@ -53111,110 +53134,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "dashboard-wrap" },
-    [
-      _c("div", { staticClass: "stock-cards-wrap" }, [
-        _c(
-          "ul",
-          { staticClass: "stock-cards" },
-          _vm._l(_vm.user.stocks, function(stock) {
-            return _c("holdings-card", {
-              key: stock.id,
-              attrs: { stock: stock, houseguests: _vm.houseguests }
-            })
-          }),
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("h3", [_vm._v("Transaction History")]),
+  return _c("div", { staticClass: "dashboard-wrap" }, [
+    _c("div", { staticClass: "dash-cards-wrap mg-btm-lg" }, [
+      _c("h3", { staticClass: "mg-btm-lg" }, [_vm._v("Current Holdings")]),
       _vm._v(" "),
       _c(
-        "v-table",
-        {
-          staticClass: "leaderboard-table",
-          attrs: {
-            data: _vm.user.transactions,
-            hideSortIcons: true,
-            filters: _vm.filters,
-            currentPage: _vm.currentPage,
-            pageSize: 100
-          },
-          on: {
-            "update:currentPage": function($event) {
-              _vm.currentPage = $event
+        "ul",
+        { staticClass: "dash-cards" },
+        _vm._l(_vm.user.stocks, function(stock) {
+          return _c("holdings-card", {
+            key: stock.id,
+            attrs: { stock: stock, houseguests: _vm.houseguests }
+          })
+        }),
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "transaction-history" },
+      [
+        _c("h4", [_vm._v("Transaction History")]),
+        _vm._v(" "),
+        _c(
+          "v-table",
+          {
+            staticClass: "leaderboard-table",
+            attrs: {
+              data: _vm.user.transactions,
+              hideSortIcons: true,
+              filters: _vm.filters,
+              currentPage: _vm.currentPage,
+              pageSize: 100
             },
-            "update:current-page": function($event) {
-              _vm.currentPage = $event
+            on: {
+              "update:currentPage": function($event) {
+                _vm.currentPage = $event
+              },
+              "update:current-page": function($event) {
+                _vm.currentPage = $event
+              },
+              totalPagesChanged: function($event) {
+                _vm.totalPages = $event
+              }
             },
-            totalPagesChanged: function($event) {
-              _vm.totalPages = $event
-            }
-          },
-          scopedSlots: _vm._u([
-            {
-              key: "body",
-              fn: function(ref) {
-                var displayData = ref.displayData
-                return _c(
-                  "tbody",
-                  {},
-                  _vm._l(displayData, function(transaction) {
-                    return _c("tr", { key: transaction.user_id }, [
-                      _c("td", [
-                        _vm._v(_vm._s(_vm._f("date")(transaction.created_at)))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          " " +
+            scopedSlots: _vm._u([
+              {
+                key: "body",
+                fn: function(ref) {
+                  var displayData = ref.displayData
+                  return _c(
+                    "tbody",
+                    {},
+                    _vm._l(displayData, function(transaction) {
+                      return _c("tr", { key: transaction.user_id }, [
+                        _c("td", [
+                          _vm._v(_vm._s(_vm._f("date")(transaction.created_at)))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
                             _vm._s(
                               _vm._f("capitalize")(
                                 _vm.transactionMessage(transaction)
                               )
-                            ) +
-                            " "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(transaction.quantity))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          _vm._s(
-                            _vm._f("currency")(
-                              transaction.quantity * transaction.current_price
                             )
                           )
-                        )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(transaction.quantity))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("currency")(
+                                transaction.quantity * transaction.current_price
+                              )
+                            )
+                          )
+                        ])
                       ])
-                    ])
-                  }),
-                  0
-                )
+                    }),
+                    0
+                  )
+                }
               }
-            }
-          ])
-        },
-        [
-          _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
-            _c("tr", [
-              _c("th", [_vm._v("Date")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Description")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Quantity")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Amount")])
             ])
-          ])
-        ]
-      )
-    ],
-    1
-  )
+          },
+          [
+            _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+              _c("tr", [
+                _c("th", [_vm._v("Date")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Description")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Quantity")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Amount")])
+              ])
+            ])
+          ]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

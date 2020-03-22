@@ -1058,8 +1058,62 @@ a:active {
   grid-column: 1/-1;
   display: grid;
 }
+.dashboard-wrap .leaderboard-table {
+  width: 100%;
+}
 .dashboard-wrap .leaderboard-table tr {
   text-align: left;
+}
+.dashboard-wrap .dash-cards-wrap {
+  grid-column: 1/-1;
+  grid-row: 1/2;
+}
+.dashboard-wrap .dash-cards-wrap .dash-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(100px, -webkit-max-content);
+  grid-template-rows: minmax(100px, max-content);
+  grid-gap: 1rem;
+}
+.dashboard-wrap .stockcard {
+  grid-template-columns: 76px auto;
+}
+.dashboard-wrap .stockcard .user-holdings {
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-wrap .stockcard .user-holdings .num {
+  font-variation-settings: "wght" 700;
+  font-size: 1.625rem;
+  margin-right: 0.125rem;
+}
+.dashboard-wrap .stockcard .user-holdings .word {
+  font-variation-settings: "wght" 400;
+  font-size: 1rem;
+  letter-spacing: 0.005em;
+}
+.dashboard-wrap .transaction-history {
+  grid-column: 1/-1;
+  grid-row: 2/3;
+  overflow-x: auto;
+}
+@media only screen and (min-width: 768px) {
+  .dashboard-wrap .dash-cards-wrap .dash-cards {
+    grid-template-columns: repeat(auto-fill, minmax(-webkit-max-content, 170px));
+    grid-template-columns: repeat(auto-fill, minmax(max-content, 170px));
+    grid-template-rows: minmax(100px, -webkit-max-content);
+    grid-template-rows: minmax(100px, max-content);
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .dashboard-wrap {
+    grid-template-columns: auto;
+  }
+  .dashboard-wrap .dash-cards-wrap {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
 }
 .card {
   border-radius: 4px;
@@ -1884,7 +1938,7 @@ body.landing {
 }
 @media only screen and (min-width: 1024px) {
   .content {
-    width: 1280px;
+    max-width: 1280px;
   }
   .app-content-max {
     grid-column: 2/7;

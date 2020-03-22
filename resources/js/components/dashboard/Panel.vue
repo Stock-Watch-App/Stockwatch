@@ -1,7 +1,8 @@
 <template>
     <div class="dashboard-wrap">
-        <div class="stock-cards-wrap">
-            <ul class="stock-cards">
+        <div class="dash-cards-wrap mg-btm-lg">
+            <h3 class="mg-btm-lg">Current Holdings</h3>
+            <ul class="dash-cards">
                 <holdings-card
                     v-for="stock in user.stocks"
                     :stock="stock"
@@ -11,33 +12,35 @@
             </ul>
         </div>
 
-        <h3>Transaction History</h3>
-        <v-table
-            :data="user.transactions"
-            :hideSortIcons="true"
-            :filters="filters"
-            :currentPage.sync="currentPage"
-            :pageSize="100"
-            @totalPagesChanged="totalPages = $event"
-            class="leaderboard-table"
-        >
-            <thead slot="head">
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Quantity</th>
-                    <th>Amount</th>
+        <div class="transaction-history">
+            <h4>Transaction History</h4>
+            <v-table
+                :data="user.transactions"
+                :hideSortIcons="true"
+                :filters="filters"
+                :currentPage.sync="currentPage"
+                :pageSize="100"
+                @totalPagesChanged="totalPages = $event"
+                class="leaderboard-table"
+            >
+                <thead slot="head">
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody slot="body" slot-scope="{displayData}">
+                <tr v-for="transaction in displayData" :key="transaction.user_id">
+                    <td>{{ transaction.created_at | date }}</td>
+                    <td>{{ transactionMessage(transaction) | capitalize }}</td>
+                    <td>{{ transaction.quantity }}</td>
+                    <td>{{ transaction.quantity*transaction.current_price | currency }}</td>
                 </tr>
-            </thead>
-            <tbody slot="body" slot-scope="{displayData}">
-            <tr v-for="transaction in displayData" :key="transaction.user_id">
-                <td>{{ transaction.created_at | date }}</td>
-                <td> {{ transactionMessage(transaction) | capitalize }} </td>
-                <td>{{ transaction.quantity }}</td>
-                <td>{{ transaction.quantity*transaction.current_price | currency }}</td>
-            </tr>
-            </tbody>
-        </v-table>
+                </tbody>
+            </v-table>
+        </div>
     </div>
 </template>
 
