@@ -2,31 +2,23 @@
     <div class="dashboard-wrap">
         <div class="stock-cards-wrap">
             <ul class="stock-cards">
-                <li class="card stockcard" v-for="houseguest in houseguests" v-bind:key="houseguest.id">
-                    <div class="hg-details">
-                        <h5>{{ houseguest.nickname || houseguest.first_name | capitalize }}</h5>
-                        <!-- <p>{{ user.stocks[houseguest_id] }} ugh</p> -->
-                        <!-- {{ user.transactions[user_id] }} -->
-                    </div>
-                    <div class="hg-img" >
-                        <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" />
-                    </div>
-                </li>
-                <!-- <li class="card stockcard">
-                    {{ user.transactions }}
-                </li> -->
+                <holdings-card
+                    v-for="stock in user.stocks"
+                    :stock="stock"
+                    :houseguests="houseguests"
+                    :key="stock.id"
+                ></holdings-card>
             </ul>
         </div>
-        <!-- <v-table
-            :data="user"
+        <v-table
+            :data="user.transactions"
             :hideSortIcons="true"
             :filters="filters"
             :currentPage.sync="currentPage"
             :pageSize="100"
             @totalPagesChanged="totalPages = $event"
             class="leaderboard-table"
-        > -->
-        <table class="leaderboard-table">
+        >
             <thead slot="head">
                 <tr>
                     <th>Date</th>
@@ -35,17 +27,15 @@
                     <th>Amount</th>
                 </tr>
             </thead>
-            <!-- <tbody slot="body" slot-scope="{displayData}"> -->
-            <tbody>
-            <tr v-for="user in transactions" :key="user.user_id">
+            <tbody slot="body" slot-scope="{displayData}">
+            <tr v-for="transaction in displayData" :key="transaction.user_id">
                 <td>{{ transaction.created_at }}</td>
-                <td>Sold Sheldon</td>
-                <td>2</td>
-                <td>$20</td>
+                <td> {{ transactionMessage(transaction) | capitalize }} </td>
+                <td>{{ transaction.quantity }}</td>
+                <td>{{ transaction.quantity*transaction.current_price }}</td>
             </tr>
             </tbody>
-        <!-- </v-table> -->
-        </table>
+        </v-table>
     </div>
 </template>
 
@@ -53,47 +43,33 @@
     export default {
         props: {
             user: Object,
-            houseguests: Array,
-            bank: Object,
+            houseguests: Array
         },
         data() {
-            return {
-                mutableStocks: _.cloneDeep(this.stocks),
-                mutableBank: _.cloneDeep(this.bank),
-                prices: [],
-                filters: {
-                    name: {value: '', keys: ['user.name']}
-                },
-                currentPage: 1,
-                totalPages: 0,
-                }
+            return {};
         }, mounted() {
         },
-        watch: {
-            mutableStocks: {
-                handler(mutatedStocks, oldVal) {
-                    let stockTotal = 0;
-                    let prices = this.prices;
-
-                    mutatedStocks.forEach((stock) => {
-                        if (stock.quantity < 0) {
-                            stock.quantity = 0;
-                        }
-                        stockTotal += stock.quantity * prices[stock.houseguest_id];
-                    });
-                    if (this.networth < stockTotal) {
-                        this.mutableStocks = oldVal;
-                    } else {
-                        this.mutableBank.money = this.networth - stockTotal;
-                    }
-                },
-                deep: true
-            }
-        },
+        watch: {},
         methods: {
-            houseguestImage: function (houseguest) {
-                return '/storage' + houseguest.image;
-            },
+            transactionMessage: function (t) {
+                
+                let verb
+                if (t.action === 'buy') {
+                    verb = 'bought';
+                } else if (t.action === 'sell') {
+                    verb = 'sold';
+                }
+
+                //find houseguest
+                let houseguest;
+                for (let hg of this.houseguests) {
+                    if (hg.id === t.houseguest_id) {
+                        houseguest = hg;
+                    }
+                }
+
+                return verb + ' ' + t.quantity + ' stocks of ' + houseguest.nickname;
+            }
         },
         computed: {
             //

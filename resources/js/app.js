@@ -45,6 +45,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 Vue.component('stock-card', require('./components/trades/StockCard.vue').default);
 Vue.component('trade-panel', require('./components/trades/Panel.vue').default);
 Vue.component('dashboard-panel', require('./components/dashboard/Panel.vue').default);
+Vue.component('holdings-card', require('./components/dashboard/HoldingsCard.vue').default);
 
 Vue.component('projection-item', require('./components/projections/ProjectionItem.vue').default);
 

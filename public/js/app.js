@@ -15044,83 +15044,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguests: Object,
-    stock: Object,
-    bank: Object,
-    disabled: Boolean
+    stock: Object
   },
   data: function data() {
-    return {// originalStock: _.cloneDeep(this.stock),
+    return {//
     };
   },
-  methods: {},
+  methods: {
+    houseguestImage: function houseguestImage(houseguest) {
+      return '/storage' + houseguest.image;
+    }
+  },
   computed: {
-    houseguestImage: function houseguestImage() {
-      return '/storage' + this.stock.houseguest.image;
-    },
-    currentPrice: function currentPrice() {
-      //find latest week
-      var currentWeek;
-      this.stock.houseguest.prices.forEach(function (week) {
-        if (typeof currentWeek === 'undefined' || week.week > currentWeek.week) {
-          currentWeek = week;
-        }
-      });
-      this.$emit('current-price', {
-        houseguest: this.stock.houseguest_id,
-        price: currentWeek.price
-      });
-      return currentWeek.price;
-    },
-    currentRating: function currentRating() {
-      //find latest week
-      var currentWeek = [];
-      this.stock.houseguest.ratings.forEach(function (week) {
-        if (typeof currentWeek[week.user_id] === 'undefined' || week.week > currentWeek[week.user_id].week) {
-          currentWeek[week.user_id] = week;
-        }
-      });
-      var total = 0;
-      currentWeek.forEach(function (rating) {
-        total += rating.rating;
-      });
-      return Math.round(total / 4);
-    },
-    priceDifference: function priceDifference() {
-      if (this.stock.houseguest.prices.length === 1) {
-        return {
-          amount: -1,
-          //because we use abs(), we will never have a negative number. Thus we can use it as a check.
-          icon: '',
-          "class": ''
-        };
-      } //find latest week and week before
+    houseguest: function houseguest() {
+      var houseguest;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
 
+      try {
+        for (var _iterator = this.houseguests[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var hg = _step.value;
 
-      var currentWeek;
-      var lastWeek;
-      this.stock.houseguest.prices.forEach(function (week) {
-        if (typeof currentWeek === 'undefined') {
-          currentWeek = week;
-        } else if (week.week > currentWeek.week) {
-          lastWeek = currentWeek;
-          currentWeek = week;
+          if (hg.id === this.stock.houseguest_id) {
+            houseguest = hg;
+          }
         }
-      });
-      var diff = currentWeek.price - lastWeek.price;
-      var isIncrease = diff > 0;
-      return {
-        amount: Math.abs(diff),
-        icon: isIncrease | diff === 0 ? 'arrow-up' : 'arrow-down',
-        "class": {
-          background: isIncrease ? 'green-bg' : diff === 0 ? '' : 'red-bg',
-          text: isIncrease ? 'green' : diff === 0 ? '' : 'red'
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
         }
-      };
+      }
+
+      return houseguest;
     }
   }
 });
@@ -15177,63 +15145,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: Object,
-    houseguests: Array,
-    bank: Object
+    houseguests: Array
   },
   data: function data() {
-    return {
-      mutableStocks: _.cloneDeep(this.stocks),
-      mutableBank: _.cloneDeep(this.bank),
-      prices: [],
-      filters: {
-        name: {
-          value: '',
-          keys: ['user.name']
-        }
-      },
-      currentPage: 1,
-      totalPages: 0
-    };
+    return {};
   },
   mounted: function mounted() {},
-  watch: {
-    mutableStocks: {
-      handler: function handler(mutatedStocks, oldVal) {
-        var stockTotal = 0;
-        var prices = this.prices;
-        mutatedStocks.forEach(function (stock) {
-          if (stock.quantity < 0) {
-            stock.quantity = 0;
-          }
-
-          stockTotal += stock.quantity * prices[stock.houseguest_id];
-        });
-
-        if (this.networth < stockTotal) {
-          this.mutableStocks = oldVal;
-        } else {
-          this.mutableBank.money = this.networth - stockTotal;
-        }
-      },
-      deep: true
-    }
-  },
+  watch: {},
   methods: {
-    houseguestImage: function houseguestImage(houseguest) {
-      return '/storage' + houseguest.image;
+    transactionMessage: function transactionMessage(t) {
+      var verb;
+
+      if (t.action === 'buy') {
+        verb = 'bought';
+      } else if (t.action === 'sell') {
+        verb = 'sold';
+      } //find houseguest
+
+
+      var houseguest;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.houseguests[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var hg = _step.value;
+
+          if (hg.id === t.houseguest_id) {
+            houseguest = hg;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return verb + ' ' + t.quantity + ' stocks of ' + houseguest.nickname;
     }
   },
   computed: {//
@@ -53094,22 +53055,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "card stockcard" }, [
-      _c("div", { staticClass: "hg-details" }, [_c("p", [_vm._v("HG name")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "hg-img" }, [
-        _c("img", { attrs: { src: "/storage/avatar-default.svg" } })
-      ])
+  return _c("li", { staticClass: "card stockcard" }, [
+    _c("div", { staticClass: "hg-details" }, [
+      _c("h5", [
+        _vm._v(
+          _vm._s(
+            _vm._f("capitalize")(
+              _vm.houseguest.nickname || _vm.houseguest.first_name
+            )
+          )
+        )
+      ]),
+      _vm._v("\n        " + _vm._s(_vm.stock.quantity) + "\n    ")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "hg-img" }, [
+      _c("img", {
+        attrs: {
+          src: _vm.houseguestImage(_vm.houseguest),
+          alt: _vm.houseguest.nickname
+        }
+      })
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -53131,80 +53101,106 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "dashboard-wrap" }, [
-    _c("div", { staticClass: "stock-cards-wrap" }, [
-      _c(
-        "ul",
-        { staticClass: "stock-cards" },
-        _vm._l(_vm.houseguests, function(houseguest) {
-          return _c(
-            "li",
-            { key: houseguest.id, staticClass: "card stockcard" },
-            [
-              _c("div", { staticClass: "hg-details" }, [
-                _c("h5", [
-                  _vm._v(
-                    _vm._s(
-                      _vm._f("capitalize")(
-                        houseguest.nickname || houseguest.first_name
-                      )
-                    )
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "hg-img" }, [
-                _c("img", {
-                  attrs: {
-                    src: _vm.houseguestImage(houseguest),
-                    alt: houseguest.nickname
-                  }
-                })
-              ])
-            ]
-          )
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "leaderboard-table" }, [
-      _c("thead", { attrs: { slot: "head" }, slot: "head" }, [_vm._m(0)]),
+  return _c(
+    "div",
+    { staticClass: "dashboard-wrap" },
+    [
+      _c("div", { staticClass: "stock-cards-wrap" }, [
+        _c(
+          "ul",
+          { staticClass: "stock-cards" },
+          _vm._l(_vm.user.stocks, function(stock) {
+            return _c("holdings-card", {
+              key: stock.id,
+              attrs: { stock: stock, houseguests: _vm.houseguests }
+            })
+          }),
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
-        "tbody",
-        _vm._l(_vm.transactions, function(user) {
-          return _c("tr", { key: user.user_id }, [
-            _c("td", [_vm._v(_vm._s(_vm.transaction.created_at))]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Sold Sheldon")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("$20")])
+        "v-table",
+        {
+          staticClass: "leaderboard-table",
+          attrs: {
+            data: _vm.user.transactions,
+            hideSortIcons: true,
+            filters: _vm.filters,
+            currentPage: _vm.currentPage,
+            pageSize: 100
+          },
+          on: {
+            "update:currentPage": function($event) {
+              _vm.currentPage = $event
+            },
+            "update:current-page": function($event) {
+              _vm.currentPage = $event
+            },
+            totalPagesChanged: function($event) {
+              _vm.totalPages = $event
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "body",
+              fn: function(ref) {
+                var displayData = ref.displayData
+                return _c(
+                  "tbody",
+                  {},
+                  _vm._l(displayData, function(transaction) {
+                    return _c("tr", { key: transaction.user_id }, [
+                      _c("td", [_vm._v(_vm._s(transaction.created_at))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          " " +
+                            _vm._s(
+                              _vm._f("capitalize")(
+                                _vm.transactionMessage(transaction)
+                              )
+                            ) +
+                            " "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(transaction.quantity))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            transaction.quantity * transaction.current_price
+                          )
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              }
+            }
           ])
-        }),
-        0
+        },
+        [
+          _c("thead", { attrs: { slot: "head" }, slot: "head" }, [
+            _c("tr", [
+              _c("th", [_vm._v("Date")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Description")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Quantity")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Amount")])
+            ])
+          ])
+        ]
       )
-    ])
-  ])
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Date")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Description")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Quantity")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Amount")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -84366,6 +84362,7 @@ files.keys().map(function (key) {
 Vue.component('stock-card', __webpack_require__(/*! ./components/trades/StockCard.vue */ "./resources/js/components/trades/StockCard.vue")["default"]);
 Vue.component('trade-panel', __webpack_require__(/*! ./components/trades/Panel.vue */ "./resources/js/components/trades/Panel.vue")["default"]);
 Vue.component('dashboard-panel', __webpack_require__(/*! ./components/dashboard/Panel.vue */ "./resources/js/components/dashboard/Panel.vue")["default"]);
+Vue.component('holdings-card', __webpack_require__(/*! ./components/dashboard/HoldingsCard.vue */ "./resources/js/components/dashboard/HoldingsCard.vue")["default"]);
 Vue.component('projection-item', __webpack_require__(/*! ./components/projections/ProjectionItem.vue */ "./resources/js/components/projections/ProjectionItem.vue")["default"]);
 Vue.component('leaderboard-table', __webpack_require__(/*! ./components/leaderboard/LeaderboardTable.vue */ "./resources/js/components/leaderboard/LeaderboardTable.vue")["default"]); // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
@@ -85059,9 +85056,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })
