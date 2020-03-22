@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard-wrap">
+    <div class="trades-wrap">
         <div class="stock-cards-wrap">
             <ul class="stock-cards">
                 <stock-card

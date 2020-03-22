@@ -10,6 +10,8 @@
                 ></holdings-card>
             </ul>
         </div>
+
+        <h3>Transaction History</h3>
         <v-table
             :data="user.transactions"
             :hideSortIcons="true"
@@ -29,10 +31,10 @@
             </thead>
             <tbody slot="body" slot-scope="{displayData}">
             <tr v-for="transaction in displayData" :key="transaction.user_id">
-                <td>{{ transaction.created_at }}</td>
+                <td>{{ transaction.created_at | date }}</td>
                 <td> {{ transactionMessage(transaction) | capitalize }} </td>
                 <td>{{ transaction.quantity }}</td>
-                <td>{{ transaction.quantity*transaction.current_price }}</td>
+                <td>{{ transaction.quantity*transaction.current_price | currency }}</td>
             </tr>
             </tbody>
         </v-table>
@@ -52,7 +54,7 @@
         watch: {},
         methods: {
             transactionMessage: function (t) {
-                
+
                 let verb
                 if (t.action === 'buy') {
                     verb = 'bought';
@@ -68,7 +70,7 @@
                     }
                 }
 
-                return verb + ' ' + t.quantity + ' stocks of ' + houseguest.nickname;
+                return verb + ' ' + t.quantity + ' stock(s) of ' + houseguest.nickname;
             }
         },
         computed: {

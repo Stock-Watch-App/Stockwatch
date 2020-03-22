@@ -648,7 +648,7 @@ a:active {
 .headline {
   color: hsl(0, 0%, 100%);
 }
-.dashboard-wrap {
+.trades-wrap {
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: 1fr;
@@ -695,7 +695,7 @@ a:active {
   }
 }
 @media only screen and (min-width: 1024px) {
-  .dashboard-wrap {
+  .trades-wrap {
     grid-template-columns: auto minmax(230px, -webkit-min-content);
     grid-template-columns: auto minmax(230px, min-content);
   }
@@ -1053,6 +1053,13 @@ a:active {
   .maintenance {
     grid-column: 2/4;
   }
+}
+.dashboard-wrap {
+  grid-column: 1/-1;
+  display: grid;
+}
+.dashboard-wrap .leaderboard-table tr {
+  text-align: left;
 }
 .card {
   border-radius: 4px;

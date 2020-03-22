@@ -15044,6 +15044,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     houseguests: Object,
@@ -15145,6 +15146,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: Object,
@@ -15194,7 +15197,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      return verb + ' ' + t.quantity + ' stocks of ' + houseguest.nickname;
+      return verb + ' ' + t.quantity + ' stock(s) of ' + houseguest.nickname;
     }
   },
   computed: {//
@@ -53066,7 +53069,14 @@ var render = function() {
           )
         )
       ]),
-      _vm._v("\n        " + _vm._s(_vm.stock.quantity) + "\n    ")
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.stock.quantity) + " shares")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          _vm._s(_vm.stock.quantity * _vm.houseguest.current_price) + " value"
+        )
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "hg-img" }, [
@@ -53119,6 +53129,8 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _c("h3", [_vm._v("Transaction History")]),
+      _vm._v(" "),
       _c(
         "v-table",
         {
@@ -53151,7 +53163,9 @@ var render = function() {
                   {},
                   _vm._l(displayData, function(transaction) {
                     return _c("tr", { key: transaction.user_id }, [
-                      _c("td", [_vm._v(_vm._s(transaction.created_at))]),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm._f("date")(transaction.created_at)))
+                      ]),
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
@@ -53170,7 +53184,9 @@ var render = function() {
                       _c("td", [
                         _vm._v(
                           _vm._s(
-                            transaction.quantity * transaction.current_price
+                            _vm._f("currency")(
+                              transaction.quantity * transaction.current_price
+                            )
                           )
                         )
                       ])
@@ -53705,7 +53721,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "dashboard-wrap" }, [
+  return _c("div", { staticClass: "trades-wrap" }, [
     _c("div", { staticClass: "stock-cards-wrap" }, [
       _c(
         "ul",
@@ -84370,7 +84386,8 @@ Vue.component('leaderboard-table', __webpack_require__(/*! ./components/leaderbo
 //=== FILTERS ===//
 
 Vue.filter('capitalize', __webpack_require__(/*! ./filters/Capitalize.js */ "./resources/js/filters/Capitalize.js")["default"]);
-Vue.filter('currency', __webpack_require__(/*! ./filters/Currency.js */ "./resources/js/filters/Currency.js")["default"]);
+Vue.filter('currency', __webpack_require__(/*! ./filters/Currency.js */ "./resources/js/filters/Currency.js")["default"]); // Vue.filter('date', require('./filters/Date.js').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -85056,9 +85073,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

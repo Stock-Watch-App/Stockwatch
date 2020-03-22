@@ -2,7 +2,8 @@
     <li class="card stockcard">
         <div class="hg-details">
             <h5>{{ houseguest.nickname || houseguest.first_name | capitalize }}</h5>
-            {{ stock.quantity }}
+            <p>{{ stock.quantity }} shares</p>
+            <p>{{ stock.quantity*houseguest.current_price }} value</p>
         </div>
         <div class="hg-img" >
             <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" />
