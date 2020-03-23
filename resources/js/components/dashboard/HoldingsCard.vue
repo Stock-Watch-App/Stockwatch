@@ -24,7 +24,7 @@
 <script>
     export default {
         props: {
-            houseguests: Object,
+            houseguests: Array,
             stock: Object,
         },
         data() {

@@ -15057,7 +15057,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    houseguests: Object,
+    houseguests: Array,
     stock: Object
   },
   data: function data() {
@@ -53251,7 +53251,7 @@ var render = function() {
                     "tbody",
                     {},
                     _vm._l(displayData, function(transaction) {
-                      return _c("tr", { key: transaction.updated_at }, [
+                      return _c("tr", { key: transaction.id }, [
                         _c("td", [
                           _vm._v(_vm._s(_vm._f("date")(transaction.created_at)))
                         ]),
@@ -85195,9 +85195,9 @@ Vue.filter('date', function (value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/app.less */"./resources/less/app.less");
-module.exports = __webpack_require__(/*! /home/timothy/projects/stockwatch/resources/less/nova.less */"./resources/less/nova.less");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/app.less */"./resources/less/app.less");
+module.exports = __webpack_require__(/*! /Users/klangerman/Sites/stockwatch-new/resources/less/nova.less */"./resources/less/nova.less");
 
 
 /***/ })

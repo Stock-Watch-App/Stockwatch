@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody slot="body" slot-scope="{displayData}">
-                <tr v-for="transaction in displayData" :key="transaction.updated_at">
+                <tr v-for="transaction in displayData" :key="transaction.id">
                     <td>{{ transaction.created_at | date }}</td>
                     <td>{{ transactionMessage(transaction) | capitalize }}</td>
                     <td>{{ transaction.quantity }}</td>

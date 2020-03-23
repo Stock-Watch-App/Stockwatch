@@ -1123,7 +1123,7 @@ a:active {
 }
 @media only screen and (min-width: 1024px) {
   .dashboard-wrap {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto;
   }
   .dashboard-wrap .dash-cards-wrap {
     grid-column: 1/2;
