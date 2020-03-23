@@ -15100,37 +15100,39 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return houseguest;
-    } // priceDifference: function () {
-    //     if (this.stock.houseguest.prices.length === 1) {
-    //         return {
-    //             amount: -1, //because we use abs(), we will never have a negative number. Thus we can use it as a check.
-    //             icon: '',
-    //             class: ''
-    //         };
-    //     }
-    //     //find latest week and week before
-    //     let currentWeek;
-    //     let lastWeek;
-    //     this.stock.houseguest.prices.forEach(week => {
-    //         if (typeof currentWeek === 'undefined') {
-    //             currentWeek = week;
-    //         } else if (week.week > currentWeek.week) {
-    //             lastWeek = currentWeek;
-    //             currentWeek = week;
-    //         }
-    //     });
-    //     let diff = currentWeek.price - lastWeek.price;
-    //     let isIncrease = (diff > 0);
-    //     return {
-    //         amount: Math.abs(diff),
-    //         icon: (isIncrease | diff === 0? 'arrow-up' : 'arrow-down'),
-    //         class: {
-    //             background: (isIncrease ? 'green-bg' : (diff === 0 ? '' : 'red-bg')),
-    //             text: (isIncrease ? 'green' : (diff === 0 ? '' : 'red'))
-    //         }
-    //     };
-    // }
+    },
+    priceDifference: function priceDifference() {
+      if (this.stock.houseguest.prices.length === 1) {
+        return {
+          amount: -1,
+          //because we use abs(), we will never have a negative number. Thus we can use it as a check.
+          icon: '',
+          "class": ''
+        };
+      } //find latest week and week before
 
+
+      var currentWeek;
+      var lastWeek;
+      this.stock.houseguest.prices.forEach(function (week) {
+        if (typeof currentWeek === 'undefined') {
+          currentWeek = week;
+        } else if (week.week > currentWeek.week) {
+          lastWeek = currentWeek;
+          currentWeek = week;
+        }
+      });
+      var diff = currentWeek.price - lastWeek.price;
+      var isIncrease = diff > 0;
+      return {
+        amount: Math.abs(diff),
+        icon: isIncrease | diff === 0 ? 'arrow-up' : 'arrow-down',
+        "class": {
+          background: isIncrease ? 'green-bg' : diff === 0 ? '' : 'red-bg',
+          text: isIncrease ? 'green' : diff === 0 ? '' : 'red'
+        }
+      };
+    }
   }
 });
 
@@ -53111,7 +53113,25 @@ var render = function() {
             )
           )
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.priceDifference.amount >= 0
+        ? _c(
+            "span",
+            { class: _vm.priceDifference.class.text },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "price-diff-icon",
+                attrs: { icon: _vm.priceDifference.icon }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "price-diff word small-price" }, [
+                _vm._v(_vm._s(_vm._f("currency")(_vm.houseguest.current_price)))
+              ])
+            ],
+            1
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "hg-img" }, [
@@ -84446,8 +84466,8 @@ Vue.component('leaderboard-table', __webpack_require__(/*! ./components/leaderbo
 //=== FILTERS ===//
 
 Vue.filter('capitalize', __webpack_require__(/*! ./filters/Capitalize.js */ "./resources/js/filters/Capitalize.js")["default"]);
-Vue.filter('currency', __webpack_require__(/*! ./filters/Currency.js */ "./resources/js/filters/Currency.js")["default"]); // Vue.filter('date', require('./filters/Date.js').default);
-
+Vue.filter('currency', __webpack_require__(/*! ./filters/Currency.js */ "./resources/js/filters/Currency.js")["default"]);
+Vue.filter('date', __webpack_require__(/*! ./filters/Date.js */ "./resources/js/filters/Date.js")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -85100,6 +85120,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (value) {
   if (!value && value !== 0) return '';
   return '$' + parseFloat(value).toFixed(2);
+});
+
+/***/ }),
+
+/***/ "./resources/js/filters/Date.js":
+/*!**************************************!*\
+  !*** ./resources/js/filters/Date.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Vue filter to make a simple timestamp for an ISO date.
+ * http://jsfiddle.net/bryan_k/44kqtpeg/
+ *
+ * @param {String} value The value string.
+ */
+Vue.filter('date', function (value) {
+  var parts = value.split(' ');
+  var date = parts[0];
+  date = date.split('-');
+  return date[1] + '/' + date[2] + '/' + date[0];
 });
 
 /***/ }),

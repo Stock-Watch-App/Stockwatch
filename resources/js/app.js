@@ -59,7 +59,7 @@ Vue.component('leaderboard-table', require('./components/leaderboard/Leaderboard
 //=== FILTERS ===//
 Vue.filter('capitalize', require('./filters/Capitalize.js').default);
 Vue.filter('currency', require('./filters/Currency.js').default);
-// Vue.filter('date', require('./filters/Date.js').default);
+Vue.filter('date', require('./filters/Date.js').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
