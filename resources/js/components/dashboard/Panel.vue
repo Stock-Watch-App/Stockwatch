@@ -7,7 +7,7 @@
                     v-for="stock in user.stocks"
                     :stock="stock"
                     :houseguests="houseguests"
-                    :key="stock.id"
+                    :key="stock.houseguest_id"
                 ></holdings-card>
             </ul>
         </div>
@@ -17,11 +17,10 @@
             <v-table
                 :data="user.transactions"
                 :hideSortIcons="true"
-                :filters="filters"
                 :currentPage.sync="currentPage"
-                :pageSize="100"
+                :pageSize="20"
                 @totalPagesChanged="totalPages = $event"
-                class="leaderboard-table"
+                class="leaderboard-table mg-btm-md"
             >
                 <thead slot="head">
                     <tr>
@@ -32,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody slot="body" slot-scope="{displayData}">
-                <tr v-for="transaction in displayData" :key="transaction.user_id">
+                <tr v-for="transaction in displayData" :key="transaction.updated_at">
                     <td>{{ transaction.created_at | date }}</td>
                     <td>{{ transactionMessage(transaction) | capitalize }}</td>
                     <td>{{ transaction.quantity }}</td>
@@ -40,6 +39,10 @@
                 </tr>
                 </tbody>
             </v-table>
+            <smart-pagination
+                :currentPage.sync="currentPage"
+                :totalPages="totalPages"
+            />
         </div>
     </div>
 </template>
@@ -51,7 +54,10 @@
             houseguests: Array
         },
         data() {
-            return {};
+            return {
+                currentPage: 1,
+                totalPages: 0,
+            };
         }, mounted() {
         },
         watch: {},

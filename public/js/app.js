@@ -15102,7 +15102,7 @@ __webpack_require__.r(__webpack_exports__);
       return houseguest;
     },
     priceDifference: function priceDifference() {
-      if (this.stock.houseguest.prices.length === 1) {
+      if (this.houseguest.prices.length === 1) {
         return {
           amount: -1,
           //because we use abs(), we will never have a negative number. Thus we can use it as a check.
@@ -15114,7 +15114,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var currentWeek;
       var lastWeek;
-      this.stock.houseguest.prices.forEach(function (week) {
+      this.houseguest.prices.forEach(function (week) {
         if (typeof currentWeek === 'undefined') {
           currentWeek = week;
         } else if (week.week > currentWeek.week) {
@@ -15193,13 +15193,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: Object,
     houseguests: Array
   },
   data: function data() {
-    return {};
+    return {
+      currentPage: 1,
+      totalPages: 0
+    };
   },
   mounted: function mounted() {},
   watch: {},
@@ -53118,7 +53124,10 @@ var render = function() {
       _vm.priceDifference.amount >= 0
         ? _c(
             "span",
-            { class: _vm.priceDifference.class.text },
+            {
+              staticClass: "price-change-wrap",
+              class: _vm.priceDifference.class.text
+            },
             [
               _c("font-awesome-icon", {
                 staticClass: "price-diff-icon",
@@ -53198,7 +53207,7 @@ var render = function() {
         { staticClass: "dash-cards" },
         _vm._l(_vm.user.stocks, function(stock) {
           return _c("holdings-card", {
-            key: stock.id,
+            key: stock.houseguest_id,
             attrs: { stock: stock, houseguests: _vm.houseguests }
           })
         }),
@@ -53215,13 +53224,12 @@ var render = function() {
         _c(
           "v-table",
           {
-            staticClass: "leaderboard-table",
+            staticClass: "leaderboard-table mg-btm-md",
             attrs: {
               data: _vm.user.transactions,
               hideSortIcons: true,
-              filters: _vm.filters,
               currentPage: _vm.currentPage,
-              pageSize: 100
+              pageSize: 20
             },
             on: {
               "update:currentPage": function($event) {
@@ -53243,7 +53251,7 @@ var render = function() {
                     "tbody",
                     {},
                     _vm._l(displayData, function(transaction) {
-                      return _c("tr", { key: transaction.user_id }, [
+                      return _c("tr", { key: transaction.updated_at }, [
                         _c("td", [
                           _vm._v(_vm._s(_vm._f("date")(transaction.created_at)))
                         ]),
@@ -53290,7 +53298,19 @@ var render = function() {
               ])
             ])
           ]
-        )
+        ),
+        _vm._v(" "),
+        _c("smart-pagination", {
+          attrs: { currentPage: _vm.currentPage, totalPages: _vm.totalPages },
+          on: {
+            "update:currentPage": function($event) {
+              _vm.currentPage = $event
+            },
+            "update:current-page": function($event) {
+              _vm.currentPage = $event
+            }
+          }
+        })
       ],
       1
     )

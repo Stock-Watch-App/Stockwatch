@@ -1088,9 +1088,8 @@ a:active {
 .dashboard-wrap .stockcard .hg-details h4 {
   font-variation-settings: "wght" 400;
 }
-.dashboard-wrap .stockcard .hg-details span {
+.dashboard-wrap .stockcard .hg-details .price-change-wrap {
   margin-left: 10px;
-  color: hsl(146, 84%, 28%);
 }
 .dashboard-wrap .stockcard .user-holdings {
   grid-column: 2/3;
