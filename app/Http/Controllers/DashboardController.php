@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $user->load('bank', 'transactions');
+        $user->load('bank', 'transactions', 'leaderboard');
         $user->load([
             'stocks' => function ($query) {
                 $query->where('quantity', '>', 0);
