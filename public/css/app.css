@@ -420,7 +420,7 @@ a:active {
   position: sticky;
   top: 0;
   padding: 0.5rem 0 0.5rem 1rem;
-  z-index: 2;
+  z-index: 6;
   display: flex;
   align-items: center;
   background: #25282F;
@@ -458,6 +458,10 @@ a:active {
 .app-wrapper .sidebar-nav .sidebar-nav-list li {
   margin-bottom: 1rem;
 }
+.app-wrapper .sidebar-nav .sidebar-nav-list .last-item {
+  border-bottom: solid 1px hsl(240, 4%, 75%);
+  padding-bottom: 1rem;
+}
 .app-wrapper .sidebar-nav .sidebar-nav-list figure {
   margin-right: 1rem;
 }
@@ -476,7 +480,6 @@ a:active {
 .app-wrapper .sidebar-nav .profile-wrap div {
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
   flex: 1 1 75%;
 }
 .app-wrapper .sidebar-nav .profile-wrap .profile-pic {

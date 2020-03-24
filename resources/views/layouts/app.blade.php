@@ -75,15 +75,7 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Leaderboard</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href="/" title="History" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="history" fixed-width />
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">History</span>
-                </a>
-            </li> -->
-            <li>
+            <li class="last-item">
                 <a href="/account" title="Account" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="user-circle" fixed-width/>
@@ -91,7 +83,7 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span> </a>
             </li>
             <li>
-                <a href="/faq" title="Account" class="item-wrap">
+                <a href="/faq" title="Frequently Asked Questions" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="info-circle" fixed-width/>
                     </figure>
