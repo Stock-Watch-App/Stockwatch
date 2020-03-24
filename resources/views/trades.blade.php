@@ -6,7 +6,7 @@
             @if($season->status === 'open')
                 <span>The market will be closing at 4pm ET @if(date('N') === '4') today @else on Thursday @endif.</span>
             @elseif($season->status === 'closed')
-                <span>The market is <strong>Closed</strong>. Trading will reopen following the LFC Roundtable Tuesday Evening.</span>
+                <span>The market is <strong>Closed</strong>. {{--Trading will reopen following the LFC Roundtable Tuesday Evening.--}}</span>
             @endif
         </div>
         <trade-panel
