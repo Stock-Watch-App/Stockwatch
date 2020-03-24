@@ -28,8 +28,7 @@
         </button>
 
         <a class="logo" v-bind:class="[isActive ? 'full' : 'mini']" href="{{ url('/') }}">
-            @component('logo')
-            @endcomponent
+            @include('logo')
         </a>
     </aside>
     <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
@@ -53,6 +52,7 @@
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span>
                 </a>
             </li>
+            @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">
                     <figure>
@@ -67,6 +67,7 @@
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span> </a>
             </li>
+            @endif
             <li>
                 <a href="/leaderboard" title="Leaderboard" class="item-wrap">
                     <figure>

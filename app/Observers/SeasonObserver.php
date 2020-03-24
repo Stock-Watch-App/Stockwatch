@@ -20,6 +20,10 @@ class SeasonObserver
                 $m = new MarketController();
                 $m->open($season);
             }
+            if ($season->status === 'ended') {
+                $m = new MarketController();
+                $m->end($season);
+            }
         }
     }
     public function updated(Season $season){}

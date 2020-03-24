@@ -25,7 +25,7 @@ Route::get('/tos', [LegalController::class, 'tos']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return redirect()->route('trade');
+        return redirect()->route('leaderboard');
     });
 
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');

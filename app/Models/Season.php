@@ -11,10 +11,12 @@ class Season extends BaseModel
     {
         return $this->hasMany(Houseguest::class);
     }
+
     public function banks()
     {
         return $this->hasMany(Bank::class);
     }
+
     public function weeks()
     {
         return $this->hasMany(Week::class);
@@ -23,9 +25,15 @@ class Season extends BaseModel
     //=== SCOPES ===/
     public function scopeCurrent($query)
     {
-        return $query->orWhere('status', 'pre-season')
-            ->orWhere('status', 'open')
-            ->orWhere('status', 'closed')
-            ->first();
+        $season = $query->orWhere('status', 'pre-season')
+                        ->orWhere('status', 'open')
+                        ->orWhere('status', 'closed')
+                        ->first();
+        if ($season === null) {
+            $season = $query->orWhere('status', 'ended')
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+        }
+        return $season;
     }
 }

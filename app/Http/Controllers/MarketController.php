@@ -24,6 +24,14 @@ class MarketController extends Controller
         $this->generateLeaderboard($season);
     }
 
+    public function end($season)
+    {
+        $season->current_week += 1;
+        $this->calculatePrices($season);
+        $this->zeroOutEvictees($season);
+        $this->generateLeaderboard($season);
+    }
+
     public function calculatePrices($season)
     {
         $f = new Formula();
