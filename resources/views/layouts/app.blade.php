@@ -82,13 +82,6 @@
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span> </a>
             </li>
-            <li>
-                <a href="/faq" title="Frequently Asked Questions" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="info-circle" fixed-width/>
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">FAQ</span> </a>
-            </li>
             @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
                 <li>
                     <a href="/admin" title="Admin" class="item-wrap">
@@ -98,6 +91,13 @@
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span> </a>
                 </li>
             @endif
+            <li>
+                <a href="/faq" title="Frequently Asked Questions" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="info-circle" fixed-width/>
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">FAQ</span> </a>
+            </li>
 
             @guest
                 <li>

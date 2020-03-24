@@ -79,7 +79,7 @@
                     }
                 }
 
-                return verb + ' ' + t.quantity + ' stock(s) of ' + houseguest.nickname;
+                return verb + ' ' + t.quantity + ' stock'+(t.quantity === 1 ? '' : 's')+' of ' + houseguest.nickname;
             }
         },
         computed: {
