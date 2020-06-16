@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/trades', [TradeController::class, 'index'])->name('dashboard');
 
-    Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
+    Route::get('/leaderboard', [LeaderboardController::class, 'allTime'])->name('allTimeLeaderboard');
+    Route::get('/leaderboard/{season}', [LeaderboardController::class, 'index'])->name('leaderboard');
 
     Route::get('/trades', [TradeController::class, 'index'])->name('trade');
     Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);

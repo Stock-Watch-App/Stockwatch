@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="leaderboard-wrap">
-        <h3 class="mg-btm-lg">Leaderboard</h3>
+        <h3 class="mg-btm-lg">{{ $season->name }} Leaderboard</h3>
             <!-- <div class="perfect-play">
                 <p class="heading">Perfect Play</p>
                 <div class="hg-img">
