@@ -25,7 +25,7 @@ Route::get('/tos', [LegalController::class, 'tos']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return redirect()->route('leaderboard');
+        return redirect()->route('allTimeLeaderboard');
     });
 
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/trades', [TradeController::class, 'index'])->name('dashboard');
 
     Route::get('/leaderboard', [LeaderboardController::class, 'allTime'])->name('allTimeLeaderboard');
+//    Route::get('/leaderboard/bbus', [LeaderboardController::class, 'allTime'])->name('bbusLeaderboard');
+//    Route::get('/leaderboard/bbcan', [LeaderboardController::class, 'allTime'])->name('bbcanLeaderboard');
     Route::get('/leaderboard/{season}', [LeaderboardController::class, 'index'])->name('leaderboard');
 
     Route::get('/trades', [TradeController::class, 'index'])->name('trade');

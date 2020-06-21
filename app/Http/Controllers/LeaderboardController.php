@@ -24,17 +24,11 @@ class LeaderboardController extends Controller
 
     public function allTime()
     {
-        $houseguests = [];
+        $leaderboard = Leaderboard::with('user')->select(DB::raw('user_id, sum(networth) as networth'))
+            ->where('week', static function ($q) {
+                $q->select(DB::raw('max(week)'))->from('leaderboard')->groupBy('season_id');
+            })->groupBy('user_id')->orderBy('networth', 'desc')->get();
 
-//        $leaderboard = Leaderboard::where('week', $season->current_week)->with('user')->orderBy('networth', 'desc')->get();
-
-
-//        SELECT user_id, sum(networth)
-//        FROM leaderboard
-//        WHERE week = (SELECT max(week) from leaderboard group by season_id)
-//        GROUP BY user_id
-
-
-        return view('leaderboard', compact('houseguests', 'leaderboard', 'season'));
+        return view('leaderboards.alltime', compact('leaderboard'));
     }
 }

@@ -50,6 +50,7 @@ Vue.component('holdings-card', require('./components/dashboard/HoldingsCard.vue'
 Vue.component('projection-item', require('./components/projections/ProjectionItem.vue').default);
 
 Vue.component('leaderboard-table', require('./components/leaderboard/LeaderboardTable.vue').default);
+Vue.component('all-leaderboard-table', require('./components/leaderboard/AllLeaderboardTable.vue').default);
 
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
@@ -65,6 +66,8 @@ Vue.filter('date', require('./filters/Date.js').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+Vue.config.devtools = true;
 
 const app = new Vue({
     el: '#app',
