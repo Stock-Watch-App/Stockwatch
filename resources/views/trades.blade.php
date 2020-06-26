@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @auth
         <h3 class="mg-btm-lg trade-heading">Buy & Sell Stocks</h3>
         <div id="market-banner" class="info flash__message">
             @if($season->status === 'open')
@@ -11,9 +12,16 @@
         </div>
         <trade-panel
             :season="{{ $season }}"
-            :networth="{{ $networth }}"
+            :networth="{{ $networth ?? null  }}"
             :stocks="{{ $stocks }}"
-            :bank="{{ $bank }}"
-            :user="{{ $user }}"
+            :bank="{{ $bank ?? null }}"
+            :user="{{ $user ?? null }}"
         ></trade-panel>
+    @else
+        <h3 class="mg-btm-lg trade-heading">{{ $season->name }} Stocks</h3>
+        <guest-trade-panel
+            :season="{{ $season }}"
+            :stocks="{{ $stocks }}"
+        ></guest-trade-panel>
+    @endauth
 @endsection

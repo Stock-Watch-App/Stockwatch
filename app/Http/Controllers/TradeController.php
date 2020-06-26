@@ -16,6 +16,11 @@ class TradeController extends Controller
     //=== ROUTES ===//
     public function index(Request $request)
     {
+        //is someone logged in?
+        if (!auth()->check()) {
+            return $this->guestIndex($request);
+        }
+
         $user = $request->user();
         $season = Season::current();
 
@@ -35,6 +40,17 @@ class TradeController extends Controller
 
 
         return view('trades', compact('user', 'bank', 'stocks', 'networth', 'season'));
+    }
+
+    public function guestIndex(Request $request)
+    {
+        $season = Season::with('houseguests.prices', 'houseguests.ratings')->current();
+
+        $stocks = $season->houseguests->map(static function($h) {
+            return ['houseguest' => $h];
+        });
+
+        return view('trades', compact('stocks', 'season'));
     }
 
     public function savestocks(Request $request)
@@ -58,7 +74,7 @@ class TradeController extends Controller
         })->sum();
 
         if ($proposedTransactionValue > $networth) {
-        return json_encode(['success' => false]);
+            return json_encode(['success' => false]);
         }
 
         $transactions = [];
@@ -79,8 +95,8 @@ class TradeController extends Controller
                 'action'        => $oldQuantity < $newQuantity ? 'buy' : 'sell',
                 'quantity'      => abs($oldQuantity - $newQuantity),
                 'current_price' => $stock->houseguest->current_price,
-                'created_at' => date('Y-m-d h:i:s'),
-                'updated_at' => date('Y-m-d h:i:s'),
+                'created_at'    => date('Y-m-d h:i:s'),
+                'updated_at'    => date('Y-m-d h:i:s'),
             ];
 
             $stock->quantity = $newQuantity;
@@ -136,9 +152,11 @@ class TradeController extends Controller
         $stocks = $user->stocks->load('houseguest');
 
         $stocks->each(static function ($stock, $key) use ($season) {
-            $stock->houseguest->load(['ratings' => function ($query) use ($season) {
-                $query->where('week', $season->current_week);
-            }]);
+            $stock->houseguest->load([
+                'ratings' => function ($query) use ($season) {
+                    $query->where('week', $season->current_week);
+                }
+            ]);
             $stock->houseguest->load('prices');
         });
 

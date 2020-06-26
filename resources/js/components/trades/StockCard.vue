@@ -24,7 +24,7 @@
                 <p class="price-diff">{{ priceDifference.amount | currency }}</p>
             </span>
         </div>
-        <div class="input-wrap">
+        <div v-if="stock.hasOwnProperty('quantity')" class="input-wrap">
             <button v-if="!disabled" class="button-base primary ghost small sell" @click="sellAll">Sell all</button>
             <number-input
                 v-model="stock.quantity"

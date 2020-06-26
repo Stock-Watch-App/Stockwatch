@@ -22,6 +22,16 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 Route::get('/privacy', [LegalController::class, 'privacy']);
 Route::get('/tos', [LegalController::class, 'tos']);
 
+Route::get('/landing', [HomeController::class, 'landing']);
+
+Route::get('/projections', [ProjectionController::class, 'index']);
+
+Route::get('/trades', [TradeController::class, 'index'])->name('trade');
+
+Route::get('/leaderboard', [LeaderboardController::class, 'allTime'])->name('allTimeLeaderboard');
+//    Route::get('/leaderboard/bbus', [LeaderboardController::class, 'allTime'])->name('bbusLeaderboard');
+//    Route::get('/leaderboard/bbcan', [LeaderboardController::class, 'allTime'])->name('bbcanLeaderboard');
+Route::get('/leaderboard/{season}', [LeaderboardController::class, 'index'])->name('leaderboard');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
@@ -31,30 +41,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
     Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
 
-    Route::get('/projections', [ProjectionController::class, 'index']);
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/trades', [TradeController::class, 'index'])->name('dashboard');
-
-    Route::get('/leaderboard', [LeaderboardController::class, 'allTime'])->name('allTimeLeaderboard');
-//    Route::get('/leaderboard/bbus', [LeaderboardController::class, 'allTime'])->name('bbusLeaderboard');
-//    Route::get('/leaderboard/bbcan', [LeaderboardController::class, 'allTime'])->name('bbcanLeaderboard');
-    Route::get('/leaderboard/{season}', [LeaderboardController::class, 'index'])->name('leaderboard');
-
-    Route::get('/trades', [TradeController::class, 'index'])->name('trade');
     Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);
-    Route::get('/landing', [HomeController::class, 'landing']);
 
 });
 
 Route::get('/faq', function () {
-   return view('faq');
+    return view('faq');
 });
 
 Route::get('/maintenance', function () {
     return view('maintenance');
- });
+});
 
 
 Route::group(['middleware' => ['local']], function () {

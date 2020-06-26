@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.app')
 
 @section('content')
     <div class="landingWrap mg-top-lg" id="landing">

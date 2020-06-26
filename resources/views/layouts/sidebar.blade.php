@@ -1,6 +1,5 @@
 <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
-    @guest
-    @else
+    @auth
         <div class="profile-wrap">
             <!-- turn back on when profile pics work -->
         <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" /> -->
@@ -8,23 +7,30 @@
                 <span>{{ Auth::user()->name }}</span>
             </div>
         </div>
-    @endguest
+    @endauth
 
     <ul class="sidebar-nav-list">
-        <li>
-            <a href="/dashboard" title="Dashboard" class="item-wrap">
-                <figure>
-                    <font-awesome-icon icon="columns" fixed-width/>
-                </figure>
-                <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a>
-        </li>
+        @auth
+            <li>
+                <a href="/dashboard" title="Dashboard" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="columns" fixed-width/>
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a>
+            </li>
+        @endauth
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">
                     <figure>
                         <font-awesome-icon icon="chart-line" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span> </a>
+                    @auth
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span>
+                    @else
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Stocks</span>
+                    @endauth
+                </a>
             </li>
             <li>
                 <a href="/projections" title="Projections" class="item-wrap">
@@ -35,35 +41,38 @@
             </li>
         @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
-        <li>
-            <a href="/leaderboard" title="Leaderboard" class="item-wrap">
-                <figure>
-                    <font-awesome-icon icon="award" fixed-width/>
-                </figure>
-                <span v-bind:class="[isActive ? 'full' : 'mini']">{{ \App\Models\Season::current()->short_name }} Leaderboard</span> </a>
-        </li>
+            <li>
+                <a href="{{ route('leaderboard', ['season' => \App\Models\Season::current()->short_name]) }}" title="Leaderboard" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="award" fixed-width/>
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
+                </a>
+            </li>
         @endif
-        <li class="last-item">
-            <a href="/account" title="Account" class="item-wrap">
-                <figure>
-                    <font-awesome-icon icon="user-circle" fixed-width/>
-                </figure>
-                <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span> </a>
-        </li>
-{{--        <li>--}}
-{{--            <a href="/leaderboard/bbcan" title="BBCan Leaderboard" class="item-wrap">--}}
-{{--                <figure>--}}
-{{--                    <font-awesome-icon icon="award" fixed-width/>--}}
-{{--                </figure>--}}
-{{--                <span v-bind:class="[isActive ? 'full' : 'mini']">BBCan Leaderboard</span> </a>--}}
-{{--        </li>--}}
-{{--        <li>--}}
-{{--            <a href="/leaderboard/bbus" title="BBUS Leaderboard" class="item-wrap">--}}
-{{--                <figure>--}}
-{{--                    <font-awesome-icon icon="award" fixed-width/>--}}
-{{--                </figure>--}}
-{{--                <span v-bind:class="[isActive ? 'full' : 'mini']">BBUS Leaderboard</span> </a>--}}
-{{--        </li>--}}
+        @auth
+            <li class="last-item">
+                <a href="/account" title="Account" class="item-wrap">
+                    <figure>
+                        <font-awesome-icon icon="user-circle" fixed-width/>
+                    </figure>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span> </a>
+            </li>
+        @endauth
+        {{--        <li>--}}
+        {{--            <a href="/leaderboard/bbcan" title="BBCan Leaderboard" class="item-wrap">--}}
+        {{--                <figure>--}}
+        {{--                    <font-awesome-icon icon="award" fixed-width/>--}}
+        {{--                </figure>--}}
+        {{--                <span v-bind:class="[isActive ? 'full' : 'mini']">BBCan Leaderboard</span> </a>--}}
+        {{--        </li>--}}
+        {{--        <li>--}}
+        {{--            <a href="/leaderboard/bbus" title="BBUS Leaderboard" class="item-wrap">--}}
+        {{--                <figure>--}}
+        {{--                    <font-awesome-icon icon="award" fixed-width/>--}}
+        {{--                </figure>--}}
+        {{--                <span v-bind:class="[isActive ? 'full' : 'mini']">BBUS Leaderboard</span> </a>--}}
+        {{--        </li>--}}
         <li class="last-item">
             <a href="/leaderboard" title="All-Time Leaderboard" class="item-wrap">
                 <figure>
@@ -71,15 +80,17 @@
                 </figure>
                 <span v-bind:class="[isActive ? 'full' : 'mini']">All-Time Leaderboard</span> </a>
         </li>
-        @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
-            <li>
-                <a href="/admin" title="Admin" class="item-wrap">
-                    <figure>
-                        <font-awesome-icon icon="user-shield" fixed-width/>
-                    </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span> </a>
-            </li>
-        @endif
+        @auth
+            @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
+                <li>
+                    <a href="/admin" title="Admin" class="item-wrap">
+                        <figure>
+                            <font-awesome-icon icon="user-shield" fixed-width/>
+                        </figure>
+                        <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span> </a>
+                </li>
+            @endif
+        @endauth
         <li>
             <a href="/faq" title="Frequently Asked Questions" class="item-wrap">
                 <figure>
@@ -90,14 +101,25 @@
 
         @guest
             <li>
-                <a class="item-wrap" title="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a class="item-wrap" title="Login" href="{{ route('login') }}">
+                    <figure>
+                        <font-awesome-icon icon="sign-in-alt" fixed-width/>
+                    </figure>
+                    {{ __('Login') }}
+                </a>
             </li>
             @if (Route::has('register'))
                 <li>
-                    <a class="item-wrap" title="Register" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="item-wrap" title="Register" href="{{ route('register') }}">
+                        <figure>
+                            <font-awesome-icon icon="sign-in-alt" fixed-width/>
+                        </figure>
+                        {{ __('Register') }}
+                    </a>
                 </li>
             @endif
-        @else
+        @endguest
+        @auth
             <li>
                 <a href="{{ env('FEEDBACK_URL') }}" title="Bug Reports" class="item-wrap">
                     <figure>
@@ -117,7 +139,7 @@
                     @csrf
                 </form>
             </li>
-        @endguest
+        @endauth
     </ul>
     <div class="native-collapse-wrap sidebar-collapse mg-btm-md">
         <details>
