@@ -1,0 +1,26 @@
+@import (reference)  './_variables.less';
+@import (reference) './_mixins.less';
+
+.loginWrap {
+    grid-column: ~'1/-1';
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0 2rem;
+
+    h3 {
+        grid-column: ~'1/-1';
+        grid-row: ~'1/2';
+    }
+}
+
+.loginFormWrap {
+    grid-column: ~'1/-1';
+    background-color: @white;
+    border: solid 1px @gray-hint;
+    box-shadow: 1px 1px 0px @gray-hint;
+
+    .media(@min-desktop, {
+        grid-column: ~'2/4';
+    });
+}
