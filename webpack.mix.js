@@ -15,3 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
    //    mix.purgeCss()
    //       .version();
    // }
+
+mix.browserSync({
+    proxy: process.env.MIX_BROWSER_SYNC_PROXY
+});
