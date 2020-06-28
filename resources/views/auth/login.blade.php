@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="landingWrap mg-top-lg" id="landing">
-        @component('loginflow')
-            <h4 class="mg-btm-lg">{{ __('Login') }}</h4>
+    <div class="loginWrap" id="landing">
+        <h3 class="mg-btm-lg text-center">{{ __('Login or join through social') }}</h3>
+        <div class="loginFormWrap card">
             @component('sso')
             @endcomponent
             @if(env('APP_ENV', 'production') === 'local')
@@ -45,6 +45,6 @@
                     @endif
                 </form>
             @endif
-        @endcomponent
+        </div>
     </div>
 @endsection
