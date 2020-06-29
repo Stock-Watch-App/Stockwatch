@@ -15,6 +15,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/denwebdev/google-oath2.git"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/SeasonManager"
         }
     ],
     "require": {
@@ -34,7 +38,8 @@
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
         "vyuldashev/nova-permission": "^2.5",
-      "ext-json": "*"
+        "ext-json": "*",
+        "stockwatch/season-manager": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

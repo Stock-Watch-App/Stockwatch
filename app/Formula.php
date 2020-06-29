@@ -16,7 +16,7 @@ class Formula
                                 ->get()
                                 ->mapToAssoc(static function ($value, $key) {
                                     return [$value->from . $value->to, $value];
-                                });
+                                })->toArray();
     }
 
     public function calculate($from, $to, $previousPrice, $strikes)

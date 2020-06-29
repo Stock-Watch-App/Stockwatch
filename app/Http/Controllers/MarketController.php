@@ -36,7 +36,6 @@ class MarketController extends Controller
     {
         $f = new Formula();
         $week = $season->current_week;
-
         $houseguests = Houseguest::where('season_id', $season->id)->get();
         foreach ($houseguests as $houseguest) {
             if ($season->getOriginal('status') === 'closed') {
