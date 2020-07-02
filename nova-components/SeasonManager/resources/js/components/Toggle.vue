@@ -36,7 +36,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ca2222;
+        background-color: #79899b;
         -webkit-transition: .4s;
         transition: .4s;
         box-shadow: inset 0 0 3px #000;
@@ -57,7 +57,7 @@
     }
 
     input:checked + .slider {
-        background-color: #2ab934;
+        background-color: #4591e6;
     }
 
     input:focus + .slider {
