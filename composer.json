@@ -39,7 +39,8 @@
         "spatie/laravel-permission": "^3.7",
         "vyuldashev/nova-permission": "^2.5",
         "ext-json": "*",
-        "stockwatch/season-manager": "*"
+        "stockwatch/season-manager": "*",
+        "vinkla/hashids": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

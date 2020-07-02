@@ -67,6 +67,16 @@ Route::group(['middleware' => ['local']], function () {
     Route::get('/leaderboard/calculate', [LeaderboardController::class, 'calculate']);
     Route::get('/debug/showme/{blade}', [DebugController::class, 'showme'])->where('blade', '.*');
 
+    Route::get('users/{user}', function (App\Models\User $user) {
+        dump($user);
+    });
+    Route::get('users', function () {
+        $u = App\Models\User::limit(10)->get();
+        foreach ($u as $m) {
+            dump($m->hashid);
+        }
+    });
+
 });
 
 //===
