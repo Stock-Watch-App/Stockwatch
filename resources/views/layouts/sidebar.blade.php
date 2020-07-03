@@ -10,7 +10,7 @@
     @endauth
 
     <ul class="sidebar-nav-list">
-        @auth
+        @if(!Auth::check() || !Auth::user()->hasVerifiedEmail())
             <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
                     <figure>
@@ -18,7 +18,7 @@
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a>
             </li>
-        @endauth
+        @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">

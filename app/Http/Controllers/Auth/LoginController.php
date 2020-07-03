@@ -78,6 +78,10 @@ class LoginController extends Controller
                     ->first();
 
         if ($user) {
+            if (!$user->hasVerifiedEmail()) {
+                // let sso "verify" emails for us
+                $user->markEmailAsVerified();
+            }
             //Return account if found
             return $user;
         } else {
@@ -102,6 +106,8 @@ class LoginController extends Controller
                 $user->provider_user_id = $providerUser->getId();
                 $user->setAvatar($providerUser->getAvatar());
                 $user->save();
+
+                $user->markEmailAsVerified();
             }
 
             return $user;

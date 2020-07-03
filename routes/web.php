@@ -8,13 +8,11 @@ use App\Http\Controllers\ProjectionController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DebugController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Auth::routes([
-    'verify'   => true,
-    'register' => (env('APP_ENV', 'production') === 'local') //this needs to be removed when we go live
-]);
+Auth::routes(['verify'   => true]);
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 

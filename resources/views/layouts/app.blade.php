@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="app" class="app-wrapper">
-<!-- <flash-message class="myCustomClass"></flash-message> -->
+    <!-- <flash-message class="myCustomClass"></flash-message> -->
     <aside>
         <button class="button-base toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <font-awesome-icon icon="bars" size="lg"/>
@@ -35,6 +35,17 @@
     @include('layouts.sidebar')
 
     <main id="panel" class="app-content">
+        @if(Auth::check() && !Auth::user()->hasVerifiedEmail())
+            <div id="collision-banner" class="info flash__message">
+                <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                    @csrf
+                <p>
+                    Please click the link we have sent you to verify your account.
+                    <button type="submit" class="btn-link">Click here to request another email</button>.
+                </p>
+                </form>
+            </div>
+        @endif
         @yield('content')
     </main>
     <footer class="footer">
