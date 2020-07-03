@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @auth
+    @if(Auth::check() && Auth::user()->hasVerifiedEmail())
         <h3 class="mg-btm-lg trade-heading">Buy & Sell Stocks</h3>
         <div id="market-banner" class="info flash__message">
             @if($season->status === 'open')
@@ -23,5 +23,5 @@
             :season="{{ $season }}"
             :stocks="{{ $stocks }}"
         ></guest-trade-panel>
-    @endauth
+    @endif
 @endsection

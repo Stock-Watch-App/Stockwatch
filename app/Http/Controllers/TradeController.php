@@ -18,10 +18,15 @@ class TradeController extends Controller
     {
         //is someone logged in?
         if (!auth()->check()) {
-            return $this->guestIndex($request);
+            return $this->guestIndex($request, 'guest');
         }
 
         $user = $request->user();
+
+        if (!$user->hasVerifiedEmail()) {
+            return $this->guestIndex($request, 'unverified');
+        }
+
         $season = Season::current();
 
         //is the user registered for the seasons?
@@ -42,7 +47,7 @@ class TradeController extends Controller
         return view('trades', compact('user', 'bank', 'stocks', 'networth', 'season'));
     }
 
-    public function guestIndex(Request $request)
+    public function guestIndex(Request $request, $stateOfUser = '')
     {
         $season = Season::with('houseguests.prices', 'houseguests.ratings')->current();
 
