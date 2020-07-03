@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 class BaseModel extends Model
 {
+    use QueryCacheable;
+
     protected $guarded = ['id'];
 
     private $cached_attributes = [];

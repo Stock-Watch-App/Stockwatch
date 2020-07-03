@@ -23,6 +23,7 @@
     ],
     "require": {
         "php": "^7.2",
+        "ext-json": "*",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
@@ -30,6 +31,8 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "michielkempen/nova-polymorphic-field": "^1.0",
+        "predis/predis": "^1.1",
+        "rennokki/laravel-eloquent-query-cache": "^2.0",
         "socialiteproviders/discord": "^2.0",
         "socialiteproviders/facebook": "^1.0",
         "socialiteproviders/google": "^3.0",
@@ -37,10 +40,9 @@
         "socialiteproviders/twitch": "^5.1",
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
-        "vyuldashev/nova-permission": "^2.5",
-        "ext-json": "*",
         "stockwatch/season-manager": "*",
-        "vinkla/hashids": "^7.0"
+        "vinkla/hashids": "^7.0",
+        "vyuldashev/nova-permission": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

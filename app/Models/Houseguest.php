@@ -22,7 +22,7 @@ class Houseguest extends BaseModel
         'current_price'
     ];
 
-    protected static function boot()
+    public static function boot()
     {
         parent::boot();
 

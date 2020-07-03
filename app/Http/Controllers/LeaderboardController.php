@@ -17,17 +17,27 @@ class LeaderboardController extends Controller
         $season = Season::current();
         $houseguests = Houseguest::where('season_id', $season->id)->get();
 
-        $leaderboard = Leaderboard::where('week', $season->current_week)->with('user')->orderBy('networth', 'desc')->get();
+        $leaderboard = Leaderboard::where('week', $season->current_week)
+                                  ->with('user')
+                                  ->orderBy('networth', 'desc')
+                                  ->cacheFor(now()->addHours(24))
+                                  ->get();
 
         return view('leaderboard', compact('houseguests', 'leaderboard', 'season'));
     }
 
     public function allTime()
     {
-        $leaderboard = Leaderboard::with('user')->select(DB::raw('user_id, sum(networth) as networth'))
-            ->where('week', static function ($q) {
-                $q->select(DB::raw('max(week)'))->from('leaderboard')->groupBy('season_id');
-            })->groupBy('user_id')->orderBy('networth', 'desc')->get();
+        $leaderboard = Leaderboard::with('user')
+                                  ->select(DB::raw('user_id, sum(networth) as networth'))
+                                  ->where('week', static function ($q) {
+                                      $q->select(DB::raw('max(week)'))
+                                        ->from('leaderboard')
+                                        ->groupBy('season_id');
+                                  })->groupBy('user_id')
+                                  ->orderBy('networth', 'desc')
+                                  ->cacheFor(now()->addHours(24))
+                                  ->get();
 
         return view('leaderboards.alltime', compact('leaderboard'));
     }
