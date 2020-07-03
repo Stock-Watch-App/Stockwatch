@@ -8,8 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Stock Watch') }}</title>
-
-    <!-- Scripts -->
+    @if(env('APP_ENV', 'production') === 'production')
+        <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    @else
+        <link rel="icon" href="/favicon-dev.ico" type="image/x-icon"/>
+    @endif
+<!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -21,7 +25,7 @@
 </head>
 <body>
 <div id="app" class="app-wrapper">
-<!-- <flash-message class="myCustomClass"></flash-message> -->
+    <!-- <flash-message class="myCustomClass"></flash-message> -->
     <aside>
         <button class="button-base toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <font-awesome-icon icon="bars" size="lg"/>
