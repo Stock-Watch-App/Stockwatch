@@ -77,6 +77,12 @@ Route::group(['middleware' => ['local']], function () {
 
 });
 
+Route::get('/profile', function () {
+   return view('profile');
+});
+
+//  Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
+
 //===
 
 
