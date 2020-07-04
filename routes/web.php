@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectionController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DebugController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -77,11 +78,8 @@ Route::group(['middleware' => ['local']], function () {
 
 });
 
-Route::get('/profile', function () {
-   return view('profile');
-});
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-//  Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
 
 //===
 
