@@ -46,6 +46,7 @@
                 <p>
                     Please click the link we have sent you to verify your account.
                     <button type="submit" class="btn-link">Click here to request another email</button>.
+                    If you signed in with a Social Account, please log out and sign in again.
                 </p>
                 </form>
             </div>
