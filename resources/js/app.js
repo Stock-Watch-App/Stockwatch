@@ -145,6 +145,8 @@ Vue.component(
 );
 Vue.component("avatar", require("./components/Avatar.vue").default);
 
+Vue.component("select-component", require("./components/Select.vue").default);
+
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
 // import Slideout from 'vue-slideout'

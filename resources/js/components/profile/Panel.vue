@@ -11,6 +11,11 @@
     <div class="profile-stats-wrap mg-btm-lg">
       <h3 class="mg-btm-lg">Summary</h3>
       <p>this entire section to be handled with a datepicker</p>
+      <select-component
+        v-model="selected"
+        placeholder="Current Week"
+        :options="[{value: 'foo', text: 'This is foo', disabled: false }, {value: 'bar', text: 'This is bar'}]"
+      ></select-component>
       <div class="stats-summary">
         <div class="networth-wrap">
           <div class="stats">
@@ -46,7 +51,9 @@ export default {
     houseguests: Array,
     bank: Object,
     networth: Number,
-    leaderboard: Array
+    leaderboard: Array,
+    options: [{ value: "foo", text: "This is Foo", disabled: true }]
+    // options: Array
   },
   data() {
     return {
