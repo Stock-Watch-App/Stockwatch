@@ -10,7 +10,7 @@
     @endauth
 
     <ul class="sidebar-nav-list">
-        @if(!Auth::check() || !Auth::user()->hasVerifiedEmail())
+        @if(Auth::check() && Auth::user()->hasVerifiedEmail())
             <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
                     <figure>
@@ -25,11 +25,11 @@
                     <figure>
                         <font-awesome-icon icon="chart-line" fixed-width/>
                     </figure>
-                    @auth
+                    @if(Auth::check() && Auth::user()->hasVerifiedEmail())
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span>
                     @else
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Stocks</span>
-                    @endauth
+                    @endif
                 </a>
             </li>
             <li>
