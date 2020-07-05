@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.angled-header {\n    -webkit-transform: rotate(-60deg);\n            transform: rotate(-60deg);\n}\n", ""]);
 
 // exports
 
@@ -655,16 +655,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            season: Object
+            season: Object,
+            raters: Array,
+            houseguests: Array
+            // ratings: Object,
         };
     },
     mounted: function mounted() {
         this.getSeason();
+        this.getRatingData('current');
     },
 
     methods: {
@@ -673,6 +709,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/nova-vendor/season-manager/season/current').then(function (res) {
                 _this.season = res.data;
+            });
+        },
+        getRatingData: function getRatingData(week) {
+            var _this2 = this;
+
+            axios.get('/nova-vendor/season-manager/rating-data/week/' + week).then(function (res) {
+                _this2.raters = res.data.raters;
+                _this2.houseguests = res.data.houseguests;
+                // this.ratings = res.data.ratings;
             });
         },
         saveStatus: function saveStatus(status) {
@@ -928,9 +973,64 @@ var render = function() {
             })
           ],
           1
-        ),
+        )
+      ]),
+      _vm._v(" "),
+      _c("card", { staticClass: "w-full flex flex-col mt-4" }, [
+        _c("h3", { staticClass: "m-4 w-1/2 text-left font-semibold" }, [
+          _vm._v("Week " + _vm._s(_vm.season.current_week) + " Ratings")
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "flex flex-row" })
+        _c("div", { staticClass: "p-4" }, [
+          _c(
+            "div",
+            { staticClass: "flex flex-row w-full" },
+            [
+              _c(
+                "div",
+                { staticClass: "inline-block flex flex-col" },
+                [
+                  _c("div", [_vm._v("LFC")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.raters, function(name) {
+                    return _c("div", [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(name) +
+                          "\n                        "
+                      )
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.houseguests, function(houseguest) {
+                return _c(
+                  "div",
+                  { staticClass: "inline-block flex flex-col flex-grow" },
+                  [
+                    _c("div", { staticClass: "angled-header h-!auto" }, [
+                      _vm._v(_vm._s(houseguest.nickname))
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.raters, function(name, user) {
+                      return _c("div", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(houseguest.ratings[user]) +
+                            "\n                        "
+                        )
+                      ])
+                    })
+                  ],
+                  2
+                )
+              })
+            ],
+            2
+          )
+        ])
       ])
     ],
     1
