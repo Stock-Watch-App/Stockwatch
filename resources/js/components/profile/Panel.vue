@@ -3,11 +3,14 @@
     <div class="profile-details">
       <avatar height="60px" width="60px"></avatar>
       <p class="bold">{{ user.name }}</p>
-      <p>#1000 {{ user.rank }}</p>
+      <p>current rank {{ user.rank }}</p>
+      <p>all-time rank {{ user.rank }}</p>
+      <p>badges here</p>
     </div>
 
     <div class="profile-stats-wrap mg-btm-lg">
       <h3 class="mg-btm-lg">Summary</h3>
+      <p>this entire section to be handled with a datepicker</p>
       <div class="stats-summary">
         <div class="networth-wrap">
           <div class="stats">
