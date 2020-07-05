@@ -1,18 +1,27 @@
 <template>
-  <div class="dashboard-wrap">
-    <img
-      src="../../../../storage/app/public/avatar-default.svg"
-      title="Profile image"
-      class="profile-pic"
-      width="50px"
-      height="50px"
-    />
-    <h4>{{ user.name }}</h4>
-    <div class="dash-cards-wrap mg-btm-lg">
+  <div class="profile-page-wrap">
+    <div class="profile-details">
+      <avatar height="60px" width="60px"></avatar>
+      <p class="bold">{{ user.name }}</p>
+      <p>#1000 {{ user.rank }}</p>
+    </div>
+
+    <div class="profile-stats-wrap mg-btm-lg">
       <h3 class="mg-btm-lg">Summary</h3>
-      <div class="funds-wrap">
-        <div class="funds">
-          <h1 class="net-worth">Net worth: $200 {{ networth | currency }}</h1>
+      <div class="stats-summary">
+        <div class="networth-wrap">
+          <div class="stats">
+            <p>Net worth:</p>
+            <h1>$200 {{ networth | currency }}</h1>
+            <p class="bodySM">up $20</p>
+          </div>
+        </div>
+        <div class="rank-wrap">
+          <div class="stats">
+            <p>Rank:</p>
+            <h1>#1000</h1>
+            <p class="bodySM">down 40</p>
+          </div>
         </div>
       </div>
       <ul class="dash-cards">
@@ -33,7 +42,8 @@ export default {
     user: Object,
     houseguests: Array,
     bank: Object,
-    networth: Number
+    networth: Number,
+    leaderboard: Array
   },
   data() {
     return {

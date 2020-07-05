@@ -143,6 +143,7 @@ Vue.component(
     "profile-panel",
     require("./components/profile/Panel.vue").default
 );
+Vue.component("avatar", require("./components/Avatar.vue").default);
 
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
