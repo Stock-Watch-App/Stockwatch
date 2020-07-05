@@ -38,14 +38,17 @@ Route::get('/rating-data/week/{week}', function (Request $request, $week) {
     });
 
     $houseguests = Houseguest::with(['ratings' => static function ($q) use ($week) {
-        $q->where('week', $week);
-    }])->get()->map(static function ($hg) {
-        return [
-            'nickname' => $hg->nickname,
-            'ratings' => $hg->ratings->mapToAssoc(static function ($rating) {
-                return [$rating->user_id, $rating->rating];
-            })
-        ];
+                        $q->where('week', $week);
+                    }])->get();
+
+    $ratings = $houseguests->mapToAssoc(static function ($hg) {
+        return [$hg->id, ['ratings' => $hg->ratings->mapToAssoc(static function ($rating) {
+                    return [$rating->user_id, $rating->rating];
+        })]];
+    });
+
+    $houseguests = $houseguests->mapToAssoc(function ($hg) {
+        return [$hg->id, $hg->nickname];
     });
 
     //=== HORIZONTAL ===//
@@ -71,6 +74,7 @@ Route::get('/rating-data/week/{week}', function (Request $request, $week) {
 
     return json_encode([
         'raters'      => $raters,
+        'ratings'     => $ratings,
         'houseguests' => $houseguests,
     ]);
 });

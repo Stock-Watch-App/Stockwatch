@@ -16,50 +16,41 @@
         <card class="w-full flex flex-col mt-4">
             <h3 class="m-4 w-1/2 text-left font-semibold">Week {{ season.current_week }} Ratings</h3>
             <div class="p-4">
-                <div class="flex flex-row w-full">
+                <div class="flex flex-row w-full rating-table">
                     <!-- Ratings some day -->
                     <div class="inline-block flex flex-col">
-                        <div>LFC</div>
-                        <div v-for="name in raters">
-                            {{ name }}
-                        </div>
+                        <div class="header-row font-bold text-right">&nbsp;</div>
+                        <div class="font-bold text-right p-2">Taran</div>
+                        <div class="font-bold text-right p-2">Brent</div>
+                        <div class="font-bold text-right p-2">Melissa</div>
+                        <div class="font-bold text-right p-2">Audience</div>
+                        <div class="font-bold text-right p-2 border-t border-black pt-4">Total</div>
                     </div>
-                    <div v-for="houseguest in houseguests" class="inline-block flex flex-col flex-grow">
-                        <div class="angled-header h-!auto">{{ houseguest.nickname }}</div>
-                        <div v-for="(name, user) in raters">
-                            {{ houseguest.ratings[user] }}
-                        </div>
+                    <div v-for="(rating, houseguest_id) in ratings" class="inline-block flex flex-col flex-grow">
+                        <div class="header-row angled-header">{{ houseguests[houseguest_id] }}</div>
+                        <div class="p-1 pb-2"><input class="w-full border border-50" type="number" min="1" max="10" v-model="rating.ratings[4]"/></div>
+                        <div class="p-1 pb-2"><input class="w-full border border-50" type="number" min="1" max="10" v-model="rating.ratings[6]"/></div>
+                        <div class="p-1 pb-2"><input class="w-full border border-50" type="number" min="1" max="10" v-model="rating.ratings[9]"/></div>
+                        <div class="p-1 pb-2"><input class="w-full border border-50" type="number" min="1" max="10" v-model="rating.ratings[1]"/></div>
+                        <div class="font-bold border-t border-black pt-3 text-center text-2xl">{{ rate(rating.ratings) }}</div>
                     </div>
+                    <div></div>
                 </div>
             </div>
         </card>
-<!--        <card class="w-full flex flex-col mt-4">-->
-<!--            <h3 class="m-4 w-1/2 text-left font-semibold">Week {{ season.current_week }} Ratings</h3>-->
-<!--            <div class="p-4">-->
-<!--                <table class="w-full">-->
-<!--                    <tr>-->
-<!--                        <th>LFC</th>-->
-<!--                        <th v-for="nickname in houseguests" class="angled-header">{{ nickname }}</th>-->
-<!--                    </tr>-->
-<!--                    <tr v-for="user in raters">-->
-<!--                        <th class="text-right border p-2">{{ user.name }}</th>-->
-<!--                        <td class="border p-2" v-for="(nickname, houseguest_id) in houseguests">{{ user.ratings[houseguest_id] }}</td>-->
-<!--                    </tr>-->
-<!--                </table>-->
-<!--            </div>-->
-<!--        </card>-->
     </div>
 </template>
 
 <script>
     import Toggle from "./Toggle";
+
     export default {
         data() {
             return {
                 season: Object,
                 raters: Array,
                 houseguests: Array,
-                // ratings: Object,
+                ratings: Object,
             }
         },
         mounted() {
@@ -73,10 +64,10 @@
                 })
             },
             getRatingData(week) {
-                axios.get('/nova-vendor/season-manager/rating-data/week/'+week).then(res => {
+                axios.get('/nova-vendor/season-manager/rating-data/week/' + week).then(res => {
                     this.raters = res.data.raters;
                     this.houseguests = res.data.houseguests;
-                    // this.ratings = res.data.ratings;
+                    this.ratings = res.data.ratings;
                 })
             },
             saveStatus(status) {
@@ -87,6 +78,13 @@
                         'status': status ? 'open' : 'closed'
                     });
                 }
+            },
+            rate(object) {
+                let total = 0;
+                for (let key in object) {
+                    total += parseInt(object[key]);
+                }
+                return Math.round(total/4);
             }
         },
         computed: {
@@ -94,14 +92,20 @@
                 return this.season.status === 'open';
             }
         },
-        components:{
+        components: {
             Toggle
         }
     }
 </script>
 
 <style>
-    .angled-header {
-        transform: rotate(-60deg);
+    .cell {
+        padding: .5rem;
     }
+    .header-row {
+        min-height: 2.5rem;
+    }
+    /*.angled-header {*/
+    /*    transform: rotate(-60deg);*/
+    /*}*/
 </style>

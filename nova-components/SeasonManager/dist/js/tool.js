@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.angled-header {\n    -webkit-transform: rotate(-60deg);\n            transform: rotate(-60deg);\n}\n", ""]);
+exports.push([module.i, "\n.cell {\n    padding: .5rem;\n}\n.header-row {\n    min-height: 2.5rem;\n}\n/*.angled-header {*/\n/*    transform: rotate(-60deg);*/\n/*}*/\n", ""]);
 
 // exports
 
@@ -677,16 +677,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -694,8 +685,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             season: Object,
             raters: Array,
-            houseguests: Array
-            // ratings: Object,
+            houseguests: Array,
+            ratings: Object
         };
     },
     mounted: function mounted() {
@@ -717,7 +708,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/nova-vendor/season-manager/rating-data/week/' + week).then(function (res) {
                 _this2.raters = res.data.raters;
                 _this2.houseguests = res.data.houseguests;
-                // this.ratings = res.data.ratings;
+                _this2.ratings = res.data.ratings;
             });
         },
         saveStatus: function saveStatus(status) {
@@ -728,6 +719,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'status': status ? 'open' : 'closed'
                 });
             }
+        },
+        rate: function rate(object) {
+            var total = 0;
+            for (var key in object) {
+                total += parseInt(object[key]);
+            }
+            return Math.round(total / 4);
         }
     },
     computed: {
@@ -984,49 +982,157 @@ var render = function() {
         _c("div", { staticClass: "p-4" }, [
           _c(
             "div",
-            { staticClass: "flex flex-row w-full" },
+            { staticClass: "flex flex-row w-full rating-table" },
             [
-              _c(
-                "div",
-                { staticClass: "inline-block flex flex-col" },
-                [
-                  _c("div", [_vm._v("LFC")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.raters, function(name) {
-                    return _c("div", [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(name) +
-                          "\n                        "
-                      )
-                    ])
-                  })
-                ],
-                2
-              ),
+              _c("div", { staticClass: "inline-block flex flex-col" }, [
+                _c("div", { staticClass: "header-row font-bold text-right" }, [
+                  _vm._v(" ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-right p-2" }, [
+                  _vm._v("Taran")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-right p-2" }, [
+                  _vm._v("Brent")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-right p-2" }, [
+                  _vm._v("Melissa")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "font-bold text-right p-2" }, [
+                  _vm._v("Audience")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "font-bold text-right p-2 border-t border-black pt-4"
+                  },
+                  [_vm._v("Total")]
+                )
+              ]),
               _vm._v(" "),
-              _vm._l(_vm.houseguests, function(houseguest) {
+              _vm._l(_vm.ratings, function(rating, houseguest_id) {
                 return _c(
                   "div",
                   { staticClass: "inline-block flex flex-col flex-grow" },
                   [
-                    _c("div", { staticClass: "angled-header h-!auto" }, [
-                      _vm._v(_vm._s(houseguest.nickname))
+                    _c("div", { staticClass: "header-row angled-header" }, [
+                      _vm._v(_vm._s(_vm.houseguests[houseguest_id]))
                     ]),
                     _vm._v(" "),
-                    _vm._l(_vm.raters, function(name, user) {
-                      return _c("div", [
-                        _vm._v(
-                          "\n                            " +
-                            _vm._s(houseguest.ratings[user]) +
-                            "\n                        "
-                        )
-                      ])
-                    })
-                  ],
-                  2
+                    _c("div", { staticClass: "p-1 pb-2" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: rating.ratings[4],
+                            expression: "rating.ratings[4]"
+                          }
+                        ],
+                        staticClass: "w-full border border-50",
+                        attrs: { type: "number", min: "1", max: "10" },
+                        domProps: { value: rating.ratings[4] },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(rating.ratings, 4, $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "p-1 pb-2" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: rating.ratings[6],
+                            expression: "rating.ratings[6]"
+                          }
+                        ],
+                        staticClass: "w-full border border-50",
+                        attrs: { type: "number", min: "1", max: "10" },
+                        domProps: { value: rating.ratings[6] },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(rating.ratings, 6, $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "p-1 pb-2" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: rating.ratings[9],
+                            expression: "rating.ratings[9]"
+                          }
+                        ],
+                        staticClass: "w-full border border-50",
+                        attrs: { type: "number", min: "1", max: "10" },
+                        domProps: { value: rating.ratings[9] },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(rating.ratings, 9, $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "p-1 pb-2" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: rating.ratings[1],
+                            expression: "rating.ratings[1]"
+                          }
+                        ],
+                        staticClass: "w-full border border-50",
+                        attrs: { type: "number", min: "1", max: "10" },
+                        domProps: { value: rating.ratings[1] },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(rating.ratings, 1, $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "font-bold border-t border-black pt-3 text-center text-2xl"
+                      },
+                      [_vm._v(_vm._s(_vm.rate(rating.ratings)))]
+                    )
+                  ]
                 )
-              })
+              }),
+              _vm._v(" "),
+              _c("div")
             ],
             2
           )
