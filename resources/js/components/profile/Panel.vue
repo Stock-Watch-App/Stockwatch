@@ -11,11 +11,13 @@
     <div class="profile-stats-wrap mg-btm-lg">
       <h3 class="mg-btm-lg">Summary</h3>
       <p>this entire section to be handled with a datepicker</p>
+      <icon-button icon="chevron-left" ariaLabelledById="my-label" buttonLabel="Last week"></icon-button>
       <select-component
         v-model="selected"
         placeholder="Current Week"
         :options="[{value: 'foo', text: 'This is foo', disabled: false }, {value: 'bar', text: 'This is bar'}]"
       ></select-component>
+      <icon-button icon="chevron-right" ariaLabelledById="my-label" buttonLabel="Next week"></icon-button>
       <div class="stats-summary">
         <div class="networth-wrap">
           <div class="stats">

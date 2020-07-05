@@ -44,6 +44,8 @@ import {
     faChartLine,
     faInfoCircle,
     faChevronDown,
+    faChevronRight,
+    faChevronLeft,
     faMicrophone,
     faBug,
     faTrophy,
@@ -81,6 +83,8 @@ library.add(
     faChartLine,
     faInfoCircle,
     faChevronDown,
+    faChevronRight,
+    faChevronLeft,
     faMicrophone,
     faBug,
     faTrophy,
@@ -146,6 +150,8 @@ Vue.component(
 Vue.component("avatar", require("./components/Avatar.vue").default);
 
 Vue.component("select-component", require("./components/Select.vue").default);
+
+Vue.component("icon-button", require("./components/IconButton.vue").default);
 
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
