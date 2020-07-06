@@ -1,0 +1,90 @@
+@import (reference) '../_variables.less';
+@import (reference) '../_mixins.less';
+
+.media(@iPhone5OrSmaller, {
+    .stockard {
+        .hg-rating {
+            display: block;
+        }
+    }
+});
+
+.holdingscard {
+    display: grid;
+    border: solid 1px @gray-hint;
+    box-shadow: 1px 1px 0px @gray-hint;
+    grid-template-columns: min-content auto;
+    grid-gap: .5rem;
+    grid-auto-flow: dense;
+    overflow: hidden;
+
+    // inactive player
+    &.inactive {
+        box-shadow: none;
+
+        &:after {
+            content: '';
+            background-color: @gray-hint;
+            opacity: 55%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, p, label {
+        margin-bottom: 0;
+    }
+
+    img {
+        grid-column: ~'1/2';
+        border: solid 1px @border;
+    }
+
+    .details-wrap {
+        grid-column: ~'2/-1';
+        grid-row: ~'1/2';
+    }
+
+    .user-holdings {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .stock-diff-icon {
+        .font-unit-rem(12);
+    }
+
+    .stock-change-wrap {
+        align-items: baseline;
+
+        p {
+            line-height: 1;
+        }
+
+        &.green {
+            color: darken(@green, 5%);
+        }
+
+        &.red {
+            color: darken(@red, 8%);
+        }
+
+    }
+
+    .media(~'only screen and (max-width: 499px)', {
+
+    });
+
+    .media(~'only screen and (min-width: 500px)', {
+
+    });
+
+    .media(@min-tablet, {
+
+    });
+}

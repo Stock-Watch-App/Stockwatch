@@ -1,6 +1,10 @@
 @import (reference) '../_variables.less';
 @import (reference) '../_mixins.less';
 
+:root {
+    --select-width: 100%;
+}
+
 .select-component {
     display: block;
     border: solid 1px @border;
@@ -9,9 +13,10 @@
     font-size: 1rem;
     height: 2.75rem;
     padding: 0 0.625rem;
-    width: 100%;
+    // width: 100%;
     min-width: 150px;
-	max-width: 100%;
+    max-width: 100%;
+    width: var(--select-width);
 	box-sizing: border-box;
 	margin: 0;
 	-moz-appearance: none;

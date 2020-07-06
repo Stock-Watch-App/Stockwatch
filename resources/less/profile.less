@@ -1,7 +1,13 @@
 @import (reference)  './_variables.less';
 @import (reference) './_mixins.less';
 
+:root {
+
+}
+
 .profile-page-wrap {
+    --select-width: 200px;
+
     grid-column: ~'1/-1';
     display: grid;
     grid-template-columns: minmax(min-content, 300px) auto;
@@ -13,15 +19,19 @@
     }
 
     .stats {
-        border: solid 1px @primary-blue;
-        box-shadow: 1px 1px 0px @primary-blue;
-        border-radius: @border-radius;
         text-align: center;
         .px-rem(padding, 10);
 
         h1 {
             .fluid-typography-rem(@small-screen, @large-screen, @base, 1.5rem, 3rem, 1.75rem);
         }
+    }
+
+    .weekly-stats-wrap {
+        border: solid 1px @primary-blue;
+        box-shadow: 1px 1px 0px @primary-blue;
+        border-radius: @border-radius;
+        padding: 1rem;
     }
 
     .stats-summary {
@@ -36,10 +46,36 @@
         // grid-row: ~'1/2';
         // padding: 1rem;
 
-        .dash-cards {
+        .week-picker-wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+
+            h3 {
+                margin-right: auto;
+                margin-bottom: 0;
+            }
+
+            select {
+                border-radius: 0;
+            }
+
+            .next-button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .prev-button {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+
+        .stats-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, min-content));
-            grid-template-rows: minmax(100px, max-content);
+            grid-template-columns: repeat(auto-fill, minmax(175px, auto));
+            //grid-template-rows: minmax(100px, max-content);
             grid-gap: 1rem;
         }
 
