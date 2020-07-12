@@ -13,9 +13,11 @@
                 ></toggle>
             </div>
         </card>
-        <card class="w-full flex flex-col mt-4">
-            <h3 class="m-4 w-1/2 text-left font-semibold">Week {{ season.current_week }} Ratings</h3>
-            <div class="p-4">
+        <card class="w-full mt-4">
+            <h3 class="m-4 w-1/2 text-left font-semibold pt-4">Week {{ season.current_week }} Ratings
+            </h3>
+            <button class="m-2 border p-2 rounded" @click="newWeek">Add Week {{ season.current_week + 1 }}</button>
+            <div class="p-4 flex flex-col ">
                 <div class="flex flex-row w-full rating-table">
                     <!-- Ratings some day -->
                     <div class="inline-block flex flex-col">
@@ -24,7 +26,7 @@
                         <div class="font-bold text-right p-2">Brent</div>
                         <div class="font-bold text-right p-2">Melissa</div>
                         <div class="font-bold text-right p-2">Audience</div>
-                        <div class="font-bold text-right p-2 border-t border-black pt-4">Total</div>
+                        <div class="font-bold text-right p-2 border-t border-black pt-4">Final Rating</div>
                     </div>
                     <div v-for="(rating, houseguest_id) in ratings" class="inline-block flex flex-col flex-grow">
                         <div class="header-row angled-header">{{ houseguests[houseguest_id] }}</div>

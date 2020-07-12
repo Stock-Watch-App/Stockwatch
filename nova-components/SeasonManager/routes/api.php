@@ -30,6 +30,10 @@ Route::post('/season/update/status', function (Request $request) {
 Route::get('/rating-data/week/{week}', function (Request $request, $week) {
     if ($week === 'current') {
         $week = Season::current()->current_week;
+    } else {
+        if ($week === 'next') {
+            $week = Season::current()->current_week + 1;
+        }
     }
 
     //=== VERTICAL ===//
@@ -37,15 +41,32 @@ Route::get('/rating-data/week/{week}', function (Request $request, $week) {
         return [$user->id, $user->name];
     });
 
-    $houseguests = Houseguest::with(['ratings' => static function ($q) use ($week) {
-                        $q->where('week', $week);
-                    }])->get();
+    if ($week === 'next') {
+        $houseguests = Houseguest::active()->get();
+        $ratings = $houseguests->mapToAssoc(static function ($hg) use ($raters) {
+            return [
+                $hg->id,
+                ['ratings' => $raters->mapToAssoc(static function ($rater) {
+                    return [$rater->id, 0];
+                })]
+            ];
+        });
+    } else {
+        $houseguests = Houseguest::with([
+            'ratings' => static function ($q) use ($week) {
+                $q->where('week', $week);
+            }
+        ])->get();
 
-    $ratings = $houseguests->mapToAssoc(static function ($hg) {
-        return [$hg->id, ['ratings' => $hg->ratings->mapToAssoc(static function ($rating) {
+        $ratings = $houseguests->mapToAssoc(static function ($hg) {
+            return [
+                $hg->id,
+                ['ratings' => $hg->ratings->mapToAssoc(static function ($rating) {
                     return [$rating->user_id, $rating->rating];
-        })]];
-    });
+                })]
+            ];
+        });
+    }
 
     $houseguests = $houseguests->mapToAssoc(function ($hg) {
         return [$hg->id, $hg->nickname];

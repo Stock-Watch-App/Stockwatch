@@ -677,6 +677,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -974,12 +976,20 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("card", { staticClass: "w-full flex flex-col mt-4" }, [
-        _c("h3", { staticClass: "m-4 w-1/2 text-left font-semibold" }, [
-          _vm._v("Week " + _vm._s(_vm.season.current_week) + " Ratings")
+      _c("card", { staticClass: "w-full mt-4" }, [
+        _c("h3", { staticClass: "m-4 w-1/2 text-left font-semibold pt-4" }, [
+          _vm._v(
+            "Week " + _vm._s(_vm.season.current_week) + " Ratings\n        "
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "p-4" }, [
+        _c(
+          "button",
+          { staticClass: "m-2 border p-2 rounded", on: { click: _vm.newWeek } },
+          [_vm._v("Add Week " + _vm._s(_vm.season.current_week + 1))]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-4 flex flex-col " }, [
           _c(
             "div",
             { staticClass: "flex flex-row w-full rating-table" },
@@ -1011,7 +1021,7 @@ var render = function() {
                     staticClass:
                       "font-bold text-right p-2 border-t border-black pt-4"
                   },
-                  [_vm._v("Total")]
+                  [_vm._v("Final Rating")]
                 )
               ]),
               _vm._v(" "),
