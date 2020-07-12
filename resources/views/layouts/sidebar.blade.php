@@ -108,16 +108,6 @@
                     {{ __('Login') }}
                 </a>
             </li>
-            @if (Route::has('register'))
-                <li>
-                    <a class="item-wrap" title="Register" href="{{ route('register') }}">
-                        <figure>
-                            <font-awesome-icon icon="sign-in-alt" fixed-width/>
-                        </figure>
-                        {{ __('Register') }}
-                    </a>
-                </li>
-            @endif
         @endguest
         @auth
             <li>

@@ -43,6 +43,9 @@
                             {{ __('Forgot your password?') }}
                         </a>
                     @endif
+                    <div>
+                        <a href="/register" alt="Sign in">Create an account with email</a>
+                    </div>
                 </form>
             @endif
         </div>
