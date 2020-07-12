@@ -1,10 +1,12 @@
-@extends('layouts.landing')
+@extends('layouts.app')
 
 @section('content')
-<div class="landingWrap textCenter mg-top-lg" id="landing">
-    @component('loginflow')
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+    <div class="loginWrap" id="landing">
+        <h3 class="mg-btm-lg text-center">{{ __('Register for an account') }}</h3>
+        <a href="/login">{{ __('Or register through social') }}</a>
+        <div class="loginFormWrap card">
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                 <label for="name" class="label label-hidden">{{ __('Display Name') }}</label>
                 <input id="name" type="text" class="mg-btm-sm input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Display name') }}">
                 @error('name')
@@ -37,9 +39,8 @@
                 </button>
             </form>
             <div class="bottom-links">
-                <a href="/landing" alt="Sign up with social media">Or register with social</a>
-                <a href="/login" alt="Sign in">Sign in</a>
+                <a href="/login" alt="Sign in">Already have an account? Sign in</a>
             </div>
-    @endcomponent
-</div>
+        </div>
+    </div>
 @endsection
