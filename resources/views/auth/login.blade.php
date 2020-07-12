@@ -6,7 +6,6 @@
         <div class="loginFormWrap card">
             @component('sso')
             @endcomponent
-            @if(env('APP_ENV', 'production') === 'local')
                 <p class="mg-btm-md mg-top-md textCenter">{{ __('Or') }}</p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -47,7 +46,6 @@
                         <a href="/register" alt="Sign in">Create an account with email</a>
                     </div>
                 </form>
-            @endif
         </div>
     </div>
 @endsection

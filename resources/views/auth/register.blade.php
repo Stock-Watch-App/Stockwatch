@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="loginWrap" id="landing">
-        <h3 class="mg-btm-lg text-center">{{ __('Register for an account') }}</h3>
-        <a href="/login">{{ __('Or register through social') }}</a>
+        <h3 class="mg-btm-sm text-center">{{ __('Register for an account') }}</h3>
+        <a class="mg-btm-md text-center" href="/login">{{ __('Or register through social') }}</a>
         <div class="loginFormWrap card">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
