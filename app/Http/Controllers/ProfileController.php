@@ -19,7 +19,7 @@ class ProfileController extends Controller
                 $query->where('quantity', '>', 0);
             }
         ]);
-        
+
         $season = Season::current();
 
         $houseguests = Houseguest::with('prices')
@@ -27,6 +27,6 @@ class ProfileController extends Controller
                                  ->withoutGlobalScope('active')
                                  ->get();
 
-        return view('profile', compact('user', 'houseguests'));
+        return view('profile', compact('user', 'houseguests', 'season'));
     }
 }

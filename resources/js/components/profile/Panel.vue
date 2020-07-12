@@ -37,21 +37,7 @@
                     <div class="networth-wrap">
                         <div class="stats">
                             <p>Net worth:</p>
-                            <h1>$200 {{ networth | currency }}</h1>
-                            <!-- <span
-                                v-if="priceDifference.amount >= 0"
-                                class="stock-change-wrap"
-                                v-bind:class="priceDifference.class.text"
-                            >
-                                <font-awesome-icon
-                                    :icon="priceDifference.icon"
-                                    size="small"
-                                    class="stock-diff-icon"
-                                />
-                                <span class="stock-diff word">{{
-                                    20 | currency
-                                }}</span>
-                            </span> -->
+                            <h1>{{ networth | currency }}</h1>
                         </div>
                     </div>
                     <div class="rank-wrap">
@@ -76,92 +62,35 @@
 </template>
 
 <script>
-export default {
-    props: {
-        user: Object,
-        houseguests: Array,
-        bank: Object,
-        networth: Number,
-        leaderboard: Array,
-        options: [{ value: "foo", text: "This is Foo", disabled: true }]
-        // options: Array
-    },
-    data() {
-        return {
-            currentPage: 1,
-            totalPages: 0,
-            mutableBank: _.cloneDeep(this.bank)
-        };
-    },
-    mounted() {},
-    watch: {},
-    methods: {
-        transactionMessage: function(t) {
-            let verb;
-            if (t.action === "buy") {
-                verb = "bought";
-            } else if (t.action === "sell") {
-                verb = "sold";
-            }
+    export default {
+        props: {
+            user: Object,
+            houseguests: Array,
+            week: Number
+        },
+        data() {
+            return {};
+        },
+        mounted() {
+        },
+        watch: {},
+        methods: {},
+        computed: {
+            networth: function () {
+                let value = parseFloat(this.user.bank.money);
 
-            //find houseguest
-            let houseguest;
-            for (let hg of this.houseguests) {
-                if (hg.id === t.houseguest_id) {
-                    houseguest = hg;
-                }
-            }
+                this.user.stocks.forEach(stock => {
+                    let price = parseFloat(this.houseguests.find(hg => {
+                        return hg.id === stock.houseguest_id;
+                    }).prices.find(p => {
+                        return p.week === this.week;
+                    }).price);
 
-            return (
-                verb +
-                " " +
-                t.quantity +
-                " stock" +
-                (t.quantity === 1 ? "" : "s") +
-                " of " +
-                houseguest.nickname
-            );
+                    value += stock.quantity * price;
+                });
+
+                return value;
+            },
         }
-    },
-    computed: {
-        // we'll need this for leaderboard rank too
-        networthDifference: function() {
-            if (this.networth.length === 1) {
-                return {
-                    amount: -1, //because we use abs(), we will never have a negative number. Thus we can use it as a check.
-                    icon: "",
-                    class: ""
-                };
-            }
-
-            //find latest week and week before
-            let currentWeek;
-            let lastWeek;
-            this.networth.forEach(week => {
-                if (typeof currentWeek === "undefined") {
-                    currentWeek = week;
-                } else if (week.week > currentWeek.week) {
-                    lastWeek = currentWeek;
-                    currentWeek = week;
-                }
-            });
-
-            let diff = currentWeek.networth - lastWeek.networth;
-            let isIncrease = diff > 0;
-
-            return {
-                amount: Math.abs(diff),
-                icon: isIncrease | (diff === 0) ? "arrowUp" : "arrowDown",
-                class: {
-                    background: isIncrease
-                        ? "green-bg"
-                        : diff === 0
-                        ? ""
-                        : "red-bg",
-                    text: isIncrease ? "green" : diff === 0 ? "" : "red"
-                }
-            };
-        }
-    }
-};
+    };
 </script>
