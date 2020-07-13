@@ -15,4 +15,7 @@ class Leaderboard extends BaseModel
     {
         return $this->belongsTo(User::class);
     }
+
+    //=== METHODS ===//
+    
 }
