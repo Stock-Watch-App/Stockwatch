@@ -44,7 +44,7 @@ class MarketController extends Controller
                 $last_price = $houseguest->prices()->where('week', $week - 1)->first()->price;
 
                 $new_price = $f->calculate($last_rating, $rating, $last_price, $houseguest->strikes);
-                Price::create(['price' => $new_price, 'houseguest_id' => $houseguest->id, 'week' => $week]);
+                Price::create(['price' => $new_price, 'houseguest_id' => $houseguest->id, 'season_id' => $season->id, 'week' => $week]);
             }
             if ($season->getOriginal('status') === 'pre-season') {
                 Price::create(['price' => $houseguest->current_rate, 'houseguest_id' => $houseguest->id, 'week' => $week]);
@@ -73,9 +73,9 @@ class MarketController extends Controller
     public function zeroOutEvictees($season)
     {
         $houseguests = Houseguest::withoutGlobalScope('active')->where('status', 'evicted')->get();
-       $houseguests->each(function ($houseguest) use ($season) {
-                Price::create(['price' => 0.00, 'houseguest_id' => $houseguest->id, 'week' => $season->current_week]);
-       });
+        $houseguests->each(function ($houseguest) use ($season) {
+            Price::create(['price' => 0.00, 'houseguest_id' => $houseguest->id, 'week' => $season->current_week]);
+        });
     }
 
     public function generateLeaderboard($season)
@@ -86,24 +86,44 @@ class MarketController extends Controller
                       ->join('banks', 'stocks.user_id', '=', 'banks.user_id')
                       ->whereRaw('prices.week = (Select max(week) from prices)')
                       ->groupBy('stocks.user_id')
-                      ->get()
-                      ->mapToAssoc(function ($res) {
-                          return [$res->user_id, $res->networth];
-                      });
-        $users = User::with('stocks')->get();
+                      ->orderByDesc('networth')
+                      ->get();
 
-        $insert = $users->map(function ($user) use ($networth, $season) {
-            if ($networth->has($user->id)) {
+        $stocks = User::with('stocks')->get()->mapToAssoc(function ($u) {
+            return [
+                $u->id,
+                json_encode($u->stocks->mapToAssoc(function ($stock) {
+                    return [$stock->houseguest_id, $stock->quantity];
+                }))
+            ];
+        });
+
+        $rank = 1;
+        $lastValue = '1';
+        $hiddenRank = 1;
+
+        $insert = $networth->map(function ($net) use ($stocks, $season, &$rank, &$lastValue, &$hiddenRank) {
+            if ($stocks->has($net->user_id)) {
+
+                if ($lastValue === $net->networth) {
+                    $newRank = $rank;
+                } else {
+                    $newRank = $hiddenRank;
+                    $rank = $hiddenRank;
+                }
+                $lastValue = $net->networth;
+                $hiddenRank++;
+
                 return [
-                    'user_id'   => $user->id,
+                    'user_id'   => $net->user_id,
                     'season_id' => $season->id,
                     'week'      => $season->current_week,
-                    'networth'  => $networth[$user->id],
-                    'stocks'    => json_encode($user->stocks->mapToAssoc(function ($stock) {
-                        return [$stock->houseguest_id, $stock->quantity];
-                    }))
+                    'rank'      => $newRank,
+                    'networth'  => $net->networth,
+                    'stocks'    => $stocks[$net->user_id]
                 ];
             }
+
         })->reject(function ($value) {
             return $value === null;
         })->toArray();

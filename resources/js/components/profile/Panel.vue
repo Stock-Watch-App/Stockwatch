@@ -18,11 +18,11 @@
                     class="prev-button"
                 ></icon-button>
                 <select-component
-                    v-model="selected"
+                    v-model="selectedWeek"
                     placeholder="Current Week"
                     :options="[
-                        { value: 'foo', text: 'This is foo', disabled: false },
-                        { value: 'bar', text: 'This is bar' }
+                        { value: 2, text: 'Week 2' },
+                        { value: 3, text: 'Week 3' }
                     ]"
                 ></select-component>
                 <icon-button
@@ -43,7 +43,7 @@
                     <div class="rank-wrap">
                         <div class="stats">
                             <p>Rank:</p>
-                            <h1>#1000</h1>
+                            <h1>{{ currentRank }}</h1>
                             <p class="bodySM">down 40</p>
                         </div>
                     </div>
@@ -69,7 +69,9 @@
             week: Number
         },
         data() {
-            return {};
+            return {
+                selectedWeek: this.week
+            };
         },
         mounted() {
         },
@@ -91,6 +93,18 @@
 
                 return value;
             },
+            currentRank: function () {
+                return this.user.leaderboard.find(l => {
+                    return l.week === this.selectedWeek;
+                }).rank
+            },
+            rankDiff: function () {
+                let lastWeek = this.user.leaderboard.find(l => {
+                    return l.week === this.selectedWeek - 1;
+                }).rank;
+
+                return (this.currentRank - lastWeek > 0 ? 'up' : 'down') +' '+ Math.abs(this.currentRank - lastWeek);
+            }
         }
     };
 </script>

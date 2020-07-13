@@ -19,7 +19,7 @@ class LeaderboardController extends Controller
 
         $leaderboard = Leaderboard::where('week', $season->current_week)
                                   ->with('user')
-                                  ->orderBy('networth', 'desc')
+                                  ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
                                   ->get();
 

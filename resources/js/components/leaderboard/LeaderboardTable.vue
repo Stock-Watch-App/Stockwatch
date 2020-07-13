@@ -4,7 +4,7 @@
         <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
         <div class="table-wrap mg-btm-md">
             <v-table
-                :data="rankedLeaderboard"
+                :data="leaderboard"
                 :hideSortIcons="true"
                 :filters="filters"
                 :currentPage.sync="currentPage"
@@ -26,8 +26,8 @@
                 <tbody slot="body" slot-scope="{displayData}">
                 <tr v-for="leaderboard in displayData" :key="leaderboard.user_id">
                     <td>
-                        <div class="rank-num" :class="leaderboard.rank.class">
-                            {{ leaderboard.rank.rank }}
+                        <div class="rank-num" :class="'rank-'+leaderboard.rank">
+                            {{ leaderboard.rank }}
                         </div>
                     </td>
                     <td class="user-row">
@@ -63,43 +63,9 @@
             },
             currentPage: 1,
             totalPages: 0,
-            rank: {
-                rank: 0,
-                class: null
-            },
             // lastMoney: 0
         }),
-        computed: {
-            rankedLeaderboard: function () {
-                let rank = 1;
-                let ranked = [];
-                for (let leaderboard of this.leaderboard) {
-                    let newRank = {
-                        rank: 0,
-                        class: null
-                    };
-                    newRank.rank = rank;
-                    switch (rank) {
-                        case 1:
-                            newRank.class = 'rank-1';
-                            break;
-                        case 2:
-                            newRank.class = 'rank-2';
-                            break;
-                        case 3:
-                            newRank.class = 'rank-3';
-                            break;
-                        default:
-                            newRank.class = '';
-                            break;
-                    }
-                    leaderboard.rank = newRank;
-                    ranked.push(leaderboard);
-                    rank++;
-                }
-                return ranked;
-            }
-        },
+        computed: {},
         methods: {
             houseguestImage: function (houseguest) {
                 return '/storage' + houseguest.image;

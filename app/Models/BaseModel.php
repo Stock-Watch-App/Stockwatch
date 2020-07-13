@@ -15,6 +15,8 @@ class BaseModel extends Model
 
     protected $cache_attributes = [];
 
+    protected static $flushCacheOnUpdate = true;
+
     public function getAttribute($key)
     {
         if (!$key) {
