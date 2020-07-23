@@ -39,6 +39,26 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    .stat-diff-icon {
+        .font-unit-rem(12);
+    }
+
+    .stat-change-wrap {
+        align-items: baseline;
+
+        p {
+            line-height: 1;
+        }
+
+        &.green {
+            color: darken(@green, 5%);
+        }
+
+        &.red {
+            color: darken(@red, 8%);
+        }
+
+    }
 
 
     .profile-stats-wrap {
