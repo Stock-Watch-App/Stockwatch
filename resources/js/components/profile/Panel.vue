@@ -16,9 +16,10 @@
                     ariaLabelledById="my-label"
                     buttonLabel="Last week"
                     class="prev-button"
+                    @click="mutateRank('down')"
                 ></icon-button>
                 <select-component
-                    v-model="selectedWeek"
+                    v-model.number="selectedWeek"
                     placeholder="Current Week"
                     :options="weekSelectorOptions"
                 ></select-component>
@@ -27,6 +28,7 @@
                     ariaLabelledById="my-label"
                     buttonLabel="Next week"
                     class="next-button"
+                    @click="mutateRank('up')"
                 ></icon-button>
             </div>
             <div class="weekly-stats-wrap">
@@ -99,7 +101,15 @@
         mounted() {
         },
         watch: {},
-        methods: {},
+        methods: {
+            mutateRank(direction) {
+                let result =  direction === 'up' ? this.selectedWeek + 1 : this.selectedWeek - 1;
+
+                if (this.weekSelectorOptions.find(o => o.value === result)) {
+                    this.selectedWeek = result;
+                }
+            }
+        },
         computed: {
             networth: function () {
                 let value = parseFloat(this.user.bank.money);
@@ -122,7 +132,7 @@
             },
             networthDiff: function () {
                 let lastWeek = Object.assign({networth: 0}, this.user.leaderboard.find(l => {
-                    return l.week === parseInt(this.selectedWeek) - 1;
+                    return l.week === this.selectedWeek - 1;
                 })).networth;
 
                 let diff = this.networth - lastWeek;
@@ -136,7 +146,7 @@
             },
             selectedRank: function () {
                 let rank = Object.assign({rank: 'N/A'}, this.user.leaderboard.find(l => {
-                    return l.week === parseInt(this.selectedWeek);
+                    return l.week === this.selectedWeek;
                 })).rank;
 
                 this.currentRank = this.currentRank || rank;
@@ -145,7 +155,7 @@
             },
             rankDiff: function () {
                 let lastWeek = Object.assign({rank: 0}, this.user.leaderboard.find(l => {
-                    return l.week === parseInt(this.selectedWeek) - 1;
+                    return l.week === this.selectedWeek - 1;
                 })).rank;
 
                 let diff = (this.selectedRank === 'N/A') ? 0 : this.selectedRank - lastWeek;

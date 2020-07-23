@@ -38,6 +38,16 @@
                 default: null
             }
         },
+        data() {
+            return {
+                selectedValue: this.value,
+            }
+        },
+        watch: {
+            value: function (value) {
+                this.selectedValue = value;
+            }
+        },
         methods: {
             /**
              * Emit an input event up to the parent.
@@ -46,10 +56,5 @@
                 this.$emit("input", e.target.value);
             }
         },
-        data() {
-            return {
-                selectedValue: this.value,
-            }
-        }
     };
 </script>
