@@ -20,10 +20,7 @@
                 <select-component
                     v-model="selectedWeek"
                     placeholder="Current Week"
-                    :options="[
-                        { value: 2, text: 'Week 2' },
-                        { value: 3, text: 'Week 3' }
-                    ]"
+                    :options="weekSelectorOptions"
                 ></select-component>
                 <icon-button
                     icon="chevron-right"
@@ -41,34 +38,35 @@
                             <span
                                 v-if="networthDiff.amount >= 0"
                                 class="stock-change-wrap"
-                                v-bind:class="networthDiff.class"
+                                :class="networthDiff.class"
                             >
                                 <font-awesome-icon
+                                    v-if="networthDiff.amount - networth"
                                     :icon="networthDiff.icon"
-                                    size="small"
+                                    size="sm"
                                     class="stock-diff-icon"
                                 />
-                                <span class="stock-diff word">3</span>
+                                <span v-if="networthDiff.amount - networth" class="stock-diff word">{{ networthDiff.amount | currency }}</span>
                             </span>
                         </div>
                     </div>
                     <div class="rank-wrap">
                         <div class="stats">
                             <p>Rank:</p>
-                            <h1>{{ currentRank }}</h1>
-                            <!-- <span
+                            <h1>{{ selectedRank }}</h1>
+                            <span
                                 v-if="rankDiff.amount >= 0"
                                 class="stock-change-wrap"
-                                v-bind:class="rankDiff.class.text"
+                                :class="rankDiff.class"
                             >
                                 <font-awesome-icon
+                                    v-if="rankDiff.amount - selectedRank"
                                     :icon="rankDiff.icon"
-                                    size="small"
+                                    size="sm"
                                     class="stock-diff-icon"
                                 />
-                                <span class="stock-diff word">3</span>
-                            </span> -->
-                            <!-- <p class="bodySM">{{ rankDiff }}</p> -->
+                                <span v-if="rankDiff.amount - selectedRank" class="stock-diff word">{{ rankDiff.amount }}</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -86,73 +84,86 @@
 </template>
 
 <script>
-export default {
-    props: {
-        user: Object,
-        houseguests: Array,
-        week: Number
-    },
-    data() {
-        return {
-            selectedWeek: this.week
-        };
-    },
-    mounted() {},
-    watch: {},
-    methods: {},
-    computed: {
-        networth: function() {
-            let value = parseFloat(this.user.bank.money);
-
-            this.user.stocks.forEach(stock => {
-                let price = parseFloat(
-                    this.houseguests
-                        .find(hg => {
-                            return hg.id === stock.houseguest_id;
-                        })
-                        .prices.find(p => {
-                            return p.week === this.week;
-                        }).price
-                );
-
-                value += stock.quantity * price;
-            });
-
-            return value;
+    export default {
+        props: {
+            user: Object,
+            houseguests: Array,
+            week: Number
         },
-        // none of the stuff below works expect for currentRank
-        // wrote a bunch of sudo code
-        // I want rankDiff to look more like networthDiff so I can set classes and icons
-        networthDiff: function() {
-            let lastWeek = this.user.bank.money.find(l => {
-                return l.week === this.selectedWeek - 1;
-            }).bank;
-
-            let diff = networth - lastWeek;
-            let isIncrease = diff > 0;
-
+        data() {
             return {
-                amount: Math.abs(diff),
-                icon: isIncrease | (diff === 0) ? "arrow-up" : "arrow-down",
-                class: isIncrease ? "green" : diff === 0 ? "" : "red"
+                selectedWeek: this.week,
+                currentRank: null
             };
         },
-        currentRank: function() {
-            return this.user.leaderboard.find(l => {
-                return l.week === this.selectedWeek;
-            }).rank;
+        mounted() {
         },
-        rankDiff: function() {
-            let lastWeek = this.user.leaderboard.find(l => {
-                return l.week === this.selectedWeek - 1;
-            }).rank;
+        watch: {},
+        methods: {},
+        computed: {
+            networth: function () {
+                let value = parseFloat(this.user.bank.money);
 
-            return (
-                (this.currentRank - lastWeek > 0 ? "plus" : "minus") +
-                " " +
-                Math.abs(this.currentRank - lastWeek)
-            );
+                this.user.stocks.forEach(stock => {
+                    let price = parseFloat(
+                        this.houseguests
+                            .find(hg => {
+                                return hg.id === stock.houseguest_id;
+                            })
+                            .prices.find(p => {
+                            return p.week === this.week;
+                        }).price
+                    );
+
+                    value += stock.quantity * price;
+                });
+
+                return value;
+            },
+            networthDiff: function () {
+                let lastWeek = Object.assign({networth: 0}, this.user.leaderboard.find(l => {
+                    return l.week === parseInt(this.selectedWeek) - 1;
+                })).networth;
+
+                let diff = this.networth - lastWeek;
+                let isIncrease = diff > 0;
+
+                return {
+                    amount: Math.abs(diff),
+                    icon: isIncrease ? "arrow-up" : diff === 0 ? "" : "arrow-down",
+                    class: isIncrease ? "green" : diff === 0 ? "" : "red"
+                };
+            },
+            selectedRank: function () {
+                let rank = Object.assign({rank: 'N/A'}, this.user.leaderboard.find(l => {
+                    return l.week === parseInt(this.selectedWeek);
+                })).rank;
+
+                this.currentRank = this.currentRank || rank;
+
+                return rank;
+            },
+            rankDiff: function () {
+                let lastWeek = Object.assign({rank: 0}, this.user.leaderboard.find(l => {
+                    return l.week === parseInt(this.selectedWeek) - 1;
+                })).rank;
+
+                let diff = (this.selectedRank === 'N/A') ? 0 : this.selectedRank - lastWeek;
+                let isIncrease = (diff > 0);
+
+                return {
+                    amount: Math.abs(diff),
+                    icon: isIncrease ? "arrow-up" : diff === 0 ? "" : "arrow-down",
+                    class: isIncrease ? "green" : diff === 0 ? "" : "red",
+                };
+            },
+            weekSelectorOptions: function () {
+                let options = [];
+                this.user.leaderboard.forEach(l => {
+                    options.push({value: l.week, text: 'Week ' + l.week})
+                });
+                return options;
+            }
         }
-    }
-};
+    };
 </script>

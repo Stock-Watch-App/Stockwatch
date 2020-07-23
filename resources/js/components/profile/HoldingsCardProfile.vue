@@ -25,7 +25,7 @@
                     >
                         <font-awesome-icon
                             :icon="priceDifference.icon"
-                            size="small"
+                            size="sm"
                             class="stock-diff-icon"
                         />
                         <span class="stock-diff word">3</span>
