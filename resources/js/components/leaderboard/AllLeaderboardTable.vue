@@ -14,7 +14,7 @@
             >
                 <thead slot="head">
                     <tr>
-                        <v-th class="rank-sort">Rank</v-th>
+                        <th class="rank-sort">Rank</th>
                         <th class="user-row-head">Player</th>
                         <th>Networth</th>
 <!--                        <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"-->
@@ -76,6 +76,7 @@
                 let hiddenRank = 1;
                 let ranked = [];
                 for (let leaderboard of this.leaderboard) {
+                    if (leaderboard.user === null) continue;
                     let newRank = {
                         rank: 0,
                         class: null

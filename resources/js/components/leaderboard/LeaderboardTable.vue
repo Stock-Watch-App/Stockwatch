@@ -4,7 +4,7 @@
         <input class="input inline-width input-sharp input-light mg-btm-md" placeholder="Search user..." v-model="filters.name.value"/>
         <div class="table-wrap mg-btm-md">
             <v-table
-                :data="leaderboard"
+                :data="cleanLeaderboard"
                 :hideSortIcons="true"
                 :filters="filters"
                 :currentPage.sync="currentPage"
@@ -14,7 +14,7 @@
             >
                 <thead slot="head">
                     <tr>
-                        <v-th class="rank-sort">Rank</v-th>
+                        <th class="rank-sort">Rank</th>
                         <th class="user-row-head">Player</th>
                         <th>Networth</th>
                         <th v-for="houseguest in houseguests" v-bind:key="houseguest.id"
@@ -65,7 +65,11 @@
             totalPages: 0,
             // lastMoney: 0
         }),
-        computed: {},
+        computed: {
+            cleanLeaderboard: function () {
+                return this.leaderboard.filter(l => l.user !== null)
+            }
+        },
         methods: {
             houseguestImage: function (houseguest) {
                 return '/storage' + houseguest.image;
