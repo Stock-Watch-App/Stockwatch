@@ -3,7 +3,7 @@
         <div class="profile-details">
             <avatar height="60px" width="60px"></avatar>
             <p class="bold">{{ user.name }}</p>
-            <p>current rank {{ user.rank }}</p>
+            <p>current rank {{ currentRank }}</p>
             <p>all-time rank {{ user.rank }}</p>
             <p>badges here</p>
         </div>
@@ -38,13 +38,37 @@
                         <div class="stats">
                             <p>Net worth:</p>
                             <h1>{{ networth | currency }}</h1>
+                            <span
+                                v-if="networthDiff.amount >= 0"
+                                class="stock-change-wrap"
+                                v-bind:class="networthDiff.class"
+                            >
+                                <font-awesome-icon
+                                    :icon="networthDiff.icon"
+                                    size="small"
+                                    class="stock-diff-icon"
+                                />
+                                <span class="stock-diff word">3</span>
+                            </span>
                         </div>
                     </div>
                     <div class="rank-wrap">
                         <div class="stats">
                             <p>Rank:</p>
                             <h1>{{ currentRank }}</h1>
-                            <p class="bodySM">down 40</p>
+                            <!-- <span
+                                v-if="rankDiff.amount >= 0"
+                                class="stock-change-wrap"
+                                v-bind:class="rankDiff.class.text"
+                            >
+                                <font-awesome-icon
+                                    :icon="rankDiff.icon"
+                                    size="small"
+                                    class="stock-diff-icon"
+                                />
+                                <span class="stock-diff word">3</span>
+                            </span> -->
+                            <!-- <p class="bodySM">{{ rankDiff }}</p> -->
                         </div>
                     </div>
                 </div>
@@ -62,49 +86,73 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            user: Object,
-            houseguests: Array,
-            week: Number
+export default {
+    props: {
+        user: Object,
+        houseguests: Array,
+        week: Number
+    },
+    data() {
+        return {
+            selectedWeek: this.week
+        };
+    },
+    mounted() {},
+    watch: {},
+    methods: {},
+    computed: {
+        networth: function() {
+            let value = parseFloat(this.user.bank.money);
+
+            this.user.stocks.forEach(stock => {
+                let price = parseFloat(
+                    this.houseguests
+                        .find(hg => {
+                            return hg.id === stock.houseguest_id;
+                        })
+                        .prices.find(p => {
+                            return p.week === this.week;
+                        }).price
+                );
+
+                value += stock.quantity * price;
+            });
+
+            return value;
         },
-        data() {
+        // none of the stuff below works expect for currentRank
+        // wrote a bunch of sudo code
+        // I want rankDiff to look more like networthDiff so I can set classes and icons
+        networthDiff: function() {
+            let lastWeek = this.user.bank.money.find(l => {
+                return l.week === this.selectedWeek - 1;
+            }).bank;
+
+            let diff = networth - lastWeek;
+            let isIncrease = diff > 0;
+
             return {
-                selectedWeek: this.week
+                amount: Math.abs(diff),
+                icon: isIncrease | (diff === 0) ? "arrow-up" : "arrow-down",
+                class: isIncrease ? "green" : diff === 0 ? "" : "red"
             };
         },
-        mounted() {
+        currentRank: function() {
+            return this.user.leaderboard.find(l => {
+                return l.week === this.selectedWeek;
+            }).rank;
         },
-        watch: {},
-        methods: {},
-        computed: {
-            networth: function () {
-                let value = parseFloat(this.user.bank.money);
+        rankDiff: function() {
+            let lastWeek = this.user.leaderboard.find(l => {
+                return l.week === this.selectedWeek - 1;
+            }).rank;
 
-                this.user.stocks.forEach(stock => {
-                    let price = parseFloat(this.houseguests.find(hg => {
-                        return hg.id === stock.houseguest_id;
-                    }).prices.find(p => {
-                        return p.week === this.week;
-                    }).price);
-
-                    value += stock.quantity * price;
-                });
-
-                return value;
-            },
-            currentRank: function () {
-                return this.user.leaderboard.find(l => {
-                    return l.week === this.selectedWeek;
-                }).rank
-            },
-            rankDiff: function () {
-                let lastWeek = this.user.leaderboard.find(l => {
-                    return l.week === this.selectedWeek - 1;
-                }).rank;
-
-                return (this.currentRank - lastWeek > 0 ? 'up' : 'down') +' '+ Math.abs(this.currentRank - lastWeek);
-            }
+            return (
+                (this.currentRank - lastWeek > 0 ? "plus" : "minus") +
+                " " +
+                Math.abs(this.currentRank - lastWeek)
+            );
         }
-    };
+    }
+};
 </script>
