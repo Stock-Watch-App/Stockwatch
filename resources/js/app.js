@@ -8,11 +8,6 @@ require("./bootstrap");
 require("vue-flash-message/dist/vue-flash-message.min.css");
 window.Vue = require("vue");
 
-// import tailwind globally
-import VueTailwind from "vue-tailwind";
-
-Vue.use(VueTailwind);
-
 import VueFlashMessage from "vue-flash-message";
 
 Vue.use(VueFlashMessage);
@@ -36,12 +31,12 @@ import {
     faUserCircle,
     faUserShield,
     faSignOutAlt,
+    faSignOut,
     faMinus,
     faPlus,
     faUndoAlt,
     faEye,
     faSpinner,
-    faChartLine,
     faInfoCircle,
     faChevronDown,
     faChevronRight,
@@ -49,8 +44,9 @@ import {
     faMicrophone,
     faBug,
     faTrophy,
-    faSignInAlt
-} from "@fortawesome/free-solid-svg-icons";
+    faSignInAlt,
+    faSignIn
+} from "@fortawesome/pro-solid-svg-icons";
 import {
     faTwitch,
     faTwitter,
@@ -58,6 +54,17 @@ import {
     faFacebookF,
     faReddit
 } from "@fortawesome/free-brands-svg-icons";
+
+import {
+    faArrowUp as faArrowUpDuo,
+    faArrowDown as faArrowDownDuo,
+    faChartLine,
+    faTrophyAlt,
+    faBinoculars,
+    faChartNetwork
+} from "@fortawesome/pro-duotone-svg-icons";
+
+import {} from "@fortawesome/pro-light-svg-icons";
 
 library.add(
     faStar,
@@ -75,6 +82,7 @@ library.add(
     faUserCircle,
     faUserShield,
     faSignOutAlt,
+    faSignOut,
     faMinus,
     faPlus,
     faUndoAlt,
@@ -88,7 +96,13 @@ library.add(
     faMicrophone,
     faBug,
     faTrophy,
-    faSignInAlt
+    faTrophyAlt,
+    faSignInAlt,
+    faSignIn,
+    faArrowUpDuo,
+    faArrowDownDuo,
+    faBinoculars,
+    faChartNetwork
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

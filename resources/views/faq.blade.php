@@ -1,8 +1,7 @@
-@extends('layouts.landing_light')
+@extends('layouts.app')
 
 @section('content')
     <div class="faq-wrap native-collapse-wrap mg-btm-md">
-        <div class="mg-btm-md"><a href="/">Back home</a></div>
         <h3 class="mg-btm-lg">FAQs</h3>
         <details>
             <summary class="plus-icon">

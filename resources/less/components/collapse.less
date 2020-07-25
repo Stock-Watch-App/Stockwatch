@@ -19,6 +19,10 @@
                 transform: rotate(180deg);
                 transition: transform 0.2s ease-in-out;
             }
+
+            summary {
+                margin-bottom: 1rem;
+            }
         }
 
         &:not([open]) {
@@ -67,6 +71,11 @@
             &::-webkit-details-marker {
                 display: none;
             }
+
+            &:focus, &:active {
+                    outline: solid 1px @link;
+                    outline-offset: 0.5rem;
+                }
         }
     }
 }
