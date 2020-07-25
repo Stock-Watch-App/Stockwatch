@@ -7,9 +7,7 @@
                 <span class="price-diff word small-price">{{ houseguest.current_price | currency}}</span>
             </span>
         </div>
-        <div class="hg-img" >
-            <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" />
-        </div>
+        <img :src="houseguestImage(houseguest)" :alt="houseguest.nickname" class="hg-img" height="85" width="85" />
         <div class="user-holdings">
             <div>
                 <span class="num">{{ stock.quantity }}</span><span class="word"> share{{(stock.quantity === 1 ? '' : 's')}}</span>
