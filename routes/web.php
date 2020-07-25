@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/trades/join', [TradeController::class, 'initGame'])->name('join.game');
     Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);
 
 });

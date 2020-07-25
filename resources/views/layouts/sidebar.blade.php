@@ -25,7 +25,7 @@
                     <figure>
                         <font-awesome-icon icon="chart-line" fixed-width/>
                     </figure>
-                    @if(Auth::check() && Auth::user()->hasVerifiedEmail())
+                    @if(Auth::check() && Auth::user()->hasVerifiedEmail() && Auth::user()->isPlaying())
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span>
                     @else
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Stocks</span>

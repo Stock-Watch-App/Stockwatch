@@ -29,13 +29,12 @@ class TradeController extends Controller
 
         $season = Season::current();
 
-        //is the user registered for the seasons?
-        $bank = $user->bank;
-        if ($bank === null) {
-            $stocks = $this->initGame($user);
-            $user->load('bank');
-            $bank = $user->bank;
+        //is the user registered for the season?
+        if (!$user->isPlaying($season)) {
+            return $this->guestIndex($request, 'spectator');
         }
+
+        $bank = $user->banks->where('season_id', $season->id)->first();
 
         $stocks = $this->getStocks($user, $season);
 
@@ -55,7 +54,7 @@ class TradeController extends Controller
             return ['houseguest' => $h];
         });
 
-        return view('trades', compact('stocks', 'season'));
+        return view('trades', compact('stocks', 'season', 'stateOfUser'));
     }
 
     public function savestocks(Request $request)
@@ -118,8 +117,9 @@ class TradeController extends Controller
     }
 
     //=== METHODS ===//
-    protected function initGame($user)
+    protected function initGame()
     {
+        $user = auth()->user();
         $season = Season::current();
 
         Bank::create([
@@ -141,7 +141,7 @@ class TradeController extends Controller
             ]));
         });
 
-        return $stocks;
+        return redirect()->route('trade');
     }
 
     protected function getStocks($user, $season)

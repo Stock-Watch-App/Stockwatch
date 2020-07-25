@@ -30,9 +30,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'banned'            => 'boolean'
     ];
 
-    public function bank()
+    public function banks()
     {
-        return $this->hasOne(Bank::class);
+        return $this->hasMany(Bank::class);
     }
 
     public function stocks()
@@ -63,5 +63,17 @@ class User extends Authenticatable implements MustVerifyEmail
             $this->avatar = $path;
         }
         return $this;
+    }
+
+    //=== METHODS ===//
+    public function isPlaying(Season $season = null)
+    {
+        if ($season === null) {
+            $season = Season::current();
+        }
+
+        $bank = $this->banks->where('season_id', $season->id)->first();
+
+        return $bank !== null;
     }
 }

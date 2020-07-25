@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(Auth::check() && Auth::user()->hasVerifiedEmail())
+    @if(Auth::check() && Auth::user()->hasVerifiedEmail() && Auth::user()->isPlaying())
         <h3 class="mg-btm-lg trade-heading">Buy & Sell Stocks</h3>
         <div id="market-banner" class="info flash__message">
             @if($season->status === 'open')
@@ -19,6 +19,11 @@
         ></trade-panel>
     @else
         <h3 class="mg-btm-lg trade-heading">{{ $season->name }} Stocks</h3>
+        @if($stateOfUser === 'spectator')
+            <div id="market-banner" class="info flash__message">
+                You are currently spectating. <a href="{{ route('join.game') }}">Click here to join the game!</a>
+            </div>
+        @endif
         <guest-trade-panel
             :season="{{ $season }}"
             :stocks="{{ $stocks }}"
