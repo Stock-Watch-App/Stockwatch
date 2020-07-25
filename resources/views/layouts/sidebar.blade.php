@@ -14,7 +14,7 @@
             <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
                     <figure>
-                        <font-awesome-icon icon="columns" fixed-width/>
+                        <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a>
             </li>
@@ -23,7 +23,7 @@
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">
                     <figure>
-                        <font-awesome-icon icon="chart-line" fixed-width/>
+                        <font-awesome-icon :icon="['fad', 'chart-line']" fixed-width/>
                     </figure>
                     @if(Auth::check() && Auth::user()->hasVerifiedEmail())
                         <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span>
@@ -35,7 +35,7 @@
             <li>
                 <a href="/projections" title="Projections" class="item-wrap">
                     <figure>
-                        <font-awesome-icon icon="eye" fixed-width/>
+                        <font-awesome-icon :icon="['fas', 'eye']" fixed-width/>
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span> </a>
             </li>
@@ -44,7 +44,7 @@
             <li>
                 <a href="{{ route('leaderboard', ['season' => \App\Models\Season::current()->short_name]) }}" title="Leaderboard" class="item-wrap">
                     <figure>
-                        <font-awesome-icon icon="award" fixed-width/>
+                        <font-awesome-icon :icon="['fas', 'trophy']" fixed-width/>
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
                 </a>
@@ -54,29 +54,16 @@
             <li class="last-item">
                 <a href="/account" title="Account" class="item-wrap">
                     <figure>
-                        <font-awesome-icon icon="user-circle" fixed-width/>
+                        <font-awesome-icon :icon="['fas', 'user-circle']" fixed-width/>
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span> </a>
             </li>
         @endauth
-        {{--        <li>--}}
-        {{--            <a href="/leaderboard/bbcan" title="BBCan Leaderboard" class="item-wrap">--}}
-        {{--                <figure>--}}
-        {{--                    <font-awesome-icon icon="award" fixed-width/>--}}
-        {{--                </figure>--}}
-        {{--                <span v-bind:class="[isActive ? 'full' : 'mini']">BBCan Leaderboard</span> </a>--}}
-        {{--        </li>--}}
-        {{--        <li>--}}
-        {{--            <a href="/leaderboard/bbus" title="BBUS Leaderboard" class="item-wrap">--}}
-        {{--                <figure>--}}
-        {{--                    <font-awesome-icon icon="award" fixed-width/>--}}
-        {{--                </figure>--}}
-        {{--                <span v-bind:class="[isActive ? 'full' : 'mini']">BBUS Leaderboard</span> </a>--}}
-        {{--        </li>--}}
+
         <li class="last-item">
             <a href="/leaderboard" title="All-Time Leaderboard" class="item-wrap">
                 <figure>
-                    <font-awesome-icon icon="award" fixed-width/>
+                    <font-awesome-icon :icon="['fad', 'trophy-alt']" fixed-width/>
                 </figure>
                 <span v-bind:class="[isActive ? 'full' : 'mini']">All-Time Leaderboard</span> </a>
         </li>
@@ -103,7 +90,7 @@
             <li>
                 <a class="item-wrap" title="Login" href="{{ route('login') }}">
                     <figure>
-                        <font-awesome-icon icon="sign-in-alt" fixed-width/>
+                        <font-awesome-icon icon="sign-in" fixed-width/>
                     </figure>
                     {{ __('Login') }}
                 </a>
@@ -121,7 +108,7 @@
                 <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <figure>
-                        <font-awesome-icon icon="sign-out-alt" fixed-width/>
+                        <font-awesome-icon icon="sign-out" fixed-width/>
                     </figure>
                     <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span> </a>
 
