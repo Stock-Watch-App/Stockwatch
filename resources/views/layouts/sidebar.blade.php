@@ -2,21 +2,36 @@
     @auth
         <div class="profile-wrap">
             <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" height="25px" width="25px" class="profile-pic" /> -->
-            <avatar :user="{{ auth()->user() }}" height="25" width="25" :class="profile-pic"></avatar>
+            <avatar :user="{{ auth()->user() }}" height="25" width="25" class="profile-pic"></avatar>
             <div class="profile-name">
                 <span>{{ Auth::user()->name }}</span>
             </div>
         </div>
     @endauth
-
+<!-- <slot
+                        v-else
+                        name="figure"
+                    /> -->
+                    <!-- <div v-if="loading">boo</div> -->
     <ul class="sidebar-nav-list">
         @if(Auth::check() && Auth::user()->hasVerifiedEmail())
             <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
-                    <figure>
+                @if(!isActive)
+                    <div class="skeletonBox">hi</div>
+                @else
+                    <div>helloo</div>
+                @endif
+                    <!-- <skeleton-box
+                        v-if="loading"
+                        width="24px"
+                        height="24px"
+                    ></skeleton-box> -->
+                    <!-- <figure v-else> -->
+                    <!-- <figure>
                         <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a>
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a> -->
             </li>
         @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))

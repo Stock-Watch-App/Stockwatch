@@ -167,6 +167,8 @@ Vue.component("select-component", require("./components/Select.vue").default);
 
 Vue.component("icon-button", require("./components/IconButton.vue").default);
 
+Vue.component("skeleton-box", require("./components/Skeleton.vue").default);
+
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
 // import Slideout from 'vue-slideout'
@@ -200,6 +202,12 @@ const app = new Vue({
     methods: {
         toggleNavbar: function(event) {
             this.isActive = !this.isActive;
+        }
+    },
+    props: {
+        loading: {
+            default: false,
+            type: Boolean
         }
     }
 });
