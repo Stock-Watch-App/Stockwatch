@@ -1,14 +1,11 @@
 <template>
   <img
-    src="../../../storage/app/public/avatar-default.svg"
+    :src="userAvatar"
     class="avatar"
     :width="width"
     :height="height"
   />
 </template>
-
-<!-- :alt="user.name" -->
-<!-- fallback/default img ../../../storage/app/public/avatar-default.svg -->
 
 <script>
 export default {
@@ -19,6 +16,11 @@ export default {
   },
   data() {
     return {};
-  }
+  },
+    computed: {
+        userAvatar: function () {
+            return (this.user.avatar !== null && this.user.avatar_approved) ? this.user.avatar : '/images/robot-avatar-'+this.user.banks.length+'.svg';
+        }
+    }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="profile-page-wrap">
         <div class="profile-details">
-            <avatar height="60px" width="60px"></avatar>
+            <avatar :user="user" height="60px" width="60px"></avatar>
             <p class="bold">{{ user.name }}</p>
             <p>current rank {{ currentRank }}</p>
             <p>all-time rank {{ user.rank }}</p>
