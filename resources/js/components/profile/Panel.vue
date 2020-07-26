@@ -93,6 +93,7 @@
 export default {
     props: {
         user: Object,
+        bank: Object,
         houseguests: Array,
         week: Number
     },
@@ -118,7 +119,7 @@ export default {
     },
     computed: {
         networth: function() {
-            let value = parseFloat(this.user.bank.money);
+            let value = parseFloat(this.bank.money);
 
             this.user.stocks.forEach(stock => {
                 let price = parseFloat(

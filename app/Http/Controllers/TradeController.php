@@ -34,7 +34,7 @@ class TradeController extends Controller
             return $this->guestIndex($request, 'spectator');
         }
 
-        $bank = $user->banks->where('season_id', $season->id)->first();
+        $bank = $user->bank;
 
         $stocks = $this->getStocks($user, $season);
 

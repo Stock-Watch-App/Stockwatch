@@ -65,15 +65,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this;
     }
 
-    //=== METHODS ===//
-    public function isPlaying(Season $season = null)
+    //=== ATTRIBUTES ===//
+    public function getBankAttribute()
     {
-        if ($season === null) {
-            $season = Season::current();
-        }
+        return $this->banks->where('season_id', Season::current()->id)->first();
+    }
 
-        $bank = $this->banks->where('season_id', $season->id)->first();
-
-        return $bank !== null;
+    //=== METHODS ===//
+    public function isPlaying()
+    {
+        return $this->bank !== null;
     }
 }

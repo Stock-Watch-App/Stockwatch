@@ -2,7 +2,8 @@
 
 @section('content')
     <profile-panel
-        :user="{{ $user  }}"
+        :user="{{ $user }}"
+        :bank="{{ $bank }}"
         :houseguests="{{ $houseguests }}"
         :week="{{ $season->current_week }}"
     >

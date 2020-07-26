@@ -12,7 +12,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         $user->load([
-            'bank',
+            'banks',
             'transactions',
             'leaderboard',
             'stocks' => function ($query) {
@@ -21,12 +21,12 @@ class ProfileController extends Controller
         ]);
 
         $season = Season::current();
-
+        $bank = $user->bank;
         $houseguests = Houseguest::with('prices')
                                  ->where('season_id', $season->id)
                                  ->withoutGlobalScope('active')
                                  ->get();
 
-        return view('profile', compact('user', 'houseguests', 'season'));
+        return view('profile', compact('user', 'bank', 'houseguests', 'season'));
     }
 }
