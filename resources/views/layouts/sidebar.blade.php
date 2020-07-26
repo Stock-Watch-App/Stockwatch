@@ -3,6 +3,8 @@
         <div class="profile-wrap">
             <!-- turn back on when profile pics work -->
         <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" /> -->
+
+            <avatar :user="{{ auth()->user() }}" height="60px" width="60px"></avatar>
             <div class="profile-name">
                 <span>{{ Auth::user()->name }}</span>
             </div>
