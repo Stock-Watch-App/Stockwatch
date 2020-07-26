@@ -1,10 +1,8 @@
 <nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
     @auth
         <div class="profile-wrap">
-            <!-- turn back on when profile pics work -->
-        <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" /> -->
-
-            <avatar :user="{{ auth()->user() }}" height="60px" width="60px"></avatar>
+            <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" height="25px" width="25px" class="profile-pic" /> -->
+            <avatar :user="{{ auth()->user() }}" height="25" width="25" :class="profile-pic"></avatar>
             <div class="profile-name">
                 <span>{{ Auth::user()->name }}</span>
             </div>
