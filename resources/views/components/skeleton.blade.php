@@ -1,0 +1,1 @@
+<div v-if="!loading" class="skeletonBox" style="width: ${sWidth}"></div>
