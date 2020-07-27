@@ -4,11 +4,9 @@
  *
  * @param {String} value The value string.
  */
-Vue.filter('date', function(value) {
-  var parts = value.split(' ');
-  var date = parts[0];
+Vue.filter('date', function (value) {
+    let date = new Date(value);
 
-  date = date.split('-');
 
-  return date[1] + '/' + date[2] + '/' + date[0];
+    return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
 });
