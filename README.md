@@ -14,3 +14,4 @@
 8. `php artisan db:create`
 9. `php artisan migrate`
 10. `php artisan serve`
+11. `npm run dev`
