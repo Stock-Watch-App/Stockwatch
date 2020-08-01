@@ -42,17 +42,31 @@
     .logo {
         color: @white;
         display: flex;
-        margin-left: 2rem;
+        // margin-left: 2rem;
         font-weight: 700;
+        max-width: 105px;
 
         svg {
-            width: 105px;
+            background: yellowgreen;
+            // max-width: 105px;
+            
         }
 
-        // placeholder untill we render a smaller img
-        // this is hacky and clunky for now
+        &.full {
+            // max-width: 105px;
+        }
+
         &.mini {
-            display: none;
+
+            // max-width: 60px;
+            svg {
+                // max-width: 70px;
+            }
+            
+            .logo-text {
+                // display: none;
+            }
+            
         }
     }
 
@@ -87,12 +101,43 @@
 
             figure {
                 margin-right: 1rem;
+
+                // svg {
+                //     color: @pink;
+                // }
             }
 
             .item-wrap {
                 color: @white;
                 display: flex;
                 align-items: center;
+            }
+
+            .collapse-btn-wrap {
+                margin-left: -1rem;
+                margin-right: -1rem;
+                background-color: @pink-overlay;
+
+                svg {
+                    color: @pink;
+                }
+
+                button {
+                    padding: 0 1rem;
+                    border-radius: 0;
+                    width: 100%;
+                    text-align: left;
+                    background-color: @pink-overlay;
+
+                    &:hover {
+                        background-color: @pink;
+
+                        svg {
+                            color: @white;
+                            transition: @transition;
+                        }
+                    }
+                }
             }
         }
 

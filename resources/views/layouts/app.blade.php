@@ -16,10 +16,6 @@
 <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -27,10 +23,6 @@
 <div id="app" class="app-wrapper">
     <!-- <flash-message class="myCustomClass"></flash-message> -->
     <aside>
-        <button class="button-base toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <font-awesome-icon icon="bars" size="lg"/>
-        </button>
-
         <a class="logo" v-bind:class="[isActive ? 'full' : 'mini']" href="{{ url('/') }}">
             @include('logo')
         </a>

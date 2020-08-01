@@ -61,7 +61,9 @@ import {
     faChartLine,
     faTrophyAlt,
     faBinoculars,
-    faChartNetwork
+    faChartNetwork,
+    faArrowToLeft,
+    faArrowToRight,
 } from "@fortawesome/pro-duotone-svg-icons";
 
 import { } from "@fortawesome/pro-light-svg-icons";
@@ -102,7 +104,9 @@ library.add(
     faArrowUpDuo,
     faArrowDownDuo,
     faBinoculars,
-    faChartNetwork
+    faChartNetwork,
+    faArrowToLeft,
+    faArrowToRight
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
