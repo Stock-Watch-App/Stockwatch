@@ -191,7 +191,8 @@ Vue.config.devtools = true;
 const app = new Vue({
     el: "#app",
     data: {
-        isActive: true
+        isActive: true,
+        isLocal: process.env.MIX_LOCAL_ENV,
     },
     mounted() {
         if (
