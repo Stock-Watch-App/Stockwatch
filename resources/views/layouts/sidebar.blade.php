@@ -2,17 +2,17 @@
     @auth
         <div class="profile-wrap">
             <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" height="25px" width="25px" class="profile-pic" /> -->
-            <avatar :user="{{ auth()->user() }}" height="25" width="25" :class="profile-pic"></avatar>
+            <!-- <avatar :user="{{ auth()->user() }}" height="25" width="25" class="profile-pic"></avatar> -->
             <div class="profile-name">
                 <span>{{ Auth::user()->name }}</span>
             </div>
         </div>
     @endauth
-
     <ul class="sidebar-nav-list">
         @if(Auth::check() && Auth::user()->hasVerifiedEmail())
             <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>
                     </figure>
@@ -22,6 +22,7 @@
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon :icon="['fad', 'chart-line']" fixed-width/>
                     </figure>
@@ -34,6 +35,7 @@
             </li>
             <li>
                 <a href="/projections" title="Projections" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon :icon="['fas', 'eye']" fixed-width/>
                     </figure>
@@ -43,6 +45,7 @@
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="{{ route('leaderboard', ['season' => \App\Models\Season::current()->short_name]) }}" title="Leaderboard" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />    
                     <figure>
                         <font-awesome-icon :icon="['fas', 'trophy']" fixed-width/>
                     </figure>
@@ -53,6 +56,7 @@
         @auth
             <li class="last-item">
                 <a href="/account" title="Account" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon :icon="['fas', 'user-circle']" fixed-width/>
                     </figure>
@@ -62,6 +66,7 @@
 
         <li class="last-item">
             <a href="/leaderboard" title="All-Time Leaderboard" class="item-wrap">
+                <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                 <figure>
                     <font-awesome-icon :icon="['fad', 'trophy-alt']" fixed-width/>
                 </figure>
@@ -71,6 +76,7 @@
             @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
                 <li>
                     <a href="/admin" title="Admin" class="item-wrap">
+                        <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                         <figure>
                             <font-awesome-icon icon="user-shield" fixed-width/>
                         </figure>
@@ -80,6 +86,7 @@
         @endauth
         <li>
             <a href="/faq" title="Frequently Asked Questions" class="item-wrap">
+                <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                 <figure>
                     <font-awesome-icon icon="info-circle" fixed-width/>
                 </figure>
@@ -89,6 +96,7 @@
         @guest
             <li>
                 <a class="item-wrap" title="Login" href="{{ route('login') }}">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon icon="sign-in" fixed-width/>
                     </figure>
@@ -99,6 +107,7 @@
         @auth
             <li>
                 <a href="{{ env('FEEDBACK_URL') }}" title="Bug Reports" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon icon="bug" fixed-width/>
                     </figure>
@@ -107,6 +116,7 @@
             <li>
                 <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon icon="sign-out" fixed-width/>
                     </figure>

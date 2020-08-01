@@ -39,7 +39,7 @@
     @include('layouts.sidebar')
 
     <main id="panel" class="app-content">
-        @if(!Request::is('verify') && Auth::check() && !Auth::user()->hasVerifiedEmail())
+        @if(\Request::is('*/verify*')&& Auth::check() && !Auth::user()->hasVerifiedEmail())
             <div id="collision-banner" class="info flash__message">
                 <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                     @csrf

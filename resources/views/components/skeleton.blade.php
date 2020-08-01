@@ -1,0 +1,1 @@
+<div v-if="loading" class="skeletonBox" {{ $attributes }}></div>
