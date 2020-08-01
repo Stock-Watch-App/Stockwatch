@@ -1,1 +1,1 @@
-<div v-if="!loading" class="skeletonBox" style="width: ${sWidth}"></div>
+<div v-if="loading" class="skeletonBox" {{ $attributes }}></div>
