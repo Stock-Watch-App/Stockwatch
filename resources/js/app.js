@@ -64,7 +64,7 @@ import {
     faChartNetwork
 } from "@fortawesome/pro-duotone-svg-icons";
 
-import {} from "@fortawesome/pro-light-svg-icons";
+import { } from "@fortawesome/pro-light-svg-icons";
 
 library.add(
     faStar,
@@ -167,7 +167,6 @@ Vue.component("select-component", require("./components/Select.vue").default);
 
 Vue.component("icon-button", require("./components/IconButton.vue").default);
 
-Vue.component("skeleton-box", require("./components/Skeleton.vue").default);
 
 // import StockCard from './components/StockCard.vue';
 // import StockCardList from './components/StockCardList.vue';
@@ -200,7 +199,7 @@ const app = new Vue({
         }
     },
     methods: {
-        toggleNavbar: function(event) {
+        toggleNavbar: function (event) {
             this.isActive = !this.isActive;
         }
     },
