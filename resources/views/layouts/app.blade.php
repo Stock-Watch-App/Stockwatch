@@ -23,7 +23,7 @@
 <div id="app" class="app-wrapper">
     <!-- <flash-message class="myCustomClass"></flash-message> -->
     <aside v-bind:class="[!isActive && !isMobile && 'mini']">
-        <button v-bind:class="" id="mobile-collapse-btn" class="button-base icon" @click="toggleNavbarMobile()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <button v-bind:class="" id="mobile-collapse-btn" class="button-base icon" @click="toggleNavbar()" aria-controls="navbarSupportedContent" :aria-expanded="[isActive ? 'true' : 'false']" aria-label="{{ __('Open navigation menu') }}">
             <x-skeleton style="width:14px;height:14px;" />
             <font-awesome-icon :icon="['fas', 'bars']" />
         </button>

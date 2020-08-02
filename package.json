@@ -51,6 +51,7 @@
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "less": "^3.11.1",
         "vue-flash-message": "^0.7.2",
+        "vue2-touch-events": "^2.2.1",
         "vuejs-smart-table": "0.0.5"
     }
 }

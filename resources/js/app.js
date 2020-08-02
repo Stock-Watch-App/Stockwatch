@@ -4,7 +4,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import { store, mutations } from './store.js'
 
 require("./bootstrap");
 require("vue-flash-message/dist/vue-flash-message.min.css");
@@ -17,6 +16,11 @@ Vue.use(VueFlashMessage);
 import SmartTable from "vuejs-smart-table";
 
 Vue.use(SmartTable);
+
+import Vue2TouchEvents from 'vue2-touch-events'
+ 
+Vue.use(Vue2TouchEvents)
+
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
@@ -174,10 +178,6 @@ Vue.component("select-component", require("./components/Select.vue").default);
 Vue.component("icon-button", require("./components/IconButton.vue").default);
 
 
-// import StockCard from './components/StockCard.vue';
-// import StockCardList from './components/StockCardList.vue';
-// import Slideout from 'vue-slideout'
-
 //=== FILTERS ===//
 Vue.filter("capitalize", require("./filters/Capitalize.js").default);
 Vue.filter("currency", require("./filters/Currency.js").default);
@@ -207,20 +207,12 @@ const app = new Vue({
             this.isMobile = true;
         }
     },
-    computed: {
-        toggleNavbarMobile() {
-               return store.isActive
-        }
-    },
     methods: {
         toggleNavbar: function (event) {
             this.isActive = !this.isActive;
-            // this.isMobile = !this.isMobile;
         },
-
-        toggleNavbarMobile: function (event) {
-            // this.isActive = !this.isActive;
-            mutations.toggleNavbarMobile()
+        swipeHandler (direction) {
+            this.isActive = !this.isActive;
         }
     },
     props: {

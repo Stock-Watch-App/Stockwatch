@@ -1,22 +1,6 @@
 @import (reference)  './_variables.less';
 @import (reference) './_mixins.less';
 
-// animations
-
-.sidebar-nav {
-    &.open {
-        transition:
-            visibility 160ms ease-in-out 100ms,
-            width 160ms ease-in-out 0s;
-    }
-
-    &.closed {
-        transition:
-            visibility 160ms ease-in-out 0s,
-            width 160ms ease-in-out 10ms;
-    }
-}
-
 .app-wrapper {
     min-height: 100%;
     display: grid;
@@ -100,6 +84,11 @@
 
         &.open {
             transform: translateX(250px);
+            transition: transform 0.4s cubic-bezier(.56,.1,.34,.91);
+        }
+
+        &.closed {
+            transition: transform 0.4s cubic-bezier(.56,.1,.34,.91);
         }
 
         .sidebar-nav-list {
@@ -114,16 +103,14 @@
 
             figure {
                 margin-right: 1rem;
-
-                // svg {
-                //     color: @pink;
-                // }
             }
 
             .item-wrap {
                 color: @white;
                 display: flex;
                 align-items: center;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
 
             .collapse-btn-wrap {
@@ -244,6 +231,9 @@
                 grid-area: sidebar;
                 transform: none;
                 width: 250px;
+                transition:
+                    visibility 160ms ease-in-out 100ms,
+                    width 160ms ease-in-out 0s;
             }
 
             &.closed {
@@ -251,6 +241,9 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                transition:
+                    visibility 160ms ease-in-out 0s,
+                    width 160ms ease-in-out 10ms;
 
                 .sidebar-nav-list {
                     display: flex;
