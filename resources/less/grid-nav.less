@@ -26,28 +26,27 @@
         "footer" minmax(70px, min-content)
         ~'/ auto';
 
-    &.mobile-layout {
-        aside {
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
+    // handling with media queries to reduce layout render bouncing
+    aside {
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
 
-            .logo {
-                margin-left: auto;
-            }
+        .logo {
+            margin-left: auto;
         }
+    }
 
+    #mobile-collapse-btn {
+        display: block;
     }
 
     // toggle nav
     aside {
         grid-area: aside;
-        // make this better
         position: sticky;
         top: 0;
-        
         z-index: 6;
-        
         background: @body-overlay-bg;
         padding: 1rem 0 1rem 0.5rem;
 
@@ -220,8 +219,19 @@
             "sidebar footer" minmax(70px, min-content)
             ~'/ auto 9fr';
 
+        // reset mobile design
         aside {
             position: relative;
+            padding: 1rem 0 1rem 0.5rem;
+            display: block;
+
+            .logo {
+                margin: unset;
+            }
+        }
+
+        #mobile-collapse-btn {
+            display: none;
         }
 
         .sidebar-nav {

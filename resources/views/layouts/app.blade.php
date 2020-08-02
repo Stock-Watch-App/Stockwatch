@@ -20,20 +20,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app" class="app-wrapper" v-bind:class="isMobile && 'mobile-layout'">
+<div id="app" class="app-wrapper">
     <!-- <flash-message class="myCustomClass"></flash-message> -->
     <aside v-bind:class="[!isActive && !isMobile && 'mini']">
-        <button v-show="isMobile" class="button-base icon" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
+        <button v-bind:class="" id="mobile-collapse-btn" class="button-base icon" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <x-skeleton style="width:14px;height:14px;" />
             <font-awesome-icon :icon="['fas', 'bars']" />
         </button>
 
         <a class="logo" v-bind:class="[isActive ? 'full' : 'mini']" href="{{ url('/') }}">
             @include('logo')
         </a>
-        <!-- <a v-show="!isMobile" class="logo" v-bind:class="[isActive ? 'full' : 'mini']" href="{{ url('/') }}">
-            @include('logo')
-        </a> -->
     </aside>
 
     @include('layouts.sidebar')
