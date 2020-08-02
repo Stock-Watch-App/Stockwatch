@@ -1,4 +1,4 @@
-<nav id="menu" role="navigation" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
+<nav id="menu" role="navigation" v-touch:swipe.left="swipeHandler" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
     @auth
         <div class="profile-wrap">
             <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" height="25px" width="25px" class="profile-pic" /> -->
