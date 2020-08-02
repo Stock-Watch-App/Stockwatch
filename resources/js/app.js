@@ -61,7 +61,9 @@ import {
     faChartLine,
     faTrophyAlt,
     faBinoculars,
-    faChartNetwork
+    faChartNetwork,
+    faArrowToLeft,
+    faArrowToRight,
 } from "@fortawesome/pro-duotone-svg-icons";
 
 import { } from "@fortawesome/pro-light-svg-icons";
@@ -102,7 +104,9 @@ library.add(
     faArrowUpDuo,
     faArrowDownDuo,
     faBinoculars,
-    faChartNetwork
+    faChartNetwork,
+    faArrowToLeft,
+    faArrowToRight
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
@@ -187,7 +191,9 @@ Vue.config.devtools = true;
 const app = new Vue({
     el: "#app",
     data: {
-        isActive: true
+        isActive: true,
+        isMobile: false,
+        isLocal: process.env.MIX_LOCAL_ENV,
     },
     mounted() {
         if (
@@ -196,11 +202,13 @@ const app = new Vue({
         ) {
             //then this is a mobile device
             this.isActive = false;
+            this.isMobile = true;
         }
     },
     methods: {
         toggleNavbar: function (event) {
             this.isActive = !this.isActive;
+            // this.isMobile = !this.isMobile;
         }
     },
     props: {

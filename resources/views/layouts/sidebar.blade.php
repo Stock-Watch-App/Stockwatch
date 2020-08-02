@@ -9,6 +9,13 @@
         </div>
     @endauth
     <ul class="sidebar-nav-list">
+        <li class="collapse-btn-wrap">
+            <button class="button-base icon toggle" @click="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
+                <figure>
+                    <font-awesome-icon :icon="['fad', isActive ? 'arrow-to-left' : 'arrow-to-right']" fixed-width></font-awesome-icon></figure><span v-show="isActive">Collapse Panel</span>
+            </button>
+        </li>
         @if(Auth::check() && Auth::user()->hasVerifiedEmail())
             <li>
                 <a href="/dashboard" title="Dashboard" class="item-wrap">
@@ -100,7 +107,7 @@
                     <figure>
                         <font-awesome-icon icon="sign-in" fixed-width/>
                     </figure>
-                    {{ __('Login') }}
+                    <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Login') }}</span>
                 </a>
             </li>
         @endguest

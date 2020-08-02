@@ -21,38 +21,65 @@
     min-height: 100%;
     display: grid;
     grid-template:
-        "aside" 60px
+        "aside" 70px
         "content" auto
-        "footer" minmax(60px, min-content)
+        "footer" minmax(70px, min-content)
         ~'/ auto';
+
+    // handling with media queries to reduce layout render bouncing
+    aside {
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+
+        .logo {
+            margin-left: auto;
+        }
+    }
+
+    #mobile-collapse-btn {
+        display: block;
+    }
 
     // toggle nav
     aside {
         grid-area: aside;
-        // make this better
         position: sticky;
         top: 0;
-        padding: .5rem 0 .5rem 1rem;
         z-index: 6;
-        display: flex;
-        align-items: center;
         background: @body-overlay-bg;
+        padding: 1rem 0 1rem 0.5rem;
+
+        &.mini {
+            padding: 1rem 0;
+        }
     }
 
     .logo {
-        color: @white;
         display: flex;
-        margin-left: 2rem;
-        font-weight: 700;
 
         svg {
-            width: 105px;
+            height: 50px;            
         }
 
-        // placeholder untill we render a smaller img
-        // this is hacky and clunky for now
+        // container positioning
         &.mini {
-            display: none;
+            justify-content: center;
+        }
+
+        // container positioning
+        &.full {
+            justify-content: left;
+        }
+
+        // stockwatch S
+        &-mini {
+            width: 50px;
+        }
+
+        // stockwatch text
+        &-full {
+            width: 120px
         }
     }
 
@@ -87,12 +114,43 @@
 
             figure {
                 margin-right: 1rem;
+
+                // svg {
+                //     color: @pink;
+                // }
             }
 
             .item-wrap {
                 color: @white;
                 display: flex;
                 align-items: center;
+            }
+
+            .collapse-btn-wrap {
+                margin-left: -1rem;
+                margin-right: -1rem;
+                background-color: @pink-overlay;
+
+                svg {
+                    color: @pink;
+                }
+
+                button {
+                    padding: 0 1rem;
+                    border-radius: 0;
+                    width: 100%;
+                    text-align: left;
+                    background-color: @pink-overlay;
+
+                    &:hover {
+                        background-color: @pink;
+
+                        svg {
+                            color: @white;
+                            transition: @transition;
+                        }
+                    }
+                }
             }
         }
 
@@ -156,13 +214,24 @@
 
     .media(@min-tablet, {
         grid-template:
-            "aside ." 60px
+            "aside ." 70px
             "sidebar content" auto
-            "sidebar footer" minmax(60px, min-content)
+            "sidebar footer" minmax(70px, min-content)
             ~'/ auto 9fr';
 
+        // reset mobile design
         aside {
             position: relative;
+            padding: 1rem 0 1rem 0.5rem;
+            display: block;
+
+            .logo {
+                margin: unset;
+            }
+        }
+
+        #mobile-collapse-btn {
+            display: none;
         }
 
         .sidebar-nav {
