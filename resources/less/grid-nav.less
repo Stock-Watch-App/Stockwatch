@@ -21,10 +21,23 @@
     min-height: 100%;
     display: grid;
     grid-template:
-        "aside" 60px
+        "aside" 70px
         "content" auto
-        "footer" minmax(60px, min-content)
+        "footer" minmax(70px, min-content)
         ~'/ auto';
+
+    &.mobile-layout {
+        aside {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+
+            .logo {
+                margin-left: auto;
+            }
+        }
+
+    }
 
     // toggle nav
     aside {
@@ -32,24 +45,37 @@
         // make this better
         position: sticky;
         top: 0;
-        padding: .5rem 1rem;
+        
         z-index: 6;
-        // display: flex;
-        // align-items: center;
+        
         background: @body-overlay-bg;
+        padding: 1rem 0 1rem 0.5rem;
+
+        &.mini {
+            padding: 1rem 0;
+        }
     }
 
     .logo {
-        color: @white;
         display: flex;
 
         svg {
             height: 50px;            
         }
 
+        // container positioning
+        &.mini {
+            justify-content: center;
+        }
+
+        // container positioning
+        &.full {
+            justify-content: left;
+        }
+
         // stockwatch S
         &-mini {
-            width: 50px
+            width: 50px;
         }
 
         // stockwatch text
@@ -189,9 +215,9 @@
 
     .media(@min-tablet, {
         grid-template:
-            "aside ." 60px
+            "aside ." 70px
             "sidebar content" auto
-            "sidebar footer" minmax(60px, min-content)
+            "sidebar footer" minmax(70px, min-content)
             ~'/ auto 9fr';
 
         aside {

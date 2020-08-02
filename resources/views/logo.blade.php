@@ -16,6 +16,6 @@
   <use xlink:href="#logo-mini" />
 </svg>
 
-<svg class="logo-full" v-show="isActive">
+<svg class="logo-full" v-show="isActive || isMobile">
   <use xlink:href="#logo-full" />
 </svg>
