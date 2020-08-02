@@ -32,41 +32,29 @@
         // make this better
         position: sticky;
         top: 0;
-        padding: .5rem 0 .5rem 1rem;
+        padding: .5rem 1rem;
         z-index: 6;
-        display: flex;
-        align-items: center;
+        // display: flex;
+        // align-items: center;
         background: @body-overlay-bg;
     }
 
     .logo {
         color: @white;
         display: flex;
-        // margin-left: 2rem;
-        font-weight: 700;
-        max-width: 105px;
 
         svg {
-            background: yellowgreen;
-            // max-width: 105px;
-            
+            height: 50px;            
         }
 
-        &.full {
-            // max-width: 105px;
+        // stockwatch S
+        &-mini {
+            width: 50px
         }
 
-        &.mini {
-
-            // max-width: 60px;
-            svg {
-                // max-width: 70px;
-            }
-            
-            .logo-text {
-                // display: none;
-            }
-            
+        // stockwatch text
+        &-full {
+            width: 120px
         }
     }
 
