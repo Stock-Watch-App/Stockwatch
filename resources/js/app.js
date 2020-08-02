@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import { store, mutations } from './store.js'
+
 require("./bootstrap");
 require("vue-flash-message/dist/vue-flash-message.min.css");
 window.Vue = require("vue");
@@ -205,10 +207,20 @@ const app = new Vue({
             this.isMobile = true;
         }
     },
+    computed: {
+        toggleNavbarMobile() {
+               return store.isActive
+        }
+    },
     methods: {
         toggleNavbar: function (event) {
             this.isActive = !this.isActive;
             // this.isMobile = !this.isMobile;
+        },
+
+        toggleNavbarMobile: function (event) {
+            // this.isActive = !this.isActive;
+            mutations.toggleNavbarMobile()
         }
     },
     props: {

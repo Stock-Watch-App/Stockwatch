@@ -35,7 +35,7 @@
         "popper.js": "^1.12",
         "purgecss-webpack-plugin": "^2.0.6",
         "resolve-url-loader": "^2.3.1",
-        "vue": "^2.5.17",
+        "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
