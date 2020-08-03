@@ -23,7 +23,7 @@
                     <figure>
                         <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Dashboard</span> </a>
+                    <span v-show="isActive">Dashboard</span> </a>
             </li>
         @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
@@ -34,9 +34,9 @@
                         <font-awesome-icon :icon="['fad', 'chart-line']" fixed-width/>
                     </figure>
                     @if(Auth::check() && Auth::user()->hasVerifiedEmail() && Auth::user()->isPlaying())
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Trade</span>
+                        <span v-show="isActive">Trade</span>
                     @else
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Stocks</span>
+                        <span v-show="isActive">Stocks</span>
                     @endif
                 </a>
             </li>
@@ -46,7 +46,7 @@
                     <figure>
                         <font-awesome-icon :icon="['fas', 'eye']" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Projections</span> </a>
+                    <span v-show="isActive">Projections</span> </a>
             </li>
         @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
@@ -56,7 +56,7 @@
                     <figure>
                         <font-awesome-icon :icon="['fas', 'trophy']" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
+                    <span v-show="isActive">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
                 </a>
             </li>
         @endif
@@ -67,7 +67,7 @@
                     <figure>
                         <font-awesome-icon :icon="['fas', 'user-circle']" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Account</span> </a>
+                    <span v-show="isActive">Account</span> </a>
             </li>
         @endauth
 
@@ -77,7 +77,7 @@
                 <figure>
                     <font-awesome-icon :icon="['fad', 'trophy-alt']" fixed-width/>
                 </figure>
-                <span v-bind:class="[isActive ? 'full' : 'mini']">All-Time Leaderboard</span> </a>
+                <span v-show="isActive">All-Time Leaderboard</span> </a>
         </li>
         @auth
             @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
@@ -87,7 +87,7 @@
                         <figure>
                             <font-awesome-icon icon="user-shield" fixed-width/>
                         </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Admin</span> </a>
+                        <span v-show="isActive">Admin</span> </a>
                 </li>
             @endif
         @endauth
@@ -97,7 +97,7 @@
                 <figure>
                     <font-awesome-icon icon="info-circle" fixed-width/>
                 </figure>
-                <span v-bind:class="[isActive ? 'full' : 'mini']">FAQ</span> </a>
+                <span v-show="isActive">FAQ</span> </a>
         </li>
 
         @guest
@@ -107,7 +107,7 @@
                     <figure>
                         <font-awesome-icon icon="sign-in" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Login') }}</span>
+                    <span v-show="isActive">{{ __('Login') }}</span>
                 </a>
             </li>
         @endguest
@@ -118,7 +118,7 @@
                     <figure>
                         <font-awesome-icon icon="bug" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Report a Bug</span> </a>
+                    <span v-show="isActive">Report a Bug</span> </a>
             </li>
             <li>
                 <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
@@ -127,7 +127,7 @@
                     <figure>
                         <font-awesome-icon icon="sign-out" fixed-width/>
                     </figure>
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">{{ __('Logout') }}</span> </a>
+                    <span v-show="isActive">{{ __('Logout') }}</span> </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -139,7 +139,7 @@
         <details>
             <summary>
                 <div class="chevron">
-                    <span v-bind:class="[isActive ? 'full' : 'mini']">Social</span>
+                    <span v-show="isActive">Social</span>
                     <font-awesome-icon class="chevron-icon" icon="chevron-down" fixed-width/>
                 </div>
             </summary>
@@ -149,21 +149,21 @@
                         <figure>
                             <font-awesome-icon icon="microphone" fixed-width/>
                         </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Podcasts</span> </a>
+                        <span v-show="isActive">Podcasts</span> </a>
                 </li>
                 <li>
                     <a href="https://www.twitch.tv/taranarmstrong/" title="Taran's Twitch Stream" class="item-wrap" target="_blank" rel="noreferrer noopener">
                         <figure>
                             <font-awesome-icon :icon="['fab', 'twitch']" fixed-width/>
                         </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Twitch</span> </a>
+                        <span v-show="isActive">Twitch</span> </a>
                 </li>
                 <li>
                     <a href="https://twitter.com/ArmstrongTaran" title="Taran on Twitter" class="item-wrap" target="_blank" rel="noreferrer noopener">
                         <figure>
                             <font-awesome-icon :icon="['fab', 'twitter']" fixed-width/>
                         </figure>
-                        <span v-bind:class="[isActive ? 'full' : 'mini']">Twitter</span> </a>
+                        <span v-show="isActive">Twitter</span> </a>
                 </li>
             </ul>
         </details>
