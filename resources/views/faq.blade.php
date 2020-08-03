@@ -31,9 +31,9 @@
         </details>
         <details>
             <summary class="plus-icon">
-                What’s the podcast schedule for Big Brother Canada 8
+                What’s the podcast schedule?
             </summary>
-            <p>Subject to change based on the Big Brother Canada 8 air dates and times:</p>
+            <p>Subject to change based on the Big Brother US 22 air dates and times:</p>
             <p>Live feed updates: 11AM ET daily</p>
             <p>Episode recaps: Thursday 9:15PM ET & Sunday 9:15PM ET</p>
             <p>Roundtable: Tuesday 9:30PM ET</p>
