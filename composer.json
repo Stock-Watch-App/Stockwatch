@@ -41,6 +41,7 @@
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
         "stockwatch/season-manager": "*",
+        "symfony/event-dispatcher": "^5.1",
         "vinkla/hashids": "^8.0",
         "vyuldashev/nova-permission": "^2.5"
     },
