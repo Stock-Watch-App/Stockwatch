@@ -41,9 +41,10 @@
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
         "stockwatch/season-manager": "*",
-        "symfony/event-dispatcher": "^5.1",
         "vinkla/hashids": "^8.0",
-        "vyuldashev/nova-permission": "^2.5"
+        "vyuldashev/nova-permission": "^2.5",
+        "guzzlehttp/guzzle": "^6.0",
+        "league/oauth1-client": "^1.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
