@@ -42,28 +42,36 @@
             </li>
             <li>
                 <a href="/projections" title="Projections" class="item-wrap">
-                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;"/>
                     <figure>
                         <font-awesome-icon :icon="['fas', 'eye']" fixed-width/>
                     </figure>
                     <span v-show="isActive">Projections</span> </a>
             </li>
+        @elseif(App\Models\Season::current()->status === 'pre-season')
+            <li>
+                <a href="/trades" title="Trades" class="item-wrap">
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;"/>
+                    <figure>
+                        <font-awesome-icon :icon="['fad', 'chart-line']" fixed-width/>
+                    </figure>
+                    <span v-show="isActive">Stocks</span> </a>
+            </li>
         @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="{{ route('leaderboard', ['season' => \App\Models\Season::current()->short_name]) }}" title="Leaderboard" class="item-wrap">
-                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />    
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;"/>
                     <figure>
                         <font-awesome-icon :icon="['fas', 'trophy']" fixed-width/>
                     </figure>
-                    <span v-show="isActive">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
-                </a>
+                    <span v-show="isActive">{{ \App\Models\Season::current()->short_name }} Leaderboard</span> </a>
             </li>
         @endif
         @auth
             <li class="last-item">
                 <a href="/account" title="Account" class="item-wrap">
-                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;"/>
                     <figure>
                         <font-awesome-icon :icon="['fas', 'user-circle']" fixed-width/>
                     </figure>
