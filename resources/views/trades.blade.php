@@ -20,9 +20,9 @@
     @else
         <h3 class="mg-btm-lg trade-heading">{{ $season->name }} Stocks</h3>
         @if($stateOfUser === 'spectator')
-            <div id="market-banner" class="info flash__message">
-                You are currently spectating. <a href="{{ route('join.game') }}">Click here to join the game!</a>
-            </div>
+{{--            <div id="market-banner" class="info flash__message">--}}
+{{--                You are currently spectating. <a href="{{ route('join.game') }}">Click here to join the game!</a>--}}
+{{--            </div>--}}
         @endif
         <guest-trade-panel
             :season="{{ $season }}"
