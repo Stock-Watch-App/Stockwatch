@@ -4,16 +4,11 @@
     <div class="user-account app-content-max">
         <h3 class="mg-btm-lg">Account Settings</h3>
 
-{{--        <div class="profile-image-edit">--}}
-{{--            <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />--}}
+        <div class="profile-image-edit">
+            <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />
 
-{{--            <div class="image-edit-button">--}}
-{{--                <button type="submit" class="button-base secondary ghost mg-btm-sm">--}}
-{{--                    {{ __('Upload Photo') }}--}}
-{{--                </button>--}}
-{{--                <!-- <p>image requirements</p> -->--}}
-{{--            </div>--}}
-{{--        </div>--}}
+            <image-upload to="{{ route('avatar.upload') }}"></image-upload>
+        </div>
         <div class="logout">
             Not {{ $user->name }}?
             <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
