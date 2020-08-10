@@ -12,7 +12,7 @@ class ImageController extends Controller
     {
         $image = $request->file('image');
 
-        $filename = $image->storePublicly('avatars', 'public');
+        $filename = $image->storePublicly('storage/avatars', 'public');
 
         Image::create([
             'filename' => $filename

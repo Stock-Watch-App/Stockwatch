@@ -27,10 +27,10 @@ export default {
          fd.append('image', this.selectedFile, this.selectedFile.name)
          axios.post(this.to, fd, {
              onUploadProgress: uploadEvent => {
-                 console.log(uploadEvent.loaded/uploadEvent.total * 100)
+                 // console.log(uploadEvent.loaded/uploadEvent.total * 100)
              }
          }).then(res => {
-             this.$emit('uploaded-file', res);
+             this.$emit('uploaded-file', res.data);
          })
      }
  }

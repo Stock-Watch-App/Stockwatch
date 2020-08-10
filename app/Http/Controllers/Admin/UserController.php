@@ -11,6 +11,7 @@ class UserController extends Controller
     public function account(Request $request)
     {
         $user = $request->user();
+        $user->load(['banks', 'avatar']);
         return view('account', compact('user'));
     }
 

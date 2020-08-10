@@ -4,11 +4,10 @@
     <div class="user-account app-content-max">
         <h3 class="mg-btm-lg">Account Settings</h3>
 
-        <div class="profile-image-edit">
-            <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" class="profile-pic" />
+        <avatar-picker
+            :user="{{$user}}"
+        ></avatar-picker>
 
-            <image-upload to="{{ route('avatar.upload') }}"></image-upload>
-        </div>
         <div class="logout">
             Not {{ $user->name }}?
             <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
@@ -45,3 +44,9 @@
 </div>
     </div>
 @endsection
+<script>
+    import AvatarPicker from "../js/components/images/AvatarPicker";
+    export default {
+        components: {AvatarPicker}
+    }
+</script>

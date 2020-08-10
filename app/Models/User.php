@@ -55,6 +55,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Leaderboard::class);
     }
 
+    public function avatar()
+    {
+        return $this->belongsTo(Image::class);
+    }
+
     public function setAvatar($avatar)
     {
         $path = "/users/images/user-{$this->id}_avatar.jpg";

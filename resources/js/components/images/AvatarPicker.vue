@@ -1,12 +1,15 @@
 <template>
     <div>
-        <img :src="robotAvatar" title="Custom" class="profile-pic"/>
-        <img :src="customAvatar" title="Robot" class="profile-pic"/>
+        <img :src="robotAvatar" title="Robot" class="profile-pic"/>
+        <img :src="customAvatar" title="Custom" class="profile-pic"/>
+        <image-upload to="/account/avatar" @uploaded-file="uploadedFile"></image-upload>
     </div>
 </template>
 
 <script>
+import ImageUpload from "./ImageUpload";
 export default {
+    components: {ImageUpload},
     props: {
         user: Object,
         robot: {
@@ -17,6 +20,11 @@ export default {
             type: String,
             default: ''
         },
+    },
+    methods: {
+        uploadedFile(e) {
+            this.custom = '/'+e;
+        }
     },
     computed: {
         robotAvatar() {
@@ -30,7 +38,10 @@ export default {
             if (this.custom !== '') {
                 return this.custom;
             }
-            return this.user.image.filename;
+            if (this.user.avatar !== null) {
+                return this.user.avatar.filename;
+            }
+            return '';
         }
     }
 }
