@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Formula;
-use App\Models\Bank;
 use App\Models\Houseguest;
 use App\Models\Price;
-use App\Models\Season;
 use App\Models\User;
-use App\Models\Week;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function foo\func;
 
@@ -19,9 +15,11 @@ class MarketController extends Controller
     {
         $season->current_week += 1;
         $this->calculatePrices($season);
-        $this->zeroOutEvictees($season);
-        $this->payStipend($season);
-        $this->generateLeaderboard($season);
+        if ($season->getOriginal('status') !== 'pre-season') {
+            $this->zeroOutEvictees($season);
+            $this->payStipend($season);
+            $this->generateLeaderboard($season);
+        }
     }
 
     public function end($season)
@@ -47,7 +45,11 @@ class MarketController extends Controller
                 Price::create(['price' => $new_price, 'houseguest_id' => $houseguest->id, 'season_id' => $season->id, 'week' => $week]);
             }
             if ($season->getOriginal('status') === 'pre-season') {
-                Price::create(['price' => $houseguest->current_rate, 'houseguest_id' => $houseguest->id, 'week' => $week]);
+                Price::create([
+                    'price' => (int)round($houseguest->ratings()->limit(4)->where('week', $season->current_week)->pluck('rating')->sum() / 4),
+                    'houseguest_id' => $houseguest->id,
+                    'season_id' => $season->id,
+                    'week' => $week]);
             }
         }
     }
