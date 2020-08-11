@@ -63,7 +63,7 @@ class User extends Resource
     public static function relatableQuery(NovaRequest $request, $query)
     {
         if ($request->route('resource') === 'ratings') {
-            return $query->role('lfc');
+            return $query->role(['lfc','roundtable']);
         }
         return $query;
     }
