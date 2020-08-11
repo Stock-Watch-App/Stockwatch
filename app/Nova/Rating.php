@@ -2,10 +2,11 @@
 
 namespace App\Nova;
 
+use App\Models\Houseguest;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class Rating extends Resource
 {
@@ -21,7 +22,11 @@ class Rating extends Resource
     {
         return [
             BelongsTo::make('User')->sortable(),
-            BelongsTo::make('Houseguest')->sortable(),
+            BelongsTo::make('Houseguest')->hideWhenCreating()->hideWhenUpdating()->sortable(),
+            NovaBelongsToDepend::make('Houseguest')
+                               ->placeholder('Houseguest')
+                               ->options(Houseguest::where('season_id', 2)->get())
+                               ->hideFromIndex()->hideFromDetail(),
             Number::make('Rating'),
             Number::make('Week')->sortable(),
         ];
