@@ -21,6 +21,10 @@ import Vue2TouchEvents from 'vue2-touch-events'
  
 Vue.use(Vue2TouchEvents)
 
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
+
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
@@ -177,6 +181,15 @@ Vue.component("select-component", require("./components/Select.vue").default);
 
 Vue.component("icon-button", require("./components/IconButton.vue").default);
 
+Vue.component("first-badge", require("./components/badges/First.vue").default);
+
+Vue.component("second-badge", require("./components/badges/Second.vue").default);
+
+Vue.component("third-badge", require("./components/badges/Third.vue").default);
+
+Vue.component("topfive-badge", require("./components/badges/TopFive.vue").default);
+
+Vue.component("topten-badge", require("./components/badges/TopTen.vue").default);
 
 //=== FILTERS ===//
 Vue.filter("capitalize", require("./filters/Capitalize.js").default);
