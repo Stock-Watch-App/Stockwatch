@@ -1,38 +1,38 @@
-@import './reset.less';
-@import './typography.less';
-@import './fonts.less';
-@import (reference)  './_variables.less';
-@import (reference) './_mixins.less';
-@import './utilities.less';
-@import './grid-nav.less';
-@import './logo.less';
+@import "./reset.less";
+@import "./typography.less";
+@import "./fonts.less";
+@import (reference) "./_variables.less";
+@import (reference) "./_mixins.less";
+@import "./utilities.less";
+@import "./grid-nav.less";
+@import "./logo.less";
 
 // pages
-@import './landing.less';
-@import './login.less';
-@import './trades.less';
-@import './account.less';
-@import './projections.less';
-@import './faq.less';
-@import './leaderboard.less';
-@import './maintenance.less';
-@import './dashboard.less';
-@import './profile.less';
+@import "./landing.less";
+@import "./login.less";
+@import "./trades.less";
+@import "./account.less";
+@import "./projections.less";
+@import "./faq.less";
+@import "./leaderboard.less";
+@import "./maintenance.less";
+@import "./dashboard.less";
+@import "./profile.less";
 
 // components
-@import './components/card.less';
-@import './components/button.less';
-@import './components/input.less';
-@import './components/stockcard.less';
-@import './components/funds.less';
-@import './components/collapse.less';
-@import './components/alert.less';
-@import './components/tag.less';
-@import './components/avatar.less';
-@import './components/select.less';
-@import './components/holdingscard.less';
-@import './components/skeleton.less';
-
+@import "./components/card.less";
+@import "./components/button.less";
+@import "./components/input.less";
+@import "./components/stockcard.less";
+@import "./components/funds.less";
+@import "./components/collapse.less";
+@import "./components/alert.less";
+@import "./components/tag.less";
+@import "./components/avatar.less";
+@import "./components/select.less";
+@import "./components/holdingscard.less";
+@import "./components/skeleton.less";
+@import "./components/tooltip.less";
 
 body {
     color: @gray-01;
@@ -48,7 +48,7 @@ body {
 }
 
 #collision-banner {
-    grid-column: ~'1/-1';
+    grid-column: ~"1/-1";
 }
 
 // content will span full width of page with standard padding on each side
@@ -60,21 +60,12 @@ body {
 }
 
 .app-content-max {
-    grid-column: ~'1/9';
+    grid-column: ~"1/9";
 }
 
-.media(@min-desktop, {
-    .content {
-        max-width: @lg-desktop;
-    }
+.media(
+    @min-desktop,
+    {.content {max-width: @lg-desktop;} .app-content-max {grid-column: ~"2/7" ;}}
+);
 
-    .app-content-max {
-        grid-column: ~'2/7';
-    }
-});
-
-.media(@min-lg-desktop, {
-    .content {
-        width: @lg-desktop;
-    }
-});
+.media(@min-lg-desktop, {.content {width: @lg-desktop;}});

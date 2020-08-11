@@ -21,6 +21,10 @@ import Vue2TouchEvents from 'vue2-touch-events'
  
 Vue.use(Vue2TouchEvents)
 
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
+
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
