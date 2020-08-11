@@ -1,26 +1,32 @@
-@import (reference)  './_variables.less';
-@import (reference) './_mixins.less';
+@import (reference) "./_variables.less";
+@import (reference) "./_mixins.less";
 
 .leaderboard-wrap {
-    grid-column: ~'1/-1';
+    grid-column: ~"1/-1";
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(3, min-content);
 
+    .leaderboard-badge {
+        width: 35px;
+        height: 35px;
+        margin: 0 0.5rem;
+    }
+
     h3 {
-        grid-column: ~'1/-1';
-        grid-row: ~'1/2';
+        grid-column: ~"1/-1";
+        grid-row: ~"1/2";
     }
 
     .perfect-play {
-        grid-column: ~'1/-1';
-        grid-row: ~'2/3';
+        grid-column: ~"1/-1";
+        grid-row: ~"2/3";
         display: grid;
         border: solid 1px @gray-hint;
         box-shadow: 1px 1px 0px @gray-hint;
         grid-template-columns: 60px auto;
         grid-template-rows: min-content 60px;
-        grid-gap: .25rem 1rem;
+        grid-gap: 0.25rem 1rem;
         // use card class later
         border-radius: @border-radius;
         position: relative;
@@ -29,7 +35,7 @@
         .px-rem(margin-bottom, 16);
 
         .heading {
-            grid-column: ~'1/-1';
+            grid-column: ~"1/-1";
         }
 
         .hg-img {
@@ -42,13 +48,12 @@
     }
 
     .leader-grid {
-        grid-column: ~'1/-1';
+        grid-column: ~"1/-1";
         display: grid;
 
         input {
             place-self: flex-start;
         }
-
     }
 
     .table-wrap {
@@ -56,30 +61,13 @@
         max-height: 100vh;
     }
 
-    .media(@min-tablet, {
-        h3 {
-            grid-column: ~'1/6';
-            grid-row: ~'1/2';
-        }
-
-        .alltime-leader-title {
-            grid-column: ~'2/8';
-        }
-
-        .perfect-play {
-            grid-column: ~'7/9';
-            grid-row: ~'1/2';
-            margin-bottom: 0;
-        }
-
-        .leader-grid {
-            grid-row: ~'2/3';
-
-            &.alltime-leader {
-                grid-column: ~'2/8';
-            }
-        }
-    });
+    .media(
+        @min-tablet,
+        {h3 {grid-column: ~"1/6" ; grid-row: ~"1/2" ;} .alltime-leader-title {grid-column:
+            ~"2/8" ;} .perfect-play {grid-column: ~"7/9" ; grid-row: ~"1/2" ; margin-bottom:
+            0;} .leader-grid {grid-row: ~"2/3" ; &.alltime-leader {grid-column: ~"2/8"
+            ;}}}
+    );
 }
 
 .leaderboard-table {
@@ -87,15 +75,19 @@
     border-collapse: collapse;
     width: 100%;
 
-    th, td, tr {
+    th,
+    td,
+    tr {
         .px-rem-padding(8, 16, 8, 16);
         vertical-align: middle;
     }
 
     // this looks crazy to get around the z-index levels
-    tr, td {
+    tr,
+    td {
         &:hover {
-            tr, td {
+            tr,
+            td {
                 background-color: @gray-barely;
             }
         }
@@ -238,7 +230,8 @@
         }
     }
 
-    &:first-child, &:last-child {
+    &:first-child,
+    &:last-child {
         .page-link {
             color: @black;
         }
@@ -255,7 +248,7 @@
 
         svg {
             vertical-align: middle;
-            width: .5rem;
+            width: 0.5rem;
         }
     }
 }
