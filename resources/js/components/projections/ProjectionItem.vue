@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     houseguestImage: function () {
-      return "/storage" + this.houseguest.image;
+      return "/storage/" + this.houseguest.image;
     },
   },
 };

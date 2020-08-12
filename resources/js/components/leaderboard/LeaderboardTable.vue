@@ -106,7 +106,7 @@ export default {
     },
     methods: {
         houseguestImage: function(houseguest) {
-            return "/storage" + houseguest.image;
+            return "/storage/" + houseguest.image;
         }
     }
 };

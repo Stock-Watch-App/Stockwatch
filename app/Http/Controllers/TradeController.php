@@ -83,7 +83,7 @@ class TradeController extends Controller
 
         $transactions = [];
 
-        $stocks->each(function ($stock) use ($data, &$transactions, $user) {
+        $stocks->each(function ($stock) use ($data, &$transactions, $user, $season) {
             $oldQuantity = $stock->quantity;
             $newQuantity = max(0, collect($data['stocks'])->first(function ($value) use ($stock) {
                 return $value['houseguest'] === $stock->houseguest_id;
@@ -98,6 +98,7 @@ class TradeController extends Controller
                 'houseguest_id' => $stock->houseguest_id,
                 'action'        => $oldQuantity < $newQuantity ? 'buy' : 'sell',
                 'quantity'      => abs($oldQuantity - $newQuantity),
+                'week' => $season->current_week,
                 'current_price' => $stock->houseguest->current_price,
                 'created_at'    => date('Y-m-d h:i:s'),
                 'updated_at'    => date('Y-m-d h:i:s'),
@@ -147,9 +148,10 @@ class TradeController extends Controller
     protected function getStocks($user, $season)
     {
         $user->load([
-            'stocks' => function ($query) {
-                $query->whereHas('houseguest', function ($query) {
-                    $query->where('status', 'active');
+            'stocks' => function ($query) use ($season) {
+                $query->whereHas('houseguest', function ($q) use ($season) {
+                    $q->where('status', 'active')
+                    ->where('season_id', $season->id);
                 })->with('houseguest');
             }
         ]);
