@@ -1,4 +1,4 @@
-r   ara<?php
+<?php
 
 namespace App\Http\Controllers;
 
