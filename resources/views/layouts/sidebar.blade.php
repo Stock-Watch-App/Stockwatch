@@ -16,16 +16,16 @@
                     <font-awesome-icon :icon="['fad', isActive ? 'arrow-to-left' : 'arrow-to-right']" fixed-width></font-awesome-icon></figure><span v-show="isActive">Collapse Panel</span>
             </button>
         </li>
-        @if(Auth::check() && Auth::user()->hasVerifiedEmail())
-            <li>
-                <a href="/dashboard" title="Dashboard" class="item-wrap">
-                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
-                    <figure>
-                        <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>
-                    </figure>
-                    <span v-show="isActive">Dashboard</span> </a>
-            </li>
-        @endif
+{{--        @if(Auth::check() && Auth::user()->hasVerifiedEmail())--}}
+{{--            <li>--}}
+{{--                <a href="/dashboard" title="Dashboard" class="item-wrap">--}}
+{{--                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />--}}
+{{--                    <figure>--}}
+{{--                        <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>--}}
+{{--                    </figure>--}}
+{{--                    <span v-show="isActive">Dashboard</span> </a>--}}
+{{--            </li>--}}
+{{--        @endif--}}
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="/trades" title="Trades" class="item-wrap">
