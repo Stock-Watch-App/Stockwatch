@@ -87,13 +87,15 @@ class LoginController extends Controller
         } else {
             $email = $providerUser->getEmail() ?? $providerUser->user['email'];
 
-            if (User::where('email', $email)->get()->count() > 1) {
-                Session::flash('error', 'Unable to process request. Error: Account Collision has occurred.', true);
-                abort(500);
-            }
+            if ($email !== null && $email !== '') {
+                if (User::where('email', $email)->get()->count() > 1) {
+                    Session::flash('error', 'Unable to process request. Error: Account Collision has occurred.', true);
+                    abort(500);
+                }
 
-            //Check if user with same email address exist
-            $user = User::where('email', $email)->first();
+                //Check if user with same email address exist
+                $user = User::where('email', $email)->first();
+            }
 
 
             //Create user if don't exist
