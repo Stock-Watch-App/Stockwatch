@@ -24,7 +24,7 @@ use League\Csv\Writer as Csv;
 Route::post('/generate', function (Request $request) {
     // get data
     $season = Season::current();
-    $data = Transaction::with('user')->whereHas('houseguest', function ($q) use ($season) {
+    $data = Transaction::whereHas('user')->whereHas('houseguest', function ($q) use ($season) {
         $q->where('season_id', $season->id);
     })->where('week', $season->current_week)->get();
 
@@ -43,7 +43,6 @@ Route::post('/generate', function (Request $request) {
     });
     // save pointer
     $filename = date('Y-m-d') . '_' . $season->short_name . '_w' . $season->current_week . '.csv';
-//    dd($csv->getContent());
     Storage::disk('stats')->put($filename, $csv->getContent());
     File::create([
         'filename'  => $filename,
