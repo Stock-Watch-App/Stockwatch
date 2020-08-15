@@ -8,6 +8,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Metrics\UserCount;
 use Stockwatch\SeasonManager\SeasonManager;
+use Stockwatch\StatsManager\StatsManager;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -78,7 +79,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            SeasonManager::make(),
+            (SeasonManager::make())->canSee(function () {
+                return auth()->user()->hasRole(['super admin', 'manage season'])
+                    || auth()->user()->hasAllPermission(['open market', 'close market']);
+            }),
+            (StatsManager::make())->canSee(function () {
+                return auth()->user()->hasRole(['super admin', 'manage file']);
+            }),
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
         ];
     }

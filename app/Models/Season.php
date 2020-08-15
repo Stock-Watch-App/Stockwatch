@@ -22,6 +22,11 @@ class Season extends BaseModel
         return $this->hasMany(Week::class);
     }
 
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
     //=== SCOPES ===/
     public function scopeCurrent($query)
     {

@@ -26,6 +26,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'transaction',
             'user',
             'week',
+            'file'
         ];
         foreach ($models as $model) {
             $view = Permission::firstOrCreate(['name' => "view {$model}"]);
@@ -35,8 +36,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $restore = Permission::firstOrCreate(['name' => "restore {$model}"]);
             $force = Permission::firstOrCreate(['name' => "force delete {$model}"]);
 
-            Role::firstOrCreate(['name' => "manage {$model}"])
-                ->givePermissionTo([$view, $create, $update, $delete, $restore, $force]);
+            dump(Role::firstOrCreate(['name' => "manage {$model}"])
+                ->givePermissionTo([$view, $create, $update, $delete, $restore, $force]));
         }
 
         Permission::firstOrCreate(['name' => 'ban user']);

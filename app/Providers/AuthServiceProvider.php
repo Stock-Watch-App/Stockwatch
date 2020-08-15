@@ -11,6 +11,7 @@ use App\Models\Stock;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Week;
+use App\Models\File;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
@@ -35,6 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         Week::class => \App\Policies\Week::class,
         Role::class => \App\Policies\Role::class,
         Permission::class => \App\Policies\Permission::class,
+        File::class => \App\Policies\File::class,
     ];
 
     /**

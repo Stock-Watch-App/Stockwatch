@@ -18,7 +18,7 @@ import SmartTable from "vuejs-smart-table";
 Vue.use(SmartTable);
 
 import Vue2TouchEvents from 'vue2-touch-events'
- 
+
 Vue.use(Vue2TouchEvents)
 
 import VTooltip from 'v-tooltip'
@@ -55,7 +55,8 @@ import {
     faBug,
     faTrophy,
     faSignInAlt,
-    faSignIn
+    faSignIn,
+    faFileDownload
 } from "@fortawesome/pro-solid-svg-icons";
 import {
     faTwitch,
@@ -116,7 +117,8 @@ library.add(
     faBinoculars,
     faChartNetwork,
     faArrowToLeft,
-    faArrowToRight
+    faArrowToRight,
+    faFileDownload
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
