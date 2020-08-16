@@ -18,31 +18,6 @@
         grid-row: ~"1/2";
     }
 
-    .perfect-play {
-        grid-column: ~"1/-1";
-        grid-row: ~"2/3";
-        display: grid;
-        border: solid 1px @gray-hint;
-        box-shadow: 1px 1px 0px @gray-hint;
-        grid-template-columns: 60px auto;
-        grid-template-rows: min-content 60px;
-        grid-gap: 0.25rem 1rem;
-        // use card class later
-        border-radius: @border-radius;
-        position: relative;
-        background: @white;
-        .px-rem(padding, 12);
-        .px-rem(margin-bottom, 16);
-
-        .heading {
-            grid-column: ~"1/-1";
-        }
-
-        .hg-img {
-            border-radius: @border-radius;
-        }
-    }
-
     .leader-overflow {
         overflow-x: auto;
     }
@@ -61,13 +36,25 @@
         max-height: 100vh;
     }
 
-    .media(
-        @min-tablet,
-        {h3 {grid-column: ~"1/6" ; grid-row: ~"1/2" ;} .alltime-leader-title {grid-column:
-            ~"2/8" ;} .perfect-play {grid-column: ~"7/9" ; grid-row: ~"1/2" ; margin-bottom:
-            0;} .leader-grid {grid-row: ~"2/3" ; &.alltime-leader {grid-column: ~"2/8"
-            ;}}}
-    );
+    .media(@min-desktop, {
+
+        h3 {
+            grid-column: ~"1/6"; 
+            grid-row: ~"1/2";
+        } 
+        
+        .alltime-leader-title {
+            grid-column: ~"2/8" ;
+        } 
+        
+        .leader-grid {
+            grid-row: ~"2/3"; 
+            
+            &.alltime-leader {
+                grid-column: ~"2/8";
+            }
+        }
+    });
 }
 
 .leaderboard-table {
@@ -178,33 +165,24 @@
 
     .rank-1 {
         background-color: @gold;
-        color: @white;
+        color: @black;
     }
 
     .rank-2 {
         background-color: @silver;
-        color: @white;
+        color: @black;
     }
 
     .rank-3 {
         background-color: @bronze;
-        color: @white;
+        color: @black;
     }
-
-    // .rank-4 {
-    //     background-color: @rank-4;
-    //     color: @white;
-    // }
-
-    // .rank-5 {
-    //     background-color: @rank-5;
-    //     color: @white;
-    // }
 }
 
 .pagination {
     display: flex;
     flex-direction: row;
+    margin-bottom: 2rem;
     .font-unit-rem(14);
 }
 
