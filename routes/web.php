@@ -81,6 +81,10 @@ Route::group(['middleware' => ['local']], function () {
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
+
 
 //===
 
