@@ -1,7 +1,8 @@
 <template>
     <div>
         <heading class="mb-6">Stats Manager</heading>
-        <button class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="generate">Generate Stat Report</button>
+        <button v-if="!generating" class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="generate">Generate Stat Report</button>
+        <button v-if="generating" class="bg-primary px-4 py-2 rounded-lg text-white bold" >Generating...</button>
         <card class="bg-white flex flex-col w-full mt-4">
             <table class="table-fixed">
                 <thead>
@@ -31,7 +32,8 @@
 export default {
     data() {
         return {
-            files: Array
+            files: Array,
+            generating: false
         }
     },
     mounted() {
@@ -39,8 +41,10 @@ export default {
     },
     methods: {
         generate() {
+            this.generating = true;
             axios.post('/nova-vendor/stats-manager/generate').then(res => {
                 this.getFiles();
+                this.generating = false;
             })
         },
         getFiles() {

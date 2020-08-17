@@ -30,11 +30,12 @@ Route::post('/generate', function (Request $request) {
 
     // make file
     $csv = Csv::createFromFileObject(new \SplTempFileObject);
-    $csv->insertOne(['user', 'action', 'houseguest', 'quantity', 'price']);
+    $csv->insertOne(['user', 'username', 'action', 'houseguest', 'quantity', 'price']);
 
     $data->each(function ($transaction) use (&$csv) {
         $csv->insertOne([
             $transaction->user->hashid,
+            $transaction->user->name,
             $transaction->action,
             $transaction->houseguest->nickname,
             $transaction->quantity,
