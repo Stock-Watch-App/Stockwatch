@@ -87,12 +87,9 @@ export default {
             }
 
             //find houseguest
-            let houseguest;
-            for (let hg of this.houseguests) {
-                if (hg.id === t.houseguest_id) {
-                    houseguest = hg;
-                }
-            }
+            let houseguest = this.houseguests.find(hg => {
+                return hg.id === t.houseguest_id
+            });
 
             return (
                 verb +
