@@ -661,11 +661,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            files: Array
+            files: Array,
+            generating: false
         };
     },
     mounted: function mounted() {
@@ -676,8 +678,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         generate: function generate() {
             var _this = this;
 
+            this.generating = true;
             axios.post('/nova-vendor/stats-manager/generate').then(function (res) {
                 _this.getFiles();
+                _this.generating = false;
             });
         },
         getFiles: function getFiles() {
@@ -712,14 +716,24 @@ var render = function() {
     [
       _c("heading", { staticClass: "mb-6" }, [_vm._v("Stats Manager")]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "bg-primary px-4 py-2 rounded-lg text-white bold",
-          on: { click: _vm.generate }
-        },
-        [_vm._v("Generate Stat Report")]
-      ),
+      !_vm.generating
+        ? _c(
+            "button",
+            {
+              staticClass: "bg-primary px-4 py-2 rounded-lg text-white bold",
+              on: { click: _vm.generate }
+            },
+            [_vm._v("Generate Stat Report")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.generating
+        ? _c(
+            "button",
+            { staticClass: "bg-primary px-4 py-2 rounded-lg text-white bold" },
+            [_vm._v("Generating...")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("card", { staticClass: "bg-white flex flex-col w-full mt-4" }, [
         _c("table", { staticClass: "table-fixed" }, [

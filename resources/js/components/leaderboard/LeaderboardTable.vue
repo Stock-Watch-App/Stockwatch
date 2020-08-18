@@ -81,6 +81,7 @@
         <smart-pagination
             :currentPage.sync="currentPage"
             :totalPages="totalPages"
+            :maxPageLinks="8"
         />
     </div>
 </template>
@@ -96,7 +97,8 @@ export default {
             name: { value: "", keys: ["user.name"] }
         },
         currentPage: 1,
-        totalPages: 0
+        totalPages: 0,
+        maxPageLinks: 5
         // lastMoney: 0
     }),
     computed: {

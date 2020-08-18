@@ -1,5 +1,5 @@
-@import (reference) '../_variables.less';
-@import (reference) '../_mixins.less';
+@import (reference) "../_variables.less";
+@import (reference) "../_mixins.less";
 
 .native-collapse-wrap {
     details {
@@ -35,7 +35,12 @@
             position: relative;
             display: block;
             font-variation-settings: @base-font-weight-bold;
-            .px-em-padding(8, 8, 8, 0);
+            .px-em-padding(8, 0, 8, 0);
+
+            span {
+                display: block;
+                margin-right: 2em;
+            }
 
             &.plus-icon {
                 // creates a plus sign
@@ -46,7 +51,7 @@
                     position: absolute;
                     top: 50%;
                     right: 0;
-                    content: '';
+                    content: "";
                     background-color: currentColor;
                     text-align: right;
                     transform: translateY(-50%);
@@ -60,7 +65,7 @@
 
             .chevron {
                 display: flex;
-                display:-webkit-flex;
+                display: -webkit-flex;
                 flex-direction: row;
                 -webkit-flex-direction: row;
                 justify-content: space-between;
@@ -72,10 +77,11 @@
                 display: none;
             }
 
-            &:focus, &:active {
-                    outline: solid 1px @link;
-                    outline-offset: 0.5rem;
-                }
+            &:focus,
+            &:active {
+                outline: solid 1px @link;
+                outline-offset: 0.5rem;
+            }
         }
     }
 }

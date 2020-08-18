@@ -97,6 +97,7 @@
         <smart-pagination
             :currentPage.sync="currentPage"
             :totalPages="totalPages"
+            :maxPageLinks="8"
         />
     </div>
 </template>
