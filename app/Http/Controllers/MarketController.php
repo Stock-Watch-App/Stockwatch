@@ -46,10 +46,11 @@ class MarketController extends Controller
             }
             if ($season->getOriginal('status') === 'pre-season') {
                 Price::create([
-                    'price' => (int)round($houseguest->ratings()->limit(4)->where('week', $season->current_week)->pluck('rating')->sum() / 4),
+                    'price'         => (int)round($houseguest->ratings()->limit(4)->where('week', $season->current_week)->pluck('rating')->sum() / 4),
                     'houseguest_id' => $houseguest->id,
-                    'season_id' => $season->id,
-                    'week' => $week]);
+                    'season_id'     => $season->id,
+                    'week'          => $week
+                ]);
             }
         }
     }
@@ -74,19 +75,32 @@ class MarketController extends Controller
 
     public function zeroOutEvictees($season)
     {
-        $houseguests = Houseguest::withoutGlobalScope('active')->where('status', 'evicted')->get();
+        $houseguests = Houseguest::withoutGlobalScope('active')
+                                 ->where('status', 'evicted')
+                                 ->where('season_id', $season->id)
+                                 ->get();
         $houseguests->each(function ($houseguest) use ($season) {
-            Price::create(['price' => 0.00, 'houseguest_id' => $houseguest->id, 'week' => $season->current_week]);
+            Price::create([
+                'price'         => 0.00,
+                'houseguest_id' => $houseguest->id,
+                'season_id'     => $season->id,
+                'week'          => $season->current_week
+            ]);
         });
     }
 
     public function generateLeaderboard($season)
     {
+        // Temporarily increase memory limit to 256MB
+        ini_set('memory_limit', '256M');
+
         $networth = DB::table('stocks')
                       ->select(DB::raw('stocks.user_id, ANY_VALUE(sum(stocks.quantity*prices.price)+banks.money) as networth'))
                       ->join('prices', 'stocks.houseguest_id', '=', 'prices.houseguest_id')
                       ->join('banks', 'stocks.user_id', '=', 'banks.user_id')
-                      ->whereRaw('prices.week = (Select max(week) from prices)')
+                      ->whereRaw('banks.season_id = ?', $season->id)
+                      ->whereRaw('prices.season_id = ?', $season->id)
+                      ->whereRaw('prices.week = ?', $season->current_week)
                       ->groupBy('stocks.user_id')
                       ->orderByDesc('networth')
                       ->get();

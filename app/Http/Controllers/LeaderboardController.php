@@ -18,6 +18,7 @@ class LeaderboardController extends Controller
         $houseguests = Houseguest::where('season_id', $season->id)->get();
 
         $leaderboard = Leaderboard::where('week', $season->current_week)
+                                  ->where('season_id', $season->id)
                                   ->with('user')
                                   ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
