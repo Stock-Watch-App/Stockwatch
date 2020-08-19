@@ -3,49 +3,52 @@
         <heading class="mb-6">Stats Manager</heading>
         <Tabs>
             <Tab name="Stocks Owned" :selected="true">
-                <card class="bg-white inline-flex flex-col w-1/2 mt-4">
-                    <div v-for="stock in stocks" class="relative pt-1">
-                        <div :style="computeWidth(stock.total, topStock)" class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
-                            <span>
-                                {{ stock.nickname }}
-                            </span>
-                            <span class="float-right">
-                                {{ currency(stock.total) }}
-                            </span>
-                        </div>
+                <div v-for="stock in stocks" class="relative pt-1">
+                    <div :style="computeWidth(stock.total, topStock)" class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
+                        <span>
+                            {{ stock.nickname }}
+                        </span>
+                        <span class="float-right">
+                            {{ currency(stock.total) }}
+                        </span>
                     </div>
-                </card>
+                </div>
             </Tab>
             <Tab name="Money Spent">
-                <card class="bg-white inline-flex flex-col w-1/2 mt-4">
-                    test
-                </card>
+                <div v-for="m in money" class="relative pt-1">
+                    <div :style="computeWidth(m.total, topMoney)" class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
+                        <span>
+                            {{ m.nickname }}
+                        </span>
+                        <span class="float-right">
+                            {{ currency(m.total) }}
+                        </span>
+                    </div>
+                </div>
             </Tab>
             <Tab name="Reports">
                 <button v-if="!generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold" @click="generate">Generate Stat Report</button>
                 <button v-if="generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold">Generating...</button>
-                <card class="bg-white flex flex-col w-full mt-4">
-                    <table class="table-fixed">
-                        <thead>
-                        <tr>
-                            <th class="w-2/5 px-4 py-2">File</th>
-                            <th class="w-1/5 px-4 py-2">Season</th>
-                            <th class="w-1/5 px-4 py-2">Week</th>
-                            <th class="w-1/5 px-4 py-2">Download</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="file in files">
-                            <td>{{ file.filename }}</td>
-                            <td>{{ file.season.name }}</td>
-                            <td>{{ file.week }}</td>
-                            <td>
-                                <button class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="download(file)">Download</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </card>
+                <table class="table-fixed">
+                    <thead>
+                    <tr>
+                        <th class="w-2/5 px-4 py-2">File</th>
+                        <th class="w-1/5 px-4 py-2">Season</th>
+                        <th class="w-1/5 px-4 py-2">Week</th>
+                        <th class="w-1/5 px-4 py-2">Download</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="file in files">
+                        <td>{{ file.filename }}</td>
+                        <td>{{ file.season.name }}</td>
+                        <td>{{ file.week }}</td>
+                        <td>
+                            <button class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="download(file)">Download</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </Tab>
         </Tabs>
 

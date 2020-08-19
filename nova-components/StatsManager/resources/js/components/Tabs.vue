@@ -1,20 +1,19 @@
 <template>
     <div>
-        <ul class="flex">
-            <li class="flex-grow cursor-pointer" v-for="tab in tabs"
+        <ul>
+            <li v-for="tab in tabs"
                 @click="selectTab(tab)"
                 :href="tab.href"
                 :key="tab.name">
-                <a class="w-full inline-block py-2 px-4 font-semibold h-full rounded-t-lg border-l border-t border-r border-gray-500 no-underline"
-                   :class="{
-                        'bg-white text-blue-700 ': tab.isActive,
-                        'bg-gray-300 text-blue-700 hover:bg-gray-100 border-b': tab.isActive === false
+                <a :class="{
+                        'active': tab.isActive,
+                        'inactive': tab.isActive === false
                    }"
                 >{{ tab.name }}</a>
             </li>
         </ul>
 
-        <div class="tabs-details border-b border-l border-r border-gray-500 px-2 py-4 bg-white">
+        <div class="tabs-details">
             <slot></slot>
         </div>
     </div>
@@ -60,3 +59,48 @@ export default {
     }
 }
 </script>
+<style scoped>
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        flex-grow: 1;
+        cursor: pointer;
+    }
+
+    a {
+        width: 100%;
+        display: inline-block;
+        padding: .5rem 1rem;
+        font-weight: 600;
+        height: 100%;
+        border-top-right-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+        border: 1px solid #a0aec0;
+        text-underline: none;
+        color: #2b6cb0;
+    }
+
+    a.active {
+        background-color: #ffffff;
+        border-bottom-style: none;
+    }
+
+    a.inactive {
+        background-color: #e2e8f0;;
+    }
+
+    a.inactive:hover {
+        background-color: #edf2f7;
+    }
+
+    div.tabs-details {
+        border: 1px solid #a0aec0;
+        border-top: none;
+        padding: .5rem 1rem;
+        background-color: #ffffff;
+    }
+</style>
