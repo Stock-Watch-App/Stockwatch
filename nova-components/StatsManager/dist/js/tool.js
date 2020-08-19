@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\nthead th:first-child {\n    border-top-left-radius: 4px;\n}\nthead th:last-child {\n    border-top-right-radius: 4px;\n}\nthead tr {\n    background-color: #252d37;\n    color: #fff;\n    /*border-top-right-radius: 4px;*/\n    /*border-top-left-radius: 4px;*/\n}\ntd {\n    padding: 1.5rem 1rem;\n    border-bottom: 1px solid rgba(64, 153, 222, .3);\n}\ntbody tr:hover {\n    background-color: rgba(36, 36, 36, .1);\n}\ntr:last-child td {\n    border: none\n}\n", ""]);
+exports.push([module.i, "\nthead th:first-child {\n    border-top-left-radius: 4px;\n}\nthead th:last-child {\n    border-top-right-radius: 4px;\n}\nthead tr {\n    background-color: #252d37;\n    color: #fff;\n    /*border-top-right-radius: 4px;*/\n    /*border-top-left-radius: 4px;*/\n}\ntd {\n    padding: 1.5rem 1rem;\n    border-bottom: 1px solid rgba(64, 153, 222, .3);\n}\ntbody tr:hover {\n    background-color: rgba(36, 36, 36, .1);\n}\ntr:last-child td {\n    border: none\n}\n.relative {\n    position: relative;\n}\n.pt-1 {\n    padding-top: .25rem;\n}\n.text-xs {\n    font-size: .75rem;\n}\n.overflow-hidden {\n    overflow: hidden;\n}\n.mb-4 {\n    margin-bottom: 1rem;\n}\n.h-2 {\n    height: .5rem;\n}\n.flex {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.rounded {\n    border-radius: .25rem;\n}\n.bg-green-200 {\n    background-color: #c6f6d5;\n}\n", ""]);
 
 // exports
 
@@ -632,6 +632,34 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tab__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tab___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Tab__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tabs__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Tabs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Tabs__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -663,15 +691,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             files: Array,
-            generating: false
+            generating: false,
+            stocks: Array,
+            topStock: Number,
+            money: Array,
+            topMoney: Number
         };
     },
     mounted: function mounted() {
         this.getFiles();
+        this.getStats();
     },
 
     methods: {
@@ -699,7 +735,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 anchor.download = file.filename;
                 anchor.click();
             });
+        },
+        getStats: function getStats() {
+            var _this3 = this;
+
+            axios.get('/nova-vendor/stats-manager/stats/total/stocks').then(function (res) {
+                _this3.stocks = res.data;
+                _this3.topStock = res.data[0].total;
+            });
+            axios.get('/nova-vendor/stats-manager/stats/total/money').then(function (res) {
+                _this3.money = res.data;
+                _this3.topMoney = res.data[0].total;
+            });
+        },
+        computeWidth: function computeWidth(numerator, denominator) {
+            return 'width:' + numerator / denominator * 100 + '%';
+        },
+        currency: function currency(num) {
+            return '$' + parseFloat(num).toFixed(2);
         }
+    },
+    components: {
+        Tab: __WEBPACK_IMPORTED_MODULE_0__Tab___default.a,
+        Tabs: __WEBPACK_IMPORTED_MODULE_1__Tabs___default.a
     }
 });
 
@@ -716,70 +774,154 @@ var render = function() {
     [
       _c("heading", { staticClass: "mb-6" }, [_vm._v("Stats Manager")]),
       _vm._v(" "),
-      !_vm.generating
-        ? _c(
-            "button",
-            {
-              staticClass: "bg-primary px-4 py-2 rounded-lg text-white bold",
-              on: { click: _vm.generate }
-            },
-            [_vm._v("Generate Stat Report")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.generating
-        ? _c(
-            "button",
-            { staticClass: "bg-primary px-4 py-2 rounded-lg text-white bold" },
-            [_vm._v("Generating...")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("card", { staticClass: "bg-white flex flex-col w-full mt-4" }, [
-        _c("table", { staticClass: "table-fixed" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", { staticClass: "w-2/5 px-4 py-2" }, [_vm._v("File")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("Season")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("Week")]),
-              _vm._v(" "),
-              _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("Download")])
-            ])
-          ]),
+      _c(
+        "Tabs",
+        [
+          _c(
+            "Tab",
+            { attrs: { name: "Stocks Owned", selected: true } },
+            [
+              _c(
+                "card",
+                { staticClass: "bg-white inline-flex flex-col w-1/2 mt-4" },
+                _vm._l(_vm.stocks, function(stock) {
+                  return _c("div", { staticClass: "relative pt-1" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200",
+                        style: _vm.computeWidth(stock.total, _vm.topStock)
+                      },
+                      [
+                        _c("span", [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(stock.nickname) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "float-right" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.currency(stock.total)) +
+                              "\n                        "
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                }),
+                0
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
-            "tbody",
-            _vm._l(_vm.files, function(file) {
-              return _c("tr", [
-                _c("td", [_vm._v(_vm._s(file.filename))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(file.season.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(file.week))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
+            "Tab",
+            { attrs: { name: "Money Spent" } },
+            [
+              _c(
+                "card",
+                { staticClass: "bg-white inline-flex flex-col w-1/2 mt-4" },
+                [_vm._v("\n                test\n            ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "Tab",
+            { attrs: { name: "Reports" } },
+            [
+              !_vm.generating
+                ? _c(
                     "button",
                     {
                       staticClass:
-                        "bg-primary px-4 py-2 rounded-lg text-white bold",
-                      on: {
-                        click: function($event) {
-                          return _vm.download(file)
-                        }
-                      }
+                        "inline-block bg-primary px-4 py-2 rounded-lg text-white bold",
+                      on: { click: _vm.generate }
                     },
-                    [_vm._v("Download")]
+                    [_vm._v("Generate Stat Report")]
                   )
-                ])
-              ])
-            }),
-            0
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.generating
+                ? _c(
+                    "button",
+                    {
+                      staticClass:
+                        "inline-block bg-primary px-4 py-2 rounded-lg text-white bold"
+                    },
+                    [_vm._v("Generating...")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "card",
+                { staticClass: "bg-white flex flex-col w-full mt-4" },
+                [
+                  _c("table", { staticClass: "table-fixed" }, [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", { staticClass: "w-2/5 px-4 py-2" }, [
+                          _vm._v("File")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+                          _vm._v("Season")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+                          _vm._v("Week")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+                          _vm._v("Download")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.files, function(file) {
+                        return _c("tr", [
+                          _c("td", [_vm._v(_vm._s(file.filename))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(file.season.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(file.week))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "bg-primary px-4 py-2 rounded-lg text-white bold",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.download(file)
+                                  }
+                                }
+                              },
+                              [_vm._v("Download")]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ]
+              )
+            ],
+            1
           )
-        ])
-      ])
+        ],
+        1
+      )
     ],
     1
   )
@@ -799,6 +941,307 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(16)
+/* template */
+var __vue_template__ = __webpack_require__(17)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Tab.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8dbef60c", Component.options)
+  } else {
+    hotAPI.reload("data-v-8dbef60c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        name: { required: true },
+        selected: { default: false },
+        color: { type: String }
+    },
+    data: function data() {
+        return {
+            isActive: false
+        };
+    },
+
+    computed: {
+        href: function href() {
+            return '#' + this.name.toLowerCase().replace(/ /g, '-');
+        }
+    },
+    mounted: function mounted() {
+        this.isActive = this.selected;
+    }
+});
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.isActive,
+          expression: "isActive"
+        }
+      ]
+    },
+    [_vm._t("default")],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8dbef60c", module.exports)
+  }
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(8)
+/* script */
+var __vue_script__ = __webpack_require__(19)
+/* template */
+var __vue_template__ = __webpack_require__(20)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Tabs.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6e9bbb69", Component.options)
+  } else {
+    hotAPI.reload("data-v-6e9bbb69", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        subgroup: {
+            type: Boolean,
+            default: false
+        },
+        enablehash: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function data() {
+        return { tabs: [] };
+    },
+    created: function created() {
+        this.tabs = this.$children;
+    },
+
+    watch: {
+        tabs: function tabs() {
+            if (location.hash !== '') {
+                this.tabs.forEach(function (tab) {
+                    tab.isActive = tab.href === location.hash;
+                });
+            }
+        }
+    },
+    methods: {
+        selectTab: function selectTab(selectedTab) {
+            if (this.enablehash) {
+                location.hash = selectedTab.href;
+            }
+            this.tabs.forEach(function (tab) {
+                tab.isActive = tab.href === selectedTab.href;
+                // tab.isActive = (tab.name === selectedTab.name);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "ul",
+      { staticClass: "flex" },
+      _vm._l(_vm.tabs, function(tab) {
+        return _c(
+          "li",
+          {
+            key: tab.name,
+            staticClass: "flex-grow cursor-pointer",
+            attrs: { href: tab.href },
+            on: {
+              click: function($event) {
+                return _vm.selectTab(tab)
+              }
+            }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass:
+                  "w-full inline-block py-2 px-4 font-semibold h-full rounded-t-lg border-l border-t border-r border-gray-500 no-underline",
+                class: {
+                  "bg-white text-blue-700 ": tab.isActive,
+                  "bg-gray-300 text-blue-700 hover:bg-gray-100 border-b":
+                    tab.isActive === false
+                }
+              },
+              [_vm._v(_vm._s(tab.name))]
+            )
+          ]
+        )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "tabs-details border-b border-l border-r border-gray-500 px-2 py-4 bg-white"
+      },
+      [_vm._t("default")],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6e9bbb69", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
