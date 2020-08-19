@@ -34,6 +34,7 @@ class LeaderboardController extends Controller
                                   ->where('week', static function ($q) {
                                       $q->select(DB::raw('max(week)'))
                                         ->from('leaderboard')
+                                          ->where('season_id', 1)
                                         ->groupBy('season_id');
                                   })->groupBy('user_id')
                                   ->orderBy('networth', 'desc')
