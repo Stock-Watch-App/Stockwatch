@@ -95,6 +95,9 @@ class LoginController extends Controller
 
                 //Check if user with same email address exist
                 $user = User::where('email', $email)->first();
+            } else {
+                //when email is empty, set null to prevent mysql integrity constraint violation errors during creation
+                $email = null;
             }
 
 
