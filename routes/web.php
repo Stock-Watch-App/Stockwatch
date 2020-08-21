@@ -76,14 +76,13 @@ Route::group(['middleware' => ['local']], function () {
             dump($m->hashid);
         }
     });
+    Route::get('/test/error/{error}', function ($error) {
+       abort($error);
+    });
 
 });
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
 
 
 //===
