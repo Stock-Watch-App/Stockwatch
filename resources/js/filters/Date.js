@@ -7,6 +7,6 @@
 Vue.filter('date', function (value) {
     let date = new Date(value);
 
-
-    return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    //getMonth is zero base. Jan = 0, Feb = 1, Mar = 3, etc
+    return date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
 });
