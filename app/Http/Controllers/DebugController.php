@@ -49,18 +49,36 @@ class DebugController extends Controller
     public function xyz()
     {
         $season = Season::current();
+        $user = User::find(2);
+        $user->load([
+            'banks'       => function ($bank) use ($season) {
+                $bank->where('season_id', $season->id);
+            },
+            'transactions',
+            'stocks'      => function ($stock) use ($season) {
+                $stock->with([
+                    'houseguest' => function ($houseguest) {
+                        $houseguest->withoutGlobalScope('active')->with('prices');
+                    }
+                ])->whereHas('houseguest', function ($houseguest) use ($season) {
+                    $houseguest->withoutGlobalScope('active')
+                               ->where('season_id', $season->id);
+                });
+            },
+            'leaderboard' => function ($leaderboard) use ($season) {
+                $leaderboard->where('season_id', $season->id);
+            }
+        ]);
 
-        $networth = DB::table('stocks')
-                      ->select(DB::raw('stocks.user_id, ANY_VALUE(sum(stocks.quantity*prices.price)+banks.money) as networth'))
-                      ->join('prices', 'stocks.houseguest_id', '=', 'prices.houseguest_id')
-                      ->join('banks', 'stocks.user_id', '=', 'banks.user_id')
-                      ->whereRaw('banks.season_id = ?', $season->id)
-                      ->whereRaw('prices.season_id = ?', $season->id)
-                      ->whereRaw('prices.week = ?', $season->current_week)
-            ->whereRaw('stocks.user_id = 692')
-                      ->groupBy('stocks.user_id')
-                      ->orderByDesc('networth')
-                      ->toSql();
-        dd($networth);
+        $l = $user->leaderboard->sortByDesc('week')->first()->networth;
+
+        $s = $user->stocks->map(function ($stock) {
+            $price = (float)$stock->houseguest->prices->sortByDesc('week')->first()->price;
+            $quantity = (int)$stock->quantity;
+            return $quantity * $price;
+        })->sum() + $user->banks->first()->money;
+        dump($l);
+        dump($s);
+
     }
 }

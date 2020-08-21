@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dac24125e98050c51dd1007927e71215",
+    "content-hash": "ea708db650501932cbbc891c9e1c416e",
     "packages": [
         {
             "name": "brick/math",
@@ -258,20 +258,6 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/composer",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-08-13T12:55:41+00:00"
         },
         {
@@ -2104,6 +2090,57 @@
                 "nova"
             ],
             "time": "2020-05-04T11:50:04+00:00"
+        },
+        {
+            "name": "mlntn/laravel-unique-queue",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mlntn/laravel-unique-queue.git",
+                "reference": "32d10eb81704da080907d46b5d8cbc8882f093c7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mlntn/laravel-unique-queue/zipball/32d10eb81704da080907d46b5d8cbc8882f093c7",
+                "reference": "32d10eb81704da080907d46b5d8cbc8882f093c7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/queue": "~5.7||~6||~7",
+                "illuminate/redis": "~5.7||~6||~7",
+                "php": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mlntn\\Providers\\QueueServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jared Mellentine",
+                    "email": "jared@mellentine.com"
+                }
+            ],
+            "description": "Laravel queue connection that prevents identical jobs from being queued",
+            "homepage": "http://github.com/mlntn/laravel-unique-queue",
+            "keywords": [
+                "laravel",
+                "queue",
+                "unique"
+            ],
+            "time": "2020-07-22T12:00:01+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3981,16 +4018,6 @@
                 "logging",
                 "sentry"
             ],
-            "funding": [
-                {
-                    "url": "https://sentry.io/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://sentry.io/pricing/",
-                    "type": "custom"
-                }
-            ],
             "time": "2020-08-13T10:54:32+00:00"
         },
         {
@@ -4059,16 +4086,6 @@
                 "log",
                 "logging",
                 "sentry"
-            ],
-            "funding": [
-                {
-                    "url": "https://sentry.io/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://sentry.io/pricing/",
-                    "type": "custom"
-                }
             ],
             "time": "2020-06-02T12:39:20+00:00"
         },
@@ -5379,20 +5396,6 @@
                 "configuration",
                 "options"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-07-12T12:58:00+00:00"
         },
         {
@@ -6157,20 +6160,6 @@
                 "polyfill",
                 "portable",
                 "uuid"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-07-14T12:35:20+00:00"
         },
@@ -8242,6 +8231,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
@@ -9167,6 +9157,5 @@
         "php": "^7.2",
         "ext-json": "*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
