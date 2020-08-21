@@ -54,6 +54,7 @@ class User extends Resource
                     ->updateRules('nullable', 'string', 'min:8'),
 
             Text::make('Logged In Via', 'provider'),
+            Date::make('Last Seen')->hideWhenCreating()->hideWhenUpdating(),
 
             HasMany::make('Ratings'),
 

@@ -30,6 +30,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'banned'            => 'boolean'
     ];
 
+    protected $dates = [
+        'last_seen'
+    ];
+
     public function banks()
     {
         return $this->hasMany(Bank::class);
