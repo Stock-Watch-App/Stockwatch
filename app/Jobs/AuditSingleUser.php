@@ -86,7 +86,7 @@ class AuditSingleUser implements ShouldQueue
     {
         $leaderboard = $user->leaderboard->sortByDesc('week')->first();
 
-        
+
     }
 
     public function saveAnomaly($user_id, $message)

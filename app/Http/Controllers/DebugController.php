@@ -70,15 +70,18 @@ class DebugController extends Controller
             }
         ]);
 
-        $l = $user->leaderboard->sortByDesc('week')->first()->networth;
+        $l = $user->leaderboard->sortByDesc('week')->first();
 
-        $s = $user->stocks->map(function ($stock) {
-            $price = (float)$stock->houseguest->prices->sortByDesc('week')->first()->price;
-            $quantity = (int)$stock->quantity;
-            return $quantity * $price;
-        })->sum() + $user->banks->first()->money;
+        //todo what is the point of running transactions?
         dump($l);
-        dump($s);
+        dump($l->stocks);
+        //make array for stocks
+        collect($l->stocks)->each(function ($stock) {
+            //find starting point for bank
+        });
+        //run transactions
+
+        //match with current bank
 
     }
 }

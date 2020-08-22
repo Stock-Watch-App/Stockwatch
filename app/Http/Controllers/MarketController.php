@@ -105,6 +105,14 @@ class MarketController extends Controller
                       ->orderByDesc('networth')
                       ->get();
 
+//        $stocks = User::with([
+//            'stocks' => function ($stock) use ($season) {
+//                $stock->whereHas('houseguest', function ($houseguest) use ($season) {
+//                    $houseguest->withoutGlobalScope('active')
+//                               ->where('season_id', $season->id);
+//                });
+//            }
+//        ])
         $stocks = User::with('stocks')->get()->mapToAssoc(function ($u) {
             return [
                 $u->id,
