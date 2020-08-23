@@ -3,27 +3,29 @@
         <heading class="mb-6">Stats Manager</heading>
         <Tabs>
             <Tab name="Stocks Owned" :selected="true">
-                <div v-for="stock in stocks" class="relative pt-1">
-                    <div :style="computeWidth(stock.total, topStock)" class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
-                        <span>
+                <div v-for="stock in stocks" v-bind:key="stock.nickname" class="item-row-wrap">
+                    <div class="item-row">
+                        <span class="name">
                             {{ stock.nickname }}
                         </span>
-                        <span class="float-right">
+                        <span class="total">
                             {{ currency(stock.total) }}
                         </span>
                     </div>
+                    <div :style="computeWidth(stock.total, topStock)" class="chart-row"></div>
                 </div>
             </Tab>
             <Tab name="Money Spent">
-                <div v-for="m in money" class="relative pt-1">
-                    <div :style="computeWidth(m.total, topMoney)" class="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
-                        <span>
+                <div v-for="m in money" v-bind:key="m.nickname" class="item-row-wrap">
+                    <div class="item-row">
+                        <span class="name">
                             {{ m.nickname }}
                         </span>
-                        <span class="float-right">
+                        <span class="total">
                             {{ currency(m.total) }}
                         </span>
                     </div>
+                    <div :style="computeWidth(m.total, topMoney)" class="chart-row-alt"></div>
                 </div>
             </Tab>
             <Tab name="Reports">
@@ -110,7 +112,7 @@ export default {
             return 'width:' + (numerator / denominator) * 100 + '%'
         },
         currency(num) {
-            return '$' + parseFloat(num).toFixed(2);
+            return '$' + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
         }
     },
     components: {
@@ -121,6 +123,36 @@ export default {
 </script>
 
 <style>
+
+.item-row-wrap {
+    display: flex;
+    justify-items: flex-start;
+    margin: 1rem 0;
+}
+
+.item-row {
+    padding: 0.5rem 0;
+    flex: 0 0 22%;
+    display: flex;
+}
+
+.name {
+    font-weight: bold;
+    flex: 0 0 100px;
+}
+
+.total {
+    flex: 1 1 auto;
+}
+
+.chart-row {
+    background-color: hsl(224, 90%, 53%);
+}
+
+.chart-row-alt {
+    background-color: hsl(173, 90%, 53%);
+}
+
 thead th:first-child {
     border-top-left-radius: 4px;
 }
@@ -149,39 +181,8 @@ tr:last-child td {
     border: none
 }
 
-.relative {
-    position: relative;
-}
-
-.pt-1 {
-    padding-top: .25rem;
-}
-
-.text-xs {
-    font-size: .75rem;
-}
-
-.overflow-hidden {
-    overflow: hidden;
-}
-
-.mb-4 {
-    margin-bottom: 1rem;
-}
-
-.h-2 {
-    height: .5rem;
-}
-
-.flex {
-    display: flex;
-}
-
 .rounded {
     border-radius: .25rem;
 }
 
-.bg-green-200 {
-    background-color: #c6f6d5;
-}
 </style>
