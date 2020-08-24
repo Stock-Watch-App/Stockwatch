@@ -1,8 +1,5 @@
 <template>
-    <div>
-
-
-
+    <div class="avatar-picker">
         <img :src="robotAvatar" title="Robot" class="profile-pic" :class="{selected: selected === 'robot'}" @click="pick('robot')"/>
         <img :src="customAvatar" title="Custom" class="profile-pic" :class="{selected: selected === 'custom'}" @click="pick('custom')"/>
         <image-upload to="/account/avatar/upload" @uploaded-file="uploadedFile"></image-upload>
@@ -67,6 +64,6 @@ img {
     max-width: 150px;
 }
 .selected {
-    border: 3px solid blue;
+    border: 3px solid hsl(240, 4%, 75%);
 }
 </style>

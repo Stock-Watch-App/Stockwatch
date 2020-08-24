@@ -56,7 +56,8 @@ import {
     faTrophy,
     faSignInAlt,
     faSignIn,
-    faFileDownload
+    faFileDownload,
+    faFileUpload
 } from "@fortawesome/pro-solid-svg-icons";
 import {
     faTwitch,
@@ -118,7 +119,8 @@ library.add(
     faChartNetwork,
     faArrowToLeft,
     faArrowToRight,
-    faFileDownload
+    faFileDownload,
+    faFileUpload
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

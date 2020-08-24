@@ -2,9 +2,11 @@
     <img
         :src="userAvatar"
         class="avatar"
+        v-bind:class="userAvatarBorder"
         :width="width"
         :height="height"
         :title="title"
+        :alt="title"
     />
 </template>
 
@@ -46,6 +48,14 @@ export default {
                 return this.user.avatar_url;
             } else {
                 return '/images/robot-avatar-'+count+'.svg';
+            }
+        },
+        userAvatarBorder: function () {
+            if (this.user.use_robot_avatar === 1) {
+                return "avatarBorder1"
+            }
+            else if (this.user.use_robot_avatar === 2) {
+                return "avatarBorder2"
             }
         }
     }

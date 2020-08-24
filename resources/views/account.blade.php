@@ -3,9 +3,10 @@
 @section('content')
     <div class="user-account app-content-max">
         <h3 class="mg-btm-lg">Account Settings</h3>
-
+        <x-skeleton style="width:200px;height:200px;grid-area:photo" />
         <avatar-picker
             :user="{{$user}}"
+            class="profile-image-edit"
         ></avatar-picker>
 
         <div class="logout">
@@ -37,7 +38,7 @@
 {{--                    @enderror--}}
 
 
-                    <button type="submit" class="button-base secondary mg-top-lg mg-btm-lg">
+                    <button type="submit" class="button-base primary mg-top-lg mg-btm-lg">
                         {{ __('Save changes') }}
                     </button>
                 </form>

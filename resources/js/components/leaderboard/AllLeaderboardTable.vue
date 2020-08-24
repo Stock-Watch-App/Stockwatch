@@ -41,7 +41,7 @@
                                 :user="leaderboard.user"
                                 height="25"
                                 width="25"
-                                :class="leaderboard - avatar"
+                                class="leaderboard - avatar"
                             ></avatar>
                             <span>{{ leaderboard.user.name }}</span>
                             <span

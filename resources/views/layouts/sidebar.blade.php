@@ -1,7 +1,7 @@
 <nav id="menu" role="navigation" v-touch:swipe.left="swipeHandler" class="sidebar-nav" v-bind:class="[isActive ? 'open' : 'closed']">
     @auth
         <div class="profile-wrap">
-            <!-- <img src="{{ asset('/storage/avatar-default.svg') }}" title="Profile image" height="25px" width="25px" class="profile-pic" /> -->
+            <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
             <avatar :user="{{ auth()->user()->load('banks') }}" height="25" width="25" class="profile-pic"></avatar>
             <div class="profile-name">
                 <span>{{ Auth::user()->name }}</span>

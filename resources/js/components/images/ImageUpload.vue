@@ -1,7 +1,12 @@
 <template>
 <div>
     <input type="file" @change="onFileSelected">
-    <button v-if="!!selectedFile" @click="onUpload">Upload</button>
+    <button class="button-base icon secondary small uploadbtn" :disabled="!selectedFile" @click="onUpload">
+        <figure>
+            <font-awesome-icon :icon="['fas', 'file-upload']" />
+        </figure>
+        <span>Upload</span>
+    </button>
 </div>
 </template>
 
@@ -38,5 +43,7 @@ export default {
 </script>
 
 <style scoped>
-
+.uploadbtn {
+    margin-top: 1rem;
+}
 </style>

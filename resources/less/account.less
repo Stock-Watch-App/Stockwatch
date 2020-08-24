@@ -20,12 +20,9 @@
         grid-area: logout;
     }
 
-    // .profile-image-edit {
-    //     grid-area: photo;
-    //     display: flex;
-    //     flex-direction: row;
-    //     align-items: center;
-    // }
+    .profile-image-edit {
+        grid-area: photo;
+    }
 
     .image-edit-button {
         display: flex;
@@ -41,7 +38,7 @@
         grid-template:
             "headline headline" auto
             "logout ." auto
-            // "photo photo" auto
+            "photo photo" auto
             "fields ." auto
             ~'/ 1fr 1fr';
     });
