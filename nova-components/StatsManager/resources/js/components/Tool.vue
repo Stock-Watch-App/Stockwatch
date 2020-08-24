@@ -9,7 +9,7 @@
                             {{ stock.nickname }}
                         </span>
                         <span class="total">
-                            {{ currency(stock.total) }}
+                            {{ number_format(stock.total) }}
                         </span>
                     </div>
                     <div :style="computeWidth(stock.total, topStock)" class="chart-row"></div>
@@ -22,16 +22,16 @@
                             {{ m.nickname }}
                         </span>
                         <span class="total">
-                            {{ currency(m.total) }}
+                            ${{ number_format(m.total) }}
                         </span>
                     </div>
                     <div :style="computeWidth(m.total, topMoney)" class="chart-row-alt"></div>
                 </div>
             </Tab>
             <Tab name="Reports">
-                <button v-if="!generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold" @click="generate">Generate Stat Report</button>
-                <button v-if="generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold">Generating...</button>
-                <table class="table-fixed">
+                <button v-if="!generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4" @click="generate">Generate Stat Report</button>
+                <button v-if="generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4">Generating...</button>
+                <table class="table-fixed w-full">
                     <thead>
                     <tr>
                         <th class="w-2/5 px-4 py-2">File</th>
@@ -43,9 +43,9 @@
                     <tbody>
                     <tr v-for="file in files">
                         <td>{{ file.filename }}</td>
-                        <td>{{ file.season.name }}</td>
-                        <td>{{ file.week }}</td>
-                        <td>
+                        <td class="text-center">{{ file.season.name }}</td>
+                        <td class="text-center">{{ file.week }}</td>
+                        <td class="text-center">
                             <button class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="download(file)">Download</button>
                         </td>
                     </tr>
@@ -111,8 +111,8 @@ export default {
         computeWidth(numerator, denominator) {
             return 'width:' + (numerator / denominator) * 100 + '%'
         },
-        currency(num) {
-            return '$' + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
+        number_format(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
         }
     },
     components: {

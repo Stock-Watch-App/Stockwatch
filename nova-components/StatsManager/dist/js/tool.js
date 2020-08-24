@@ -756,8 +756,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         computeWidth: function computeWidth(numerator, denominator) {
             return 'width:' + numerator / denominator * 100 + '%';
         },
-        currency: function currency(num) {
-            return '$' + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
+        number_format: function number_format(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
         }
     },
     components: {
@@ -1130,7 +1130,7 @@ var render = function() {
                     _c("span", { staticClass: "total" }, [
                       _vm._v(
                         "\n                        " +
-                          _vm._s(_vm.currency(stock.total)) +
+                          _vm._s(_vm.number_format(stock.total)) +
                           "\n                    "
                       )
                     ])
@@ -1165,8 +1165,8 @@ var render = function() {
                     _vm._v(" "),
                     _c("span", { staticClass: "total" }, [
                       _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.currency(m.total)) +
+                        "\n                        $" +
+                          _vm._s(_vm.number_format(m.total)) +
                           "\n                    "
                       )
                     ])
@@ -1188,7 +1188,7 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "inline-block bg-primary px-4 py-2 rounded-lg text-white bold",
+                      "inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4",
                     on: { click: _vm.generate }
                   },
                   [_vm._v("Generate Stat Report")]
@@ -1200,13 +1200,13 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "inline-block bg-primary px-4 py-2 rounded-lg text-white bold"
+                      "inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4"
                   },
                   [_vm._v("Generating...")]
                 )
               : _vm._e(),
             _vm._v(" "),
-            _c("table", { staticClass: "table-fixed" }, [
+            _c("table", { staticClass: "table-fixed w-full" }, [
               _c("thead", [
                 _c("tr", [
                   _c("th", { staticClass: "w-2/5 px-4 py-2" }, [
@@ -1233,11 +1233,15 @@ var render = function() {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(file.filename))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(file.season.name))]),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(file.season.name))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(file.week))]),
+                    _c("td", { staticClass: "text-center" }, [
+                      _vm._v(_vm._s(file.week))
+                    ]),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "text-center" }, [
                       _c(
                         "button",
                         {
