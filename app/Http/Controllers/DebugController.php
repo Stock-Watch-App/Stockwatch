@@ -48,6 +48,40 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        //
+        $season = Season::current();
+        $user = User::find(2);
+        $user->load([
+            'banks'       => function ($bank) use ($season) {
+                $bank->where('season_id', $season->id);
+            },
+            'transactions',
+            'stocks'      => function ($stock) use ($season) {
+                $stock->with([
+                    'houseguest' => function ($houseguest) {
+                        $houseguest->withoutGlobalScope('active')->with('prices');
+                    }
+                ])->whereHas('houseguest', function ($houseguest) use ($season) {
+                    $houseguest->withoutGlobalScope('active')
+                               ->where('season_id', $season->id);
+                });
+            },
+            'leaderboard' => function ($leaderboard) use ($season) {
+                $leaderboard->where('season_id', $season->id);
+            }
+        ]);
+
+        $l = $user->leaderboard->sortByDesc('week')->first();
+
+        //todo what is the point of running transactions?
+        dump($l);
+        dump($l->stocks);
+        //make array for stocks
+        collect($l->stocks)->each(function ($stock) {
+            //find starting point for bank
+        });
+        //run transactions
+
+        //match with current bank
+
     }
 }

@@ -18,6 +18,7 @@ class LeaderboardController extends Controller
         $houseguests = Houseguest::where('season_id', $season->id)->get();
 
         $leaderboard = Leaderboard::where('week', $season->current_week)
+                                  ->where('season_id', $season->id)
                                   ->with('user')
                                   ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
@@ -33,6 +34,7 @@ class LeaderboardController extends Controller
                                   ->where('week', static function ($q) {
                                       $q->select(DB::raw('max(week)'))
                                         ->from('leaderboard')
+                                          ->where('season_id', 1)
                                         ->groupBy('season_id');
                                   })->groupBy('user_id')
                                   ->orderBy('networth', 'desc')

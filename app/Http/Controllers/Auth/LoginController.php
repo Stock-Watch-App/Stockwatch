@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\AuditSingleUser;
 use App\Models\User;
 use App\Models\Image;
 use App\Providers\RouteServiceProvider;
@@ -87,13 +88,18 @@ class LoginController extends Controller
         } else {
             $email = $providerUser->getEmail() ?? $providerUser->user['email'];
 
-            if (User::where('email', $email)->get()->count() > 1) {
-                Session::flash('error', 'Unable to process request. Error: Account Collision has occurred.', true);
-                abort(500);
-            }
+            if ($email !== null && $email !== '') {
+                if (User::where('email', $email)->get()->count() > 1) {
+                    Session::flash('error', 'Unable to process request. Error: Account Collision has occurred.', true);
+                    abort(500);
+                }
 
-            //Check if user with same email address exist
-            $user = User::where('email', $email)->first();
+                //Check if user with same email address exist
+                $user = User::where('email', $email)->first();
+            } else {
+                //when email is empty, set null to prevent mysql integrity constraint violation errors during creation
+                $email = null;
+            }
 
 
             //Create user if don't exist
@@ -109,6 +115,8 @@ class LoginController extends Controller
 
                 $user->markEmailAsVerified();
             }
+
+            AuditSingleUser::dispatch($user);
 
             return $user;
         }

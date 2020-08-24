@@ -35,7 +35,7 @@ Route::get('/leaderboard/{season}', [LeaderboardController::class, 'index'])->na
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return redirect()->route('allTimeLeaderboard');
+        return redirect()->route('trade');
     });
 
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
@@ -77,6 +77,9 @@ Route::group(['middleware' => ['local']], function () {
         foreach ($u as $m) {
             dump($m->hashid);
         }
+    });
+    Route::get('/test/error/{error}', function ($error) {
+       abort($error);
     });
 
 });

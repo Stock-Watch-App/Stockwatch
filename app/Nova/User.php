@@ -9,6 +9,8 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -39,12 +41,20 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Boolean::make('Email Verified', function() {
+                return (bool) $this->email_verified_at;
+            })->exceptOnForms(),
+
+            Date::make('Email Verified At')->help('Set date to mark email verified.')->onlyOnForms(),
+
+
             Password::make('Password')
                     ->onlyOnForms()
                     ->creationRules('required', 'string', 'min:8')
                     ->updateRules('nullable', 'string', 'min:8'),
 
             Text::make('Logged In Via', 'provider'),
+            Date::make('Last Seen')->hideWhenCreating()->hideWhenUpdating(),
 
             HasMany::make('Ratings'),
 

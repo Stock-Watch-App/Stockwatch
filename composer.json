@@ -19,6 +19,10 @@
         {
             "type": "path",
             "url": "./nova-components/SeasonManager"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/StatsManager"
         }
     ],
     "require": {
@@ -32,10 +36,13 @@
         "laravel/nova": "~3.0",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
+        "league/csv": "^9.6",
         "league/oauth1-client": "^1.7",
         "michielkempen/nova-polymorphic-field": "^1.0",
+        "orlyapps/nova-belongsto-depend": "^2.0",
         "predis/predis": "^1.1",
         "rennokki/laravel-eloquent-query-cache": "^2.0",
+        "sentry/sentry-laravel": "^1.8",
         "socialiteproviders/discord": "^2.0",
         "socialiteproviders/facebook": "^1.0",
         "socialiteproviders/google": "^3.0",
@@ -44,8 +51,10 @@
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
         "stockwatch/season-manager": "*",
+        "stockwatch/stats-manager": "*",
         "vinkla/hashids": "^8.0",
-        "vyuldashev/nova-permission": "^2.5"
+        "vyuldashev/nova-permission": "^2.5",
+        "wildside/userstamps": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

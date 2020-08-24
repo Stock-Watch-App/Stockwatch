@@ -18,8 +18,12 @@ import SmartTable from "vuejs-smart-table";
 Vue.use(SmartTable);
 
 import Vue2TouchEvents from 'vue2-touch-events'
- 
+
 Vue.use(Vue2TouchEvents)
+
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
 
 
 // font awesome icons
@@ -51,7 +55,8 @@ import {
     faBug,
     faTrophy,
     faSignInAlt,
-    faSignIn
+    faSignIn,
+    faFileDownload
 } from "@fortawesome/pro-solid-svg-icons";
 import {
     faTwitch,
@@ -112,7 +117,8 @@ library.add(
     faBinoculars,
     faChartNetwork,
     faArrowToLeft,
-    faArrowToRight
+    faArrowToRight,
+    faFileDownload
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
@@ -177,6 +183,15 @@ Vue.component("select-component", require("./components/Select.vue").default);
 
 Vue.component("icon-button", require("./components/IconButton.vue").default);
 
+Vue.component("first-badge", require("./components/badges/First.vue").default);
+
+Vue.component("second-badge", require("./components/badges/Second.vue").default);
+
+Vue.component("third-badge", require("./components/badges/Third.vue").default);
+
+Vue.component("topfive-badge", require("./components/badges/TopFive.vue").default);
+
+Vue.component("topten-badge", require("./components/badges/TopTen.vue").default);
 
 //=== FILTERS ===//
 Vue.filter("capitalize", require("./filters/Capitalize.js").default);

@@ -10,7 +10,9 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "lint": "eslint --ext .js,.vue resources/js/",
         "build-season-manager": "cd nova-components/SeasonManager && npm run dev",
-        "build-season-manager-prod": "cd nova-components/SeasonManager && npm run prod"
+        "build-season-manager-prod": "cd nova-components/SeasonManager && npm run prod",
+        "build-stats-manager": "cd nova-components/StatsManager && npm run dev",
+        "build-stats-manager-prod": "cd nova-components/StatsManager && npm run prod"
     },
     "devDependencies": {
         "@fullhuman/postcss-purgecss": "^2.0.6",
@@ -50,6 +52,7 @@
         "@fortawesome/pro-solid-svg-icons": "^5.14.0",
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "less": "^3.11.1",
+        "v-tooltip": "^2.0.3",
         "vue-flash-message": "^0.7.2",
         "vue2-touch-events": "^2.2.1",
         "vuejs-smart-table": "0.0.5"

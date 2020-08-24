@@ -107,7 +107,7 @@ export default {
     },
     computed: {
         houseguestImage: function() {
-            return "/storage" + this.stock.houseguest.image;
+            return "/storage/" + this.stock.houseguest.image;
         },
         currentPrice: function() {
             //find latest week

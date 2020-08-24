@@ -23,7 +23,8 @@
                     <figure>
                         <font-awesome-icon :icon="['fad', 'chart-network']" fixed-width/>
                     </figure>
-                    <span v-show="isActive">Dashboard</span> </a>
+                    <span v-show="isActive">Dashboard</span>
+                </a>
             </li>
         @endif
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
@@ -52,11 +53,11 @@
         @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
             <li>
                 <a href="{{ route('leaderboard', ['season' => \App\Models\Season::current()->short_name]) }}" title="Leaderboard" class="item-wrap">
-                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />    
+                    <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                     <figure>
                         <font-awesome-icon :icon="['fas', 'trophy']" fixed-width/>
                     </figure>
-                    <span v-show="isActive">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
+                    <span v-show="isActive">{{ strtoupper(\App\Models\Season::current()->short_name) }} Leaderboard</span>
                 </a>
             </li>
         @endif
@@ -145,7 +146,7 @@
             </summary>
             <ul class="sidebar-nav-list">
                 <li>
-                    <a href="https://robhasawebsite.com/shows/big-brother-podcast-rhap/big-brother-canada-big-brother/" title="Rob Has a Podcast" class="item-wrap" target="_blank" rel="noreferrer noopener">
+                    <a href="https://robhasawebsite.com/shows/big-brother-podcast-rhap/" title="Rob Has a Podcast" class="item-wrap" target="_blank" rel="noreferrer noopener">
                         <figure>
                             <font-awesome-icon icon="microphone" fixed-width/>
                         </figure>

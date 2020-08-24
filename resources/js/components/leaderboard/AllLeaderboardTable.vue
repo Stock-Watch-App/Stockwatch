@@ -53,6 +53,38 @@
                                 class="tag lfc"
                                 >LFC</span
                             >
+                            <first-badge
+                                v-if="leaderboard.user.id === 1727"
+                                class="leaderboard-badge"
+                                v-tooltip="'BB21 1st'"
+                            ></first-badge>
+                            <second-badge
+                                v-if="leaderboard.user.id === 1068"
+                                class="leaderboard-badge"
+                                v-tooltip="'BB21 2nd'"
+                            ></second-badge>
+                            <third-badge
+                                v-if="leaderboard.user.id === 341"
+                                class="leaderboard-badge"
+                                v-tooltip="'BB21 3rd'"
+                            ></third-badge>
+                            <topfive-badge
+                                v-if="
+                                    leaderboard.user.id === 4 ||
+                                        leaderboard.user.id === 12
+                                "
+                                class="leaderboard-badge"
+                                v-tooltip="'BB21 top 5'"
+                            ></topfive-badge>
+                            <topten-badge
+                                v-if="
+                                    leaderboard.user.id === 986 ||
+                                        leaderboard.user.id === 895 ||
+                                        leaderboard.user.id === 808
+                                "
+                                class="leaderboard-badge"
+                                v-tooltip="'BB21 top 10'"
+                            ></topten-badge>
                         </td>
                         <td class="networth">
                             {{ leaderboard.networth | currency }}
@@ -65,6 +97,7 @@
         <smart-pagination
             :currentPage.sync="currentPage"
             :totalPages="totalPages"
+            :maxPageLinks="8"
         />
     </div>
 </template>
