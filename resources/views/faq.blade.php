@@ -54,7 +54,7 @@
             <summary class="plus-icon">
                 <span>How do I report an issue with the Stock Watch?</span>
             </summary>
-            <p>You can contact us at <a href="mailto:hello@realitystockwatch.com" title="Email StockWatch">hello@realitystockwatch.com</a></p>
+            <p>Please submit issues through the "report a bug" link in the lefthand sidebar</p>
         </details>
         <details>
             <summary class="plus-icon">

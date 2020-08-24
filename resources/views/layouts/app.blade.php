@@ -58,9 +58,6 @@
             <li>
                 <a href="/privacy" title="Privacy Policy"> Privacy Policy </a>
             </li>
-            <li>
-                <a href="mailto:hello@realitystockwatch.com" title="Email StockWatch"> hello@realitystockwatch.com </a>
-            </li>
         </ul>
 
         <p>&copy; {{ date('Y') }} Reality Stock Watch. All Rights Reserved.</p>
