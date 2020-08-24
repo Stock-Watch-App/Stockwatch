@@ -1,6 +1,8 @@
 <template>
 <div>
-    <input type="file" @change="onFileSelected">
+    <label for="file">Choose file to upload</label>
+    <input id="file" name="file" type="file" accept="image/*,.jpg,.jpeg,.png" @change="onFileSelected" class="file-input">
+    <p class="bodySM bodyLight">Accepted file types: jpg, png. Image must not exceed 500kb. Only one custom image will be stored alongside the default robot. Once selected, your image will be updated globally.</p>
     <button class="button-base icon secondary small uploadbtn" :disabled="!selectedFile" @click="onUpload">
         <figure>
             <font-awesome-icon :icon="['fas', 'file-upload']" />
@@ -45,5 +47,9 @@ export default {
 <style scoped>
 .uploadbtn {
     margin-top: 1rem;
+}
+
+.file-input {
+    margin-bottom: 1rem;
 }
 </style>

@@ -65,6 +65,10 @@
     &.small {
         .px-rem(font-size, 14);
         .px-em-padding(8, 20, 8, 20);
+        @media (pointer: fine), (pointer: coarse){ 
+            min-height: 1.5rem;
+            .px-em-padding(4, 16,4 , 16);
+        }
     }
 
     &.large {

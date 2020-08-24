@@ -3,25 +3,11 @@
 
 .user-account {
     display: grid;
-    grid-gap: 2rem;
-    grid-template:
-        "headline" min-content
-        "logout" min-content
-        // "photo" auto
-        "fields" min-content
-        ~'/ 1fr';
+    grid-gap: 2.5rem;
+    grid-template-columns: 1fr 1fr;
 
-    h3 {
-        grid-area: headline;
-        margin-bottom: 0;
-    }
-
-    .logout {
-        grid-area: logout;
-    }
-
-    .profile-image-edit {
-        grid-area: photo;
+    > * {
+        grid-column: ~'1/-1';
     }
 
     .image-edit-button {
@@ -30,17 +16,14 @@
         margin-left: 2rem;
     }
 
-    .edit-profile {
-        grid-area: fields;
-    }
+    .media(@min-desktop, {
+        .edit-profile {
+            grid-column: ~'1/2';
+        }
 
-    .media(@min-tablet, {
-        grid-template:
-            "headline headline" auto
-            "logout ." auto
-            "photo photo" auto
-            "fields ." auto
-            ~'/ 1fr 1fr';
+        .profile-image-edit {
+            grid-column: ~'1/2';
+        }
     });
 }
 
