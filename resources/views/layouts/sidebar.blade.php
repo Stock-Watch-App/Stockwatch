@@ -57,7 +57,7 @@
                     <figure>
                         <font-awesome-icon :icon="['fas', 'trophy']" fixed-width/>
                     </figure>
-                    <span v-show="isActive">{{ \App\Models\Season::current()->short_name }} Leaderboard</span>
+                    <span v-show="isActive">{{ strtoupper(\App\Models\Season::current()->short_name) }} Leaderboard</span>
                 </a>
             </li>
         @endif
