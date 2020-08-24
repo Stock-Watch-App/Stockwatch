@@ -34,6 +34,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_seen'
     ];
 
+    protected $appends = [
+        'avatar_url'
+    ];
+
     public function banks()
     {
         return $this->hasMany(Bank::class);
@@ -61,16 +65,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function avatar()
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class, 'avatar_id');
     }
 
     public function setAvatar($avatar)
     {
-        $path = "/users/images/user-{$this->id}_avatar.jpg";
-        if ($contents = file_get_contents($avatar)) {
-            Storage::disk('local')->put($path, $contents);
-            $this->avatar = $path;
-        }
+        $filename = Storage::putFile('avatars', file_get_contents($avatar), 'public');
+
+        $image = Image::create([
+            'filename' => 'storage/'.$filename
+        ]);
+
+        $image->user()->save($this);
+
         return $this;
     }
 
@@ -78,6 +85,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getBankAttribute()
     {
         return $this->banks->where('season_id', Season::current()->id)->first();
+    }
+
+    //=== ATTRIBUTES ===//
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar) {
+            return $this->avatar->filename;
+        }
+        return null;
     }
 
     //=== METHODS ===//

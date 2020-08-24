@@ -12,11 +12,13 @@ class ImageController extends Controller
     {
         $image = $request->file('image');
 
-        $filename = $image->storePublicly('storage/avatars', 'public');
+        $filename = $image->storePublicly('avatars', 'public');
 
-        Image::create([
-            'filename' => $filename
+        $image = Image::create([
+            'filename' => '/storage/'.$filename
         ]);
+
+        $image->user()->save(auth()->user());
 
         return $filename;
     }

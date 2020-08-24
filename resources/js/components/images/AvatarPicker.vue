@@ -23,7 +23,8 @@ export default {
     },
     methods: {
         uploadedFile(e) {
-            this.custom = '/'+e;
+            console.log(e);
+            this.custom = '/storage/'+e;
         }
     },
     computed: {
@@ -48,5 +49,8 @@ export default {
 </script>
 
 <style scoped>
-
+    img {
+        max-height: 150px;
+        max-width: 150px;
+    }
 </style>

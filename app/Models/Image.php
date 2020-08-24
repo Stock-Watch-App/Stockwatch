@@ -8,6 +8,6 @@ class Image extends BaseModel
 {
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'avatar_id');
     }
 }

@@ -19,7 +19,9 @@ export default {
   },
     computed: {
         userAvatar: function () {
-            return (this.user.avatar !== null && this.user.avatar_approved) ? this.user.avatar : '/images/robot-avatar-'+this.user.banks.length+'.svg';
+            return (this.user.avatar_url !== null && this.user.avatar_approved)
+                ? this.user.avatar_url
+                : '/images/robot-avatar-'+this.user.banks.length+'.svg';
         }
     }
 };

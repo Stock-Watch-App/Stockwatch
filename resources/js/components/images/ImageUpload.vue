@@ -1,7 +1,7 @@
 <template>
 <div>
     <input type="file" @change="onFileSelected">
-    <button @click="onUpload">Upload</button>
+    <button v-if="!!selectedFile" @click="onUpload">Upload</button>
 </div>
 </template>
 
