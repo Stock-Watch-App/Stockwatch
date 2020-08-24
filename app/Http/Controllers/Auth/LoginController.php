@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\AuditSingleUser;
 use App\Models\User;
 use App\Models\Image;
 use App\Providers\RouteServiceProvider;
@@ -114,6 +115,8 @@ class LoginController extends Controller
 
                 $user->markEmailAsVerified();
             }
+
+            AuditSingleUser::dispatch($user);
 
             return $user;
         }

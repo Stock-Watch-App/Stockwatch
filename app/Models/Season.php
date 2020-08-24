@@ -34,7 +34,7 @@ class Season extends BaseModel
         if(request()->has('season')) {
             return request()->get('season');
         }
-        
+
         $season = $query->orWhere('status', 'pre-season')
                         ->orWhere('status', 'open')
                         ->orWhere('status', 'closed')

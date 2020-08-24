@@ -26,7 +26,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'transaction',
             'user',
             'week',
-            'file'
+            'file',
+            'anomaly'
         ];
         foreach ($models as $model) {
             $view = Permission::firstOrCreate(['name' => "view {$model}"]);
