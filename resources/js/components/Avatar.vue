@@ -51,10 +51,10 @@ export default {
             }
         },
         userAvatarBorder: function () {
-            if (this.user.use_robot_avatar === 1) {
+            if (this.user.banks.length === 1) {
                 return "avatarBorder1"
             }
-            else if (this.user.use_robot_avatar === 2) {
+            else if (this.user.banks.length === 2) {
                 return "avatarBorder2"
             }
         }
