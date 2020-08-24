@@ -29,4 +29,20 @@ class UserController extends Controller
 
         return redirect()->route('account.edit');
     }
+
+    public function useAvatar($type)
+    {
+        $user = auth()->user();
+
+        switch ($type) {
+            case 'custom':
+                $user->use_robot_avatar = false;
+                break;
+            case 'robot':
+                $user->use_robot_avatar = true;
+                break;
+        }
+
+        $user->save();
+    }
 }

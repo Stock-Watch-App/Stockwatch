@@ -40,7 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
     Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
-    Route::post('/account/avatar', [ImageController::class, 'uploadAvatar'])->name('avatar.upload');
+    Route::post('/account/avatar/use/{type}', [UserController::class, 'useAvatar'])->name('avatar.use');
+    Route::post('/account/avatar/upload', [ImageController::class, 'uploadAvatar'])->name('avatar.upload');
 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

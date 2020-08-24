@@ -15,6 +15,7 @@ class AddAvatarIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('avatar_id')->nullable();
+            $table->boolean('use_robot_avatar')->default(1);
             $table->boolean('avatar_approved')->default(1)->change();
             $table->dropColumn('avatar');
         });
@@ -29,6 +30,7 @@ class AddAvatarIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('avatar_id');
+            $table->dropColumn('use_robot_avatar');
             $table->boolean('avatar_approved')->default(0)->change();
             $table->string('avatar');
         });
