@@ -1,43 +1,80 @@
 <template>
     <div>
         <heading class="mb-6">Stats Manager</heading>
-        <button v-if="!generating" class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="generate">Generate Stat Report</button>
-        <button v-if="generating" class="bg-primary px-4 py-2 rounded-lg text-white bold" >Generating...</button>
-        <card class="bg-white flex flex-col w-full mt-4">
-            <table class="table-fixed">
-                <thead>
-                <tr>
-                    <th class="w-2/5 px-4 py-2">File</th>
-                    <th class="w-1/5 px-4 py-2">Season</th>
-                    <th class="w-1/5 px-4 py-2">Week</th>
-                    <th class="w-1/5 px-4 py-2">Download</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="file in files">
-                    <td>{{ file.filename }}</td>
-                    <td>{{ file.season.name }}</td>
-                    <td>{{ file.week }}</td>
-                    <td>
-                        <button class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="download(file)">Download</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </card>
+        <Tabs>
+            <Tab name="Stocks Owned" :selected="true">
+                <div v-for="stock in stocks" v-bind:key="stock.nickname" class="item-row-wrap">
+                    <div class="item-row">
+                        <span class="name">
+                            {{ stock.nickname }}
+                        </span>
+                        <span class="total">
+                            {{ number_format(stock.total) }}
+                        </span>
+                    </div>
+                    <div :style="computeWidth(stock.total, topStock)" class="chart-row"></div>
+                </div>
+            </Tab>
+            <Tab name="Money Spent">
+                <div v-for="m in money" v-bind:key="m.nickname" class="item-row-wrap">
+                    <div class="item-row">
+                        <span class="name">
+                            {{ m.nickname }}
+                        </span>
+                        <span class="total">
+                            ${{ number_format(m.total) }}
+                        </span>
+                    </div>
+                    <div :style="computeWidth(m.total, topMoney)" class="chart-row-alt"></div>
+                </div>
+            </Tab>
+            <Tab name="Reports">
+                <button v-if="!generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4" @click="generate">Generate Stat Report</button>
+                <button v-if="generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4">Generating...</button>
+                <table class="table-fixed w-full">
+                    <thead>
+                    <tr>
+                        <th class="w-2/5 px-4 py-2">File</th>
+                        <th class="w-1/5 px-4 py-2">Season</th>
+                        <th class="w-1/5 px-4 py-2">Week</th>
+                        <th class="w-1/5 px-4 py-2">Download</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="file in files">
+                        <td>{{ file.filename }}</td>
+                        <td class="text-center">{{ file.season.name }}</td>
+                        <td class="text-center">{{ file.week }}</td>
+                        <td class="text-center">
+                            <button class="bg-primary px-4 py-2 rounded-lg text-white bold" @click="download(file)">Download</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </Tab>
+        </Tabs>
+
     </div>
 </template>
 
 <script>
+import Tab from "./Tab";
+import Tabs from "./Tabs";
+
 export default {
     data() {
         return {
             files: Array,
-            generating: false
+            generating: false,
+            stocks: Array,
+            topStock: Number,
+            money: Array,
+            topMoney: Number
         }
     },
     mounted() {
         this.getFiles();
+        this.getStats();
     },
     methods: {
         generate() {
@@ -60,12 +97,62 @@ export default {
                 anchor.download = file.filename;
                 anchor.click();
             });
+        },
+        getStats() {
+            axios.get('/nova-vendor/stats-manager/stats/total/stocks').then(res => {
+                this.stocks = res.data;
+                this.topStock = res.data[0].total;
+            })
+            axios.get('/nova-vendor/stats-manager/stats/total/money').then(res => {
+                this.money = res.data;
+                this.topMoney = res.data[0].total;
+            })
+        },
+        computeWidth(numerator, denominator) {
+            return 'width:' + (numerator / denominator) * 100 + '%'
+        },
+        number_format(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
         }
+    },
+    components: {
+        Tab,
+        Tabs,
     }
 }
 </script>
 
 <style>
+
+.item-row-wrap {
+    display: flex;
+    justify-items: flex-start;
+    margin: 1rem 0;
+}
+
+.item-row {
+    padding: 0.5rem 0;
+    flex: 0 0 22%;
+    display: flex;
+}
+
+.name {
+    font-weight: bold;
+    flex: 0 0 100px;
+}
+
+.total {
+    flex: 1 1 auto;
+}
+
+.chart-row {
+    background-color: hsl(224, 90%, 53%);
+}
+
+.chart-row-alt {
+    background-color: hsl(173, 90%, 53%);
+}
+
 thead th:first-child {
     border-top-left-radius: 4px;
 }
@@ -93,4 +180,9 @@ tbody tr:hover {
 tr:last-child td {
     border: none
 }
+
+.rounded {
+    border-radius: .25rem;
+}
+
 </style>

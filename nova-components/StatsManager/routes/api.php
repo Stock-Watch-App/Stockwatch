@@ -4,6 +4,7 @@ use App\Models\File;
 use App\Models\Season;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use League\Csv\Writer as Csv;
@@ -59,4 +60,45 @@ Route::get('/file/{type}/{file}', function ($type, $file) {
 
 Route::get('/files', function (Request $request) {
     return File::with('season')->get();
+});
+
+Route::get('/stats/total/stocks', function () {
+    /* select h.nickname, sum(s.quantity) as total
+     * from stocks s
+     * join houseguests h on s.houseguest_id = h.id
+     * where houseguest_id > 16
+     * group by h.nickname
+     * order by total desc;
+     */
+    $season = Season::current();
+    return DB::table('stocks')
+             ->select(DB::raw('houseguests.nickname, sum(stocks.quantity) as total'))
+             ->join('houseguests', 'stocks.houseguest_id', '=', 'houseguests.id')
+             ->whereRaw('houseguests.season_id = ?', $season->id)
+             ->groupBy('houseguests.nickname')
+             ->orderByDesc('total')
+             ->get();
+
+});
+Route::get('/stats/total/money', function () {
+    /* select h.nickname, sum(s.quantity*p.price) as total
+     * from stocks s
+     * join houseguests h on s.houseguest_id = h.id
+     * join prices p on s.houseguest_id = p.houseguest_id
+     * where s.houseguest_id > 16
+     * and p.week = 1
+     * group by h.nickname
+     * order by total desc;
+     */
+    $season = Season::current();
+    return DB::table('stocks')
+             ->select(DB::raw('houseguests.nickname, sum(stocks.quantity*prices.price) as total'))
+             ->join('houseguests', 'stocks.houseguest_id', '=', 'houseguests.id')
+             ->join('prices', 'stocks.houseguest_id', '=', 'prices.houseguest_id')
+             ->whereRaw('houseguests.season_id = ?', $season->id)
+             ->whereRaw('prices.week = ?', ($season->status === 'closed') ? $season->current_week : $season->current_week - 1)
+             ->groupBy('houseguests.nickname')
+             ->orderByDesc('total')
+             ->get();
+
 });
