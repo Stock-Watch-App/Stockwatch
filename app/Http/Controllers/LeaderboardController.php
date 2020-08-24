@@ -19,7 +19,7 @@ class LeaderboardController extends Controller
 
         $leaderboard = Leaderboard::where('week', $season->current_week)
                                   ->where('season_id', $season->id)
-                                  ->with('user')
+                                  ->with('user.banks')
                                   ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
                                   ->get();
@@ -29,7 +29,7 @@ class LeaderboardController extends Controller
 
     public function allTime()
     {
-        $leaderboard = Leaderboard::with('user')
+        $leaderboard = Leaderboard::with('user.banks')
                                   ->select(DB::raw('user_id, sum(networth) as networth'))
                                   ->where('week', static function ($q) {
                                       $q->select(DB::raw('max(week)'))
