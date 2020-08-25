@@ -47,6 +47,8 @@ class User extends Resource
 
             Date::make('Email Verified At')->help('Set date to mark email verified.')->onlyOnForms(),
 
+            Boolean::make('Avatar Approved'),
+            Boolean::make('Use Robot Avatar'),
 
             Password::make('Password')
                     ->onlyOnForms()
