@@ -15,10 +15,10 @@
         </div>
 
         <x-skeleton style="width:200px;height:200px;" />
-        <avatar-picker
-            :user="{{$user}}"
-            class="profile-image-edit"
-        ></avatar-picker>
+{{--        <avatar-picker--}}
+{{--            :user="{{$user}}"--}}
+{{--            class="profile-image-edit"--}}
+{{--        ></avatar-picker>--}}
 
         <div class="edit-profile">
             <h4>Edit Profile</h4>
