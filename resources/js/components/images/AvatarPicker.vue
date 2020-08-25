@@ -1,8 +1,5 @@
 <template>
     <div>
-
-
-
         <img :src="robotAvatar" title="Robot" class="profile-pic" :class="{selected: selected === 'robot'}" @click="pick('robot')"/>
         <img :src="customAvatar" title="Custom" class="profile-pic" :class="{selected: selected === 'custom'}" @click="pick('custom')"/>
         <image-upload to="/account/avatar/upload" @uploaded-file="uploadedFile"></image-upload>

@@ -35,7 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $appends = [
-        'avatar_url'
+        'avatar_url',
+//        'times_played'
     ];
 
     public function banks()
@@ -85,6 +86,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getBankAttribute()
     {
         return $this->banks->where('season_id', Season::current()->id)->first();
+    }
+
+    public function getTimesPlayedAttribute()
+    {
+        return $this->banks()->where('user_id', $this->id)->count();
     }
 
     //=== ATTRIBUTES ===//

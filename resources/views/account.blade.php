@@ -4,9 +4,9 @@
     <div class="user-account app-content-max">
         <h3 class="mg-btm-lg">Account Settings</h3>
 
-        <avatar-picker
-            :user="{{$user}}"
-        ></avatar-picker>
+{{--        <avatar-picker--}}
+{{--            :user="{{$user}}"--}}
+{{--        ></avatar-picker>--}}
 
         <div class="logout">
             Not {{ $user->name }}?
