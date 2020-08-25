@@ -2,21 +2,26 @@
 
 @section('content')
     <div class="user-account app-content-max">
-        <h3 class="mg-btm-lg">Account Settings</h3>
-
-{{--        <avatar-picker--}}
-{{--            :user="{{$user}}"--}}
-{{--        ></avatar-picker>--}}
-
-        <div class="logout">
-            Not {{ $user->name }}?
-            <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
-               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+        <div class="account-header">
+            <h3 class="mg-btm-lg">Account Settings</h3>
+            <div class="logout">
+                Not {{ $user->name }}?
+                <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
         </div>
+
+        <x-skeleton style="width:200px;height:200px;" />
+        <avatar-picker
+            :user="{{$user}}"
+            class="profile-image-edit"
+        ></avatar-picker>
+
         <div class="edit-profile">
+            <h4>Edit Profile</h4>
             <form method="POST" action="{{ route('account.update') }}">
                 @csrf
                     <label for="name" class="label">{{ _('Display Name') }}</label>
@@ -37,9 +42,10 @@
 {{--                    @enderror--}}
 
 
-                    <button type="submit" class="button-base secondary mg-top-lg mg-btm-lg">
+                    <button type="submit" class="button-base primary mg-top-lg mg-btm-lg">
                         {{ __('Save changes') }}
                     </button>
+                    <!-- I'd like to disable this button until the username input field has been edited.. so like disabled={someThing} -->
                 </form>
 </div>
     </div>

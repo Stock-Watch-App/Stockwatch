@@ -50,7 +50,7 @@
                                 </div>
                             </td>
                             <td class="user-row">
-                                 <avatar :user="leaderboard.user" height="25" width="25" :class="leaderboard-avatar"></avatar>
+                                 <avatar :user="leaderboard.user" height="25" width="25" class="leaderboard-avatar"></avatar>
                                 <span>{{ leaderboard.user.name }}</span>
                                 <span
                                     v-if="
