@@ -106,4 +106,11 @@ class Houseguest extends BaseModel
     {
         return $query->orWhere('status', 'evicted');
     }
+
+    public function scopeCurrentSeason($query)
+    {
+        return $query->whereHas('season', function($q) {
+            $q->where('id', Season::current()->id);
+        });
+    }
 }
