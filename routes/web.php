@@ -2,6 +2,7 @@
 
 use App\Http\Admin\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectionController;
@@ -39,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/account', [UserController::class, 'account'])->name('account.edit');
     Route::post('/account/update', [UserController::class, 'update'])->name('account.update');
+    Route::post('/account/avatar/use/{type}', [UserController::class, 'useAvatar'])->name('avatar.use');
+    Route::post('/account/avatar/upload', [ImageController::class, 'uploadAvatar'])->name('avatar.upload');
 
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

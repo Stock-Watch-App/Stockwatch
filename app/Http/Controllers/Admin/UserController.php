@@ -11,6 +11,7 @@ class UserController extends Controller
     public function account(Request $request)
     {
         $user = $request->user();
+        $user->load(['banks', 'avatar']);
         return view('account', compact('user'));
     }
 
@@ -27,5 +28,21 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('account.edit');
+    }
+
+    public function useAvatar($type)
+    {
+        $user = auth()->user();
+
+        switch ($type) {
+            case 'custom':
+                $user->use_robot_avatar = false;
+                break;
+            case 'robot':
+                $user->use_robot_avatar = true;
+                break;
+        }
+
+        $user->save();
     }
 }
