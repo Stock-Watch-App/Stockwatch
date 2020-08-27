@@ -110,7 +110,9 @@ class LoginController extends Controller
                 ]);
                 $user->provider = $provider;
                 $user->provider_user_id = $providerUser->getId();
-                $user->setAvatar($providerUser->getAvatar());
+//                if ($providerUser->getAvatar()) {
+//                    $user->setAvatar($providerUser->getAvatar());
+//                }
                 $user->save();
 
                 $user->markEmailAsVerified();
