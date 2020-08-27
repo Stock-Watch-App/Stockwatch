@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -56,7 +57,7 @@ class User extends Resource
                     ->updateRules('nullable', 'string', 'min:8'),
 
             Text::make('Logged In Via', 'provider'),
-            Date::make('Last Seen')->hideWhenCreating()->hideWhenUpdating(),
+            DateTime::make('Last Seen')->hideWhenCreating()->hideWhenUpdating(),
 
             HasMany::make('Ratings'),
 
