@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use App\Models\Anomaly;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -10,14 +9,14 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Anomalies extends Resource
+class Anomaly extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = Anomaly::class;
+    public static $model = 'App\Models\Anomaly';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
