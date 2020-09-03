@@ -5,7 +5,9 @@
         <h3 class="mg-btm-lg">{{ $season->name }} Leaderboard</h3>
             <leaderboard-table
                 :houseguests="{{ $houseguests }}"
-                :leaderboard="{{ $leaderboard }}"
+                :leaderboards="{{ json_encode($leaderboard->toArray()['data']) }}"
             ></leaderboard-table>
     </div>
+    {{ $leaderboard->links() }}
 @endsection
+

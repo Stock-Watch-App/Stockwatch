@@ -8,16 +8,8 @@
         />
         <div class="leader-overflow">
             <div class="table-wrap mg-btm-md">
-                <v-table
-                    :data="cleanLeaderboard"
-                    :hideSortIcons="true"
-                    :filters="filters"
-                    :currentPage.sync="currentPage"
-                    :pageSize="100"
-                    @totalPagesChanged="totalPages = $event"
-                    class="leaderboard-table"
-                >
-                    <thead slot="head">
+                <table class="leaderboard-table">
+                    <thead>
                         <tr>
                             <th class="rank-sort">Rank</th>
                             <th class="user-row-head">Player</th>
@@ -36,9 +28,9 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody slot="body" slot-scope="{ displayData }">
+                    <tbody>
                         <tr
-                            v-for="leaderboard in displayData"
+                            v-for="leaderboard in leaderboards"
                             :key="leaderboard.user_id"
                         >
                             <td>
@@ -46,7 +38,7 @@
                                     class="rank-num"
                                     :class="'rank-' + leaderboard.rank"
                                 >
-                                    {{ leaderboard.rank }}
+                                    {{ leaderboard.rank }} {{ leaderboard.percentage_ranking }}%
                                 </div>
                             </td>
                             <td class="user-row">
@@ -105,22 +97,16 @@
                             </td>
                         </tr>
                     </tbody>
-                </v-table>
+                </table>
             </div>
         </div>
-
-        <smart-pagination
-            :currentPage.sync="currentPage"
-            :totalPages="totalPages"
-            :maxPageLinks="8"
-        />
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        leaderboard: Array,
+        leaderboards: Array,
         houseguests: Array
     },
     data: () => ({
