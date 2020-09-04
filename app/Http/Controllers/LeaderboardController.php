@@ -20,7 +20,7 @@ class LeaderboardController extends Controller
         $leaderboard = Leaderboard::where('week', $season->current_week)
                                   ->where('season_id', $season->id)
                                   ->with('user.banks')
-                                  ->withCount('seasonalLeaderboards')
+                                  ->withCount('weeklyLeaderboards')
                                   ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
                                   ->paginate(100);

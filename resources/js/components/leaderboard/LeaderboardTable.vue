@@ -1,17 +1,21 @@
 <template>
     <div class="leader-grid">
-        <label class="label-hidden">Filter by Name:</label>
-        <input
-            class="input inline-width input-light mg-btm-md"
-            placeholder="Search user..."
-            v-model="filters.name.value"
-        />
+        <form method="GET">
+            <label class="label-hidden">Filter by Name:</label>
+            <input
+                class="input inline-width input-light mg-btm-md"
+                placeholder="Search user..."
+                name="name"
+                v-model="filters.name.value"
+            />
+        </form>
         <div class="leader-overflow">
             <div class="table-wrap mg-btm-md">
                 <table class="leaderboard-table">
                     <thead>
                         <tr>
                             <th class="rank-sort">Rank</th>
+                            <th></th>
                             <th class="user-row-head">Player</th>
                             <th>Networth</th>
                             <th
@@ -38,8 +42,15 @@
                                     class="rank-num"
                                     :class="'rank-' + leaderboard.rank"
                                 >
-                                    {{ leaderboard.rank }} {{ leaderboard.percentage_ranking }}%
+                                    {{ leaderboard.rank }}
                                 </div>
+                            </td>
+                            <td>
+                                <span class="badge badge--blue"
+                                    :class="percentageRankingBadgeClass(leaderboard.percentage_ranking)"
+                                >
+                                    Top {{ leaderboard.percentage_ranking }}%
+                                </span>
                             </td>
                             <td class="user-row">
                                  <avatar :user="leaderboard.user" height="25" width="25" class="leaderboard-avatar"></avatar>
@@ -126,6 +137,21 @@ export default {
     methods: {
         houseguestImage: function(houseguest) {
             return "/storage/" + houseguest.image;
+        },
+        percentageRankingBadgeClass(percentage) {
+            if(percentage == 1) {
+                return 'badge--yellow';
+            } else if(percentage < 5) {
+                return 'badge--teal';
+            } else if(percentage < 10) {
+                return 'badge--green';
+            } else if(percentage < 25) {
+                return 'badge--indigo';
+            } else if(percentage < 50) {
+                return 'badge--blue';
+            }
+
+            return 'badge--gray';
         }
     }
 };
