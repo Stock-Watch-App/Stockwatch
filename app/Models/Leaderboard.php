@@ -26,6 +26,12 @@ class Leaderboard extends BaseModel
     //=== ATTRIBUTES ===//
     public function getRankPercentageAttribute()
     {
-        return ceil($this->rank / (new WeeklyLeaderboards($this->season_id, $this->week))->count() * 100);
+        $total = (new WeeklyLeaderboards($this->season_id, $this->week))->count();
+
+        if ($total == 0) {
+            return 0;
+        }
+
+        return ceil($this->rank / $total * 100);
     }
 }
