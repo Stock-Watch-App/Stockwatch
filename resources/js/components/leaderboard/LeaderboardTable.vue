@@ -41,15 +41,13 @@
                             v-for="leaderboard in displayData"
                             :key="leaderboard.user_id"
                         >
-                            <td class="rank-td">
-                                <div class="rank-percent-wrap">
-                                    <div
-                                        class="rank-num"
-                                        :class="'rank-' + leaderboard.rank"
-                                    >
-                                        {{ leaderboard.rank }}
-                                    </div>
-                                    <div class="rank-percent">Top {{ leaderboard.rank_percentage }}%</div>
+                            <td>
+                                <div
+                                    class="rank-num"
+                                    :class="'rank-' + leaderboard.rank"
+                                    v-tooltip="'Top ' + leaderboard.rank_percentage + '%'"
+                                >
+                                    {{ leaderboard.rank }}
                                 </div>
                             </td>
                             <td class="user-row">
