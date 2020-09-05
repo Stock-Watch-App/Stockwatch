@@ -42,7 +42,7 @@
             <summary class="plus-icon">
                 <span>When is the Stock Watch market opened and closed?</span>
             </summary>
-            <p>The market will open Tuesday evening after the Roundtable and close Thursday night at 6pm ET</p>
+            <p>The market will open Tuesday evening after the Roundtable and close Thursday night at 8pm ET</p>
         </details>
         <details>
             <summary class="plus-icon">
