@@ -41,7 +41,7 @@ class AddRankPercentageToLeaderboard extends Migration
 
         $leaderboards->each(function (Leaderboard $leaderboard) {
             $total = (new WeeklyLeaderboards($leaderboard->season_id, $leaderboard->week))->count();
-            $leaderboard->rank_percentage = $total > 0 ? ceil($leaderboard->rank / $total * 100) : 0;
+            $leaderboard->rank_percentage = $total > 0 ? ceil($leaderboard->rank / $total * 100) : 100;
             $leaderboard->save();
         });
     }
