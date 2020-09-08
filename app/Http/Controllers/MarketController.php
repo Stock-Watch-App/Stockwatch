@@ -57,10 +57,9 @@ class MarketController extends Controller
 
     public function payStipend($season)
     {
-
         $pdo = DB::connection()->getPdo();
 
-        $sql = "UPDATE banks SET money = (money+20) WHERE season_id = :season_id";
+        $sql = "UPDATE banks SET money = (money+20) WHERE season_id = :season_id AND inactive_at IS NULL";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':season_id', $season->id);
@@ -128,7 +127,6 @@ class MarketController extends Controller
 
         $insert = $networth->map(function ($net) use ($stocks, $season, &$rank, &$lastValue, &$hiddenRank) {
             if ($stocks->has($net->user_id)) {
-
                 if ($lastValue === $net->networth) {
                     $newRank = $rank;
                 } else {
@@ -147,7 +145,6 @@ class MarketController extends Controller
                     'stocks'    => $stocks[$net->user_id]
                 ];
             }
-
         })->reject(function ($value) {
             return $value === null;
         })->toArray();
