@@ -45,7 +45,7 @@
                                 <div
                                     class="rank-num"
                                     :class="'rank-' + leaderboard.rank"
-                                    v-tooltip="'Top ' + leaderboard.rank_percentage + '%'"
+                                    v-tooltip="'Top ' + leaderboard.rank_percentile + '%'"
                                 >
                                     {{ leaderboard.rank }}
                                 </div>
