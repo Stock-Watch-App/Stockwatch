@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\RankPercentile;
 use App\WeeklyLeaderboards;
 
 class Leaderboard extends BaseModel
@@ -13,7 +14,7 @@ class Leaderboard extends BaseModel
     ];
 
     protected $appends = [
-        'rank_percentage'
+        'rank_percentile'
     ];
 
     //=== RELATIONSHIPS ===//
@@ -22,16 +23,8 @@ class Leaderboard extends BaseModel
         return $this->belongsTo(User::class);
     }
     //=== METHODS ===//
-
-    //=== ATTRIBUTES ===//
-    public function getRankPercentageAttribute()
+    public function getRankPercentileAttribute()
     {
-        $total = (new WeeklyLeaderboards($this->season_id, $this->week))->count();
-
-        if ($total == 0) {
-            return 0;
-        }
-
-        return ceil($this->rank / $total * 100);
+        return (new RankPercentile($this))->calculate();
     }
 }
