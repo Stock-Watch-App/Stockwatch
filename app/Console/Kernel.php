@@ -30,7 +30,10 @@ class Kernel extends ConsoleKernel
         $schedule->job(new AuditUsers)->dailyAt('4:00')->timezone('America/New_York');
 
         if ($season = Season::current()) {
-            $schedule->job(new CloseMarket($season))->thursdays()->at($season->closes_at)->timezone('America/New_York');
+            $schedule->job((new CloseMarket($season))->onConnection('sync'))
+                ->thursdays()
+                ->at($season->closes_at)
+                ->timezone('America/New_York');
         }
     }
 

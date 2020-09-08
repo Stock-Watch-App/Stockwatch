@@ -25,10 +25,7 @@ class CloseMarket implements ShouldQueue
 
     public function handle()
     {
-        $this->season->current_week += 1;
-
-        (new CalculatePrices($this->season))->handle();
-        (new ZeroOutEvictees($this->season))->handle();
-        (new GenerateLeaderboard($this->season))->handle();
+        $this->season->status = 'closed';
+        $this->season->save();
     }
 }
