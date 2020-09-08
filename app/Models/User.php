@@ -93,7 +93,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->banks()->where('user_id', $this->id)->count();
     }
 
-    //=== ATTRIBUTES ===//
     public function getAvatarUrlAttribute()
     {
         if ($this->avatar) {
