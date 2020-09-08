@@ -71,7 +71,6 @@ class MarketController extends Controller
 
     public function payStipend($season)
     {
-
         $pdo = DB::connection()->getPdo();
 
         $sql = "UPDATE banks SET money = (money+20) WHERE season_id = :season_id AND active = 1";
@@ -141,9 +140,12 @@ class MarketController extends Controller
         $lastValue = '1';
         $hiddenRank = 1;
 
-        $insert = $networth->map(function ($net) use ($stocks, $season, &$rank, &$lastValue, &$hiddenRank) {
-            if ($stocks->has($net->user_id)) {
+        $totalActivePlayers = $networth->reject(function ($value) {
+            return $value === null;
+        })->count();
 
+        $insert = $networth->map(function ($net) use ($stocks, $season, $totalActivePlayers, &$rank, &$lastValue, &$hiddenRank) {
+            if ($stocks->has($net->user_id)) {
                 if ($lastValue === $net->networth) {
                     $newRank = $rank;
                 } else {
@@ -154,15 +156,15 @@ class MarketController extends Controller
                 $hiddenRank++;
 
                 return [
-                    'user_id'   => $net->user_id,
-                    'season_id' => $season->id,
-                    'week'      => $season->current_week,
-                    'rank'      => $newRank,
-                    'networth'  => $net->networth,
-                    'stocks'    => $stocks[$net->user_id]
+                    'user_id'           => $net->user_id,
+                    'season_id'         => $season->id,
+                    'week'              => $season->current_week,
+                    'rank'              => $newRank,
+                    'rank_percentage'   => ceil($newRank / $totalActivePlayers * 100),
+                    'networth'          => $net->networth,
+                    'stocks'            => $stocks[$net->user_id]
                 ];
             }
-
         })->reject(function ($value) {
             return $value === null;
         })->toArray();
