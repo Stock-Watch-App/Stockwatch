@@ -12,17 +12,18 @@ use Illuminate\Support\Facades\DB;
 
 class LeaderboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $season = Season::current();
         $houseguests = Houseguest::where('season_id', $season->id)->get();
 
         $leaderboard = Leaderboard::where('week', $season->current_week)
                                   ->where('season_id', $season->id)
+                                  ->search($request->search)
                                   ->with('user.banks')
                                   ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
-                                  ->get();
+                                  ->paginate(100);
 
         return view('leaderboard', compact('houseguests', 'leaderboard', 'season'));
     }

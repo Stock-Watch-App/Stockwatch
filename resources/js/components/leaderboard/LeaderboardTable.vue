@@ -1,11 +1,15 @@
 <template>
     <div class="leader-grid">
         <label class="label-hidden">Filter by Name:</label>
-        <input
-            class="input inline-width input-light mg-btm-md"
-            placeholder="Search user..."
-            v-model="filters.name.value"
-        />
+        <form method="GET">
+            <input
+                class="input inline-width input-light mg-btm-md"
+                placeholder="Search user..."
+                name="search"
+                :value="search"
+            />
+            <input type="hidden" name="page" value="1" />
+        </form>
         <div class="leader-overflow">
             <div class="table-wrap mg-btm-md">
                 <v-table
@@ -122,7 +126,8 @@
 export default {
     props: {
         leaderboard: Array,
-        houseguests: Array
+        houseguests: Array,
+        search: String
     },
     data: () => ({
         filters: {

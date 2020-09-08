@@ -14,10 +14,10 @@
         <link rel="icon" href="/favicon-dev.ico" type="image/x-icon"/>
     @endif
 <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app" class="app-wrapper">
