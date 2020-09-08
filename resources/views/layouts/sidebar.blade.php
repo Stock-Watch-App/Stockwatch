@@ -83,7 +83,7 @@
         @auth
             @if(!\Auth::user()->permissions->isEmpty() || !\Auth::user()->roles->isEmpty())
                 <li>
-                    <a href="/admin" title="Admin" class="item-wrap">
+                    <a href="http://admin.realitystockwatch.com/admin" target="_blank" rel="noreferrer noopener" title="Admin" class="item-wrap">
                         <x-skeleton style="width:22px;height:22px;border-radius:50%;" />
                         <figure>
                             <font-awesome-icon icon="user-shield" fixed-width/>
