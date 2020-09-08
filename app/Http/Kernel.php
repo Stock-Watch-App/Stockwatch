@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\RedirectIfTrespassing;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -37,6 +38,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\LastSeen::class,
             \App\Http\Middleware\CurrentSeason::class,
+            \App\Http\Middleware\RedirectIfTrespassing::class
         ],
 
         'api' => [

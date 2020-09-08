@@ -53,32 +53,8 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $season = Season::current();
-        //find inactive users
-//        select b.user_id
-//        from banks b
-//        left join transactions t on t.user_id = b.user_id and t.created_at > '2020-08-24'
-//        where b.season_id = 2
-//        and t.id is null
-//        group by b.user_id;
-
-//        select *
-//        from banks
-//        where not exists (select *
-//        from users
-//        where banks.user_id = users.id
-//    and exists (select *
-//        from transactions
-//        where users.id = transactions.user_id
-//    and date(created_at) > '2020-08-24'))
-//        and season_id = 2
-//        and active <> 0
-dump(Carbon::now()->subDays(25)->toDateString());
-        $inactive =
-
-//        $inactive->;
-
-        dump($inactive);
+        $r = \request();
+        dump($r);
     }
 
     public function testingAudit()
