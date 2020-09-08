@@ -30,6 +30,7 @@ class LeaderboardController extends Controller
     public function allTime()
     {
         $leaderboard = Leaderboard::with('user.banks')
+                                  ->whereSeasonEnded()
                                   ->select(DB::raw('user_id, sum(networth) as networth'))
                                   ->where('week', static function ($q) {
                                       $q->select(DB::raw('max(week)'))
