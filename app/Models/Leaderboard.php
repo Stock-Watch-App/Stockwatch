@@ -27,4 +27,18 @@ class Leaderboard extends BaseModel
     {
         return (new RankPercentile($this))->calculate();
     }
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
+    }
+
+    //=== SCOPES ===//
+    public function scopeWhereSeasonEnded($query)
+    {
+        $query->whereHas('season', function ($query) {
+            $query->where('status', 'ended');
+        });
+    }
+
+    //=== METHODS ===//
 }
