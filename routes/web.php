@@ -9,10 +9,10 @@ use App\Http\Controllers\ProjectionController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DebugController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 Auth::routes(['verify'   => true]);
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
@@ -48,12 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/trades/join', [TradeController::class, 'initGame'])->name('join.game');
     Route::post('/trades/savestocks', [TradeController::class, 'savestocks']);
-
 });
 
-Route::get('/faq', function () {
-    return view('faq');
-});
+Route::get('/faq', [FaqController::class, 'show'])->name('faq');
 
 Route::get('/maintenance', function () {
     return view('maintenance');
@@ -80,9 +77,8 @@ Route::group(['middleware' => ['local']], function () {
         }
     });
     Route::get('/test/error/{error}', function ($error) {
-       abort($error);
+        abort($error);
     });
-
 });
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
