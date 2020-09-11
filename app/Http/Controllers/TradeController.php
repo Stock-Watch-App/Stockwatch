@@ -112,7 +112,6 @@ class TradeController extends Controller
         Transaction::insert($transactions);
 
         $bank->money = $networth - $proposedTransactionValue;
-        $bank->active = true;
         $bank->save();
 
         return json_encode(['success' => true]);

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Formula;
-use App\Models\Bank;
 use App\Models\Houseguest;
 use App\Models\Price;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use function foo\func;
 
@@ -20,7 +17,6 @@ class MarketController extends Controller
         $this->calculatePrices($season);
         if ($season->getOriginal('status') !== 'pre-season') {
             $this->zeroOutEvictees($season);
-            $this->markInactivePlayersInactive($season);
             $this->payStipend($season);
             $this->generateLeaderboard($season);
         }
@@ -31,7 +27,6 @@ class MarketController extends Controller
         $season->current_week += 1;
         $this->calculatePrices($season);
         $this->zeroOutEvictees($season);
-        $this->markInactivePlayersInactive($season);
         $this->generateLeaderboard($season);
     }
 
@@ -60,20 +55,11 @@ class MarketController extends Controller
         }
     }
 
-    public function markInactivePlayersInactive($season)
-    {
-        Bank::whereDoesntHave('user.transactions', function (Builder $query) {
-            $query->whereDate('created_at', '>', Carbon::now()->subDays(15)->toDateString());
-        })->where('season_id', $season->id)
-            ->where('active', '<>', 0)
-            ->update(['active' => 0]);
-    }
-
     public function payStipend($season)
     {
         $pdo = DB::connection()->getPdo();
 
-        $sql = "UPDATE banks SET money = (money+20) WHERE season_id = :season_id AND active = 1";
+        $sql = "UPDATE banks SET money = (money+20) WHERE season_id = :season_id";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':season_id', $season->id);
@@ -111,7 +97,6 @@ class MarketController extends Controller
                       ->select(DB::raw('stocks.user_id, ANY_VALUE(sum(stocks.quantity*prices.price)+banks.money) as networth'))
                       ->join('prices', 'stocks.houseguest_id', '=', 'prices.houseguest_id')
                       ->join('banks', 'stocks.user_id', '=', 'banks.user_id')
-                      ->where('banks.active', 1)
                       ->whereRaw('banks.season_id = ?', $season->id)
                       ->whereRaw('prices.season_id = ?', $season->id)
                       ->whereRaw('prices.week = ?', $season->current_week)
