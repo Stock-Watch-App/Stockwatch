@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Bank;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class Season extends BaseModel
@@ -31,7 +32,7 @@ class Season extends BaseModel
     //=== SCOPES ===/
     public function scopeCurrent($query)
     {
-        if(request()->has('season')) {
+        if (request()->has('season')) {
             return request()->get('season');
         }
 
@@ -45,5 +46,16 @@ class Season extends BaseModel
                             ->first();
         }
         return $season;
+    }
+
+    //=== ATTRIBUTES ===//
+    public function getClosesAtAttribute()
+    {
+        return Carbon::parse($this->attributes['closes_at']);
+    }
+
+    public function setClosesAtAttribute($value)
+    {
+        $this->attributes['closes_at'] = Carbon::parse($value)->format('H:i');
     }
 }
