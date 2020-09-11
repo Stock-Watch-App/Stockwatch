@@ -28,7 +28,11 @@ Route::post('/generate', function (Request $request) {
     $data = Transaction::whereHas('user')->whereHas('houseguest', function ($q) use ($season) {
         $q->withoutGlobalScope('active');
         $q->where('season_id', $season->id);
-    })->where('week', $season->current_week)->get();
+    })->with([
+        'houseguest' => function ($q) use ($season) {
+            $q->withoutGlobalScope('active');
+        }
+    ])->where('week', $season->current_week)->get();
 
     // make file
     $csv = Csv::createFromFileObject(new \SplTempFileObject);
@@ -43,6 +47,7 @@ Route::post('/generate', function (Request $request) {
             $transaction->quantity,
             $transaction->current_price,
         ]);
+
     });
     // save pointer
     $filename = date('Y-m-d') . '_' . $season->short_name . '_w' . $season->current_week . '.csv';
