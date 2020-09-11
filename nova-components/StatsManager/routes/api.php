@@ -26,6 +26,7 @@ Route::post('/generate', function (Request $request) {
     // get data
     $season = Season::current();
     $data = Transaction::whereHas('user')->whereHas('houseguest', function ($q) use ($season) {
+        $q->withoutGlobalScope('active');
         $q->where('season_id', $season->id);
     })->where('week', $season->current_week)->get();
 
