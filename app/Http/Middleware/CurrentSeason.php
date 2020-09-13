@@ -16,6 +16,13 @@ class CurrentSeason
      */
     public function handle($request, Closure $next)
     {
-        return $next($request->merge(['season' => Season::current()]));
+        //  Do not append the season to requests that have signed routes.
+        //  This causes a 403 error.
+        //  https://stackoverflow.com/a/54034735/5763389
+        if ($request->route()->getName() != "verification.verify") {
+            $request->merge(['season' => Season::current()]);
+        }
+
+        return $next($request);
     }
 }
