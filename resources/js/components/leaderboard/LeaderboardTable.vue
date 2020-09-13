@@ -9,6 +9,7 @@
                 :value="search"
             />
             <input type="hidden" name="page" value="1" />
+            <button type="submit" class="button-base primary mg-btm-lg">Search</button>
         </form>
         <div class="leader-overflow">
             <div class="table-wrap mg-btm-md">
