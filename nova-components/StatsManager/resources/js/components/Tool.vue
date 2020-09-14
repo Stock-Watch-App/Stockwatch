@@ -9,7 +9,7 @@
                             {{ stock.nickname }}
                         </span>
                         <span class="total">
-                            {{ number_format(stock.total) }}
+                            {{ numberFormat(stock.total) }}
                         </span>
                     </div>
                     <div :style="computeWidth(stock.total, topStock)" class="chart-row"></div>
@@ -22,7 +22,7 @@
                             {{ m.nickname }}
                         </span>
                         <span class="total">
-                            ${{ number_format(m.total) }}
+                            ${{ numberFormat(m.total) }}
                         </span>
                     </div>
                     <div :style="computeWidth(m.total, topMoney)" class="chart-row-alt"></div>
@@ -111,8 +111,8 @@ export default {
         computeWidth(numerator, denominator) {
             return 'width:' + (numerator / denominator) * 100 + '%'
         },
-        number_format(num) {
-            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
+        numberFormat(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
         }
     },
     components: {

@@ -756,8 +756,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         computeWidth: function computeWidth(numerator, denominator) {
             return 'width:' + numerator / denominator * 100 + '%';
         },
-        number_format: function number_format(num) {
-            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '2,');
+        numberFormat: function numberFormat(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
         }
     },
     components: {
@@ -1130,7 +1130,7 @@ var render = function() {
                     _c("span", { staticClass: "total" }, [
                       _vm._v(
                         "\n                        " +
-                          _vm._s(_vm.number_format(stock.total)) +
+                          _vm._s(_vm.numberFormat(stock.total)) +
                           "\n                    "
                       )
                     ])
@@ -1166,7 +1166,7 @@ var render = function() {
                     _c("span", { staticClass: "total" }, [
                       _vm._v(
                         "\n                        $" +
-                          _vm._s(_vm.number_format(m.total)) +
+                          _vm._s(_vm.numberFormat(m.total)) +
                           "\n                    "
                       )
                     ])
