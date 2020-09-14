@@ -51,15 +51,7 @@ class DebugController extends Controller
     public function xyz()
     {
     // get data
-    $season = Season::current();
-    $data = Transaction::whereHas('user')->whereHas('houseguest', function ($q) use ($season) {
-        $q->withoutGlobalScope('active');
-        $q->where('season_id', $season->id);
-    })->with([
-        'houseguest' => function ($q) use ($season) {
-            $q->withoutGlobalScope('active');
-        }
-    ])->where('week', $season->current_week)->get();
+    $data = User::whereDate('created_at', '>', Season::current()->created_at)->count();
 
     dump($data);
     }

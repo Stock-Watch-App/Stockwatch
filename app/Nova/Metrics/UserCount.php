@@ -2,6 +2,7 @@
 
 namespace App\Nova\Metrics;
 
+use App\Models\Season;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 use App\Models\User;
@@ -16,7 +17,9 @@ class UserCount extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->count($request, User::class);
+        return $this->result(User::count());
+//        return $this->result($this->currentSeason())->previous($this->lastSeason());
+//        return $this->count($request, User::class);
     }
 
     /**
@@ -24,17 +27,26 @@ class UserCount extends Value
      *
      * @return array
      */
-    public function ranges()
+//    public function ranges()
+//    {
+//        return [
+//            30 => '30 Days',
+//            60 => '60 Days',
+//            365 => '365 Days',
+//            'TODAY' => 'Today',
+//            'MTD' => 'Month To Date',
+//            'QTD' => 'Quarter To Date',
+//            'YTD' => 'Year To Date',
+//        ];
+//    }
+
+    public function currentSeason()
     {
-        return [
-            30 => '30 Days',
-            60 => '60 Days',
-            365 => '365 Days',
-            'TODAY' => 'Today',
-            'MTD' => 'Month To Date',
-            'QTD' => 'Quarter To Date',
-            'YTD' => 'Year To Date',
-        ];
+        return User::whereDate('created_at', '>=', Season::current()->created_at)->count();
+    }
+    public function lastSeason()
+    {
+        return User::whereDate('created_at', '<', Season::current()->created_at)->count();
     }
 
     /**
