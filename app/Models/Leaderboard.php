@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\RankPercentile;
 use App\WeeklyLeaderboards;
+use Illuminate\Database\Eloquent\Builder;
 
 class Leaderboard extends BaseModel
 {
@@ -38,6 +39,20 @@ class Leaderboard extends BaseModel
         $query->whereHas('season', function ($query) {
             $query->where('status', 'ended');
         });
+    }
+
+    public function scopeSearch($query, $terms)
+    {
+        collect(explode(' ', $terms))->filter()->each(function ($term) use ($query) {
+            $term = "{$term}%";
+            $query->where(function (Builder $builder) use ($term) {
+                $builder->whereHas('user', function (Builder $builder) use ($term) {
+                    $builder->where('name', 'like', $term);
+                });
+            });
+        });
+
+        return $query;
     }
 
     //=== METHODS ===//
