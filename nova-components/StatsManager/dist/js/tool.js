@@ -754,6 +754,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         computeWidth: function computeWidth(numerator, denominator) {
+            console.log(numerator / denominator);
             return 'width:' + numerator / denominator * 100 + '%';
         },
         numberFormat: function numberFormat(num) {

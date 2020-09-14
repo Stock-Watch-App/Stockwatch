@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Season;
 use App\Models\Houseguest;
 use Illuminate\Support\Facades\DB;
+use function Clue\StreamFilter\fun;
 
 class LeaderboardController extends Controller
 {
@@ -20,7 +21,12 @@ class LeaderboardController extends Controller
         $leaderboard = Leaderboard::where('week', $season->current_week)
                                   ->where('season_id', $season->id)
                                   ->search($request->search)
-                                  ->with('user.banks')
+                                  ->with([
+                                      'user.banks',
+                                      'user.vanitytag' => function ($q) use ($season) {
+                                          $q->where('season_id', $season->id);
+                                      }
+                                  ])
                                   ->orderBy('rank')
                                   ->cacheFor(now()->addHours(24))
                                   ->paginate(100);
@@ -36,7 +42,7 @@ class LeaderboardController extends Controller
                                   ->where('week', static function ($q) {
                                       $q->select(DB::raw('max(week)'))
                                         ->from('leaderboard')
-                                          ->where('season_id', 1)
+                                        ->where('season_id', 1)
                                         ->groupBy('season_id');
                                   })->groupBy('user_id')
                                   ->orderBy('networth', 'desc')

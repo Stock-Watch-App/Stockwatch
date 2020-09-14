@@ -58,15 +58,16 @@
                             <td class="user-row">
                                  <avatar :user="leaderboard.user" height="25" width="25" class="leaderboard-avatar"></avatar>
                                 <span>{{ leaderboard.user.name }}</span>
-                                <span
-                                    v-if="
-                                        leaderboard.user.id === 4 ||
-                                            leaderboard.user.id === 6 ||
-                                            leaderboard.user.id === 9
-                                    "
-                                    class="tag lfc"
-                                    >LFC</span
-                                >
+                                <vanity-tag v-if="leaderboard.user.vanitytag" :name="leaderboard.user.vanitytag.tag"></vanity-tag>
+<!--                                <span-->
+<!--                                    v-if="-->
+<!--                                        leaderboard.user.id === 4 ||-->
+<!--                                            leaderboard.user.id === 6 ||-->
+<!--                                            leaderboard.user.id === 9-->
+<!--                                    "-->
+<!--                                    class="tag lfc"-->
+<!--                                    >LFC</span-->
+<!--                                >-->
                                 <first-badge
                                 v-if="leaderboard.user.id === 1727"
                                 class="leaderboard-badge"

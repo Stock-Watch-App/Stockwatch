@@ -109,6 +109,7 @@ export default {
             })
         },
         computeWidth(numerator, denominator) {
+            console.log(numerator / denominator);
             return 'width:' + (numerator / denominator) * 100 + '%'
         },
         numberFormat(num) {
