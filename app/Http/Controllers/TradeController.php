@@ -50,7 +50,7 @@ class TradeController extends Controller
     {
         $season = Season::current();
         $season->load(['houseguests.prices', 'houseguests.ratings',
-                'vanitytags' => function ($q) use ($season) {
+                'houseguests.vanitytags' => function ($q) use ($season) {
                     $q->where('week', $season->current_week);
                 },]);
         $stocks = $season->houseguests->map(static function ($h) {
