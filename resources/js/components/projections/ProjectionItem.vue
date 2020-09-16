@@ -3,7 +3,7 @@
     <div class="hg-details">
       <h5>
           {{ houseguest.nickname }}
-            <vanity-tag v-if="houseguest.vanitytags" :label="houseguest.vanitytags.tag"></vanity-tag>
+            <vanity-tag v-for="tag in houseguest.vanitytags" :label="tag.tag"></vanity-tag>
       </h5>
     </div>
     <img :src="houseguestImage" :alt="houseguest.nickname" class="hg-img" height="85" width="85" />

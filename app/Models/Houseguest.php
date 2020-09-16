@@ -50,7 +50,7 @@ class Houseguest extends BaseModel
 
     public function vanitytags()
     {
-        return $this->morphOne(VanityTag::class, 'taggable');
+        return $this->morphMany(VanityTag::class, 'taggable');
     }
 
     //=== ATTRIBUTES ===//
