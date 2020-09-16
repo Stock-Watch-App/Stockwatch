@@ -1,5 +1,5 @@
 <template>
-    <span class="tag" :class="this.name.toLowerCase()">{{ name }}</span>
+    <span class="tag" :class="color">{{ name }}</span>
 </template>
 
 <script>
@@ -10,21 +10,14 @@ export default {
     computed: {
         color() {
             switch (this.name.toLowerCase()) {
-                // katie's attempt, it doesn't work
-                case lfc:
-                    name.class = "lfc";
-                    break;
-                case nom:
-                    name.class = "nom";
-                    break;
-                case hoh:
-                    name.class = "hoh";
-                    break;
-                case veto:
-                    name.class = "veto";
-                    break;
-                // case 'lfc':
-                //     return
+                case 'lfc':
+                    return 'lfc';
+                case 'nominated':
+                    return 'nom';
+                case 'hoh':
+                    return 'hoh';
+                case 'veto':
+                    return 'veto';
                 default:
                     return
             }
