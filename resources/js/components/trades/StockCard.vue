@@ -9,8 +9,8 @@
                     stock.houseguest.nickname ||
                         stock.houseguest.first_name | capitalize
                 }}
-            <vanity-tag v-if="stock.houseguest.vanitytags" :label="stock.houseguest.vanitytags.tag"></vanity-tag>
             </h4>
+            <vanity-tag v-if="stock.houseguest.vanitytags" :label="stock.houseguest.vanitytags.tag"></vanity-tag>
         </div>
         <img :src="houseguestImage" height="85" width="85" class="hg-img" />
         <div class="hg-rating">
