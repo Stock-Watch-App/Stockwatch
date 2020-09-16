@@ -69,7 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Image::class, 'avatar_id');
     }
 
-    public function vanitytag()
+    public function vanitytags()
     {
         return $this->morphOne(VanityTag::class, 'taggable');
     }

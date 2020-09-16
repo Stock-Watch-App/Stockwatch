@@ -23,7 +23,7 @@ class LeaderboardController extends Controller
                                   ->search($request->search)
                                   ->with([
                                       'user.banks',
-                                      'user.vanitytag' => function ($q) use ($season) {
+                                      'user.vanitytags' => function ($q) use ($season) {
                                           $q->where('season_id', $season->id);
                                       }
                                   ])
@@ -36,7 +36,12 @@ class LeaderboardController extends Controller
 
     public function allTime()
     {
-        $leaderboard = Leaderboard::with('user.banks')
+        $leaderboard = Leaderboard::with([
+                                      'user.banks',
+                                      'user.vanitytags' => function ($q) {
+                                          $q->where('season_id', Season::current()->id);
+                                      }
+                                  ])
                                   ->whereSeasonEnded()
                                   ->select(DB::raw('user_id, sum(networth) as networth'))
                                   ->where('week', static function ($q) {

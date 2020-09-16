@@ -1,15 +1,15 @@
 <template>
-    <span class="tag" :class="color">{{ name }}</span>
+    <span class="tag" :class="color">{{ label }}</span>
 </template>
 
 <script>
 export default {
     props: {
-        name: String,
+        label: String,
     },
     computed: {
         color() {
-            switch (this.name.toLowerCase()) {
+            switch (this.label.toLowerCase()) {
                 case 'lfc':
                     return 'lfc';
                 case 'nominated':
@@ -25,7 +25,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

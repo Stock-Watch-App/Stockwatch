@@ -10,8 +10,16 @@ class ProjectionController extends Controller
 {
     public function index()
     {
-        $houseguests = Houseguest::with('ratings', 'prices')
-                                 ->where('season_id', Season::current()->id)
+        $season = Season::current();
+
+        $houseguests = Houseguest::with([
+                                     'ratings',
+                                     'prices',
+                                     'vanitytags' => function ($q) use ($season) {
+                                         $q->where('week', $season->current_week);
+                                     },
+                                 ])
+                                 ->where('season_id', $season->id)
                                  ->cacheFor(now()->addHours(24))
                                  ->get();
 

@@ -1,7 +1,10 @@
 <template>
   <div class="projection-card">
     <div class="hg-details">
-      <h5>{{ houseguest.nickname }}</h5>
+      <h5>
+          {{ houseguest.nickname }}
+            <vanity-tag v-if="houseguest.vanitytags" :label="houseguest.vanitytags.tag"></vanity-tag>
+      </h5>
     </div>
     <img :src="houseguestImage" :alt="houseguest.nickname" class="hg-img" height="85" width="85" />
     <div class="this-week">

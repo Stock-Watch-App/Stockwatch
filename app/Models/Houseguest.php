@@ -48,7 +48,7 @@ class Houseguest extends BaseModel
         return $this->hasMany(Rating::class);
     }
 
-    public function vanitytag()
+    public function vanitytags()
     {
         return $this->morphOne(VanityTag::class, 'taggable');
     }

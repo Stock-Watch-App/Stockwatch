@@ -25,6 +25,7 @@ class Houseguest extends Resource
     ];
     public static $perPageViaRelationship = 20; // incase there are more than 16 in a season for some reason
 
+
     public function fields(Request $request)
     {
         return [
@@ -40,5 +41,12 @@ class Houseguest extends Resource
 
             HasMany::make('Ratings')
         ];
+    }
+    public static function relatableQuery(NovaRequest $request, $query)
+    {
+        if ($request->route('resource') === 'vanity-tags') {
+            return $query->withoutGlobalScope('active');
+        }
+        return $query;
     }
 }

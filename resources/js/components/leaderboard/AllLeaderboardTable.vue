@@ -1,11 +1,10 @@
 <template>
     <div class="leader-grid alltime-leader">
-        <label class="label-hidden">Filter by Name:</label>
-        <input
-            class="input inline-width input-light mg-btm-md"
-            placeholder="Search user..."
-            v-model="filters.name.value"
-        />
+        <label class="label-hidden">Filter by Name:</label> <input
+        class="input inline-width input-light mg-btm-md"
+        placeholder="Search user..."
+        v-model="filters.name.value"
+    />
         <div class="table-wrap mg-btm-md">
             <v-table
                 :data="rankedLeaderboard"
@@ -17,79 +16,71 @@
                 class="leaderboard-table"
             >
                 <thead slot="head">
-                    <tr>
-                        <th class="rank-sort">Rank</th>
-                        <th class="user-row-head">Player</th>
-                        <th>Networth</th>
-                    </tr>
+                <tr>
+                    <th class="rank-sort">Rank</th>
+                    <th class="user-row-head">Player</th>
+                    <th>Networth</th>
+                </tr>
                 </thead>
                 <tbody slot="body" slot-scope="{ displayData }">
-                    <tr
-                        v-for="leaderboard in displayData"
-                        :key="leaderboard.user_id"
-                    >
-                        <td>
-                            <div
-                                class="rank-num"
-                                :class="leaderboard.rank.class"
-                            >
-                                {{ leaderboard.rank.rank }}
-                            </div>
-                        </td>
-                        <td class="user-row">
-                            <avatar
-                                :user="leaderboard.user"
-                                height="25"
-                                width="25"
-                                class="leaderboard-avatar"
-                            ></avatar>
-                            <span>{{ leaderboard.user.name }}</span>
-                            <span
-                                v-if="
-                                    leaderboard.user.id === 4 ||
-                                        leaderboard.user.id === 6 ||
-                                        leaderboard.user.id === 9
-                                "
-                                class="tag lfc"
-                                >LFC</span
-                            >
-                            <first-badge
-                                v-if="leaderboard.user.id === 1727"
-                                class="leaderboard-badge"
-                                v-tooltip="'BB21 1st'"
-                            ></first-badge>
-                            <second-badge
-                                v-if="leaderboard.user.id === 1068"
-                                class="leaderboard-badge"
-                                v-tooltip="'BB21 2nd'"
-                            ></second-badge>
-                            <third-badge
-                                v-if="leaderboard.user.id === 341"
-                                class="leaderboard-badge"
-                                v-tooltip="'BB21 3rd'"
-                            ></third-badge>
-                            <topfive-badge
-                                v-if="
+                <tr
+                    v-for="leaderboard in displayData"
+                    :key="leaderboard.user_id"
+                >
+                    <td>
+                        <div
+                            class="rank-num"
+                            :class="leaderboard.rank.class"
+                        >
+                            {{ leaderboard.rank.rank }}
+                        </div>
+                    </td>
+                    <td class="user-row">
+                        <avatar
+                            :user="leaderboard.user"
+                            height="25"
+                            width="25"
+                            class="leaderboard-avatar"
+                        ></avatar>
+                        <span>{{ leaderboard.user.name }}</span>
+                        <vanity-tag v-if="leaderboard.user.vanitytags" :label="leaderboard.user.vanitytags.tag"></vanity-tag>
+                        <first-badge
+                            v-if="leaderboard.user.id === 1727"
+                            class="leaderboard-badge"
+                            v-tooltip="'BB21 1st'"
+                        ></first-badge>
+                        <second-badge
+                            v-if="leaderboard.user.id === 1068"
+                            class="leaderboard-badge"
+                            v-tooltip="'BB21 2nd'"
+                        ></second-badge>
+                        <third-badge
+                            v-if="leaderboard.user.id === 341"
+                            class="leaderboard-badge"
+                            v-tooltip="'BB21 3rd'"
+                        ></third-badge>
+                        <topfive-badge
+                            v-if="
                                     leaderboard.user.id === 4 ||
                                         leaderboard.user.id === 12
                                 "
-                                class="leaderboard-badge"
-                                v-tooltip="'BB21 top 5'"
-                            ></topfive-badge>
-                            <topten-badge
-                                v-if="
+                            class="leaderboard-badge"
+                            v-tooltip="'BB21 top 5'"
+                        ></topfive-badge>
+                        <topten-badge
+                            v-if="
                                     leaderboard.user.id === 986 ||
                                         leaderboard.user.id === 895 ||
                                         leaderboard.user.id === 808
                                 "
-                                class="leaderboard-badge"
-                                v-tooltip="'BB21 top 10'"
-                            ></topten-badge>
-                        </td>
-                        <td class="networth">
-                            {{ leaderboard.networth | currency }}
-                        </td>
-                    </tr>
+                            class="leaderboard-badge"
+                            v-tooltip="'BB21 top 10'"
+                        ></topten-badge>
+                    </td>
+                    <td class="networth">
+                        {{ leaderboard.networth | currency }}
+                    </td>
+                </tr>
                 </tbody>
             </v-table>
         </div>
@@ -109,7 +100,7 @@ export default {
     },
     data: () => ({
         filters: {
-            name: { value: "", keys: ["user.name"] }
+            name: {value: "", keys: ["user.name"]}
         },
         currentPage: 1,
         totalPages: 0,
@@ -119,7 +110,7 @@ export default {
         }
     }),
     computed: {
-        rankedLeaderboard: function() {
+        rankedLeaderboard: function () {
             let rank = 1;
             let lastValue = "1";
             let hiddenRank = 1;
@@ -159,7 +150,7 @@ export default {
         }
     },
     methods: {
-        houseguestImage: function(houseguest) {
+        houseguestImage: function (houseguest) {
             return "/storage" + houseguest.image;
         }
     }
