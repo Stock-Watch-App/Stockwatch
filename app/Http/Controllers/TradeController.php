@@ -49,7 +49,10 @@ class TradeController extends Controller
     public function guestIndex(Request $request, $stateOfUser = '')
     {
         $season = Season::current();
-        $season->load(['houseguests.prices', 'houseguests.ratings', 'houseguests.vanitytags']);
+        $season->load(['houseguests.prices', 'houseguests.ratings',
+                'vanitytags' => function ($q) use ($season) {
+                    $q->where('week', $season->current_week);
+                },]);
         $stocks = $season->houseguests->map(static function ($h) {
             return ['houseguest' => $h];
         });
