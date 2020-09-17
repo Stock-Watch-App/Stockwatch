@@ -29,6 +29,11 @@ class Season extends BaseModel
         return $this->hasMany(File::class);
     }
 
+    public function prices()
+    {
+        return $this->hasMany(Price::class);
+    }
+
     //=== SCOPES ===/
     public function scopeCurrent($query)
     {

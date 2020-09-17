@@ -26,7 +26,8 @@ class Transaction extends Resource
             BelongsTo::make('Houseguest'),
             Text::make('Action'),
             Number::make('Quantity'),
-            Currency::make('At Price', 'current_price')
+            Currency::make('At Price', 'current_price'),
+            Number::make('Week')
         ];
     }
 }

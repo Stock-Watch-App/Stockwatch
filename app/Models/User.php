@@ -64,6 +64,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Leaderboard::class);
     }
 
+    public function session()
+    {
+        return $this->hasMany(Session::class);
+    }
+
     public function avatar()
     {
         return $this->belongsTo(Image::class, 'avatar_id');

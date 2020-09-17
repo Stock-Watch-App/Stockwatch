@@ -4,14 +4,14 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Price extends Resource
+class Session extends Resource
 {
-    public static $model = \App\Models\Price::class;
+    public static $model = \App\Models\Session::class;
 
     public static $title = 'id';
 
@@ -22,10 +22,11 @@ class Price extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('Houseguest', 'houseguest', Houseguest::class),
-            BelongsTo::make('Season'),
-            Number::make('Week'),
-            Currency::make('Price')
+            BelongsTo::make('User')->nullable(),
+            Text::make('IP Address')->nullable(),
+            Text::make('User Agent')->nullable(),
+            Text::make('Payload'),
+            Number::make('Last Activity')
         ];
     }
 }
