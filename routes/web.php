@@ -10,6 +10,7 @@ use App\Http\Controllers\TradeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DebugController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\HouseguestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::get('/landing', [HomeController::class, 'landing']);
 Route::get('/projections', [ProjectionController::class, 'index']);
 
 Route::get('/trades', [TradeController::class, 'index'])->name('trade');
+
+Route::get('/houseguest/{houseguest}', [HouseguestController::class, 'show'])->name('houseguest.show');
 
 Route::get('/leaderboard', [LeaderboardController::class, 'allTime'])->name('allTimeLeaderboard');
 //    Route::get('/leaderboard/bbus', [LeaderboardController::class, 'allTime'])->name('bbusLeaderboard');

@@ -41,7 +41,7 @@ class BaseModel extends Model
     public function refreshAttribute($key)
     {
         if (!in_array($key, $this->cache_attributes)) {
-             return false;
+            return false;
         }
 
         $value = parent::getAttribute($key);
@@ -49,6 +49,13 @@ class BaseModel extends Model
         $this->cached_attributes[$key] = $value;
 
         return $value;
+    }
+
+    public function appendAttribute($attribute)
+    {
+        $this->appends[] = $attribute;
+
+        return $this;
     }
 
     public function dumpCache()

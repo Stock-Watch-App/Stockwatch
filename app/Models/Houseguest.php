@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Houseguest extends BaseModel
 {
-
     public $projectionsComputed;
 
     protected $cache_attributes = [
@@ -19,7 +18,8 @@ class Houseguest extends BaseModel
 
     protected $appends = [
         'current_rate',
-        'current_price'
+        'current_price',
+        'image_url'
     ];
 
     public static function boot()
@@ -81,7 +81,10 @@ class Houseguest extends BaseModel
                     ->count();
     }
 
-//    public function getAttribute(){}
+    public function getImageUrlAttribute()
+    {
+        return "/storage/{$this->image}";
+    }
 
     public function getProjectionsAttribute()
     {
@@ -114,7 +117,7 @@ class Houseguest extends BaseModel
 
     public function scopeCurrentSeason($query)
     {
-        return $query->whereHas('season', function($q) {
+        return $query->whereHas('season', function ($q) {
             $q->where('id', Season::current()->id);
         });
     }
