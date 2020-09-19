@@ -1,35 +1,41 @@
 <template>
     <div class="profile-page-wrap">
-        <div class="profile-details">
-            <avatar :user="user" height="60px" width="60px"></avatar>
-            <p class="bold">{{ user.name }}</p>
-            <p>current rank {{ currentRank }}</p>
-            <p>all-time rank {{ user.rank }}</p>
-            <p>badges here</p>
+        <div class="profile-details mg-btm-md">
+            <div class="profile-header-avatar">
+                <avatar :user="user" height="60px" width="60px"></avatar>
+                <p class="bold">{{ user.name }}</p>
+            </div>
+            <div class="profile-header-stats">
+                <p>current rank: <span class="bold">{{ currentRank }}</span></p>
+                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>
+                <p>badges here</p>
+            </div>
         </div>
 
         <div class="profile-stats-wrap mg-btm-lg">
             <div class="week-picker-wrap mg-btm-sm">
                 <h3>Summary</h3>
-                <icon-button
-                    icon="chevron-left"
-                    ariaLabelledById="my-label"
-                    buttonLabel="Last week"
-                    class="prev-button"
-                    @click="mutateRank('down')"
-                ></icon-button>
-                <select-component
-                    v-model.number="selectedWeek"
-                    placeholder="Current Week"
-                    :options="weekSelectorOptions"
-                ></select-component>
-                <icon-button
-                    icon="chevron-right"
-                    ariaLabelledById="my-label"
-                    buttonLabel="Next week"
-                    class="next-button"
-                    @click="mutateRank('up')"
-                ></icon-button>
+                <div class="week-picker">
+                    <icon-button
+                        icon="chevron-left"
+                        ariaLabelledById="my-label"
+                        buttonLabel="Last week"
+                        class="prev-button"
+                        @click="mutateRank('down')"
+                    ></icon-button>
+                    <select-component
+                        v-model.number="selectedWeek"
+                        placeholder="Current Week"
+                        :options="weekSelectorOptions"
+                    ></select-component>
+                    <icon-button
+                        icon="chevron-right"
+                        ariaLabelledById="my-label"
+                        buttonLabel="Next week"
+                        class="next-button"
+                        @click="mutateRank('up')"
+                    ></icon-button>
+                </div>
             </div>
             <div class="weekly-stats-wrap">
                 <div class="stats-summary">
@@ -127,9 +133,9 @@ export default {
                         .find(hg => {
                             return hg.id === stock.houseguest_id;
                         })
-                        .prices.find(p => {
-                            return p.week === this.week;
-                        }).price
+                        // .prices.find(p => {
+                        //     return p.week === this.week;
+                        // }).price
                 );
 
                 value += stock.quantity * price;
@@ -180,8 +186,8 @@ export default {
 
             return {
                 amount: Math.abs(diff),
-                icon: isIncrease ? "arrow-up" : diff === 0 ? "" : "arrow-down",
-                class: isIncrease ? "green" : diff === 0 ? "" : "red"
+                icon: isIncrease ? "arrow-down" : diff === 0 ? "" : "arrow-up",
+                class: isIncrease ? "red" : diff === 0 ? "" : "green"
             };
         },
         weekSelectorOptions: function() {

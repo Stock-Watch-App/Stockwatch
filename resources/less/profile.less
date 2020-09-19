@@ -1,21 +1,48 @@
 @import (reference)  './_variables.less';
 @import (reference) './_mixins.less';
 
-:root {
-
-}
-
 .profile-page-wrap {
     --select-width: 200px;
 
     grid-column: ~'1/-1';
     display: grid;
-    grid-template-columns: minmax(min-content, 300px) auto;
-    margin-left: -2rem;
+    grid-template-columns: 1fr;
 
     .profile-details {
-        grid-column: ~'1/2';
         text-align: center;
+        position: sticky;
+        top: 70px;
+        background: @white;
+        border-bottom: solid 1px @primary-blue;
+        z-index: 1;
+        padding-top: 1rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+
+        .avatar {
+            height: 30px;
+            width: 30px;
+        }
+    }
+
+    .profile-header-stats {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 0.5rem;
+    }
+
+    .profile-header-avatar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+
+        p {
+            margin-bottom: 0;
+        }
     }
 
     .stats {
@@ -62,40 +89,36 @@
 
 
     .profile-stats-wrap {
-        // grid-column: ~'1/-1';
-        // grid-row: ~'1/2';
-        // padding: 1rem;
 
         .week-picker-wrap {
             display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            align-items: center;
+            flex-direction: column;
 
-            h3 {
-                margin-right: auto;
-                margin-bottom: 0;
-            }
+            .week-picker {
+                display: flex;
+                flex-direction: row;
 
-            select {
-                border-radius: 0;
-            }
+                select {
+                    border-radius: 0;
+                    flex: 1 1 auto;
+                }
+    
+                .next-button {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+    
+                .prev-button {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
 
-            .next-button {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-
-            .prev-button {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
             }
         }
 
         .stats-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(175px, auto));
-            //grid-template-rows: minmax(100px, max-content);
             grid-gap: 1rem;
         }
 
@@ -143,25 +166,69 @@
         }
     }
 
+}
 
-    // .media(@min-tablet, {
-    //     .dash-cards-wrap {
-    //         .dash-cards {
-    //             // grid-template-columns: repeat(auto-fill, minmax(250px, auto));
-    //             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    //             grid-template-rows: minmax(100px, max-content);
-    //         }
-    //     }
-    // });
+.media(@min-tablet, {
+    .profile-page-wrap {
+        grid-template-columns: minmax(min-content, 300px) auto;
+        margin-left: -2rem;
+    
+        .profile-details {
+            grid-column: ~'1/2';
+            text-align: center;
+            position: relative;
+            top: unset;
+            border-bottom: none;
+            z-index: 1;
+            padding-top: 0;
+            margin-left: unset;
+            margin-right: unset;
+            padding: 1rem;
 
-    .media(@min-desktop, {
+            .avatar {
+                height: 60px;
+                width: 60px;
+            }
+        }
 
-       .stats {
+        .profile-header-stats {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    
+        .profile-header-avatar {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding-bottom: 1rem;
+        }
+    }
+
+    
+});
+
+.media(@min-desktop, {
+    .profile-page-wrap {
+
+        .stats {
             .px-rem-margin(0, 0, 32, 0);
             .px-rem(padding, 16);
         }
 
-    });
+        .profile-stats-wrap {
 
-}
+            .week-picker-wrap {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+        
+                h3 {
+                    margin-right: auto;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
 
+ });
