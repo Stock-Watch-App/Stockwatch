@@ -31,7 +31,8 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $dates = [
-        'last_seen'
+        'last_seen',
+        'last_audited'
     ];
 
     protected $appends = [
@@ -39,6 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
 //        'times_played'
     ];
 
+    //=== RELATIONSHIPS ===//
     public function banks()
     {
         return $this->hasMany(Bank::class);
@@ -62,6 +64,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function leaderboard()
     {
         return $this->hasMany(Leaderboard::class);
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
     }
 
     public function avatar()

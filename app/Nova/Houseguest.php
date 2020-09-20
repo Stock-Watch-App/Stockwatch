@@ -39,7 +39,9 @@ class Houseguest extends Resource
             ]),
             Avatar::make('Image')->disk('public'),
 
-            HasMany::make('Ratings')
+            HasMany::make('Ratings', 'ratings', Rating::class),
+            HasMany::make('Prices', 'prices', Price::class),
+            HasMany::make('Transactions', 'transactions', Transaction::class)
         ];
     }
     public static function relatableQuery(NovaRequest $request, $query)

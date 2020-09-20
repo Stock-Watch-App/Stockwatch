@@ -22,7 +22,8 @@ class Price extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('Houseguest', 'houseguest', Houseguest::class),
+            BelongsTo::make('Houseguest', 'houseguest', Houseguest::class)->searchable(),
+            BelongsTo::make('Season'),
             Number::make('Week'),
             Currency::make('Price')
         ];

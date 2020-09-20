@@ -9,4 +9,9 @@ class Price extends BaseModel
     {
         return $this->belongsTo(Houseguest::class);
     }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
+    }
 }

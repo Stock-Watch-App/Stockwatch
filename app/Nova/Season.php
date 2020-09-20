@@ -3,10 +3,12 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Season extends Resource
@@ -31,7 +33,10 @@ class Season extends Resource
                 'closed' => 'Closed',
                 'ended' => 'Ended',
             ]),
-            HasMany::make('Houseguests', 'houseguests', Houseguest::class)
+            Number::make('Current Week'),
+            DateTime::make('Closes At')->format('H:mm'),
+            HasMany::make('Houseguests', 'houseguests', Houseguest::class),
+            HasMany::make('Prices')
         ];
     }
 }
