@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Session;
 
 class Season extends BaseModel
 {
+    protected $dates = [
+        'closes_at',
+    ];
+
     //=== RELATIONSHIPS ===//
     public function houseguests()
     {
@@ -27,6 +31,11 @@ class Season extends BaseModel
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    public function prices()
+    {
+        return $this->hasMany(Price::class);
     }
 
     //=== SCOPES ===/
@@ -51,7 +60,9 @@ class Season extends BaseModel
     //=== ATTRIBUTES ===//
     public function getClosesAtAttribute()
     {
-        return Carbon::parse($this->attributes['closes_at']);
+        if (isset($this->attributes['closes_at']))
+            return Carbon::parse($this->attributes['closes_at']);
+        return null;
     }
 
     public function setClosesAtAttribute($value)

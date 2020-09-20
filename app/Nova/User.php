@@ -38,9 +38,10 @@ class User extends Resource
 
             Text::make('Email')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
+                ->rules('email', 'max:254')
                 ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->updateRules('unique:users,email,{{resourceId}}')
+                ->nullable(),
 
             Boolean::make('Email Verified', function() {
                 return (bool) $this->email_verified_at;
@@ -58,8 +59,11 @@ class User extends Resource
 
             Text::make('Logged In Via', 'provider'),
             DateTime::make('Last Seen')->hideWhenCreating()->hideWhenUpdating(),
+            DateTime::make('Last Audited')->nullable(),
 
-            HasMany::make('Ratings'),
+            HasMany::make('Ratings', 'ratings', Rating::class),
+            HasMany::make('Transactions', 'transactions', Transaction::class),
+            HasMany::make('Sessions', 'sessions', Session::class),
 
             \Vyuldashev\NovaPermission\RoleBooleanGroup::make('Roles'),
             \Vyuldashev\NovaPermission\PermissionBooleanGroup::make('Permissions'),
