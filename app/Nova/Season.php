@@ -34,9 +34,9 @@ class Season extends Resource
                 'ended' => 'Ended',
             ]),
             Number::make('Current Week'),
-            DateTime::make('Closes At')->format('H:mm'),
+//            DateTime::make('Closes At')->format('H:mm'),
             HasMany::make('Houseguests', 'houseguests', Houseguest::class),
-            HasMany::make('Prices')
+//            HasMany::make('Prices')
         ];
     }
 }
