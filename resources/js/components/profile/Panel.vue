@@ -7,8 +7,8 @@
             </div>
             <div class="profile-header-stats">
                 <p>current rank: <span class="bold">{{ currentRank }}</span></p>
-                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>
-                <p>badges here</p>
+<!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
+<!--                <p>badges here</p>-->
             </div>
         </div>
 
@@ -21,6 +21,7 @@
                         ariaLabelledById="my-label"
                         buttonLabel="Last week"
                         class="prev-button"
+                        :disabled="selectedWeek === minWeek"
                         @click="mutateRank('down')"
                     ></icon-button>
                     <select-component
@@ -33,6 +34,7 @@
                         ariaLabelledById="my-label"
                         buttonLabel="Next week"
                         class="next-button"
+                        :disabled="selectedWeek === maxWeek"
                         @click="mutateRank('up')"
                     ></icon-button>
                 </div>
@@ -55,8 +57,8 @@
                                     class="stat-diff-icon"
                                 />
                                 <span v-if="networthDiff.amount >= 0">{{
-                                    networthDiff.amount | currency
-                                }}</span>
+                                        networthDiff.amount | currency
+                                    }}</span>
                             </span>
                         </div>
                     </div>
@@ -76,15 +78,15 @@
                                     class="stat-diff-icon"
                                 />
                                 <span v-if="rankDiff.amount - selectedRank">{{
-                                    rankDiff.amount
-                                }}</span>
+                                        rankDiff.amount
+                                    }}</span>
                             </span>
                         </div>
                     </div>
                 </div>
                 <ul class="stats-cards">
                     <holdings-card-profile
-                        v-for="stock in user.stocks"
+                        v-for="stock in weeklyStocks"
                         :stock="stock"
                         :houseguests="houseguests"
                         :key="stock.houseguest_id"
@@ -106,10 +108,13 @@ export default {
     data() {
         return {
             selectedWeek: this.week,
+            minWeek: 2,
+            maxWeek: Number, //set in weekSelectorOptions
             currentRank: null
         };
     },
-    mounted() {},
+    mounted() {
+    },
     watch: {},
     methods: {
         mutateRank(direction) {
@@ -124,28 +129,12 @@ export default {
         }
     },
     computed: {
-        networth: function() {
-            let value = parseFloat(this.bank.money);
-
-            this.user.stocks.forEach(stock => {
-                let price = parseFloat(
-                    this.houseguests
-                        .find(hg => {
-                            return hg.id === stock.houseguest_id;
-                        })
-                        // .prices.find(p => {
-                        //     return p.week === this.week;
-                        // }).price
-                );
-
-                value += stock.quantity * price;
-            });
-
-            return value;
+        networth: function () {
+            return this.user.leaderboard.find(l => l.week === this.selectedWeek).networth;
         },
-        networthDiff: function() {
+        networthDiff: function () {
             let lastWeek = Object.assign(
-                { networth: 0 },
+                {networth: 0},
                 this.user.leaderboard.find(l => {
                     return l.week === this.selectedWeek - 1;
                 })
@@ -160,9 +149,9 @@ export default {
                 class: isIncrease ? "green" : diff === 0 ? "" : "red"
             };
         },
-        selectedRank: function() {
+        selectedRank: function () {
             let rank = Object.assign(
-                { rank: "N/A" },
+                {rank: "N/A"},
                 this.user.leaderboard.find(l => {
                     return l.week === this.selectedWeek;
                 })
@@ -172,9 +161,9 @@ export default {
 
             return rank;
         },
-        rankDiff: function() {
+        rankDiff: function () {
             let lastWeek = Object.assign(
-                { rank: 0 },
+                {rank: 0},
                 this.user.leaderboard.find(l => {
                     return l.week === this.selectedWeek - 1;
                 })
@@ -190,12 +179,27 @@ export default {
                 class: isIncrease ? "red" : diff === 0 ? "" : "green"
             };
         },
-        weekSelectorOptions: function() {
+        weekSelectorOptions: function () {
             let options = [];
             this.user.leaderboard.forEach(l => {
-                options.push({ value: l.week, text: "Week " + l.week });
+                options.push({value: l.week, text: "Week " + l.week});
+                this.maxWeek = l.week;
             });
             return options;
+        },
+        weeklyStocks: function () {
+            let mappedStocks = [];
+            let stocks = this.user.leaderboard.find(l => l.week === this.selectedWeek).stocks;
+            for (const [key, value] of Object.entries(stocks)) {
+                if (value !== 0 && typeof this.houseguests.find(h => h.id === parseInt(key)) !== 'undefined') {
+                    mappedStocks.push({
+                        houseguest_id: parseInt(key),
+                        quantity: value,
+                        week: this.selectedWeek
+                    });
+                }
+            };
+            return mappedStocks;
         }
     }
 };
