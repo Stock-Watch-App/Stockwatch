@@ -26,9 +26,7 @@ class Bank extends Resource
             BelongsTo::make('User')->searchable(),
             BelongsTo::make('Season'),
             Currency::make('Money'),
-            Boolean::make('Active', function() {
-                return (bool) $this->active;
-            })
+//            Boolean::make('Active')
         ];
     }
 }
