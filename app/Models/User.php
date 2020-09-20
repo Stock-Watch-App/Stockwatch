@@ -66,7 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Leaderboard::class);
     }
 
-    public function session()
+    public function sessions()
     {
         return $this->hasMany(Session::class);
     }
