@@ -50,10 +50,24 @@ class DebugController extends Controller
 
     public function xyz()
     {
-    // get data
-    $data = User::whereDate('created_at', '>', Season::current()->created_at)->count();
+        $season = Season::current();
+        $stocks = User::with([
+            'stocks' => function ($q) use ($season) {
+                $q->whereHas('houseguest', function ($q) use ($season) {
+                   $q->where('season_id', $season->id);
+                });
+            }
+        ])->get()->mapToAssoc(function ($u) {
+            return [
+                $u->id,
+                json_encode($u->stocks->mapToAssoc(function ($stock) {
+                    return [$stock->houseguest_id, $stock->quantity];
+                }))
+            ];
+        });
 
-    dump($data);
+    dump($stocks);
+
     }
 
     public function testaudit()
