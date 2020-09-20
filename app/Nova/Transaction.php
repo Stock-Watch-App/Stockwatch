@@ -22,8 +22,8 @@ class Transaction extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('User'),
-            BelongsTo::make('Houseguest'),
+            BelongsTo::make('User', 'user', User::class)->searchable(),
+            BelongsTo::make('Houseguest', 'houseguest', Houseguest::class)->searchable(),
             Text::make('Action'),
             Number::make('Quantity'),
             Currency::make('At Price', 'current_price'),

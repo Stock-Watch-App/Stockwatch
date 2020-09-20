@@ -58,10 +58,12 @@ class User extends Resource
                     ->updateRules('nullable', 'string', 'min:8'),
 
             Text::make('Logged In Via', 'provider'),
-            DateTime::make('Last Seen')->hideWhenCreating()->hideWhenUpdating(),
-            DateTime::make('Last Audited'),
+            DateTime::make('Last Seen')->hideWhenCreating()->hideWhenUpdating()->nullable(),
+            DateTime::make('Last Audited')->nullable(),
 
-            HasMany::make('Ratings'),
+            HasMany::make('Ratings', 'ratings', Rating::class),
+            HasMany::make('Transactions', 'transactions', Transaction::class),
+            HasMany::make('Sessions', 'sessions', Session::class),
 
             \Vyuldashev\NovaPermission\RoleBooleanGroup::make('Roles'),
             \Vyuldashev\NovaPermission\PermissionBooleanGroup::make('Permissions'),

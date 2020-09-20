@@ -22,7 +22,8 @@ class Session extends Resource
     public function fields(Request $request)
     {
         return [
-            BelongsTo::make('User')->nullable(),
+            Text::make('Id'),
+            BelongsTo::make('User')->nullable()->searchable(),
             Text::make('IP Address')->nullable(),
             Text::make('User Agent')->nullable(),
             Text::make('Payload'),
