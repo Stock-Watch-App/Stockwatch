@@ -6,7 +6,7 @@
                 <p class="bold">{{ user.name }}</p>
             </div>
             <div class="profile-header-stats">
-                <p>current rank: <span class="bold">{{ currentRank }}</span></p>
+                <p>Current Rank: <span class="bold">{{ currentRank }}</span></p>
 <!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
 <!--                <p>badges here</p>-->
             </div>
@@ -31,7 +31,7 @@
                     ></select-component>
                     <icon-button
                         icon="chevron-right"
-                        ariaLabelledById="my-label"
+                        ariaLabelledById="my-other-label"
                         buttonLabel="Next week"
                         class="next-button"
                         :disabled="selectedWeek === maxWeek"

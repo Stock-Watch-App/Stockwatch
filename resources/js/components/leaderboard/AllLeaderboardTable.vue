@@ -35,8 +35,8 @@
                             {{ leaderboard.rank.rank }}
                         </div>
                     </td>
-                    <td class="user-row">
-                        <a :href="'/profile/'+leaderboard.user.hashid">
+                    <td>
+                        <a :href="'/profile/'+leaderboard.user.hashid" class="user-row">
                             <avatar
                                 :user="leaderboard.user"
                                 height="25"
