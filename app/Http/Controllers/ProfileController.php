@@ -3,24 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Houseguest;
+use App\Models\Leaderboard;
 use App\Models\Season;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
-        $user = $request->user();
+        $season = Season::current();
         $user->load([
             'banks',
             'transactions',
-            'leaderboard',
-            'stocks' => function ($query) {
-                $query->where('quantity', '>', 0);
+            'leaderboard' => function ($query) use ($season) {
+                $query->where('season_id', $season->id);
+            },
+            'stocks'      => function ($query) use ($season) {
+                $query->where('quantity', '>', 0)
+                      ->whereHas('houseguest', function ($h) use ($season) {
+                          $h->where('season_id', $season->id);
+                      });
             }
         ]);
 
-        $season = Season::current();
+
+//        $user->append(['alltime-rank' => Leaderboard::])
+
         $bank = $user->bank;
         $houseguests = Houseguest::with('prices')
                                  ->where('season_id', $season->id)

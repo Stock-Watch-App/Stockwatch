@@ -81,7 +81,7 @@ Route::group(['middleware' => ['local']], function () {
     });
 });
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile');
 
 
 //===
