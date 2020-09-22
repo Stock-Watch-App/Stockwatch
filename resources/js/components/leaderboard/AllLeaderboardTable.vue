@@ -35,8 +35,8 @@
                             {{ leaderboard.rank.rank }}
                         </div>
                     </td>
-                    <td>
-                        <a :href="'/profile/'+leaderboard.user.hashid" class="user-row">
+                    <td class="user-row">
+<!--                        <a :href="'/profile/'+leaderboard.user.hashid" >-->
                             <avatar
                                 :user="leaderboard.user"
                                 height="25"
@@ -77,7 +77,7 @@
                                 class="leaderboard-badge"
                                 v-tooltip="'BB21 top 10'"
                             ></topten-badge>
-                        </a>
+<!--                        </a>-->
                     </td>
                     <td class="networth">
                         {{ leaderboard.networth | currency }}

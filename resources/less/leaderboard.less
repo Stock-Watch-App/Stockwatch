@@ -45,17 +45,17 @@
     .media(@min-desktop, {
 
         h3 {
-            grid-column: ~"1/6"; 
+            grid-column: ~"1/6";
             grid-row: ~"1/2";
-        } 
-        
+        }
+
         .alltime-leader-title {
             grid-column: ~"2/8" ;
-        } 
-        
+        }
+
         .leader-grid {
-            grid-row: ~"2/3"; 
-            
+            grid-row: ~"2/3";
+
             &.alltime-leader {
                 grid-column: ~"2/8";
             }
@@ -79,13 +79,14 @@
     tr,
     td {
         &:hover {
-            tr,
-            td {
-                background-color: @gray-barely;
-            }
-
             .user-row {
                 background-color: transparent;
+            }
+
+            tr,
+            td,
+            td.user-row {
+                background-color: @gray-barely;
             }
         }
     }
@@ -192,7 +193,7 @@
         background-color: @bronze;
         color: @black;
     }
-    
+
 }
 
 .pagination {

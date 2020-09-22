@@ -7,8 +7,8 @@
             </div>
             <div class="profile-header-stats">
                 <p>Current Rank: <span class="bold">{{ currentRank }}</span></p>
-<!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
-<!--                <p>badges here</p>-->
+                <!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
+                <!--                <p>badges here</p>-->
             </div>
         </div>
 
@@ -56,9 +56,7 @@
                                     size="sm"
                                     class="stat-diff-icon"
                                 />
-                                <span v-if="networthDiff.amount >= 0">{{
-                                        networthDiff.amount | currency
-                                    }}</span>
+                                <span v-if="networthDiff.amount >= 0">{{ networthDiff.amount | currency }}</span>
                             </span>
                         </div>
                     </div>
@@ -77,9 +75,7 @@
                                     size="sm"
                                     class="stat-diff-icon"
                                 />
-                                <span v-if="rankDiff.amount - selectedRank">{{
-                                        rankDiff.amount
-                                    }}</span>
+                                <span v-if="rankDiff.amount - selectedRank">Change: {{ rankDiff.amount }}</span>
                             </span>
                         </div>
                     </div>
@@ -198,7 +194,8 @@ export default {
                         week: this.selectedWeek
                     });
                 }
-            };
+            }
+            ;
             return mappedStocks;
         }
     }
