@@ -4,6 +4,12 @@
     <div class="leaderboard-wrap">
         <h3 class="mg-btm-lg">{{ $houseguest->nickname }}</h3>
 
-        {{ $houseguest }}
+        <projection-item
+            :houseguest="{{$houseguest}}"
+            :linktohg="false"
+        ></projection-item>
+
+        <table>
+        </table>
     </div>
 @endsection

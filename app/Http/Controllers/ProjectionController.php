@@ -15,6 +15,7 @@ class ProjectionController extends Controller
         $houseguests = Houseguest::with([
                                      'ratings',
                                      'prices',
+                                     'season',
                                      'vanitytags' => function ($q) use ($season) {
                                          $q->where('week', $season->current_week);
                                      },

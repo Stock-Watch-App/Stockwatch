@@ -29,7 +29,7 @@ Route::get('/projections', [ProjectionController::class, 'index']);
 
 Route::get('/trades', [TradeController::class, 'index'])->name('trade');
 
-Route::get('/houseguest/{houseguest}', [HouseguestController::class, 'show'])->name('houseguest.show');
+Route::get('/houseguest/{season}/{houseguest}', [HouseguestController::class, 'show'])->name('houseguest.show');
 
 Route::get('/leaderboard', [LeaderboardController::class, 'allTime'])->name('allTimeLeaderboard');
 //    Route::get('/leaderboard/bbus', [LeaderboardController::class, 'allTime'])->name('bbusLeaderboard');

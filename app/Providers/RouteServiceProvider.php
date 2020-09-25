@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Houseguest;
+use App\Models\Season;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +37,14 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('user', function ($value, $route) {
             return $this->getModel(User::class, $value);
+        });
+
+        Route::bind('houseguest', function ($value, $route) {
+            return Houseguest::orWhere('slug', $value)->orWhere('id', $value)->firstOrFail();
+        });
+
+        Route::bind('season', function ($value, $route) {
+            return Season::orWhere('short_name', $value)->orWhere('id', $value)->firstOrFail();
         });
     }
 
