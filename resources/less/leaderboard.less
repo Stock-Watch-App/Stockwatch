@@ -45,17 +45,17 @@
     .media(@min-desktop, {
 
         h3 {
-            grid-column: ~"1/6"; 
+            grid-column: ~"1/6";
             grid-row: ~"1/2";
-        } 
-        
+        }
+
         .alltime-leader-title {
             grid-column: ~"2/8" ;
-        } 
-        
+        }
+
         .leader-grid {
-            grid-row: ~"2/3"; 
-            
+            grid-row: ~"2/3";
+
             &.alltime-leader {
                 grid-column: ~"2/8";
             }
@@ -79,8 +79,13 @@
     tr,
     td {
         &:hover {
+            .user-row {
+                background-color: transparent;
+            }
+
             tr,
-            td {
+            td,
+            td.user-row {
                 background-color: @gray-barely;
             }
         }
@@ -135,6 +140,10 @@
         border: none;
         background-color: @white;
 
+        &:hover {
+            background-color: transparent;
+        }
+
         span:not(.tag) {
             .px-rem(margin-right, 8);
             text-overflow: ellipsis;
@@ -184,7 +193,7 @@
         background-color: @bronze;
         color: @black;
     }
-    
+
 }
 
 .pagination {

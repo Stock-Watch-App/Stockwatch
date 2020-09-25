@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Jobs\AuditUsers;
 use App\Jobs\CloseMarket;
 use App\Models\Season;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -32,7 +33,7 @@ class Kernel extends ConsoleKernel
         if ($season = Season::current()) {
             $schedule->job((new CloseMarket($season))->onConnection('sync'))
                 ->thursdays()
-                ->at($season->closes_at)
+                ->at(Carbon::parse($season->closes_at)->format('H:i'))
                 ->timezone('America/New_York');
         }
     }

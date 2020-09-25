@@ -39,12 +39,14 @@ class Houseguest extends Resource
             ]),
             Avatar::make('Image')->disk('public'),
 
-            HasMany::make('Ratings')
+            HasMany::make('Ratings', 'ratings', Rating::class),
+            HasMany::make('Prices', 'prices', Price::class),
+//            HasMany::make('Transactions', 'transactions', Transaction::class)
         ];
     }
     public static function relatableQuery(NovaRequest $request, $query)
     {
-        if ($request->route('resource') === 'vanity-tags') {
+        if (in_array($request->route('resource'), ['vanity-tags', 'seasons'])) {
             return $query->withoutGlobalScope('active');
         }
         return $query;
