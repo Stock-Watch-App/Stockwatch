@@ -10,7 +10,7 @@
         ></projection-item>
 
         <h4 class="mg-btm-sm">Ratings Overview</h4>
-        <div class="ratings-table-wrap">
+        <div class="houseguest-dashboard-item">
             <table class="table ratings-table">
                 <thead>
                     <tr>
@@ -36,7 +36,9 @@
             </table>
         </div>
 
-       <houseguest-chart></houseguest-chart>
+        <div class="chart">
+            <houseguest-chart></houseguest-chart>
+        </div>
     </div>
 @endsection
 

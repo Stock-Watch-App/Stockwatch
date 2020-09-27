@@ -1,8 +1,5 @@
 <template>
-    <div class="small">
-        <line-chart :chart-data="datacollection"></line-chart>
-        <button @click="fillData()">Randomize</button>
-    </div>
+    <line-chart :chart-data="datacollection"></line-chart>
 </template>
 
 <script>
@@ -10,14 +7,15 @@ import LineChart from "../LineChart.js";
 
 export default {
     props: {
-        sortedRatings: Array
+        // sortedRatings: Array
     },
     components: {
         LineChart
     },
     data() {
         return {
-            datacollection: null
+            datacollection: null,
+            responsive: true
         };
     },
     mounted() {
@@ -26,31 +24,36 @@ export default {
     methods: {
         fillData() {
             this.datacollection = {
-                labels: [this.getRandomInt(), this.getRandomInt()],
+                // labels: [one, two, three],
                 datasets: [
                     {
-                        label: "Data One",
-                        backgroundColor: "#f87979",
-                        data: [20, 40]
+                        label: "Rating",
+                        backgroundColor: "hsla(224, 90%, 53%, 0.8)",
+                        borderColor: "hsla(224, 90%, 53%)",
+                        pointBackgroundColor: "white",
+                        borderWidth: 1,
+                        pointBorderColor: "white",
+                        data: [2, 9, 6]
+                    },
+                    {
+                        label: "Price",
+                        backgroundColor: "hsl(22.5, 95.1%, 40.2%, 0.8)",
+                        borderColor: "hsl(22.5, 95.1%, 40.2%)",
+                        pointBackgroundColor: "white",
+                        borderWidth: 1,
+                        pointBorderColor: "white",
+                        data: [2.5, 4.6, 7.5]
                     }
-                    // {
-                    //     label: "Data One",
-                    //     backgroundColor: "#f87979",
-                    //     data: [this.getRandomInt(), this.getRandomInt()]
-                    // }
                 ]
             };
-        },
-        getRandomInt() {
-            return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
         }
     }
 };
 </script>
 
 <style>
-.small {
-    max-width: 600px;
-    margin: 150px auto;
-}
+/* .chart {
+    height: 400px;
+    width: 800px;
+} */
 </style>
