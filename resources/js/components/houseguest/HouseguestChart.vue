@@ -18,15 +18,7 @@ export default {
     data() {
         return {
             datacollection: null,
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
+            responsive: true
         };
     },
     mounted() {
@@ -52,17 +44,14 @@ export default {
                 labels,
                 datasets
             };
-        },
-        getRandomInt() {
-            return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
         }
     }
 };
 </script>
 
 <style>
-.small {
-    max-height: 600px;
-    margin: 150px auto;
-}
+/* .chart {
+    height: 400px;
+    width: 800px;
+} */
 </style>

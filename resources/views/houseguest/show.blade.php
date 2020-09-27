@@ -4,13 +4,14 @@
     <div class="houseguest-page-wrap">
         <h2 class="mg-btm-lg">{{ $houseguest->nickname }}</h2>
         <h4 class="mg-btm-sm">Price Projections</h4>
+        <x-skeleton style="width:100%;height:126px;border-radius:4px;margin-bottom:1rem"/>
         <projection-item
             :houseguest="{{$houseguest}}"
             :showname="false"
         ></projection-item>
 
         <h4 class="mg-btm-sm">Ratings Overview</h4>
-        <div class="ratings-table-wrap">
+        <div class="houseguest-dashboard-item mg-btm-lg">
             <table class="table ratings-table">
                 <thead>
                     <tr>
@@ -33,6 +34,9 @@
             </table>
         </div>
 
-       <houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}"></houseguest-chart>
+        <h4 class="mg-btm-sm">Ratings & Price</h4>
+        <div class="chart">
+       		<houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}"></houseguest-chart>
+        </div>
     </div>
 @endsection
