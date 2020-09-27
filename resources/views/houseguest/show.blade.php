@@ -33,6 +33,6 @@
             </table>
         </div>
 
-{{--       <houseguest-chart></houseguest-chart>--}}
+       <houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}"></houseguest-chart>
     </div>
 @endsection

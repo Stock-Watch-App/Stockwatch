@@ -1,6 +1,6 @@
 <template>
     <div class="small">
-        <line-chart :chart-data="datacollection"></line-chart>
+        <line-chart v-if="datacollection" :chart-data="datacollection" :options="options"></line-chart>
         <button @click="fillData()">Randomize</button>
     </div>
 </template>
@@ -10,14 +10,23 @@ import LineChart from "../LineChart.js";
 
 export default {
     props: {
-        sortedRatings: Array
+        sortedRatings: Object
     },
     components: {
         LineChart
     },
     data() {
         return {
-            datacollection: null
+            datacollection: null,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         };
     },
     mounted() {
@@ -25,20 +34,23 @@ export default {
     },
     methods: {
         fillData() {
+            let labels = [];
+            let datasets = [];
+
+            for(const week in this.sortedRatings['Average']) {
+                labels.push('Week ' + week);
+            }
+            for(const lfc in this.sortedRatings) {
+                datasets.push({
+                    label: lfc.split(' ').shift(),
+                    backgroundColor: '#f87979',
+                    data: Object.values(this.sortedRatings[lfc])
+                })
+            }
+
             this.datacollection = {
-                labels: [this.getRandomInt(), this.getRandomInt()],
-                datasets: [
-                    {
-                        label: "Data One",
-                        backgroundColor: "#f87979",
-                        data: [20, 40]
-                    }
-                    // {
-                    //     label: "Data One",
-                    //     backgroundColor: "#f87979",
-                    //     data: [this.getRandomInt(), this.getRandomInt()]
-                    // }
-                ]
+                labels,
+                datasets
             };
         },
         getRandomInt() {
@@ -50,7 +62,7 @@ export default {
 
 <style>
 .small {
-    max-width: 600px;
+    max-height: 600px;
     margin: 150px auto;
 }
 </style>
