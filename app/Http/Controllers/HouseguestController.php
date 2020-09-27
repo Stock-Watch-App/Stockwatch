@@ -16,15 +16,16 @@ class HouseguestController extends Controller
             'season'
         ])->appendAttribute('projections');
 
+        // RATINGS
         $sortedRatings = [
-            'Taran Armstrong' => [],
-            'Brent Wolgamott' => [],
-            'Melissa Deni' => [],
+            'Taran' => [],
+            'Brent' => [],
+            'Melissa' => [],
             'Audience' => [],
             'Average' => []
         ];
         $houseguest->ratings->each(function ($rating) use (&$sortedRatings) {
-            $sortedRatings[$rating->user->name][$rating->week] = $rating->rating;
+            $sortedRatings[explode(' ', $rating->user->name)[0]][$rating->week] = $rating->rating;
             if (!array_key_exists($rating->week, $sortedRatings['Average'])) {
                 $sortedRatings['Average'][$rating->week] = 0;
             }
@@ -35,7 +36,12 @@ class HouseguestController extends Controller
             $sortedRatings['Average'][$week] = round($average/4);
         }
 
+        // PRICES
+        $sortedPrices = $houseguest->prices->mapToAssoc(function ($p) {
+            return [$p->week, $p->price];
+        });
 
-        return view('houseguest.show', compact('houseguest', 'sortedRatings'));
+
+        return view('houseguest.show', compact('houseguest', 'sortedRatings', 'sortedPrices'));
     }
 }

@@ -24,7 +24,7 @@
                 <tbody>
                 @foreach($sortedRatings as $lfc => $ratings)
                     <tr>
-                        <td class="names">{{ explode(' ', $lfc)[0] }}</td>
+                        <td class="names">{{ $lfc }}</td>
                         @foreach($ratings as $rating)
                             <td>{{ $rating }}</td>
                         @endforeach
@@ -36,7 +36,7 @@
 
         <h4 class="mg-btm-sm">Ratings & Price</h4>
         <div class="chart">
-       		<houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}"></houseguest-chart>
+       		<houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}" :sorted-prices="{{ json_encode($sortedPrices) }}"></houseguest-chart>
         </div>
     </div>
 @endsection
