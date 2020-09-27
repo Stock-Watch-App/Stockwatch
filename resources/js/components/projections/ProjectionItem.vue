@@ -1,7 +1,7 @@
 <template>
     <div class="projection-card">
         <div class="hg-details">
-            <h5 v-show="showName === true">
+            <h5 v-show="showname === true">
                 <a :href="houseguestLink">{{ houseguest.nickname }}</a>
                 <vanity-tag
                     v-if="houseguest.vanitytags"
@@ -187,14 +187,14 @@
 export default {
     props: {
         houseguest: Object,
-        showName: {
+        showname: {
             type: Boolean,
             default: true
         }
     },
     data() {
         return {
-            //showName: true
+            //showname: true
         };
     },
     methods: {

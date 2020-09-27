@@ -4,44 +4,39 @@
     <div class="houseguest-page-wrap">
         <h2 class="mg-btm-lg">{{ $houseguest->nickname }}</h2>
         <h4 class="mg-btm-sm">Price Projections</h4>
+        <x-skeleton style="width:100%;height:126px;border-radius:4px;margin-bottom:1rem"/>
         <projection-item
             :houseguest="{{$houseguest}}"
-            :show-name="false"
+            :showname="false"
         ></projection-item>
 
         <h4 class="mg-btm-sm">Ratings Overview</h4>
-        <div class="houseguest-dashboard-item">
+        <div class="houseguest-dashboard-item mg-btm-lg">
             <table class="table ratings-table">
                 <thead>
                     <tr>
                         <th></th>
                         @foreach(reset($sortedRatings) as $weekNo => $rating)
-                            <th>Week {{$weekNo}}</th>
+                            <th>Week {{ $weekNo }}</th>
                         @endforeach
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($sortedRatings as $lfc => $ratings)
                     <tr>
-                        <td class="names">{{$lfc}}</td>
+                        <td class="names">{{ explode(' ', $lfc)[0] }}</td>
                         @foreach($ratings as $rating)
-                            <td>{{$rating}}</td>
+                            <td>{{ $rating }}</td>
                         @endforeach
                     </tr>
                 @endforeach
-                    <tr>
-                        <td class="names">Average</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
 
+        <h4 class="mg-btm-sm">Ratings & Price</h4>
         <div class="chart">
             <houseguest-chart></houseguest-chart>
         </div>
     </div>
 @endsection
-
-
-<!-- @foreach($sortedRatings as $sortedRating) -->
-<!-- @endforeach -->
