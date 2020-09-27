@@ -16,7 +16,12 @@ class HouseguestController extends Controller
             'season'
         ])->appendAttribute('projections');
 
-        $sortedRatings = [];
+        $sortedRatings = [
+            'Taran Armstrong' => [],
+            'Brent Wolgamott' => [],
+            'Melissa Deni' => [],
+            'Audience' => [],
+        ];
         $houseguest->ratings->each(function ($rating) use (&$sortedRatings) {
             $sortedRatings[$rating->user->name][$rating->week] = $rating->rating;
         });

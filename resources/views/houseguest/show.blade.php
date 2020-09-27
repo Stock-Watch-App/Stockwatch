@@ -9,26 +9,26 @@
             :linktohg="false"
         ></projection-item>
 
-        
 
-        <table class="leaderboard-table">   
+
+        <table class="leaderboard-table">
             <thead>
                 <tr>
-                <!-- <th>Week</th>
-                <th>Brent</th>
-                <th>Melissa</th>
-                <th>Taran</th>
-                <th>Audience</th> -->
+                    <td></td>
+                    @foreach(reset($sortedRatings) as $weekNo => $rating)
+                        <td>Week {{$weekNo}}</td>
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
+            @foreach($sortedRatings as $lfc => $ratings)
                 <tr>
-                    
-                    <!-- <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td> -->
+                    <td>{{$lfc}}</td>
+                    @foreach($ratings as $rating)
+                        <td>{{$rating}}</td>
+                    @endforeach
                 </tr>
+            @endforeach
             </tbody>
         </table>
 
@@ -38,7 +38,6 @@
     </div>
 @endsection
 
-<!-- @dump($sortedRatings) -->
-        
+
 <!-- @foreach($sortedRatings as $sortedRating) -->
 <!-- @endforeach -->
