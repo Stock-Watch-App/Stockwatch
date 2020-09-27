@@ -21,10 +21,20 @@ class HouseguestController extends Controller
             'Brent Wolgamott' => [],
             'Melissa Deni' => [],
             'Audience' => [],
+            'Average' => []
         ];
         $houseguest->ratings->each(function ($rating) use (&$sortedRatings) {
             $sortedRatings[$rating->user->name][$rating->week] = $rating->rating;
+            if (!array_key_exists($rating->week, $sortedRatings['Average'])) {
+                $sortedRatings['Average'][$rating->week] = 0;
+            }
+            $sortedRatings['Average'][$rating->week] += $rating->rating;
         });
+
+        foreach ($sortedRatings['Average'] as $week => $average) {
+            $sortedRatings['Average'][$week] = round($average/4);
+        }
+
 
         return view('houseguest.show', compact('houseguest', 'sortedRatings'));
     }

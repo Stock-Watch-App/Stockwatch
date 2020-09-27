@@ -6,7 +6,7 @@
         <h4 class="mg-btm-sm">Price Projections</h4>
         <projection-item
             :houseguest="{{$houseguest}}"
-            :show-name="false"
+            :showname="false"
         ></projection-item>
 
         <h4 class="mg-btm-sm">Ratings Overview</h4>
@@ -16,30 +16,23 @@
                     <tr>
                         <th></th>
                         @foreach(reset($sortedRatings) as $weekNo => $rating)
-                            <th>Week {{$weekNo}}</th>
+                            <th>Week {{ $weekNo }}</th>
                         @endforeach
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($sortedRatings as $lfc => $ratings)
                     <tr>
-                        <td class="names">{{$lfc}}</td>
+                        <td class="names">{{ explode(' ', $lfc)[0] }}</td>
                         @foreach($ratings as $rating)
-                            <td>{{$rating}}</td>
+                            <td>{{ $rating }}</td>
                         @endforeach
                     </tr>
                 @endforeach
-                    <tr>
-                        <td class="names">Average</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
 
-       <houseguest-chart></houseguest-chart>
+{{--       <houseguest-chart></houseguest-chart>--}}
     </div>
 @endsection
-
-
-<!-- @foreach($sortedRatings as $sortedRating) -->
-<!-- @endforeach -->
