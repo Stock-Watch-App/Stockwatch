@@ -6,3 +6,36 @@
     display: grid;
     grid-template-columns: 1fr;
 }
+
+.ratings-table-wrap {
+    border: solid 1px @gray-hint;
+    box-shadow: 1px 1px 0px @gray-hint;
+    border-radius: @border-radius;
+    overflow-x: auto;
+}
+
+.ratings-table {
+    td:nth-child(1) {
+        text-align: left;
+    }
+
+    tbody {
+        tr:last-of-type {
+            td {
+                background-color: @primary-blue-overlay;
+                font-variation-settings: @base-font-weight-bold;
+            }
+        }
+    }
+
+    td {
+        z-index: 3;
+
+        &.names {
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            background-color: @white;
+        }
+    }
+}

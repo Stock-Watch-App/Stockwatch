@@ -179,11 +179,6 @@ Vue.component(
 );
 
 Vue.component(
-    "houseguest-rating-table",
-    require("./components/houseguest/HouseguestRatingTable.vue").default
-);
-
-Vue.component(
     "houseguest-chart",
     require("./components/houseguest/HouseguestChart.vue").default
 );

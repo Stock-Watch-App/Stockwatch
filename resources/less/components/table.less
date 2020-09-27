@@ -1,0 +1,94 @@
+@import (reference) "../_variables.less";
+@import (reference) "../_mixins.less";
+
+.table-wrap {
+    overflow-x: auto;
+    max-height: 100vh;
+}
+
+.table {
+    table-layout: auto;
+    border-collapse: collapse;
+    width: 100%;
+
+    th,
+    td,
+    tr {
+        .px-rem-padding(8, 16, 8, 16);
+        vertical-align: middle;
+    }
+
+    // this looks crazy to get around the z-index levels
+    tr,
+    td {
+        &:hover {
+            tr,
+            td {
+                background-color: @gray-barely;
+            }
+        }
+    }
+
+    tr {
+        border-bottom: 1px solid @gray-barely;
+        text-align: center;
+    }
+
+    thead {
+        .font-unit-rem(14);
+        font-variation-settings: @base-font-weight-bold;
+        background-color: @gray-barely;
+    }
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+    .font-unit-rem(14);
+}
+
+.page-item {
+    &.active {
+        .page-link {
+            background-color: @link;
+            color: @white;
+            cursor: not-allowed;
+        }
+    }
+
+    &:not(.active):not(.disabled) {
+        .page-link:hover {
+            background-color: @gray-barely;
+        }
+    }
+
+    &.disabled {
+        .page-link {
+            background-color: @disabled-bg;
+            color: @disabled-text;
+        }
+    }
+
+    &:first-child,
+    &:last-child {
+        .page-link {
+            color: @black;
+        }
+    }
+
+    .page-link {
+        position: relative;
+        display: block;
+        padding: 4px 8px;
+        line-height: 1.25;
+        color: @link;
+        background-color: @white;
+        margin-right: 8px;
+
+        svg {
+            vertical-align: middle;
+            width: 0.5rem;
+        }
+    }
+}
