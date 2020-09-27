@@ -12,13 +12,15 @@ class HouseguestController extends Controller
     {
         $houseguest->load([
             'prices',
-            'ratings.user',
+            'ratings.user', //todo someday filter to LFC
             'season'
         ])->appendAttribute('projections');
 
-        $ratings = [];
-            $houseguest->map()
+        $sortedRatings = [];
+        $houseguest->ratings->each(function ($rating) use (&$sortedRatings) {
+            $sortedRatings[$rating->user->name][$rating->week] = $rating->rating;
+        });
 
-        return view('houseguest.show', compact('houseguest'));
+        return view('houseguest.show', compact('houseguest', 'sortedRatings'));
     }
 }

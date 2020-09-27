@@ -9,6 +9,7 @@
             :linktohg="false"
         ></projection-item>
 
+        @dump($sortedRatings)
         <table>
         </table>
     </div>
