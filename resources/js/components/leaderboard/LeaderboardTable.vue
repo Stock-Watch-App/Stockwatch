@@ -7,8 +7,11 @@
                 placeholder="Search user..."
                 name="search"
                 :value="search"
-            /> <input type="hidden" name="page" value="1"/>
-            <button type="submit" class="button-base primary mg-btm-lg">Search</button>
+            />
+            <input type="hidden" name="page" value="1" />
+            <button type="submit" class="button-base primary mg-btm-lg">
+                Search
+            </button>
         </form>
         <div class="leader-overflow">
             <div class="table-wrap mg-btm-md">
@@ -22,88 +25,111 @@
                     class="leaderboard-table"
                 >
                     <thead slot="head">
-                    <tr>
-                        <th class="rank-sort">Rank</th>
-                        <th class="user-row-head">Player</th>
-                        <th>Networth</th>
-                        <th
-                            v-for="houseguest in houseguests"
-                            v-bind:key="houseguest.id"
-                        >
-                            <img
-                                :src="houseguestImage(houseguest)"
-                                :alt="houseguest.nickname"
-                                class="hg-img-table"
-                                height="30"
-                                width="30"
-                            />
-                        </th>
-                    </tr>
+                        <tr>
+                            <th class="rank-sort">Rank</th>
+                            <th class="user-row-head">Player</th>
+                            <th>Networth</th>
+                            <th
+                                v-for="houseguest in houseguests"
+                                v-bind:key="houseguest.id"
+                            >
+                                <!-- <a
+                                    :href="houseguestLink"
+                                    :title="
+                                        houseguest.nickname + ` more details`
+                                    "
+                                > -->
+                                <img
+                                    :src="houseguestImage(houseguest)"
+                                    :alt="houseguest.nickname"
+                                    class="hg-img-table"
+                                    height="30"
+                                    width="30"
+                                />
+                                <!-- </a> -->
+                            </th>
+                        </tr>
                     </thead>
                     <tbody slot="body" slot-scope="{ displayData }">
-                    <tr
-                        v-for="leaderboard in displayData"
-                        :key="leaderboard.user_id"
-                    >
-                        <td>
-                            <div
-                                class="rank-num"
-                                :class="'rank-' + leaderboard.rank"
-                                v-tooltip="'Top ' + leaderboard.rank_percentile + '%'"
-                            >
-                                {{ leaderboard.rank }}
-                            </div>
-                        </td>
-                        <td>
-                            <a :href="'/profile/'+leaderboard.user.hashid" class="user-row">
-
-                                <avatar :user="leaderboard.user" height="25" width="25" class="leaderboard-avatar"></avatar>
-                                <span>{{ leaderboard.user.name }}</span>
-                                <vanity-tag v-if="leaderboard.user.vanitytags" :label="leaderboard.user.vanitytags.tag"></vanity-tag>
-                                <first-badge
-                                    v-if="leaderboard.user.id === 1727"
-                                    class="leaderboard-badge"
-                                    v-tooltip="'BB21 1st'"
-                                ></first-badge>
-                                <second-badge
-                                    v-if="leaderboard.user.id === 1068"
-                                    class="leaderboard-badge"
-                                    v-tooltip="'BB21 2nd'"
-                                ></second-badge>
-                                <third-badge
-                                    v-if="leaderboard.user.id === 341"
-                                    class="leaderboard-badge"
-                                    v-tooltip="'BB21 3rd'"
-                                ></third-badge>
-                                <topfive-badge
-                                    v-if="
-                                    leaderboard.user.id === 4 ||
-                                        leaderboard.user.id === 12
-                                "
-                                    class="leaderboard-badge"
-                                    v-tooltip="'BB21 top 5'"
-                                ></topfive-badge>
-                                <topten-badge
-                                    v-if="
-                                    leaderboard.user.id === 986 ||
-                                        leaderboard.user.id === 895 ||
-                                        leaderboard.user.id === 808
-                                "
-                                    class="leaderboard-badge"
-                                    v-tooltip="'BB21 top 10'"
-                                ></topten-badge>
-                            </a>
-                        </td>
-                        <td class="networth">
-                            {{ leaderboard.networth | currency }}
-                        </td>
-                        <td
-                            v-for="houseguest in houseguests"
-                            v-bind:key="houseguest.id"
+                        <tr
+                            v-for="leaderboard in displayData"
+                            :key="leaderboard.user_id"
                         >
-                            {{ leaderboard.stocks[houseguest.id] }}
-                        </td>
-                    </tr>
+                            <td>
+                                <div
+                                    class="rank-num"
+                                    :class="'rank-' + leaderboard.rank"
+                                    v-tooltip="
+                                        'Top ' +
+                                            leaderboard.rank_percentile +
+                                            '%'
+                                    "
+                                >
+                                    {{ leaderboard.rank }}
+                                </div>
+                            </td>
+                            <td>
+                                <a
+                                    :href="
+                                        '/profile/' + leaderboard.user.hashid
+                                    "
+                                    class="user-row"
+                                >
+                                    <avatar
+                                        :user="leaderboard.user"
+                                        height="25"
+                                        width="25"
+                                        class="leaderboard-avatar"
+                                    ></avatar>
+                                    <span>{{ leaderboard.user.name }}</span>
+                                    <vanity-tag
+                                        v-if="leaderboard.user.vanitytags"
+                                        :label="leaderboard.user.vanitytags.tag"
+                                    ></vanity-tag>
+                                    <first-badge
+                                        v-if="leaderboard.user.id === 1727"
+                                        class="leaderboard-badge"
+                                        v-tooltip="'BB21 1st'"
+                                    ></first-badge>
+                                    <second-badge
+                                        v-if="leaderboard.user.id === 1068"
+                                        class="leaderboard-badge"
+                                        v-tooltip="'BB21 2nd'"
+                                    ></second-badge>
+                                    <third-badge
+                                        v-if="leaderboard.user.id === 341"
+                                        class="leaderboard-badge"
+                                        v-tooltip="'BB21 3rd'"
+                                    ></third-badge>
+                                    <topfive-badge
+                                        v-if="
+                                            leaderboard.user.id === 4 ||
+                                                leaderboard.user.id === 12
+                                        "
+                                        class="leaderboard-badge"
+                                        v-tooltip="'BB21 top 5'"
+                                    ></topfive-badge>
+                                    <topten-badge
+                                        v-if="
+                                            leaderboard.user.id === 986 ||
+                                                leaderboard.user.id === 895 ||
+                                                leaderboard.user.id === 808
+                                        "
+                                        class="leaderboard-badge"
+                                        v-tooltip="'BB21 top 10'"
+                                    ></topten-badge>
+                                </a>
+                            </td>
+                            <td class="networth">
+                                {{ leaderboard.networth | currency }}
+                            </td>
+                            <td
+                                v-for="houseguest in houseguests"
+                                v-bind:key="houseguest.id"
+                            >
+                                {{ leaderboard.stocks[houseguest.id] }}
+                            </td>
+                        </tr>
                     </tbody>
                 </v-table>
             </div>
@@ -126,7 +152,7 @@ export default {
     },
     data: () => ({
         filters: {
-            name: {value: "", keys: ["user.name"]}
+            name: { value: "", keys: ["user.name"] }
         },
         currentPage: 1,
         totalPages: 0,
@@ -134,14 +160,22 @@ export default {
         // lastMoney: 0
     }),
     computed: {
-        cleanLeaderboard: function () {
+        cleanLeaderboard: function() {
             return this.leaderboard.filter(l => l.user !== null);
         }
     },
     methods: {
-        houseguestImage: function (houseguest) {
+        houseguestImage: function(houseguest) {
             return "/storage/" + houseguest.image;
         }
+        // houseguestLink: function() {
+        //     return (
+        //         "/houseguest/" +
+        //         this.houseguest.season.short_name +
+        //         "/" +
+        //         this.houseguest.slug
+        //     );
+        // }
     }
 };
 </script>
