@@ -68,11 +68,30 @@ export default {
             let labels = [];
             let datasets = [];
             let colors = {
-                'Taran': 'blue',
-                'Brent': 'black',
-                'Melissa': 'green',
-                'Audience': 'yellow',
-                'Average': 'red'
+                'Taran': {
+                    solid: 'rgba(0,0,255,1)',
+                    transparent: 'rgba(0,0,255,.3)'
+                },
+                'Brent': {
+                    solid: 'rgba(0,0,0,1)',
+                    transparent: 'rgba(0,0,0,.3)'
+                },
+                'Melissa': {
+                    solid: 'rgba(0,255,0,1)',
+                    transparent: 'rgba(0,255,0,.3)'
+                },
+                'Audience': {
+                    solid: 'rgba(255,255,0,1)',
+                    transparent: 'rgba(255,255,0,.3)'
+                },
+                'Average': {
+                    solid: 'rgba(255,0,0,1)',
+                    transparent: 'rgba(255,0,0,.3)'
+                },
+                'Prices': {
+                    solid: 'rgba(255,69,0,1)',
+                    transparent: 'rgba(255,69,0,.3)'
+                },
             }
 
             for (const week in this.sortedRatings['Average']) {
@@ -81,7 +100,8 @@ export default {
             for (const lfc in this.sortedRatings) {
                 datasets.push({
                     label: lfc,
-                    borderColor: colors[lfc],
+                    backgroundColor: colors[lfc].transparent,
+                    borderColor: colors[lfc].solid,
                     yAxisID: 'ratings',
                     fill: false,
                     data: Object.values(this.sortedRatings[lfc])
@@ -89,7 +109,8 @@ export default {
             }
             datasets.push({
                 label: 'Price',
-                borderColor: 'orange',
+                backgroundColor: colors['Prices'].transparent,
+                borderColor: colors['Prices'].solid,
                 yAxisID: 'prices',
                 fill: false,
                 data: Object.values(this.formattedPrices)
