@@ -33,12 +33,6 @@
                                 v-for="houseguest in houseguests"
                                 v-bind:key="houseguest.id"
                             >
-                                <!-- <a
-                                    :href="houseguestLink"
-                                    :title="
-                                        houseguest.nickname + ` more details`
-                                    "
-                                > -->
                                 <img
                                     :src="houseguestImage(houseguest)"
                                     :alt="houseguest.nickname"
@@ -46,7 +40,6 @@
                                     height="30"
                                     width="30"
                                 />
-                                <!-- </a> -->
                             </th>
                         </tr>
                     </thead>
@@ -168,14 +161,6 @@ export default {
         houseguestImage: function(houseguest) {
             return "/storage/" + houseguest.image;
         }
-        // houseguestLink: function() {
-        //     return (
-        //         "/houseguest/" +
-        //         this.houseguest.season.short_name +
-        //         "/" +
-        //         this.houseguest.slug
-        //     );
-        // }
     }
 };
 </script>
