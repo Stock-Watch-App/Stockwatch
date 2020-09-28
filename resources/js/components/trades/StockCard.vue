@@ -5,12 +5,17 @@
     >
         <div class="hg-details">
             <h4>
+                <!-- <a :href="houseguestLink"> -->
                 {{
                     stock.houseguest.nickname ||
                         stock.houseguest.first_name | capitalize
                 }}
+                <!-- </a> -->
             </h4>
-            <vanity-tag v-if="stock.houseguest.vanitytags" :label="stock.houseguest.vanitytags.tag"></vanity-tag>
+            <vanity-tag
+                v-if="stock.houseguest.vanitytags"
+                :label="stock.houseguest.vanitytags.tag"
+            ></vanity-tag>
         </div>
         <img :src="houseguestImage" height="85" width="85" class="hg-img" />
         <div class="hg-rating">
@@ -110,6 +115,14 @@ export default {
         houseguestImage: function() {
             return "/storage/" + this.stock.houseguest.image;
         },
+        // houseguestLink: function() {
+        //     return (
+        //         "/houseguest/" +
+        //         this.houseguest.season.short_name +
+        //         "/" +
+        //         this.houseguest.slug
+        //     );
+        // },
         currentPrice: function() {
             //find latest week
             let currentWeek;
