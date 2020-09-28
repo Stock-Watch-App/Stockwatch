@@ -20,6 +20,18 @@ export default {
             datacollection: null,
             responsive: true,
             options: {
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItems, data) {
+                            let label = data.datasets[tooltipItems.datasetIndex].label
+                            if (label === 'Price') {
+                                return 'Price: $' + parseFloat(tooltipItems.value).toFixed(2);
+                            } else {
+                                return label + ': ' + tooltipItems.value;
+                            }
+                        }
+                    }
+                },
                 scales: {
                     yAxes: [{
                         display: true,
@@ -37,8 +49,9 @@ export default {
                         ticks: {
                             beginAtZero: true,
                             maxTicksLimit: 9,
+                            suggestedMax: 9,
                             callback: function (value, index, values) {
-                                return '$' + value;
+                                return '$' + value.toFixed(2);
                             }
                         }
                     },
@@ -68,7 +81,6 @@ export default {
             for (const lfc in this.sortedRatings) {
                 datasets.push({
                     label: lfc,
-                    // backgroundColor: 'rgba(0,0,0,0)',
                     borderColor: colors[lfc],
                     yAxisID: 'ratings',
                     fill: false,
@@ -80,20 +92,23 @@ export default {
                 borderColor: 'orange',
                 yAxisID: 'prices',
                 fill: false,
-                data: Object.values(this.sortedPrices)
+                data: Object.values(this.formattedPrices)
             })
             this.datacollection = {
                 labels,
                 datasets
             };
         }
+    },
+    computed: {
+        formattedPrices: function () {
+            let prices = [];
+            Object.values(this.sortedPrices).forEach(p => {
+                console.log(parseFloat(p).toFixed(2));
+                prices.push(parseFloat(p).toFixed(2));
+            })
+            return prices
+        }
     }
 };
 </script>
-
-<style>
-/* .chart {
-    height: 400px;
-    width: 800px;
-} */
-</style>
