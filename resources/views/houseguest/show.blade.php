@@ -35,8 +35,13 @@
         </div>
 
         <h4 class="mg-btm-sm">Ratings & Price</h4>
-        <div class="chart">
-       		<houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}" :sorted-prices="{{ json_encode($sortedPrices) }}"></houseguest-chart>
+        <div class="houseguest-dashboard-item mg-btm-lg chart">
+            <houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}" :sorted-prices="{{ json_encode($sortedPrices) }}"></houseguest-chart>
+            <div class="mg-top-md">
+               <p>To toggle data sets on and off, click the labels at the top of the chart</p>
+                <p>Hover over points for more details</p>
+            </div>
         </div>
+        
     </div>
 @endsection

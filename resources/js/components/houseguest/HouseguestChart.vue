@@ -1,6 +1,10 @@
 <template>
-    <div class="small">
-        <line-chart v-if="datacollection" :chart-data="datacollection" :options="options"></line-chart>
+    <div class="container">
+        <line-chart
+            v-if="datacollection"
+            :chart-data="datacollection"
+            :options="options"
+        ></line-chart>
     </div>
 </template>
 
@@ -18,43 +22,63 @@ export default {
     data() {
         return {
             datacollection: null,
-            responsive: true,
             options: {
+                maintainAspectRatio: false,
+                responsive: true,
                 tooltips: {
                     callbacks: {
-                        label: function (tooltipItems, data) {
-                            let label = data.datasets[tooltipItems.datasetIndex].label
-                            if (label === 'Price') {
-                                return 'Price: $' + parseFloat(tooltipItems.value).toFixed(2);
+                        label: function(tooltipItems, data) {
+                            let label =
+                                data.datasets[tooltipItems.datasetIndex].label;
+                            if (label === "Price") {
+                                return (
+                                    "Price: $" +
+                                    parseFloat(tooltipItems.value).toFixed(2)
+                                );
                             } else {
-                                return label + ': ' + tooltipItems.value;
+                                return label + ": " + tooltipItems.value;
                             }
                         }
                     }
                 },
                 scales: {
-                    yAxes: [{
-                        display: true,
-                        id: 'ratings',
-                        precision: 0,
-                        ticks: {
-                            min: 1,
-                            max: 10
-                        }
-                    }, {
-                        display: true,
-                        id: 'prices',
-                        position: 'right',
-                        precision: 2,
-                        ticks: {
-                            beginAtZero: true,
-                            maxTicksLimit: 9,
-                            suggestedMax: 9,
-                            callback: function (value, index, values) {
-                                return '$' + value.toFixed(2);
+                    xAxes: [
+                        {
+                            gridLines: {
+                                display: false
                             }
                         }
-                    },
+                    ],
+                    yAxes: [
+                        {
+                            display: true,
+                            id: "ratings",
+                            precision: 0,
+                            ticks: {
+                                min: 1,
+                                max: 10
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        },
+                        {
+                            display: true,
+                            id: "prices",
+                            position: "right",
+                            precision: 2,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 9,
+                                suggestedMax: 9,
+                                callback: function(value, index, values) {
+                                    return "$" + value.toFixed(2);
+                                }
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }
                     ]
                 }
             }
@@ -68,53 +92,53 @@ export default {
             let labels = [];
             let datasets = [];
             let colors = {
-                'Taran': {
-                    solid: 'rgba(0,0,255,1)',
-                    transparent: 'rgba(0,0,255,.3)'
+                Taran: {
+                    solid: " hsl(224, 90%, 53%)",
+                    transparent: "hsla(224, 90%, 53%, 0.2)"
                 },
-                'Brent': {
-                    solid: 'rgba(0,0,0,1)',
-                    transparent: 'rgba(0,0,0,.3)'
+                Brent: {
+                    solid: "hsl(320, 91%, 52%)",
+                    transparent: "hsla(320, 91%, 52%, 0.3)"
                 },
-                'Melissa': {
-                    solid: 'rgba(0,255,0,1)',
-                    transparent: 'rgba(0,255,0,.3)'
+                Melissa: {
+                    solid: " hsl(272, 100%, 49%)",
+                    transparent: " hsla(272, 100%, 49%, 0.3)"
                 },
-                'Audience': {
-                    solid: 'rgba(255,255,0,1)',
-                    transparent: 'rgba(255,255,0,.3)'
+                Audience: {
+                    solid: "hsl(183, 97%, 72%)",
+                    transparent: "hsla(183, 97%, 72%, 0.3)"
                 },
-                'Average': {
-                    solid: 'rgba(255,0,0,1)',
-                    transparent: 'rgba(255,0,0,.3)'
+                Average: {
+                    solid: " hsl(126, 100%, 49%)",
+                    transparent: " hsla(126, 100%, 49%, 0.3)"
                 },
-                'Prices': {
-                    solid: 'rgba(255,69,0,1)',
-                    transparent: 'rgba(255,69,0,.3)'
-                },
-            }
+                Prices: {
+                    solid: "hsl(0, 81%, 58%)",
+                    transparent: "hsla(0, 81%, 58%)"
+                }
+            };
 
-            for (const week in this.sortedRatings['Average']) {
-                labels.push('Week ' + week);
+            for (const week in this.sortedRatings["Average"]) {
+                labels.push("Week " + week);
             }
             for (const lfc in this.sortedRatings) {
                 datasets.push({
                     label: lfc,
                     backgroundColor: colors[lfc].transparent,
                     borderColor: colors[lfc].solid,
-                    yAxisID: 'ratings',
+                    yAxisID: "ratings",
                     fill: false,
                     data: Object.values(this.sortedRatings[lfc])
-                })
+                });
             }
             datasets.push({
-                label: 'Price',
-                backgroundColor: colors['Prices'].transparent,
-                borderColor: colors['Prices'].solid,
-                yAxisID: 'prices',
+                label: "Price",
+                backgroundColor: colors["Prices"].transparent,
+                borderColor: colors["Prices"].solid,
+                yAxisID: "prices",
                 fill: false,
                 data: Object.values(this.formattedPrices)
-            })
+            });
             this.datacollection = {
                 labels,
                 datasets
@@ -122,14 +146,20 @@ export default {
         }
     },
     computed: {
-        formattedPrices: function () {
+        formattedPrices: function() {
             let prices = [];
             Object.values(this.sortedPrices).forEach(p => {
                 console.log(parseFloat(p).toFixed(2));
                 prices.push(parseFloat(p).toFixed(2));
-            })
-            return prices
+            });
+            return prices;
         }
     }
 };
 </script>
+
+<style scoped>
+.container {
+    width: 100%;
+}
+</style>
