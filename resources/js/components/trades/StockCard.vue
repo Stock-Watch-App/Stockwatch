@@ -5,12 +5,12 @@
     >
         <div class="hg-details">
             <h4>
-                <a class="dark" :href="houseguestLink">
-                    {{
-                        stock.houseguest.nickname ||
-                            stock.houseguest.first_name | capitalize
-                    }}
-                </a>
+                <!-- <a class="dark" :href="houseguestLink"> -->
+                {{
+                    stock.houseguest.nickname ||
+                        stock.houseguest.first_name | capitalize
+                }}
+                <!-- </a> -->
             </h4>
             <vanity-tag
                 v-if="stock.houseguest.vanitytags"
