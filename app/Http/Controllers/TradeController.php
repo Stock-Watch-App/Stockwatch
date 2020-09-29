@@ -161,7 +161,7 @@ class TradeController extends Controller
         ]);
 //        dd($user);
 
-        $stocks = $user->stocks->load('houseguest');
+        $stocks = $user->stocks->load('houseguest.season');
 
 
         $stocks->each(static function ($stock, $key) use ($season) {

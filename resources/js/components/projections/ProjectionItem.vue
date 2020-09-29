@@ -2,7 +2,7 @@
     <div class="projection-card">
         <div class="hg-details">
             <h5 v-show="showname === true">
-                <a :href="houseguestLink">{{ houseguest.nickname }}</a>
+                <a class="hg-link" :href="houseguestLink">{{ houseguest.nickname }}</a>
                 <vanity-tag
                     v-if="houseguest.vanitytags"
                     :label="houseguest.vanitytags.tag"
@@ -230,3 +230,13 @@ export default {
     }
 };
 </script>
+<style scoped>
+.hg-link {
+    color: #25282F;
+}
+
+.hg-link:hover {
+    color: #74777d;
+    text-decoration: underline;
+}
+</style>
