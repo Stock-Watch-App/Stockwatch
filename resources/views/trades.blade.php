@@ -7,7 +7,7 @@
             @if($season->status === 'open')
                 <span>The market will be closing at {{ $season->closes_at->format('g:i a') }} ET @if(((new DateTime())->setTimezone(new DateTimeZone('America/New_York'))->format('N')) === '4') today @else on Thursday @endif.</span>
             @elseif($season->status === 'closed')
-                <span>The market is <strong>Closed</strong>. Trading will reopen following the LFC Roundtable Wednesday Evening.</span>
+                <span>The market is <strong>Closed</strong>. Trading will reopen following the LFC Roundtable Tuesday Evening.</span>
             @endif
         </div>
         <trade-panel
