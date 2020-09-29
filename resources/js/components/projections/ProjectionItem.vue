@@ -3,12 +3,8 @@
         <div class="hg-details">
             <h5 v-show="showname === true">
                 <a class="dark" :href="houseguestLink"
-                    >{{ houseguest.nickname }}
-                    <!-- <font-awesome-icon icon="arrow-to-right" class="hg-star" /> -->
-                    <font-awesome-icon
-                        :icon="['fas', 'arrow-right']"
-                        fixed-width
-                    />
+                >{{ houseguest.nickname }}
+                    <font-awesome-icon :icon="['fas', 'arrow-right']" fixed-width/>
                 </a>
             </h5>
             <vanity-tag
@@ -17,26 +13,25 @@
             ></vanity-tag>
         </div>
         <a :href="houseguestLink"
-            ><img
-                :src="houseguestImage"
-                :alt="houseguest.nickname"
-                class="hg-img"
-                height="85"
-                width="85"
+        ><img
+            :src="houseguestImage"
+            :alt="houseguest.nickname"
+            class="hg-img"
+            height="85"
+            width="85"
         /></a>
         <div class="this-week">
             <div class="this-week-details flex-col">
                 <h5>This week</h5>
                 <span class="rating-wrap">
                     <h5 class="num-wrap flex-row">
-                        <font-awesome-icon icon="star" class="hg-star" />
+                        <font-awesome-icon icon="star" class="hg-star"/>
                         <span class="hg-star-rating">{{
-                            houseguest.current_rate
-                        }}</span>
+                                houseguest.current_rate
+                            }}</span>
                         <span class="hg-star-outof">/10</span>
                     </h5>
-                </span>
-                <span class="price-wrap">
+                </span> <span class="price-wrap">
                     <h5>{{ houseguest.current_price | currency }}</h5>
                 </span>
             </div>
@@ -61,7 +56,7 @@
                             (houseguest.projections.to1 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -71,7 +66,7 @@
                             (houseguest.projections.to2 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -81,7 +76,7 @@
                             (houseguest.projections.to3 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -91,7 +86,7 @@
                             (houseguest.projections.to4 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -101,7 +96,7 @@
                             (houseguest.projections.to5 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -111,7 +106,7 @@
                             (houseguest.projections.to6 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -121,7 +116,7 @@
                             (houseguest.projections.to7 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -131,7 +126,7 @@
                             (houseguest.projections.to8 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -141,7 +136,7 @@
                             (houseguest.projections.to9 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -151,7 +146,7 @@
                             (houseguest.projections.to10 /
                                 houseguest.current_price -
                                 1) *
-                                100
+                            100
                         )
                     }}%
                 </dd>
@@ -205,7 +200,7 @@ export default {
         };
     },
     methods: {
-        setbg: function(projections) {
+        setbg: function (projections) {
             let red = "235, 61, 61,";
             let green = "17,192,93,";
             let alpha = Math.abs(
@@ -223,10 +218,10 @@ export default {
         }
     },
     computed: {
-        houseguestImage: function() {
+        houseguestImage: function () {
             return "/storage/" + this.houseguest.image;
         },
-        houseguestLink: function() {
+        houseguestLink: function () {
             return (
                 "/houseguest/" +
                 this.houseguest.season.short_name +
