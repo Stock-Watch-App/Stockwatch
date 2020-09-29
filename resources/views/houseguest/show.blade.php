@@ -14,12 +14,12 @@
         <div class="houseguest-dashboard-item mg-btm-lg">
             <table class="table ratings-table">
                 <thead>
-                    <tr>
-                        <th></th>
-                        @foreach(reset($sortedRatings) as $weekNo => $rating)
-                            <th>Week {{ $weekNo }}</th>
-                        @endforeach
-                    </tr>
+                <tr>
+                    <th></th>
+                    @foreach(reset($sortedRatings) as $weekNo => $rating)
+                        <th>Week {{ $weekNo }}</th>
+                    @endforeach
+                </tr>
                 </thead>
                 <tbody>
                 @foreach($sortedRatings as $lfc => $ratings)
@@ -38,10 +38,10 @@
         <div class="houseguest-dashboard-item mg-btm-lg chart">
             <houseguest-chart :sorted-ratings="{{ json_encode($sortedRatings) }}" :sorted-prices="{{ json_encode($sortedPrices) }}"></houseguest-chart>
             <div class="mg-top-md">
-               <p>To toggle data sets on and off, click the labels at the top of the chart</p>
-                <p>Hover over points for more details</p>
+                <p style="font-size: .75rem; margin-bottom: 0;">To toggle, click the labels at the top of the chart</p>
+                <p style="font-size: .75rem">Hover over nodes for more details</p>
             </div>
         </div>
-        
+
     </div>
 @endsection

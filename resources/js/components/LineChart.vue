@@ -1,11 +1,20 @@
 <script>
-import { Line } from "vue-chartjs";
+import {Line, mixins} from 'vue-chartjs'
 
 export default {
     extends: Line,
-    props: ["chartdata", "options"],
+    mixins: [mixins.reactiveProp],
+    props: ['options', 'chartData'],
+    data: () => ({
+        htmlLegend: null
+    }),
     mounted() {
-        this.renderChart(this.chartdata, this.options);
+        // this.chartData is created in the mixin.
+        // If you want to pass options please create a local options object
+        this.renderChart(this.chartData, this.options);
+        this.htmlLegend = this.generateLegend();
+        console.log(this.htmlLegend)
     }
-};
+}
+
 </script>

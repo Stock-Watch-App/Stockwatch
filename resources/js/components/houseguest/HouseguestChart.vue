@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import LineChart from "../LineChart.js";
+import LineChart from "../LineChart.vue";
 
 export default {
     props: {
@@ -27,7 +27,7 @@ export default {
                 responsive: true,
                 tooltips: {
                     callbacks: {
-                        label: function(tooltipItems, data) {
+                        label: function (tooltipItems, data) {
                             let label =
                                 data.datasets[tooltipItems.datasetIndex].label;
                             if (label === "Price") {
@@ -41,6 +41,20 @@ export default {
                         }
                     }
                 },
+                // legendCallback: function (chart) {
+                //     var text = [];
+                //     text.push('<ul class="' + chart.id + '-legend">');
+                //     text.push('<li>Click to Toggle:</li>');
+                    // for (var i = 0; i < chart.data.datasets.length; i++) {
+                    //     text.push('<li><span style="background-color:' + chart.data.datasets[i].backgroundColor + '"></span>');
+                    //     if (chart.data.datasets[i].label) {
+                    //         text.push(chart.data.datasets[i].label);
+                    //     }
+                    //     text.push('</li>');
+                    // }
+                    // text.push('</ul>');
+                    // return text.join('');
+                // },
                 scales: {
                     xAxes: [
                         {
@@ -71,7 +85,7 @@ export default {
                                 beginAtZero: true,
                                 maxTicksLimit: 9,
                                 suggestedMax: 9,
-                                callback: function(value, index, values) {
+                                callback: function (value, index, values) {
                                     return "$" + value.toFixed(2);
                                 }
                             },
@@ -86,6 +100,7 @@ export default {
     },
     mounted() {
         this.fillData();
+        // this.generateLegend();
     },
     methods: {
         fillData() {
@@ -146,10 +161,9 @@ export default {
         }
     },
     computed: {
-        formattedPrices: function() {
+        formattedPrices: function () {
             let prices = [];
             Object.values(this.sortedPrices).forEach(p => {
-                console.log(parseFloat(p).toFixed(2));
                 prices.push(parseFloat(p).toFixed(2));
             });
             return prices;
