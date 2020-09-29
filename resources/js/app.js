@@ -59,7 +59,8 @@ import {
     faSignInAlt,
     faSignIn,
     faFileDownload,
-    faFileUpload
+    faFileUpload,
+    faArrowRight
 } from "@fortawesome/pro-solid-svg-icons";
 import {
     faTwitch,
@@ -117,6 +118,7 @@ library.add(
     faSignIn,
     faArrowUpDuo,
     faArrowDownDuo,
+    faArrowRight,
     faBinoculars,
     faChartNetwork,
     faArrowToLeft,
@@ -237,7 +239,6 @@ const app = new Vue({
             this.isActive = false;
             this.isMobile = true;
         }
-        // this.renderChart(this.chartdata, this.options)
     },
     methods: {
         toggleNavbar: function (event) {
@@ -252,33 +253,5 @@ const app = new Vue({
             default: false,
             type: Boolean
         }
-        // chartdata: {
-        //     type: Object,
-        //     default: null
-        // },
-        // options: {
-        //     type: Object,
-        //     default: null
-        // }
     }
 });
-
-
-
-
-// export default {
-//     extends: Line,
-//     props: {
-//         chartdata: {
-//             type: Object,
-//             default: null
-//         },
-//         options: {
-//             type: Object,
-//             default: null
-//         }
-//     },
-//     mounted() {
-//         this.renderChart(this.chartdata, this.options)
-//     }
-// }

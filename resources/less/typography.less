@@ -1,5 +1,5 @@
-@import (reference)  './_variables.less';
-@import (reference) './_mixins.less';
+@import (reference) "./_variables.less";
+@import (reference) "./_mixins.less";
 
 /** fluid-typography breaks down like this:
 * 320px (min)
@@ -15,19 +15,19 @@
     // min size font
     font-size: @min-font;
 
-    @media screen and (min-width: unit((@min-screen / @base-font), ~'rem')) {
+    @media screen and (min-width: unit((@min-screen / @base-font), ~"rem")) {
         /* stylelint-disable */
-        font-size: ~'@{fallbackFontSize}';
+        font-size: ~"@{fallbackFontSize}";
         font-size: calc(
-            @min-font ~' + ' unit(@max-font - @min-font) ~' * ((100vw - '
-                unit((@min-screen / @base-font), ~'rem') ~') /' unit(
+            @min-font ~" + " unit(@max-font - @min-font) ~" * ((100vw - "
+                unit((@min-screen / @base-font), ~"rem") ~") /" unit(
                     (@max-screen / @base-font) - (@min-screen / @base-font)
-                ) ~')'
+                ) ~")"
         );
         /* stylelint-enable */
     }
 
-    @media screen and (min-width: unit((@max-screen / @base-font), ~'rem')) {
+    @media screen and (min-width: unit((@max-screen / @base-font), ~"rem")) {
         // max size font
         font-size: @max-font;
     }
@@ -42,7 +42,14 @@ h1,
     font-variation-settings: @base-font-weight-bold;
     margin-top: 0;
     margin-bottom: @space-xs;
-    .fluid-typography-rem(@small-screen, @large-screen, @base, 2.5rem, 3rem, 1.75rem);
+    .fluid-typography-rem(
+        @small-screen,
+        @large-screen,
+        @base,
+        2.5rem,
+        3rem,
+        1.75rem
+    );
 }
 
 h2,
@@ -52,7 +59,14 @@ h2,
     font-variation-settings: @base-font-weight-bold;
     margin-top: 0;
     margin-bottom: @space-xs;
-    .fluid-typography-rem(@small-screen, @large-screen, @base, 2rem, 2.441rem, 1.4rem);
+    .fluid-typography-rem(
+        @small-screen,
+        @large-screen,
+        @base,
+        2rem,
+        2.441rem,
+        1.4rem
+    );
 }
 
 h3,
@@ -62,7 +76,14 @@ h3,
     font-variation-settings: @base-font-weight-bold;
     margin-top: 0;
     margin-bottom: @space-xs;
-    .fluid-typography-rem(@small-screen, @large-screen, @base, 1.2rem, 1.953rem, 1.3rem);
+    .fluid-typography-rem(
+        @small-screen,
+        @large-screen,
+        @base,
+        1.2rem,
+        1.953rem,
+        1.3rem
+    );
 }
 
 h4,
@@ -72,7 +93,14 @@ h4,
     font-variation-settings: @base-font-weight-bold;
     margin-top: 0;
     margin-bottom: @space-xs;
-    .fluid-typography-rem(@small-screen, @large-screen, @base, 1rem, 1.563rem, 1rem);
+    .fluid-typography-rem(
+        @small-screen,
+        @large-screen,
+        @base,
+        1rem,
+        1.563rem,
+        1rem
+    );
 }
 
 h5,
@@ -118,7 +146,20 @@ a {
     &:focus,
     &:active {
         color: @link-hover;
-        text-decoration: none;
+        text-decoration: underline;
+        transition: @transition;
+    }
+}
+
+a.dark {
+    color: @gray-01;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: @gray-medium;
+        text-decoration: underline;
         transition: @transition;
     }
 }

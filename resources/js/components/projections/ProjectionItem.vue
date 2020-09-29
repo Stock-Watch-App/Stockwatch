@@ -2,12 +2,19 @@
     <div class="projection-card">
         <div class="hg-details">
             <h5 v-show="showname === true">
-                <a class="hg-link" :href="houseguestLink">{{ houseguest.nickname }}</a>
-                <vanity-tag
-                    v-if="houseguest.vanitytags"
-                    :label="houseguest.vanitytags.tag"
-                ></vanity-tag>
+                <a class="dark" :href="houseguestLink"
+                    >{{ houseguest.nickname }}
+                    <!-- <font-awesome-icon icon="arrow-to-right" class="hg-star" /> -->
+                    <font-awesome-icon
+                        :icon="['fas', 'arrow-right']"
+                        fixed-width
+                    />
+                </a>
             </h5>
+            <vanity-tag
+                v-if="houseguest.vanitytags"
+                :label="houseguest.vanitytags.tag"
+            ></vanity-tag>
         </div>
         <a :href="houseguestLink"
             ><img
@@ -230,13 +237,3 @@ export default {
     }
 };
 </script>
-<style scoped>
-.hg-link {
-    color: #25282F;
-}
-
-.hg-link:hover {
-    color: #74777d;
-    text-decoration: underline;
-}
-</style>
