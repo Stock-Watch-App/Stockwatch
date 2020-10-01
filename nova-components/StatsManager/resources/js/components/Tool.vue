@@ -31,6 +31,7 @@
             <Tab name="Reports">
                 <button v-if="!generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4" @click="generate">Generate Stat Report</button>
                 <button v-if="generating" class="inline-block bg-primary px-4 py-2 rounded-lg text-white bold mb-4">Generating...</button>
+                <span class="font-bold">Week: </span><input class="w-8" type="number" v-model="reportWeek">
                 <table class="table-fixed w-full">
                     <thead>
                     <tr>
@@ -66,6 +67,7 @@ export default {
         return {
             files: Array,
             generating: false,
+            reportWeek: 0,
             stocks: Array,
             topStock: Number,
             money: Array,
@@ -79,7 +81,7 @@ export default {
     methods: {
         generate() {
             this.generating = true;
-            axios.post('/nova-vendor/stats-manager/generate').then(res => {
+            axios.post('/nova-vendor/stats-manager/generate', {week: this.reportWeek}).then(res => {
                 this.getFiles();
                 this.generating = false;
             })
@@ -87,6 +89,7 @@ export default {
         getFiles() {
             axios.get('/nova-vendor/stats-manager/files').then(res => {
                 this.files = res.data;
+                this.reportWeek = res.data[0].season.current_week;
             })
         },
         download(file) {

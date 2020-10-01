@@ -695,6 +695,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -704,6 +705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             files: Array,
             generating: false,
+            reportWeek: 0,
             stocks: Array,
             topStock: Number,
             money: Array,
@@ -720,7 +722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.generating = true;
-            axios.post('/nova-vendor/stats-manager/generate').then(function (res) {
+            axios.post('/nova-vendor/stats-manager/generate', { week: this.reportWeek }).then(function (res) {
                 _this.getFiles();
                 _this.generating = false;
             });
@@ -730,6 +732,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/nova-vendor/stats-manager/files').then(function (res) {
                 _this2.files = res.data;
+                _this2.reportWeek = res.data[0].season.current_week;
             });
         },
         download: function download(file) {
@@ -1206,6 +1209,29 @@ var render = function() {
                   [_vm._v("Generating...")]
                 )
               : _vm._e(),
+            _vm._v(" "),
+            _c("span", { staticClass: "font-bold" }, [_vm._v("Week: ")]),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.reportWeek,
+                  expression: "reportWeek"
+                }
+              ],
+              staticClass: "w-8",
+              attrs: { type: "number" },
+              domProps: { value: _vm.reportWeek },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.reportWeek = $event.target.value
+                }
+              }
+            }),
             _vm._v(" "),
             _c("table", { staticClass: "table-fixed w-full" }, [
               _c("thead", [
