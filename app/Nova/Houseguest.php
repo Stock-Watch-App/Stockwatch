@@ -32,6 +32,7 @@ class Houseguest extends Resource
             Text::make('First Name'),
             Text::make('Last Name'),
             Text::make('Nickname')->help('Optional. First name will be used by default.'),
+            Text::make('Slug')->help('Optional. kebab-case full name will be used by default.'),
             BelongsTo::make('Season', 'season', Season::class),
             Select::make('Status')->options([
                 'active' => 'Active',
