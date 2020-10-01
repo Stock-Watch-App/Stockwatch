@@ -32,6 +32,7 @@ class Houseguest extends Resource
             Text::make('First Name'),
             Text::make('Last Name'),
             Text::make('Nickname')->help('Optional. First name will be used by default.'),
+            Text::make('Slug')->help('Optional. kebab-case full name will be used by default.'),
             BelongsTo::make('Season', 'season', Season::class),
             Select::make('Status')->options([
                 'active' => 'Active',
@@ -44,11 +45,22 @@ class Houseguest extends Resource
 //            HasMany::make('Transactions', 'transactions', Transaction::class)
         ];
     }
+
     public static function relatableQuery(NovaRequest $request, $query)
     {
         if (in_array($request->route('resource'), ['vanity-tags', 'seasons'])) {
             return $query->withoutGlobalScope('active');
         }
         return $query;
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScope('active');
+    }
+
+    public static function detailQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScope('active');
     }
 }
