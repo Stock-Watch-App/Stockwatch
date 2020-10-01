@@ -44,11 +44,22 @@ class Houseguest extends Resource
 //            HasMany::make('Transactions', 'transactions', Transaction::class)
         ];
     }
+
     public static function relatableQuery(NovaRequest $request, $query)
     {
         if (in_array($request->route('resource'), ['vanity-tags', 'seasons'])) {
             return $query->withoutGlobalScope('active');
         }
         return $query;
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScope('active');
+    }
+
+    public static function detailQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScope('active');
     }
 }
