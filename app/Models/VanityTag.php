@@ -18,4 +18,12 @@ class VanityTag extends BaseModel
     {
         return $this->belongsTo(Season::class);
     }
+
+    //=== SCOPES ===/
+    public function scopeCurrentSeason($query)
+    {
+        return $query->whereHas('season', function ($q) {
+            $q->where('id', Season::current()->id);
+        });
+    }
 }

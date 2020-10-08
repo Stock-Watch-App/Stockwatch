@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -634,6 +634,8 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Toggle__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Toggle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Toggle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__HouseguestPicker__);
 //
 //
 //
@@ -655,34 +657,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            season: Object
+            season: Object,
+            week: Number,
+            tags: {
+                hoh: '',
+                veto: '',
+                nom1: '',
+                nom2: ''
+            },
+            apiPrefix: '/nova-vendor/season-manager'
         };
     },
     mounted: function mounted() {
         this.getSeason();
     },
 
+    watch: {
+        week: function week(newVal, oldval) {
+            console.log(newVal);
+            console.log(oldval);
+            this.getWeekData();
+        }
+    },
     methods: {
         getSeason: function getSeason() {
             var _this = this;
 
-            axios.get('/nova-vendor/season-manager/season/current').then(function (res) {
+            axios.get(this.apiPrefix + '/season/current').then(function (res) {
                 _this.season = res.data;
+                _this.week = _this.season.status === 'closed' ? _this.season.current_week + 1 : _this.season.current_week;
+            });
+        },
+        getWeekData: function getWeekData() {
+            var _this2 = this;
+
+            axios.get(this.apiPrefix + '/week/' + this.week).then(function (res) {
+                _this2.tags.hoh = res.data.tags.hoh;
+                _this2.tags.veto = res.data.tags.veto;
+                _this2.tags.nom1 = res.data.tags.nom1;
+                _this2.tags.nom2 = res.data.tags.nom2;
             });
         },
         saveStatus: function saveStatus(status) {
             var opening = 'Are you sure? Toggling to OPEN will run the formula to start the week and is non-reversible';
             var closing = 'Are you sure? Toggling to CLOSE is non-reversible until after the next Roundtable';
             if (confirm(status ? opening : closing)) {
-                axios.post('/nova-vendor/season-manager/season/update/status', {
+                axios.post(this.apiPrefix + '/season/update/status', {
                     'status': status ? 'open' : 'closed'
                 });
             }
+        },
+        saveTags: function saveTags() {
+            axios.post(this.apiPrefix + '/save/tags', {
+                tags: this.tags,
+                week: this.week
+            });
         }
     },
     computed: {
@@ -691,7 +742,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     components: {
-        Toggle: __WEBPACK_IMPORTED_MODULE_0__Toggle___default.a
+        'toggle': __WEBPACK_IMPORTED_MODULE_0__Toggle___default.a,
+        'houseguest-picker': __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker___default.a
     }
 });
 
@@ -928,9 +980,89 @@ var render = function() {
             })
           ],
           1
+        )
+      ]),
+      _vm._v(" "),
+      _c("card", { staticClass: "mt-6 p-3" }, [
+        _c(
+          "div",
+          { staticClass: "flex flex-row" },
+          [
+            _c("label", { staticClass: "font-bold" }, [
+              _vm._v("Week: "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.week,
+                    expression: "week"
+                  }
+                ],
+                staticClass: "w-8",
+                attrs: { type: "number" },
+                domProps: { value: _vm.week },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.week = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("houseguest-picker", {
+              attrs: { label: "HOH", type: "active" },
+              model: {
+                value: _vm.tags.hoh,
+                callback: function($$v) {
+                  _vm.$set(_vm.tags, "hoh", $$v)
+                },
+                expression: "tags.hoh"
+              }
+            }),
+            _vm._v(" "),
+            _c("houseguest-picker", {
+              attrs: { label: "Veto", type: "active" },
+              model: {
+                value: _vm.tags.veto,
+                callback: function($$v) {
+                  _vm.$set(_vm.tags, "veto", $$v)
+                },
+                expression: "tags.veto"
+              }
+            }),
+            _vm._v(" "),
+            _c("houseguest-picker", {
+              attrs: { label: "Nominated", type: "active" },
+              model: {
+                value: _vm.tags.nom1,
+                callback: function($$v) {
+                  _vm.$set(_vm.tags, "nom1", $$v)
+                },
+                expression: "tags.nom1"
+              }
+            }),
+            _vm._v(" "),
+            _c("houseguest-picker", {
+              attrs: { label: "Nominated", type: "active" },
+              model: {
+                value: _vm.tags.nom2,
+                callback: function($$v) {
+                  _vm.$set(_vm.tags, "nom2", $$v)
+                },
+                expression: "tags.nom2"
+              }
+            }),
+            _vm._v(" "),
+            _c("button", { on: { click: _vm.saveTags } }, [_vm._v("Save")])
+          ],
+          1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "flex flex-row" })
+        _c("div", { staticClass: "flex flex-row" }, [_c("table", [_c("tr")])])
       ])
     ],
     1
@@ -951,6 +1083,222 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(21)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(23)
+/* template */
+var __vue_template__ = __webpack_require__(24)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-231c54d1"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/HouseguestPicker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-231c54d1", Component.options)
+  } else {
+    hotAPI.reload("data-v-231c54d1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(22);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("1aff9bdc", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-231c54d1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HouseguestPicker.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-231c54d1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HouseguestPicker.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    model: {
+        prop: 'selectedHouseguest',
+        event: 'change'
+    },
+    props: {
+        label: String,
+        selectedHouseguest: ''
+    },
+    data: function data() {
+        return {
+            houseguests: [],
+            selected: this.selectedHouseguest
+        };
+    },
+
+    watch: {
+        selectedHouseguest: function selectedHouseguest() {
+            this.selected = this.selectedHouseguest;
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/nova-vendor/season-manager/houseguests/').then(function (res) {
+            _this.houseguests = res.data;
+        });
+    },
+
+    methods: {
+        pick: function pick() {
+            // console.log(this.$event.target)
+            this.$emit('change', this.selected);
+        }
+    }
+});
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("label", [
+      _vm._v(_vm._s(_vm.label) + ":\n        "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.selected,
+              expression: "selected"
+            }
+          ],
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selected = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.pick
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { disabled: "", value: "" } }, [
+            _vm._v("Select Houseguest")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.houseguests, function(houseguest) {
+            return _c("option", { domProps: { value: houseguest.nickname } }, [
+              _vm._v(_vm._s(houseguest.nickname))
+            ])
+          })
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-231c54d1", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -3,7 +3,7 @@
         <heading class="mb-6">Season Manager</heading>
 
         <card class="w-2/3 flex flex-col">
-            <h3 class="m-4 w-1/2 text-left font-semibold">{{season.name}}</h3>
+            <h3 class="m-4 w-1/2 text-left font-semibold">{{ season.name }}</h3>
             <div class="w-1/2 flex flex-row p-3 float-right">
                 <span class="font-medium text-lg mr-3 align-middle leading-loose">Market:</span>
                 <toggle
@@ -12,7 +12,22 @@
                     @toggled="saveStatus"
                 ></toggle>
             </div>
+        </card>
+        <card class="mt-6 p-3">
             <div class="flex flex-row">
+                <label class="font-bold">Week: <input class="w-8" type="number" v-model="week"></label>
+                <houseguest-picker label="HOH" type="active" v-model="tags.hoh"></houseguest-picker>
+                <houseguest-picker label="Veto" type="active" v-model="tags.veto"></houseguest-picker>
+                <houseguest-picker label="Nominated" type="active" v-model="tags.nom1"></houseguest-picker>
+                <houseguest-picker label="Nominated" type="active" v-model="tags.nom2"></houseguest-picker>
+                <button @click="saveTags">Save</button>
+            </div>
+            <div class="flex flex-row">
+                <table>
+                    <tr v-for="">
+
+                    </tr>
+                </table>
                 <!-- Ratings some day -->
             </div>
         </card>
@@ -20,41 +35,74 @@
 </template>
 
 <script>
-    import Toggle from "./Toggle";
-    export default {
-        data() {
-            return {
-                season: Object
-            }
-        },
-        mounted() {
-            this.getSeason();
-        },
-        methods: {
-            getSeason() {
-                axios.get('/nova-vendor/season-manager/season/current').then(res => {
-                    this.season = res.data;
-                })
+import Toggle from "./Toggle";
+import HouseguestPicker from "./HouseguestPicker";
+
+export default {
+    data() {
+        return {
+            season: Object,
+            week: Number,
+            tags: {
+                hoh: '',
+                veto: '',
+                nom1: '',
+                nom2: '',
             },
-            saveStatus(status) {
-                let opening = 'Are you sure? Toggling to OPEN will run the formula to start the week and is non-reversible';
-                let closing = 'Are you sure? Toggling to CLOSE is non-reversible until after the next Roundtable';
-                if (confirm(status ? opening : closing)) {
-                    axios.post('/nova-vendor/season-manager/season/update/status', {
-                        'status': status ? 'open' : 'closed'
-                    });
-                }
-            }
-        },
-        computed: {
-            statusAsBoolean() {
-                return this.season.status === 'open';
-            }
-        },
-        components:{
-            Toggle
+            apiPrefix: '/nova-vendor/season-manager'
         }
+    },
+    mounted() {
+        this.getSeason();
+    },
+    watch: {
+        week: function (newVal, oldval) {
+            console.log(newVal);
+            console.log(oldval);
+            this.getWeekData();
+        }
+    },
+    methods: {
+        getSeason() {
+            axios.get(this.apiPrefix + '/season/current').then(res => {
+                this.season = res.data;
+                this.week = (this.season.status === 'closed') ? this.season.current_week + 1 : this.season.current_week;
+            })
+        },
+        getWeekData() {
+            axios.get(this.apiPrefix + '/week/' + this.week).then(res => {
+                this.tags.hoh = res.data.tags.hoh;
+                this.tags.veto = res.data.tags.veto;
+                this.tags.nom1 = res.data.tags.nom1;
+                this.tags.nom2 = res.data.tags.nom2;
+            })
+        },
+        saveStatus(status) {
+            let opening = 'Are you sure? Toggling to OPEN will run the formula to start the week and is non-reversible';
+            let closing = 'Are you sure? Toggling to CLOSE is non-reversible until after the next Roundtable';
+            if (confirm(status ? opening : closing)) {
+                axios.post(this.apiPrefix + '/season/update/status', {
+                    'status': status ? 'open' : 'closed'
+                });
+            }
+        },
+        saveTags() {
+            axios.post(this.apiPrefix + '/save/tags', {
+                tags: this.tags,
+                week: this.week
+            })
+        }
+    },
+    computed: {
+        statusAsBoolean() {
+            return this.season.status === 'open';
+        }
+    },
+    components: {
+        'toggle': Toggle,
+        'houseguest-picker': HouseguestPicker
     }
+}
 </script>
 
 <style>
