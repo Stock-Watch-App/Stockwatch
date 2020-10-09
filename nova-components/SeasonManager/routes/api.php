@@ -89,23 +89,24 @@ Route::get('/week/{week}', function (Request $request, $week) {
                      ])
                      ->get();
 
-    $rankings = Houseguest::currentSeason()
+    $ratings = Houseguest::currentSeason()
                           ->withoutGlobalScope('active')
                           ->with([
                               'ratings' => function ($q) use ($week) {
-                                  $q->where('week');
+                                  $q->where('week', $week);
                               },
                               'ratings.user'
                           ])
-                          ->get();
-//                          ->mapToAssoc(function ($h) {
-//                              dump($h);
-//                              return [$h->nickname, $h->ratings->mapToAssoc(function ($r) {
-//                                 return [$r->user->username, $r->rating];
-//                              })];
-//                          });
+                        ->orderBy('status')
+                        ->orderBy('nickname')
+                          ->get()
+                          ->mapToAssoc(function ($h) {
+                              return [$h->nickname, $h->ratings->mapToAssoc(function ($r) {
+                                 return [explode(' ',$r->user->name)[0], $r->rating];
+                              })];
+                          });
 
-    dd($rankings);
+//    dd()
 
     $results = [
         'tags'     => [
@@ -114,7 +115,7 @@ Route::get('/week/{week}', function (Request $request, $week) {
             'nom1' => ($tag = $tags->where('tag', 'Nominated')->first()) ? $tag->taggable->nickname : '',
             'nom2' => ($tag = $tags->where('tag', 'Nominated')->last()) ? $tag->taggable->nickname : '',
         ],
-        'rankings' => $rankings
+        'ratings' => $ratings
     ];
     return json_encode($results);
 });

@@ -24,9 +24,40 @@
             </div>
             <div class="flex flex-row">
                 <table>
-                    <tr v-for="">
-
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th v-for="(ratings, hg) in cleanRatings">
+                                {{ hg }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td v-for="(ratings, hg) in cleanRatings">
+                                <rating-input :rating="ratings.Taran" :houseguest="hg" user="Taran"></rating-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(ratings, hg) in cleanRatings">
+                                <rating-input :rating="ratings.Brent" :houseguest="hg" user="Brent"></rating-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(ratings, hg) in cleanRatings">
+                                <rating-input :rating="ratings.Melissa" :houseguest="hg" user="Melissa"></rating-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(ratings, hg) in cleanRatings">
+                                <rating-input :rating="ratings.Audience" :houseguest="hg" user="Audience"></rating-input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td v-for="(ratings, hg) in cleanRatings">
+                                {{ avgRating(ratings) }}
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <!-- Ratings some day -->
             </div>
@@ -37,6 +68,7 @@
 <script>
 import Toggle from "./Toggle";
 import HouseguestPicker from "./HouseguestPicker";
+import RatingInput from "./RatingInput";
 
 export default {
     data() {
@@ -49,6 +81,7 @@ export default {
                 nom1: '',
                 nom2: '',
             },
+            ratings: [],
             apiPrefix: '/nova-vendor/season-manager'
         }
     },
@@ -75,6 +108,8 @@ export default {
                 this.tags.veto = res.data.tags.veto;
                 this.tags.nom1 = res.data.tags.nom1;
                 this.tags.nom2 = res.data.tags.nom2;
+
+                this.ratings = res.data.ratings;
             })
         },
         saveStatus(status) {
@@ -91,20 +126,56 @@ export default {
                 tags: this.tags,
                 week: this.week
             })
+        },
+        avgRating(ratings) {
+            return Math.round((ratings.Taran + ratings.Brent + ratings.Melissa + ratings.Audience)/4);
         }
     },
     computed: {
         statusAsBoolean() {
             return this.season.status === 'open';
+        },
+        cleanRatings() {
+            let clean = {};
+            for (const r in this.ratings) {
+                if (!_.isEmpty(this.ratings[r])) {
+                    clean[r] = this.ratings[r]
+                } else {
+                    clean[r] = {
+                        Taran: null,
+                        Brent: null,
+                        Melissa: null,
+                        Audience: null,
+                    }
+                }
+            }
+            return clean;
         }
     },
     components: {
         'toggle': Toggle,
-        'houseguest-picker': HouseguestPicker
+        'houseguest-picker': HouseguestPicker,
+        'rating-input': RatingInput
     }
 }
 </script>
 
 <style>
-
+    .thead {
+        height: 100px;
+    }
+    th {
+        transform: rotate(-45deg);
+        transform-origin: bottom;
+    }
+    tr {
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+    }
+    tr:first-child {
+        border-top: 1px solid black;
+    }
+    td {
+        border-left: 1px solid black;
+    }
 </style>
