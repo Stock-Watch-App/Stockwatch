@@ -20,43 +20,48 @@
                 <houseguest-picker label="Veto" type="active" v-model="tags.veto"></houseguest-picker>
                 <houseguest-picker label="Nominated" type="active" v-model="tags.nom1"></houseguest-picker>
                 <houseguest-picker label="Nominated" type="active" v-model="tags.nom2"></houseguest-picker>
-                <button @click="saveTags">Save</button>
+                <button @click="saveTags">Save Tags</button>
             </div>
             <div class="flex flex-row">
                 <table>
                     <thead>
-                        <tr>
-                            <th v-for="(ratings, hg) in cleanRatings">
-                                {{ hg }}
-                            </th>
-                        </tr>
+                    <tr>
+                        <th v-for="(hg, name) in allRatings">
+                            {{ name }}
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td v-for="(ratings, hg) in cleanRatings">
-                                <rating-input :rating="ratings.Taran" :houseguest="hg" user="Taran"></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td v-for="(ratings, hg) in cleanRatings">
-                                <rating-input :rating="ratings.Brent" :houseguest="hg" user="Brent"></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td v-for="(ratings, hg) in cleanRatings">
-                                <rating-input :rating="ratings.Melissa" :houseguest="hg" user="Melissa"></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td v-for="(ratings, hg) in cleanRatings">
-                                <rating-input :rating="ratings.Audience" :houseguest="hg" user="Audience"></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td v-for="(ratings, hg) in cleanRatings">
-                                {{ avgRating(ratings) }}
-                            </td>
-                        </tr>
+                    <tr>
+                        <td v-for="(hg, name) in allRatings" :key="name+'status'">
+                            <input type="checkbox" :checked="hg.status === 'evicted'" @click="toggleEvict(name, hg)" :disabled="week <= season.current_week">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="(hg, name) in allRatings" :key="name+'Taran'">
+                            <rating-input :rating="hg.ratings.Taran" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Taran']"></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="(hg, name) in allRatings" :key="name+'Brent'">
+                            <rating-input :rating="hg.ratings.Brent" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Brent']"></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="(hg, name) in allRatings" :key="name+'Melissa'">
+                            <rating-input :rating="hg.ratings.Melissa" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Melissa']"></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="(hg, name) in allRatings" :key="name+'Audience'">
+                            <rating-input :rating="hg.ratings.Audience" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Audience']"></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="(hg, name) in allRatings" :class="{'evicted':hg.status === 'evicted'}" :key="name+'Average'">
+                            {{ avgRating(hg) }}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
                 <!-- Ratings some day -->
@@ -82,11 +87,15 @@ export default {
                 nom2: '',
             },
             ratings: [],
+            lfc: [],
             apiPrefix: '/nova-vendor/season-manager'
         }
     },
     mounted() {
         this.getSeason();
+        axios.get(this.apiPrefix + '/lfc').then(res => {
+            this.lfc = res.data;
+        })
     },
     watch: {
         week: function (newVal, oldval) {
@@ -109,7 +118,7 @@ export default {
                 this.tags.nom1 = res.data.tags.nom1;
                 this.tags.nom2 = res.data.tags.nom2;
 
-                this.ratings = res.data.ratings;
+                this.ratings = res.data.houseguests;
             })
         },
         saveStatus(status) {
@@ -127,29 +136,31 @@ export default {
                 week: this.week
             })
         },
-        avgRating(ratings) {
-            return Math.round((ratings.Taran + ratings.Brent + ratings.Melissa + ratings.Audience)/4);
+        avgRating(hg) {
+            if (hg.status === 'active' && ![hg.ratings.Taran, hg.ratings.Brent, hg.ratings.Melissa, hg.ratings.Audience].includes(null)) {
+                return Math.round((hg.ratings.Taran + hg.ratings.Brent + hg.ratings.Melissa + hg.ratings.Audience) / 4);
+            }
+        },
+        toggleEvict(name, hg) {
+            let url = (hg.status === 'active') ? '/evict/' : '/unevict/';
+            axios.post(this.apiPrefix + url + name).then(r => {
+                this.getWeekData();
+            })
         }
     },
     computed: {
         statusAsBoolean() {
             return this.season.status === 'open';
         },
-        cleanRatings() {
-            let clean = {};
-            for (const r in this.ratings) {
-                if (!_.isEmpty(this.ratings[r])) {
-                    clean[r] = this.ratings[r]
-                } else {
-                    clean[r] = {
-                        Taran: null,
-                        Brent: null,
-                        Melissa: null,
-                        Audience: null,
-                    }
-                }
+        allRatings() {
+            let all = {};
+            for (const r in this.ratings.active) {
+                all[r] = this.ratings.active[r];
             }
-            return clean;
+            for (const r in this.ratings.evicted) {
+                all[r]  = this.ratings.evicted[r];
+            }
+            return all;
         }
     },
     components: {
@@ -161,21 +172,30 @@ export default {
 </script>
 
 <style>
-    .thead {
-        height: 100px;
-    }
-    th {
-        transform: rotate(-45deg);
-        transform-origin: bottom;
-    }
-    tr {
-        border-bottom: 1px solid black;
-        border-right: 1px solid black;
-    }
-    tr:first-child {
-        border-top: 1px solid black;
-    }
-    td {
-        border-left: 1px solid black;
-    }
+thead tr {
+    /*height: 100px;*/
+}
+
+th {
+    /*transform: rotate(-45deg);*/
+    /*transform-origin: bottom;*/
+}
+
+tr {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+tr:first-child {
+    border-top: 1px solid black;
+}
+
+td {
+    padding: 0;
+    border-left: 1px solid black;
+}
+
+.evicted {
+    background-color: rgba(255, 0, 0, .3);
+}
 </style>

@@ -487,7 +487,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
-module.exports = __webpack_require__(21);
+module.exports = __webpack_require__(26);
 
 
 /***/ }),
@@ -515,7 +515,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(9)
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = __webpack_require__(25)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.thead {\n    height: 100px;\n}\nth {\n    -webkit-transform: rotate(-45deg);\n            transform: rotate(-45deg);\n    -webkit-transform-origin: bottom;\n            transform-origin: bottom;\n}\ntr {\n    border-bottom: 1px solid black;\n    border-right: 1px solid black;\n}\ntr:first-child {\n    border-top: 1px solid black;\n}\ntd {\n    border-left: 1px solid black;\n}\n", ""]);
+exports.push([module.i, "\nthead tr {\n    /*height: 100px;*/\n}\nth {\n    /*transform: rotate(-45deg);*/\n    /*transform-origin: bottom;*/\n}\ntr {\n    border-bottom: 1px solid black;\n    border-right: 1px solid black;\n}\ntr:first-child {\n    border-top: 1px solid black;\n}\ntd {\n    padding: 0;\n    border-left: 1px solid black;\n}\n.evicted {\n    background-color: rgba(255, 0, 0, .3);\n}\n", ""]);
 
 // exports
 
@@ -636,8 +636,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Toggle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Toggle__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__HouseguestPicker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RatingInput__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RatingInput__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RatingInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__RatingInput__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -722,11 +727,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 nom2: ''
             },
             ratings: [],
+            lfc: [],
             apiPrefix: '/nova-vendor/season-manager'
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         this.getSeason();
+        axios.get(this.apiPrefix + '/lfc').then(function (res) {
+            _this.lfc = res.data;
+        });
     },
 
     watch: {
@@ -738,23 +749,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         getSeason: function getSeason() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get(this.apiPrefix + '/season/current').then(function (res) {
-                _this.season = res.data;
-                _this.week = _this.season.status === 'closed' ? _this.season.current_week + 1 : _this.season.current_week;
+                _this2.season = res.data;
+                _this2.week = _this2.season.status === 'closed' ? _this2.season.current_week + 1 : _this2.season.current_week;
             });
         },
         getWeekData: function getWeekData() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get(this.apiPrefix + '/week/' + this.week).then(function (res) {
-                _this2.tags.hoh = res.data.tags.hoh;
-                _this2.tags.veto = res.data.tags.veto;
-                _this2.tags.nom1 = res.data.tags.nom1;
-                _this2.tags.nom2 = res.data.tags.nom2;
+                _this3.tags.hoh = res.data.tags.hoh;
+                _this3.tags.veto = res.data.tags.veto;
+                _this3.tags.nom1 = res.data.tags.nom1;
+                _this3.tags.nom2 = res.data.tags.nom2;
 
-                _this2.ratings = res.data.ratings;
+                _this3.ratings = res.data.houseguests;
             });
         },
         saveStatus: function saveStatus(status) {
@@ -772,29 +783,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 week: this.week
             });
         },
-        avgRating: function avgRating(ratings) {
-            return Math.round((ratings.Taran + ratings.Brent + ratings.Melissa + ratings.Audience) / 4);
+        avgRating: function avgRating(hg) {
+            if (hg.status === 'active' && ![hg.ratings.Taran, hg.ratings.Brent, hg.ratings.Melissa, hg.ratings.Audience].includes(null)) {
+                return Math.round((hg.ratings.Taran + hg.ratings.Brent + hg.ratings.Melissa + hg.ratings.Audience) / 4);
+            }
+        },
+        toggleEvict: function toggleEvict(name, hg) {
+            var _this4 = this;
+
+            var url = hg.status === 'active' ? '/evict/' : '/unevict/';
+            axios.post(this.apiPrefix + url + name).then(function (r) {
+                _this4.getWeekData();
+            });
         }
     },
     computed: {
         statusAsBoolean: function statusAsBoolean() {
             return this.season.status === 'open';
         },
-        cleanRatings: function cleanRatings() {
-            var clean = {};
-            for (var r in this.ratings) {
-                if (!_.isEmpty(this.ratings[r])) {
-                    clean[r] = this.ratings[r];
-                } else {
-                    clean[r] = {
-                        Taran: null,
-                        Brent: null,
-                        Melissa: null,
-                        Audience: null
-                    };
-                }
+        allRatings: function allRatings() {
+            var all = {};
+            for (var r in this.ratings.active) {
+                all[r] = this.ratings.active[r];
             }
-            return clean;
+            for (var _r in this.ratings.evicted) {
+                all[_r] = this.ratings.evicted[_r];
+            }
+            return all;
         }
     },
     components: {
@@ -1214,6 +1229,188 @@ if (false) {
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(21)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(23)
+/* template */
+var __vue_template__ = __webpack_require__(24)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-40d166dc"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/RatingInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-40d166dc", Component.options)
+  } else {
+    hotAPI.reload("data-v-40d166dc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(22);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("12242f9f", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40d166dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RatingInput.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40d166dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RatingInput.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ndiv[data-v-40d166dc], input[data-v-40d166dc] {\n    /*background-color: transparent;*/\n    min-height: 20px;\n    min-width: 50px;\n    width: 100%;\n}\n.evicted[data-v-40d166dc] {\n    background-color: rgba(255, 0, 0, .3);\n}\n.saved[data-v-40d166dc] {\n    background-color: rgba(0, 255, 0, .3);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        houseguest: String,
+        user: Number,
+        week: Number,
+        status: String,
+        rating: null,
+        saved: false
+    },
+    data: function data() {
+        return {
+            localRating: this.rating
+        };
+    },
+
+    watch: {
+        rating: function rating() {
+            this.localRating = this.rating;
+        }
+    },
+    methods: {
+        save: function save() {
+            var _this = this;
+
+            axios.post('/nova-vendor/season-manager/save/rating/' + this.localRating + '/week/' + this.week + '/houseguest/' + this.houseguest + '/lfc/' + this.user).then(function (res) {
+                _this.saved = res.data.success;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.status === "active"
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.localRating,
+              expression: "localRating"
+            }
+          ],
+          staticClass: "w-16",
+          class: { saved: _vm.saved },
+          attrs: { type: "number" },
+          domProps: { value: _vm.localRating },
+          on: {
+            change: _vm.save,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.localRating = $event.target.value
+            }
+          }
+        })
+      : _c("div", { staticClass: "evicted" })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-40d166dc", module.exports)
+  }
+}
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -1327,7 +1524,7 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("button", { on: { click: _vm.saveTags } }, [_vm._v("Save")])
+            _c("button", { on: { click: _vm.saveTags } }, [_vm._v("Save Tags")])
           ],
           1
         ),
@@ -1337,12 +1534,12 @@ var render = function() {
             _c("thead", [
               _c(
                 "tr",
-                _vm._l(_vm.cleanRatings, function(ratings, hg) {
+                _vm._l(_vm.allRatings, function(hg, name) {
                   return _c("th", [
                     _vm._v(
-                      "\n                            " +
-                        _vm._s(hg) +
-                        "\n                        "
+                      "\n                        " +
+                        _vm._s(name) +
+                        "\n                    "
                     )
                   ])
                 }),
@@ -1353,94 +1550,134 @@ var render = function() {
             _c("tbody", [
               _c(
                 "tr",
-                _vm._l(_vm.cleanRatings, function(ratings, hg) {
-                  return _c(
-                    "td",
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: ratings.Taran,
-                          houseguest: hg,
-                          user: "Taran"
+                _vm._l(_vm.allRatings, function(hg, name) {
+                  return _c("td", { key: name + "status" }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        disabled: _vm.week <= _vm.season.current_week
+                      },
+                      domProps: { checked: hg.status === "evicted" },
+                      on: {
+                        click: function($event) {
+                          return _vm.toggleEvict(name, hg)
                         }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.cleanRatings, function(ratings, hg) {
-                  return _c(
-                    "td",
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: ratings.Brent,
-                          houseguest: hg,
-                          user: "Brent"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.cleanRatings, function(ratings, hg) {
-                  return _c(
-                    "td",
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: ratings.Melissa,
-                          houseguest: hg,
-                          user: "Melissa"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.cleanRatings, function(ratings, hg) {
-                  return _c(
-                    "td",
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: ratings.Audience,
-                          houseguest: hg,
-                          user: "Audience"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.cleanRatings, function(ratings, hg) {
-                  return _c("td", [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.avgRating(ratings)) +
-                        "\n                        "
-                    )
+                      }
+                    })
                   ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                _vm._l(_vm.allRatings, function(hg, name) {
+                  return _c(
+                    "td",
+                    { key: name + "Taran" },
+                    [
+                      _c("rating-input", {
+                        attrs: {
+                          rating: hg.ratings.Taran,
+                          week: _vm.week,
+                          houseguest: name,
+                          status: hg.status,
+                          user: _vm.lfc["Taran"]
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                _vm._l(_vm.allRatings, function(hg, name) {
+                  return _c(
+                    "td",
+                    { key: name + "Brent" },
+                    [
+                      _c("rating-input", {
+                        attrs: {
+                          rating: hg.ratings.Brent,
+                          week: _vm.week,
+                          houseguest: name,
+                          status: hg.status,
+                          user: _vm.lfc["Brent"]
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                _vm._l(_vm.allRatings, function(hg, name) {
+                  return _c(
+                    "td",
+                    { key: name + "Melissa" },
+                    [
+                      _c("rating-input", {
+                        attrs: {
+                          rating: hg.ratings.Melissa,
+                          week: _vm.week,
+                          houseguest: name,
+                          status: hg.status,
+                          user: _vm.lfc["Melissa"]
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                _vm._l(_vm.allRatings, function(hg, name) {
+                  return _c(
+                    "td",
+                    { key: name + "Audience" },
+                    [
+                      _c("rating-input", {
+                        attrs: {
+                          rating: hg.ratings.Audience,
+                          week: _vm.week,
+                          houseguest: name,
+                          status: hg.status,
+                          user: _vm.lfc["Audience"]
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                _vm._l(_vm.allRatings, function(hg, name) {
+                  return _c(
+                    "td",
+                    {
+                      key: name + "Average",
+                      class: { evicted: hg.status === "evicted" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.avgRating(hg)) +
+                          "\n                    "
+                      )
+                    ]
+                  )
                 }),
                 0
               )
@@ -1463,182 +1700,10 @@ if (false) {
 }
 
 /***/ }),
-/* 21 */
+/* 26 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(26)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(28)
-/* template */
-var __vue_template__ = __webpack_require__(29)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-40d166dc"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/RatingInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-40d166dc", Component.options)
-  } else {
-    hotAPI.reload("data-v-40d166dc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(27);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("12242f9f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40d166dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RatingInput.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40d166dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RatingInput.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 28 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        houseguest: String,
-        user: String,
-        rating: null
-    },
-    data: function data() {
-        return {
-            localRating: this.rating
-        };
-    },
-
-    watch: {
-        rating: function rating() {
-            this.localRating = this.rating;
-        }
-    },
-    methods: {
-        save: function save() {
-            axios.post('/save/rating/' + this.houseguest + '/' + this.localRating + '/' + this.user);
-        }
-    }
-});
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.localRating,
-          expression: "localRating"
-        }
-      ],
-      attrs: { type: "number" },
-      domProps: { value: _vm.localRating },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.localRating = $event.target.value
-        }
-      }
-    })
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-40d166dc", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
