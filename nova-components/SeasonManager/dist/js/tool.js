@@ -710,6 +710,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1534,152 +1541,180 @@ var render = function() {
             _c("thead", [
               _c(
                 "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c("th", [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(name) +
-                        "\n                    "
-                    )
-                  ])
-                }),
-                0
+                [
+                  _c("th"),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c("th", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(name) +
+                          "\n                    "
+                      )
+                    ])
+                  })
+                ],
+                2
               )
             ]),
             _vm._v(" "),
             _c("tbody", [
               _c(
                 "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c("td", { key: name + "status" }, [
-                    _c("input", {
-                      attrs: {
-                        type: "checkbox",
-                        disabled: _vm.week <= _vm.season.current_week
+                [
+                  _c("td"),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c("td", { key: name + "status" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "checkbox",
+                          disabled: _vm.week <= _vm.season.current_week
+                        },
+                        domProps: { checked: hg.status === "evicted" },
+                        on: {
+                          click: function($event) {
+                            return _vm.toggleEvict(name, hg)
+                          }
+                        }
+                      })
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Taran")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c(
+                      "td",
+                      { key: name + "Taran" },
+                      [
+                        _c("rating-input", {
+                          attrs: {
+                            rating: hg.ratings.Taran,
+                            week: _vm.week,
+                            houseguest: name,
+                            status: hg.status,
+                            user: _vm.lfc["Taran"]
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Brent")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c(
+                      "td",
+                      { key: name + "Brent" },
+                      [
+                        _c("rating-input", {
+                          attrs: {
+                            rating: hg.ratings.Brent,
+                            week: _vm.week,
+                            houseguest: name,
+                            status: hg.status,
+                            user: _vm.lfc["Brent"]
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Melissa")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c(
+                      "td",
+                      { key: name + "Melissa" },
+                      [
+                        _c("rating-input", {
+                          attrs: {
+                            rating: hg.ratings.Melissa,
+                            week: _vm.week,
+                            houseguest: name,
+                            status: hg.status,
+                            user: _vm.lfc["Melissa"]
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Audience")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c(
+                      "td",
+                      { key: name + "Audience" },
+                      [
+                        _c("rating-input", {
+                          attrs: {
+                            rating: hg.ratings.Audience,
+                            week: _vm.week,
+                            houseguest: name,
+                            status: hg.status,
+                            user: _vm.lfc["Audience"]
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Average")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c(
+                      "td",
+                      {
+                        key: name + "Average",
+                        class: { evicted: hg.status === "evicted" }
                       },
-                      domProps: { checked: hg.status === "evicted" },
-                      on: {
-                        click: function($event) {
-                          return _vm.toggleEvict(name, hg)
-                        }
-                      }
-                    })
-                  ])
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c(
-                    "td",
-                    { key: name + "Taran" },
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: hg.ratings.Taran,
-                          week: _vm.week,
-                          houseguest: name,
-                          status: hg.status,
-                          user: _vm.lfc["Taran"]
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c(
-                    "td",
-                    { key: name + "Brent" },
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: hg.ratings.Brent,
-                          week: _vm.week,
-                          houseguest: name,
-                          status: hg.status,
-                          user: _vm.lfc["Brent"]
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c(
-                    "td",
-                    { key: name + "Melissa" },
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: hg.ratings.Melissa,
-                          week: _vm.week,
-                          houseguest: name,
-                          status: hg.status,
-                          user: _vm.lfc["Melissa"]
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c(
-                    "td",
-                    { key: name + "Audience" },
-                    [
-                      _c("rating-input", {
-                        attrs: {
-                          rating: hg.ratings.Audience,
-                          week: _vm.week,
-                          houseguest: name,
-                          status: hg.status,
-                          user: _vm.lfc["Audience"]
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                _vm._l(_vm.allRatings, function(hg, name) {
-                  return _c(
-                    "td",
-                    {
-                      key: name + "Average",
-                      class: { evicted: hg.status === "evicted" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.avgRating(hg)) +
-                          "\n                    "
-                      )
-                    ]
-                  )
-                }),
-                0
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.avgRating(hg)) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
               )
             ])
           ])

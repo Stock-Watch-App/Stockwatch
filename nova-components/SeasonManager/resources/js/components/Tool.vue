@@ -26,6 +26,7 @@
                 <table>
                     <thead>
                     <tr>
+                        <th></th>
                         <th v-for="(hg, name) in allRatings">
                             {{ name }}
                         </th>
@@ -33,31 +34,37 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td></td>
                         <td v-for="(hg, name) in allRatings" :key="name+'status'">
                             <input type="checkbox" :checked="hg.status === 'evicted'" @click="toggleEvict(name, hg)" :disabled="week <= season.current_week">
                         </td>
                     </tr>
                     <tr>
+                        <td>Taran</td>
                         <td v-for="(hg, name) in allRatings" :key="name+'Taran'">
                             <rating-input :rating="hg.ratings.Taran" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Taran']"></rating-input>
                         </td>
                     </tr>
                     <tr>
+                        <td>Brent</td>
                         <td v-for="(hg, name) in allRatings" :key="name+'Brent'">
                             <rating-input :rating="hg.ratings.Brent" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Brent']"></rating-input>
                         </td>
                     </tr>
                     <tr>
+                        <td>Melissa</td>
                         <td v-for="(hg, name) in allRatings" :key="name+'Melissa'">
                             <rating-input :rating="hg.ratings.Melissa" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Melissa']"></rating-input>
                         </td>
                     </tr>
                     <tr>
+                        <td>Audience</td>
                         <td v-for="(hg, name) in allRatings" :key="name+'Audience'">
                             <rating-input :rating="hg.ratings.Audience" :week="week" :houseguest="name" :status="hg.status" :user="lfc['Audience']"></rating-input>
                         </td>
                     </tr>
                     <tr>
+                        <td>Average</td>
                         <td v-for="(hg, name) in allRatings" :class="{'evicted':hg.status === 'evicted'}" :key="name+'Average'">
                             {{ avgRating(hg) }}
                         </td>
