@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nthead tr {\n    /*height: 100px;*/\n}\nth {\n    /*transform: rotate(-45deg);*/\n    /*transform-origin: bottom;*/\n}\ntr {\n    border-bottom: 1px solid black;\n    border-right: 1px solid black;\n}\ntr:first-child {\n    border-top: 1px solid black;\n}\ntd {\n    padding: 0;\n    border-left: 1px solid black;\n}\n.evicted {\n    background-color: rgba(255, 0, 0, .3);\n}\n", ""]);
+exports.push([module.i, "\n:root {\n    --border: hsl(240, 4%, 60%);\n    --average-bg: hsla(173, 90%, 53%, 0.2);\n    --evicted-bg: hsl(0, 81%, 90%);\n    --evicted-text: hsl(240, 5%, 48%);\n}\n.scrollable {\n    overflow: auto;\n}\nthead tr {\n    border: none;\n}\ntr {\n    border-bottom: 1px solid var(--border);\n    border-right: 1px solid var(--border);\n}\ntr:first-child {\n    border-top: 1px solid var(--border);\n}\ntd {\n    border-left: 1px solid var(--border);\n}\ntr,\ntd,\nth {\n    padding: 0.5rem;\n}\ntr td:first-child {\n    padding: 0.5rem 1rem;\n    text-align: left;\n}\n\n/* input containers */\ntr td {\n    width: 45px;\n    text-align: center;\n}\n.rotated-header th {\n    height: 150px;\n    vertical-align: bottom;\n    text-align: left;\n    line-height: 1;\n    border: none;\n}\n.rotated-header-container {\n    width: 45px;\n}\n.rotated-header-content {\n    width: 170px;\n    -webkit-transform-origin: bottom left;\n            transform-origin: bottom left;\n    -webkit-transform: translateX(45px) rotate(-45deg);\n            transform: translateX(45px) rotate(-45deg);\n}\n.average {\n    background: var(--average-bg);\n    font-weight: bold;\n}\n.evicted {\n    background: var(--evicted-bg);\n}\n\n/* target evicted name */\ndiv.evicted {\n    color: var(--evicted-text);\n    background: transparent;\n}\n", ""]);
 
 // exports
 
@@ -717,6 +717,95 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -728,21 +817,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             season: Object,
             week: Number,
             tags: {
-                hoh: '',
-                veto: '',
-                nom1: '',
-                nom2: ''
+                hoh: "",
+                veto: "",
+                nom1: "",
+                nom2: ""
             },
             ratings: [],
             lfc: [],
-            apiPrefix: '/nova-vendor/season-manager'
+            apiPrefix: "/nova-vendor/season-manager"
         };
     },
     mounted: function mounted() {
         var _this = this;
 
         this.getSeason();
-        axios.get(this.apiPrefix + '/lfc').then(function (res) {
+        axios.get(this.apiPrefix + "/lfc").then(function (res) {
             _this.lfc = res.data;
         });
     },
@@ -758,15 +847,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getSeason: function getSeason() {
             var _this2 = this;
 
-            axios.get(this.apiPrefix + '/season/current').then(function (res) {
+            axios.get(this.apiPrefix + "/season/current").then(function (res) {
                 _this2.season = res.data;
-                _this2.week = _this2.season.status === 'closed' ? _this2.season.current_week + 1 : _this2.season.current_week;
+                _this2.week = _this2.season.status === "closed" ? _this2.season.current_week + 1 : _this2.season.current_week;
             });
         },
         getWeekData: function getWeekData() {
             var _this3 = this;
 
-            axios.get(this.apiPrefix + '/week/' + this.week).then(function (res) {
+            axios.get(this.apiPrefix + "/week/" + this.week).then(function (res) {
                 _this3.tags.hoh = res.data.tags.hoh;
                 _this3.tags.veto = res.data.tags.veto;
                 _this3.tags.nom1 = res.data.tags.nom1;
@@ -776,29 +865,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         saveStatus: function saveStatus(status) {
-            var opening = 'Are you sure? Toggling to OPEN will run the formula to start the week and is non-reversible';
-            var closing = 'Are you sure? Toggling to CLOSE is non-reversible until after the next Roundtable';
+            var opening = "Are you sure? Toggling to OPEN will run the formula to start the week and is non-reversible";
+            var closing = "Are you sure? Toggling to CLOSE is non-reversible until after the next Roundtable";
             if (confirm(status ? opening : closing)) {
-                axios.post(this.apiPrefix + '/season/update/status', {
-                    'status': status ? 'open' : 'closed'
+                axios.post(this.apiPrefix + "/season/update/status", {
+                    status: status ? "open" : "closed"
                 });
             }
         },
         saveTags: function saveTags() {
-            axios.post(this.apiPrefix + '/save/tags', {
+            axios.post(this.apiPrefix + "/save/tags", {
                 tags: this.tags,
                 week: this.week
             });
         },
         avgRating: function avgRating(hg) {
-            if (hg.status === 'active' && ![hg.ratings.Taran, hg.ratings.Brent, hg.ratings.Melissa, hg.ratings.Audience].includes(null)) {
+            if (hg.status === "active" && ![hg.ratings.Taran, hg.ratings.Brent, hg.ratings.Melissa, hg.ratings.Audience].includes(null)) {
                 return Math.round((hg.ratings.Taran + hg.ratings.Brent + hg.ratings.Melissa + hg.ratings.Audience) / 4);
             }
         },
         toggleEvict: function toggleEvict(name, hg) {
             var _this4 = this;
 
-            var url = hg.status === 'active' ? '/evict/' : '/unevict/';
+            var url = hg.status === "active" ? "/evict/" : "/unevict/";
             axios.post(this.apiPrefix + url + name).then(function (r) {
                 _this4.getWeekData();
             });
@@ -806,7 +895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     computed: {
         statusAsBoolean: function statusAsBoolean() {
-            return this.season.status === 'open';
+            return this.season.status === "open";
         },
         allRatings: function allRatings() {
             var all = {};
@@ -820,9 +909,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     components: {
-        'toggle': __WEBPACK_IMPORTED_MODULE_0__Toggle___default.a,
-        'houseguest-picker': __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker___default.a,
-        'rating-input': __WEBPACK_IMPORTED_MODULE_2__RatingInput___default.a
+        toggle: __WEBPACK_IMPORTED_MODULE_0__Toggle___default.a,
+        "houseguest-picker": __WEBPACK_IMPORTED_MODULE_1__HouseguestPicker___default.a,
+        "rating-input": __WEBPACK_IMPORTED_MODULE_2__RatingInput___default.a
     }
 });
 
@@ -1318,7 +1407,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ndiv[data-v-40d166dc], input[data-v-40d166dc] {\n    /*background-color: transparent;*/\n    min-height: 20px;\n    min-width: 50px;\n    width: 100%;\n}\n.evicted[data-v-40d166dc] {\n    background-color: rgba(255, 0, 0, .3);\n}\n.saved[data-v-40d166dc] {\n    background-color: rgba(0, 255, 0, .3);\n}\n", ""]);
+exports.push([module.i, "\ndiv[data-v-40d166dc],\ninput[data-v-40d166dc] {\n    width: 100%;\n    text-align: center;\n}\n.evicted[data-v-40d166dc] {\n    background-color: hsl(0, 81%, 90%);\n}\n.saved[data-v-40d166dc] {\n    background-color: hsla(224, 90%, 53%, 0.2);\n}\n", ""]);
 
 // exports
 
@@ -1329,6 +1418,12 @@ exports.push([module.i, "\ndiv[data-v-40d166dc], input[data-v-40d166dc] {\n    /
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1361,7 +1456,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         save: function save() {
             var _this = this;
 
-            axios.post('/nova-vendor/season-manager/save/rating/' + this.localRating + '/week/' + this.week + '/houseguest/' + this.houseguest + '/lfc/' + this.user).then(function (res) {
+            axios.post("/nova-vendor/season-manager/save/rating/" + this.localRating + "/week/" + this.week + "/houseguest/" + this.houseguest + "/lfc/" + this.user).then(function (res) {
                 _this.saved = res.data.success;
             });
         }
@@ -1387,9 +1482,7 @@ var render = function() {
               expression: "localRating"
             }
           ],
-          staticClass: "w-16",
           class: { saved: _vm.saved },
-          attrs: { type: "number" },
           domProps: { value: _vm.localRating },
           on: {
             change: _vm.save,
@@ -1536,8 +1629,8 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "flex flex-row" }, [
-          _c("table", [
+        _c("div", { staticClass: "flex flex-row scrollable" }, [
+          _c("table", { staticClass: "rotated-header" }, [
             _c("thead", [
               _c(
                 "tr",
@@ -1545,12 +1638,25 @@ var render = function() {
                   _c("th"),
                   _vm._v(" "),
                   _vm._l(_vm.allRatings, function(hg, name) {
-                    return _c("th", [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(name) +
-                          "\n                    "
-                      )
+                    return _c("th", {}, [
+                      _c("div", { staticClass: "rotated-header-container" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "rotated-header-content",
+                            class: {
+                              evicted: hg.status === "evicted"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(name) +
+                                "\n                                "
+                            )
+                          ]
+                        )
+                      ])
                     ])
                   })
                 ],
@@ -1592,7 +1698,13 @@ var render = function() {
                   _vm._l(_vm.allRatings, function(hg, name) {
                     return _c(
                       "td",
-                      { key: name + "Taran" },
+                      {
+                        key: name + "Taran",
+                        class: {
+                          evicted: hg.status === "evicted",
+                          saved: hg.saved === "saved"
+                        }
+                      },
                       [
                         _c("rating-input", {
                           attrs: {
@@ -1619,7 +1731,10 @@ var render = function() {
                   _vm._l(_vm.allRatings, function(hg, name) {
                     return _c(
                       "td",
-                      { key: name + "Brent" },
+                      {
+                        key: name + "Brent",
+                        class: { evicted: hg.status === "evicted" }
+                      },
                       [
                         _c("rating-input", {
                           attrs: {
@@ -1646,7 +1761,10 @@ var render = function() {
                   _vm._l(_vm.allRatings, function(hg, name) {
                     return _c(
                       "td",
-                      { key: name + "Melissa" },
+                      {
+                        key: name + "Melissa",
+                        class: { evicted: hg.status === "evicted" }
+                      },
                       [
                         _c("rating-input", {
                           attrs: {
@@ -1673,7 +1791,10 @@ var render = function() {
                   _vm._l(_vm.allRatings, function(hg, name) {
                     return _c(
                       "td",
-                      { key: name + "Audience" },
+                      {
+                        key: name + "Audience",
+                        class: { evicted: hg.status === "evicted" }
+                      },
                       [
                         _c("rating-input", {
                           attrs: {
@@ -1695,20 +1816,23 @@ var render = function() {
               _c(
                 "tr",
                 [
-                  _c("td", [_vm._v("Average")]),
+                  _c("td", { staticClass: "average" }, [_vm._v("Average")]),
                   _vm._v(" "),
                   _vm._l(_vm.allRatings, function(hg, name) {
                     return _c(
                       "td",
                       {
                         key: name + "Average",
-                        class: { evicted: hg.status === "evicted" }
+                        staticClass: "average",
+                        class: {
+                          evicted: hg.status === "evicted"
+                        }
                       },
                       [
                         _vm._v(
-                          "\n                        " +
+                          "\n                            " +
                             _vm._s(_vm.avgRating(hg)) +
-                            "\n                    "
+                            "\n                        "
                         )
                       ]
                     )

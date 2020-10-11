@@ -1,6 +1,12 @@
 <template>
     <div>
-        <input v-if="status === 'active'" class="w-16" :class="{'saved': saved}" type="number" v-model="localRating" @change="save">
+        <input
+            v-if="status === 'active'"
+            class=""
+            :class="{ saved: saved }"
+            v-model="localRating"
+            @change="save"
+        />
         <div v-else class="evicted"></div>
     </div>
 </template>
@@ -17,38 +23,47 @@ export default {
     },
     data() {
         return {
-            localRating: this.rating,
-        }
+            localRating: this.rating
+        };
     },
     watch: {
-        rating: function () {
+        rating: function() {
             this.localRating = this.rating;
         }
     },
     methods: {
         save() {
-            axios.post('/nova-vendor/season-manager/save/rating/' + this.localRating + '/week/' + this.week + '/houseguest/' + this.houseguest + '/lfc/' + this.user)
+            axios
+                .post(
+                    "/nova-vendor/season-manager/save/rating/" +
+                        this.localRating +
+                        "/week/" +
+                        this.week +
+                        "/houseguest/" +
+                        this.houseguest +
+                        "/lfc/" +
+                        this.user
+                )
                 .then(res => {
                     this.saved = res.data.success;
-                })
+                });
         }
     }
-}
+};
 </script>
 
 <style scoped>
-div, input {
-    /*background-color: transparent;*/
-    min-height: 20px;
-    min-width: 50px;
+div,
+input {
     width: 100%;
+    text-align: center;
 }
 
 .evicted {
-    background-color: rgba(255, 0, 0, .3);
+    background-color: hsl(0, 81%, 90%);
 }
 
 .saved {
-    background-color: rgba(0, 255, 0, .3);
+    background-color: hsla(224, 90%, 53%, 0.2);
 }
 </style>
