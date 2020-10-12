@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n:root {\n    --border: hsl(240, 4%, 60%);\n    --average-bg: hsla(173, 90%, 53%, 0.2);\n    --evicted-bg: hsl(0, 81%, 90%);\n    --evicted-text: hsl(240, 5%, 48%);\n}\n.scrollable {\n    overflow: auto;\n}\nthead tr {\n    border: none;\n}\ntr {\n    border-bottom: 1px solid var(--border);\n    border-right: 1px solid var(--border);\n}\ntr:first-child {\n    border-top: 1px solid var(--border);\n}\ntd {\n    border-left: 1px solid var(--border);\n}\ntr,\ntd,\nth {\n    padding: 0.5rem;\n}\ntr td:first-child {\n    padding: 0.5rem 1rem;\n    text-align: left;\n}\n\n/* input containers */\ntr td {\n    width: 45px;\n    text-align: center;\n}\n.rotated-header th {\n    height: 150px;\n    vertical-align: bottom;\n    text-align: left;\n    line-height: 1;\n    border: none;\n}\n.rotated-header-container {\n    width: 45px;\n}\n.rotated-header-content {\n    width: 170px;\n    -webkit-transform-origin: bottom left;\n            transform-origin: bottom left;\n    -webkit-transform: translateX(45px) rotate(-45deg);\n            transform: translateX(45px) rotate(-45deg);\n}\n.average {\n    background: var(--average-bg);\n    font-weight: bold;\n}\n.evicted {\n    background: var(--evicted-bg);\n}\n\n/* target evicted name */\ndiv.evicted {\n    color: var(--evicted-text);\n    background: transparent;\n}\n", ""]);
+exports.push([module.i, "\n:root {\n    --border: hsl(240, 4%, 60%);\n    --average-bg: hsla(173, 90%, 53%, 0.2);\n    --evicted-bg: hsl(0, 81%, 90%);\n    --evicted-text: hsl(240, 5%, 48%);\n    --saved: hsla(224, 90%, 53%, 0.2);\n}\n.scrollable {\n    overflow: auto;\n}\nthead tr {\n    border: none;\n}\ntr {\n    border-bottom: 1px solid var(--border);\n    border-right: 1px solid var(--border);\n}\ntr:first-child {\n    border-top: 1px solid var(--border);\n}\ntd {\n    border-left: 1px solid var(--border);\n}\ntr,\ntd,\nth {\n    padding: 0.5rem;\n}\ntr td:first-child {\n    padding: 0.5rem 1rem;\n    text-align: left;\n}\n\n/* input containers */\ntr td {\n    width: 45px;\n    text-align: center;\n}\n.rotated-header th {\n    height: 150px;\n    vertical-align: bottom;\n    text-align: left;\n    line-height: 1;\n    border: none;\n}\n.rotated-header-container {\n    width: 45px;\n}\n.rotated-header-content {\n    width: 170px;\n    -webkit-transform-origin: bottom left;\n            transform-origin: bottom left;\n    -webkit-transform: translateX(45px) rotate(-45deg);\n            transform: translateX(45px) rotate(-45deg);\n}\n.average {\n    background: var(--average-bg);\n    font-weight: bold;\n}\n.evicted {\n    background: var(--evicted-bg);\n}\n.saved {\n    background-color: var(--saved);\n}\n\n/* target evicted name */\ndiv.evicted {\n    color: var(--evicted-text);\n    background: transparent;\n}\n", ""]);
 
 // exports
 
@@ -838,9 +838,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     watch: {
         week: function week(newVal, oldval) {
-            console.log(newVal);
-            console.log(oldval);
-            this.getWeekData();
+            if (typeof newVal === 'number') {
+                this.getWeekData();
+            } else {
+                this.week = parseInt(newVal);
+            }
         }
     },
     methods: {
@@ -891,6 +893,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(this.apiPrefix + url + name).then(function (r) {
                 _this4.getWeekData();
             });
+        },
+        toggleSaved: function toggleSaved(hg, saved) {
+            hg.saved = saved;
+            console.log(hg);
+            console.log(saved);
         }
     },
     computed: {
@@ -1407,7 +1414,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ndiv[data-v-40d166dc],\ninput[data-v-40d166dc] {\n    width: 100%;\n    text-align: center;\n}\n.evicted[data-v-40d166dc] {\n    background-color: hsl(0, 81%, 90%);\n}\n.saved[data-v-40d166dc] {\n    background-color: hsla(224, 90%, 53%, 0.2);\n}\n", ""]);
+exports.push([module.i, "\ndiv[data-v-40d166dc],\ninput[data-v-40d166dc] {\n    width: 100%;\n    text-align: center;\n    background-color: transparent;\n}\n.evicted[data-v-40d166dc] {\n    background-color: hsl(0, 81%, 90%);\n}\n.saved[data-v-40d166dc] {\n    background-color: hsla(224, 90%, 53%, 0.2);\n}\ninput[type=number][data-v-40d166dc]::-webkit-inner-spin-button,\ninput[type=number][data-v-40d166dc]::-webkit-outer-spin-button {\n    -webkit-appearance: none;\n    margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -1418,6 +1425,9 @@ exports.push([module.i, "\ndiv[data-v-40d166dc],\ninput[data-v-40d166dc] {\n    
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -1457,7 +1467,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post("/nova-vendor/season-manager/save/rating/" + this.localRating + "/week/" + this.week + "/houseguest/" + this.houseguest + "/lfc/" + this.user).then(function (res) {
-                _this.saved = res.data.success;
+                // this.saved = res.data.success;
+                _this.$emit('saved', res.data.success);
             });
         }
     }
@@ -1483,6 +1494,7 @@ var render = function() {
             }
           ],
           class: { saved: _vm.saved },
+          attrs: { type: "number", min: "1", max: "10" },
           domProps: { value: _vm.localRating },
           on: {
             change: _vm.save,
@@ -1702,7 +1714,7 @@ var render = function() {
                         key: name + "Taran",
                         class: {
                           evicted: hg.status === "evicted",
-                          saved: hg.saved === "saved"
+                          saved: hg.saved
                         }
                       },
                       [
@@ -1713,6 +1725,11 @@ var render = function() {
                             houseguest: name,
                             status: hg.status,
                             user: _vm.lfc["Taran"]
+                          },
+                          on: {
+                            saved: function($event) {
+                              return _vm.toggleSaved(hg, $event)
+                            }
                           }
                         })
                       ],

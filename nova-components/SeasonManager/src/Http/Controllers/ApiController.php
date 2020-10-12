@@ -105,7 +105,6 @@ class ApiController extends Controller
 
     public function getWeeklyData($week)
     {
-
         $tags = VanityTag::where('week', $week)
                          ->currentSeason()
                          ->with([
@@ -165,6 +164,7 @@ class ApiController extends Controller
                                      $houseguest->nickname,
                                      [
                                          'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
+                                         'saved'   => false, // value for vue to use to denote if an updated value is saved to the db
                                          'ratings' => collect([
                                              'Taran'    => null,
                                              'Brent'    => null,
@@ -183,14 +183,20 @@ class ApiController extends Controller
                              ->whereHas('ratings', function ($q) use ($week) {
                                  $q->where('week', $week);
                              })
-                             ->with(['ratings', 'ratings.user'])
+                             ->with([
+                                 'ratings' => function ($q) use ($week) {
+                                     $q->where('week', $week);
+                                 },
+                                 'ratings.user'
+                             ])
                              ->orderBy('nickname')
                              ->get()
                              ->mapToAssoc(function ($houseguest) {
                                  return [
                                      $houseguest->nickname,
                                      [
-                                         'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
+                                         'status' => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
+                                         'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                          'ratings' => $houseguest->ratings->mapToAssoc(function ($r) {
                                              return [explode(' ', $r->user->name)[0], $r->rating];
                                          })

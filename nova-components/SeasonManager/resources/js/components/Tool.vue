@@ -19,8 +19,8 @@
         <card class="mt-6 p-3">
             <div class="flex flex-row">
                 <label class="font-bold"
-                    >Week: <input class="w-8" type="number" v-model="week"
-                /></label>
+                    >Week: <input class="w-8" type="number" v-model="week"/>
+                </label>
                 <houseguest-picker
                     label="HOH"
                     type="active"
@@ -48,7 +48,6 @@
                     <thead>
                         <tr>
                             <th></th>
-
                             <th v-for="(hg, name) in allRatings" class="">
                                 <div class="rotated-header-container">
                                     <div
@@ -85,7 +84,7 @@
                                 :key="name + 'Taran'"
                                 :class="{
                                     evicted: hg.status === 'evicted',
-                                    saved: hg.saved === 'saved'
+                                    saved: hg.saved
                                 }"
                             >
                                 <rating-input
@@ -94,6 +93,7 @@
                                     :houseguest="name"
                                     :status="hg.status"
                                     :user="lfc['Taran']"
+                                    @saved="toggleSaved(hg, $event)"
                                 ></rating-input>
                             </td>
                         </tr>
@@ -195,9 +195,11 @@ export default {
     },
     watch: {
         week: function(newVal, oldval) {
-            console.log(newVal);
-            console.log(oldval);
-            this.getWeekData();
+            if (typeof newVal === 'number') {
+                this.getWeekData();
+            } else {
+                this.week = parseInt(newVal);
+            }
         }
     },
     methods: {
@@ -261,6 +263,11 @@ export default {
             axios.post(this.apiPrefix + url + name).then(r => {
                 this.getWeekData();
             });
+        },
+        toggleSaved(hg, saved) {
+            hg.saved = saved;
+            console.log(hg);
+            console.log(saved);
         }
     },
     computed: {
@@ -292,6 +299,7 @@ export default {
     --average-bg: hsla(173, 90%, 53%, 0.2);
     --evicted-bg: hsl(0, 81%, 90%);
     --evicted-text: hsl(240, 5%, 48%);
+    --saved: hsla(224, 90%, 53%, 0.2);
 }
 
 .scrollable {
@@ -357,6 +365,9 @@ tr td {
 
 .evicted {
     background: var(--evicted-bg);
+}
+.saved {
+    background-color: var(--saved);
 }
 
 /* target evicted name */
