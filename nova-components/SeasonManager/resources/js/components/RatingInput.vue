@@ -43,13 +43,17 @@ export default {
                     "/week/" +
                     this.week +
                     "/houseguest/" +
-                    this.houseguest +
+                    this.houseguest.replace(' ', '-').toLowerCase() +
                     "/lfc/" +
                     this.user
                 )
                 .then(res => {
                     // this.saved = res.data.success;
-                    this.$emit('saved', res.data.success)
+                    this.$emit('saved', {
+                        saved: res.data.success,
+                        rating: this.localRating,
+                        user: this.user,
+                    })
                 });
         }
     }

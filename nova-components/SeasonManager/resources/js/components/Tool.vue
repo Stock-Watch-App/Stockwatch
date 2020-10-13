@@ -7,7 +7,7 @@
             <div class="w-1/2 flex flex-row p-3 float-right">
                 <span
                     class="font-medium text-lg mr-3 align-middle leading-loose"
-                    >Market:</span
+                >Market:</span
                 >
                 <toggle
                     :checkbox="statusAsBoolean"
@@ -19,8 +19,7 @@
         <card class="mt-6 p-3">
             <div class="flex flex-row">
                 <label class="font-bold"
-                    >Week: <input class="w-8" type="number" v-model="week"/>
-                </label>
+                >Week: <input class="w-8" type="number" v-model="week"/> </label>
                 <houseguest-picker
                     label="HOH"
                     type="active"
@@ -46,118 +45,130 @@
             <div class="flex flex-row scrollable">
                 <table class="rotated-header">
                     <thead>
-                        <tr>
-                            <th></th>
-                            <th v-for="(hg, name) in allRatings" class="">
-                                <div class="rotated-header-container">
-                                    <div
-                                        class="rotated-header-content"
-                                        :class="{
+                    <tr>
+                        <th></th>
+                        <th v-for="(hg, name) in allRatings" class="">
+                            <div class="rotated-header-container">
+                                <div
+                                    class="rotated-header-content"
+                                    :class="{
                                             evicted: hg.status === 'evicted'
                                         }"
-                                    >
-                                        {{ name }}
-                                    </div>
+                                >
+                                    {{ name }}
                                 </div>
-                            </th>
-                        </tr>
+                            </div>
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td
-                                v-for="(hg, name) in allRatings"
-                                :key="name + 'status'"
-                            >
-                                <input
-                                    type="checkbox"
-                                    :checked="hg.status === 'evicted'"
-                                    @click="toggleEvict(name, hg)"
-                                    :disabled="week <= season.current_week"
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Taran</td>
-                            <td
-                                v-for="(hg, name) in allRatings"
-                                :key="name + 'Taran'"
-                                :class="{
+                    <tr>
+                        <td></td>
+                        <td
+                            v-for="(hg, name) in allRatings"
+                            :key="name + 'status'"
+                        >
+                            <input
+                                type="checkbox"
+                                :checked="hg.status === 'evicted'"
+                                @click="toggleEvict(name, hg)"
+                                :disabled="week <= season.current_week"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taran</td>
+                        <td
+                            v-for="(hg, name) in allRatings"
+                            :key="name + 'Taran'"
+                            :class="{
                                     evicted: hg.status === 'evicted',
-                                    saved: hg.saved
+                                    saved: hg.ratings.Taran.saved
                                 }"
-                            >
-                                <rating-input
-                                    :rating="hg.ratings.Taran"
-                                    :week="week"
-                                    :houseguest="name"
-                                    :status="hg.status"
-                                    :user="lfc['Taran']"
-                                    @saved="toggleSaved(hg, $event)"
-                                ></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Brent</td>
-                            <td
-                                v-for="(hg, name) in allRatings"
-                                :key="name + 'Brent'"
-                                :class="{ evicted: hg.status === 'evicted' }"
-                            >
-                                <rating-input
-                                    :rating="hg.ratings.Brent"
-                                    :week="week"
-                                    :houseguest="name"
-                                    :status="hg.status"
-                                    :user="lfc['Brent']"
-                                ></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Melissa</td>
-                            <td
-                                v-for="(hg, name) in allRatings"
-                                :key="name + 'Melissa'"
-                                :class="{ evicted: hg.status === 'evicted' }"
-                            >
-                                <rating-input
-                                    :rating="hg.ratings.Melissa"
-                                    :week="week"
-                                    :houseguest="name"
-                                    :status="hg.status"
-                                    :user="lfc['Melissa']"
-                                ></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Audience</td>
-                            <td
-                                v-for="(hg, name) in allRatings"
-                                :key="name + 'Audience'"
-                                :class="{ evicted: hg.status === 'evicted' }"
-                            >
-                                <rating-input
-                                    :rating="hg.ratings.Audience"
-                                    :week="week"
-                                    :houseguest="name"
-                                    :status="hg.status"
-                                    :user="lfc['Audience']"
-                                ></rating-input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="average">Average</td>
-                            <td
-                                v-for="(hg, name) in allRatings"
-                                class="average"
-                                :class="{
+                        >
+                            <rating-input
+                                :rating="hg.ratings.Taran.rating"
+                                :week="week"
+                                :houseguest="name"
+                                :status="hg.status"
+                                :user="lfc['Taran']"
+                                @saved="toggleSaved(hg.ratings.Taran, $event)"
+                            ></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Brent</td>
+                        <td
+                            v-for="(hg, name) in allRatings"
+                            :key="name + 'Brent'"
+                            :class="{
+                                    evicted: hg.status === 'evicted',
+                                    saved: hg.ratings.Brent.saved
+                                }"
+                        >
+                            <rating-input
+                                :rating="hg.ratings.Brent.rating"
+                                :week="week"
+                                :houseguest="name"
+                                :status="hg.status"
+                                :user="lfc['Brent']"
+                                @saved="toggleSaved(hg.ratings.Brent, $event)"
+                            ></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Melissa</td>
+                        <td
+                            v-for="(hg, name) in allRatings"
+                            :key="name + 'Melissa'"
+                            :class="{
+                                    evicted: hg.status === 'evicted',
+                                    saved: hg.ratings.Melissa.saved
+                                }"
+                        >
+                            <rating-input
+                                :rating="hg.ratings.Melissa.rating"
+                                :week="week"
+                                :houseguest="name"
+                                :status="hg.status"
+                                :user="lfc['Melissa']"
+                                @saved="toggleSaved(hg.ratings.Melissa, $event)"
+                            ></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Audience</td>
+                        <td
+                            v-for="(hg, name) in allRatings"
+                            :key="name + 'Audience'"
+                            :class="{
+                                    evicted: hg.status === 'evicted',
+                                    saved: hg.ratings.Audience.saved
+                                }"
+                        >
+                            <rating-input
+                                :rating="hg.ratings.Audience.rating"
+                                :week="week"
+                                :houseguest="name"
+                                :status="hg.status"
+                                :user="lfc['Audience']"
+                                @saved="toggleSaved(hg.ratings.Audience, $event)"
+                            ></rating-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="average">Average</td>
+                        <td
+                            v-for="(hg, name) in allRatings"
+                            class="average"
+                            :class="{
                                     evicted: hg.status === 'evicted'
                                 }"
-                                :key="name + 'Average'"
-                            >
-                                {{ avgRating(hg) }}
-                            </td>
-                        </tr>
+                            :key="name + 'Average'"
+                        >
+                            {{ avgRating(hg) }}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
                 <!-- Ratings some day -->
@@ -194,7 +205,7 @@ export default {
         });
     },
     watch: {
-        week: function(newVal, oldval) {
+        week: function (newVal, oldval) {
             if (typeof newVal === 'number') {
                 this.getWeekData();
             } else {
@@ -240,22 +251,9 @@ export default {
             });
         },
         avgRating(hg) {
-            if (
-                hg.status === "active" &&
-                ![
-                    hg.ratings.Taran,
-                    hg.ratings.Brent,
-                    hg.ratings.Melissa,
-                    hg.ratings.Audience
-                ].includes(null)
-            ) {
-                return Math.round(
-                    (hg.ratings.Taran +
-                        hg.ratings.Brent +
-                        hg.ratings.Melissa +
-                        hg.ratings.Audience) /
-                        4
-                );
+            if (hg.status === "active"
+                && ![hg.ratings.Taran.rating, hg.ratings.Brent.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
+                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Brent.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
             }
         },
         toggleEvict(name, hg) {
@@ -265,7 +263,8 @@ export default {
             });
         },
         toggleSaved(hg, saved) {
-            hg.saved = saved;
+            hg.saved = saved.saved
+            hg.rating = saved.rating
             console.log(hg);
             console.log(saved);
         }
@@ -366,6 +365,7 @@ tr td {
 .evicted {
     background: var(--evicted-bg);
 }
+
 .saved {
     background-color: var(--saved);
 }

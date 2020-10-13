@@ -806,6 +806,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -882,8 +893,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         avgRating: function avgRating(hg) {
-            if (hg.status === "active" && ![hg.ratings.Taran, hg.ratings.Brent, hg.ratings.Melissa, hg.ratings.Audience].includes(null)) {
-                return Math.round((hg.ratings.Taran + hg.ratings.Brent + hg.ratings.Melissa + hg.ratings.Audience) / 4);
+            if (hg.status === "active" && ![hg.ratings.Taran.rating, hg.ratings.Brent.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
+                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Brent.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
             }
         },
         toggleEvict: function toggleEvict(name, hg) {
@@ -895,7 +906,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         toggleSaved: function toggleSaved(hg, saved) {
-            hg.saved = saved;
+            hg.saved = saved.saved;
+            hg.rating = saved.rating;
             console.log(hg);
             console.log(saved);
         }
@@ -1116,17 +1128,7 @@ if (false) {
 }
 
 /***/ }),
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -1476,9 +1478,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         save: function save() {
             var _this = this;
 
-            axios.post("/nova-vendor/season-manager/save/rating/" + this.localRating + "/week/" + this.week + "/houseguest/" + this.houseguest + "/lfc/" + this.user).then(function (res) {
+            axios.post("/nova-vendor/season-manager/save/rating/" + this.localRating + "/week/" + this.week + "/houseguest/" + this.houseguest.replace(' ', '-').toLowerCase() + "/lfc/" + this.user).then(function (res) {
                 // this.saved = res.data.success;
-                _this.$emit('saved', res.data.success);
+                _this.$emit('saved', {
+                    saved: res.data.success,
+                    rating: _this.localRating,
+                    user: _this.user
+                });
             });
         }
     }
@@ -1672,9 +1678,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                    " +
+                              "\n                                " +
                                 _vm._s(name) +
-                                "\n                                "
+                                "\n                            "
                             )
                           ]
                         )
@@ -1724,13 +1730,13 @@ var render = function() {
                         key: name + "Taran",
                         class: {
                           evicted: hg.status === "evicted",
-                          saved: hg.saved
+                          saved: hg.ratings.Taran.saved
                         }
                       },
                       [
                         _c("rating-input", {
                           attrs: {
-                            rating: hg.ratings.Taran,
+                            rating: hg.ratings.Taran.rating,
                             week: _vm.week,
                             houseguest: name,
                             status: hg.status,
@@ -1738,7 +1744,7 @@ var render = function() {
                           },
                           on: {
                             saved: function($event) {
-                              return _vm.toggleSaved(hg, $event)
+                              return _vm.toggleSaved(hg.ratings.Taran, $event)
                             }
                           }
                         })
@@ -1760,16 +1766,24 @@ var render = function() {
                       "td",
                       {
                         key: name + "Brent",
-                        class: { evicted: hg.status === "evicted" }
+                        class: {
+                          evicted: hg.status === "evicted",
+                          saved: hg.ratings.Brent.saved
+                        }
                       },
                       [
                         _c("rating-input", {
                           attrs: {
-                            rating: hg.ratings.Brent,
+                            rating: hg.ratings.Brent.rating,
                             week: _vm.week,
                             houseguest: name,
                             status: hg.status,
                             user: _vm.lfc["Brent"]
+                          },
+                          on: {
+                            saved: function($event) {
+                              return _vm.toggleSaved(hg.ratings.Brent, $event)
+                            }
                           }
                         })
                       ],
@@ -1790,16 +1804,24 @@ var render = function() {
                       "td",
                       {
                         key: name + "Melissa",
-                        class: { evicted: hg.status === "evicted" }
+                        class: {
+                          evicted: hg.status === "evicted",
+                          saved: hg.ratings.Melissa.saved
+                        }
                       },
                       [
                         _c("rating-input", {
                           attrs: {
-                            rating: hg.ratings.Melissa,
+                            rating: hg.ratings.Melissa.rating,
                             week: _vm.week,
                             houseguest: name,
                             status: hg.status,
                             user: _vm.lfc["Melissa"]
+                          },
+                          on: {
+                            saved: function($event) {
+                              return _vm.toggleSaved(hg.ratings.Melissa, $event)
+                            }
                           }
                         })
                       ],
@@ -1820,16 +1842,27 @@ var render = function() {
                       "td",
                       {
                         key: name + "Audience",
-                        class: { evicted: hg.status === "evicted" }
+                        class: {
+                          evicted: hg.status === "evicted",
+                          saved: hg.ratings.Audience.saved
+                        }
                       },
                       [
                         _c("rating-input", {
                           attrs: {
-                            rating: hg.ratings.Audience,
+                            rating: hg.ratings.Audience.rating,
                             week: _vm.week,
                             houseguest: name,
                             status: hg.status,
                             user: _vm.lfc["Audience"]
+                          },
+                          on: {
+                            saved: function($event) {
+                              return _vm.toggleSaved(
+                                hg.ratings.Audience,
+                                $event
+                              )
+                            }
                           }
                         })
                       ],
@@ -1857,9 +1890,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                            " +
+                          "\n                        " +
                             _vm._s(_vm.avgRating(hg)) +
-                            "\n                        "
+                            "\n                    "
                         )
                       ]
                     )

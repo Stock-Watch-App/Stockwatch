@@ -164,14 +164,31 @@ class ApiController extends Controller
                                      $houseguest->nickname,
                                      [
                                          'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
-                                         'saved'   => false, // value for vue to use to denote if an updated value is saved to the db
                                          'ratings' => collect([
-                                             'Taran'    => null,
-                                             'Brent'    => null,
-                                             'Melissa'  => null,
-                                             'Audience' => null,
+                                             'Taran'    => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Brent'    => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Melissa'  => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Audience' => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
                                          ])->merge($houseguest->ratings->mapToAssoc(function ($r) {
-                                             return [explode(' ', $r->user->name)[0], $r->rating];
+                                             return [
+                                                 explode(' ', $r->user->name)[0],
+                                                 [
+                                                     'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                     'rating' => $r->rating
+                                                 ]
+                                             ];
                                          }))
                                      ]
                                  ];
@@ -195,10 +212,16 @@ class ApiController extends Controller
                                  return [
                                      $houseguest->nickname,
                                      [
-                                         'status' => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
-                                         'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                         'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
+                                         'saved'   => false, // value for vue to use to denote if an updated value is saved to the db
                                          'ratings' => $houseguest->ratings->mapToAssoc(function ($r) {
-                                             return [explode(' ', $r->user->name)[0], $r->rating];
+                                             return [
+                                                 explode(' ', $r->user->name)[0],
+                                                 [
+                                                     'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                     'rating' => $r->rating
+                                                 ]
+                                             ];
                                          })
                                      ]
                                  ];
@@ -222,10 +245,22 @@ class ApiController extends Controller
                                      [
                                          'status'  => 'evicted', // spoof for historical weeks. Status is determined by existence of ratings.
                                          'ratings' => [
-                                             'Taran'    => null,
-                                             'Brent'    => null,
-                                             'Melissa'  => null,
-                                             'Audience' => null,
+                                             'Taran'    => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Brent'    => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Melissa'  => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Audience' => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
                                          ]
                                      ]
                                  ];
@@ -245,10 +280,22 @@ class ApiController extends Controller
                                      [
                                          'status'  => 'evicted', // spoof for historical weeks. Status is determined by existence of ratings.
                                          'ratings' => [
-                                             'Taran'    => null,
-                                             'Brent'    => null,
-                                             'Melissa'  => null,
-                                             'Audience' => null,
+                                             'Taran'    => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Brent'    => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Melissa'  => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
+                                             'Audience' => [
+                                                 'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
+                                                 'rating' => null
+                                             ],
                                          ]
                                      ]
                                  ];
