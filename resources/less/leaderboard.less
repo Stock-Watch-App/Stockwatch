@@ -10,7 +10,7 @@
     .leaderboard-badge {
         width: 35px;
         height: 35px;
-        margin: 0 0.5rem;
+        margin: 0 0.25rem;
     }
 
     h3 {
@@ -42,25 +42,12 @@
         max-height: 100vh;
     }
 
-    .media(@min-desktop, {
-
-        h3 {
-            grid-column: ~"1/6";
-            grid-row: ~"1/2";
-        }
-
-        .alltime-leader-title {
-            grid-column: ~"2/8" ;
-        }
-
-        .leader-grid {
-            grid-row: ~"2/3";
-
-            &.alltime-leader {
-                grid-column: ~"2/8";
-            }
-        }
-    });
+    .media(
+        @min-desktop,
+        {h3 {grid-column: ~"1/6" ; grid-row: ~"1/2" ;} .alltime-leader-title {grid-column:
+            ~"2/8" ;} .leader-grid {grid-row: ~"2/3" ; &.alltime-leader {grid-column:
+            ~"2/8" ;}}}
+    );
 }
 
 .leaderboard-table {
@@ -118,7 +105,7 @@
     td {
         z-index: 3;
 
-        &.user-row {
+        &.user-row-wrap {
             position: sticky;
             left: 0;
             z-index: 1;
@@ -126,7 +113,7 @@
     }
 
     .rank-sort {
-        min-width: 85px;
+        min-width: 50px;
     }
 
     .networth {
@@ -139,6 +126,7 @@
         align-items: center;
         border: none;
         background-color: @white;
+        min-height: 38px;
 
         &:hover {
             background-color: transparent;
@@ -193,7 +181,6 @@
         background-color: @bronze;
         color: @black;
     }
-
 }
 
 .pagination {

@@ -61,7 +61,7 @@
                                     {{ leaderboard.rank }}
                                 </div>
                             </td>
-                            <td>
+                            <td class="user-row-wrap">
                                 <a
                                     :href="
                                         '/profile/' + leaderboard.user.hashid
