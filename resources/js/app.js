@@ -194,6 +194,12 @@ Vue.component(
     "profile-panel",
     require("./components/profile/Panel.vue").default
 );
+
+Vue.component(
+    "roundtable-panel",
+    require("./components/roundtable/Panel.vue").default
+);
+
 Vue.component("avatar", require("./components/Avatar.vue").default);
 
 Vue.component("select-component", require("./components/Select.vue").default);

@@ -86,6 +86,12 @@ Route::group(['middleware' => ['local']], function () {
 
 Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile');
 
+// Route::get('/roundtable', [RoundtableController::class, 'index'])->name('roundtable');
+
+Route::get('/roundtable', function () {
+    return view('roundtable');
+});
+
 
 //===
 
