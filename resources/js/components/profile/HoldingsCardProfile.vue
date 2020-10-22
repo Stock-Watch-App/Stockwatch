@@ -17,20 +17,20 @@
                         >share{{ stock.quantity === 1 ? "" : "s" }}</span
                     >
                 </div>
-                <div>
-                    <span
-                        v-if="priceDifference.amount >= 0"
-                        class="stock-change-wrap"
-                        v-bind:class="priceDifference.class.text"
-                    >
-                        <font-awesome-icon
-                            :icon="priceDifference.icon"
-                            size="sm"
-                            class="stock-diff-icon"
-                        />
-                        <span class="stock-diff word">3</span>
-                    </span>
-                </div>
+<!--                <div>-->
+<!--                    <span-->
+<!--                        v-if="priceDifference.amount >= 0"-->
+<!--                        class="stock-change-wrap"-->
+<!--                        v-bind:class="priceDifference.class.text"-->
+<!--                    >-->
+<!--                        <font-awesome-icon-->
+<!--                            :icon="priceDifference.icon"-->
+<!--                            size="sm"-->
+<!--                            class="stock-diff-icon"-->
+<!--                        />-->
+<!--                        <span class="stock-diff word">{{ priceDifference.amount | currency }}</span>-->
+<!--                    </span>-->
+<!--                </div>-->
             </div>
         </div>
     </li>

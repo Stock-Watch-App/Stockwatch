@@ -7,7 +7,6 @@
             <projection-item
                 :houseguest="{{$houseguest}}"
             ></projection-item>
-
         @endforeach
     </div>
 @endsection

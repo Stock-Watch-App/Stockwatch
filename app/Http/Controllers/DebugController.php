@@ -50,24 +50,33 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $season = Season::current();
-        $stocks = User::with([
-            'stocks' => function ($q) use ($season) {
-                $q->whereHas('houseguest', function ($q) use ($season) {
-                   $q->where('season_id', $season->id);
-                });
-            }
-        ])->get()->mapToAssoc(function ($u) {
-            return [
-                $u->id,
-                json_encode($u->stocks->mapToAssoc(function ($stock) {
-                    return [$stock->houseguest_id, $stock->quantity];
-                }))
-            ];
-        });
-
-    dump($stocks);
-
+        $week = 9;
+        $houseguest = Houseguest::currentSeason()
+                             ->withoutGlobalScope('active')
+                             ->whereHas('ratings', function ($q) use ($week) {
+                                 $q->where('week', $week);
+                             })
+                             ->with([
+                                 'ratings' => function ($q) use ($week) {
+                                 $q->where('week', $week);
+                             },
+                                 'ratings.user'
+                             ])
+                             ->orderBy('nickname')
+                             ->get()
+                             ->mapToAssoc(function ($houseguest) {
+                                 return [
+                                     $houseguest->nickname,
+                                     [
+                                         'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
+                                         'ratings' => $houseguest->ratings->mapToAssoc(function ($r) {
+                                             return [explode(' ', $r->user->name)[0], $r->rating];
+                                         })
+                                     ]
+                                 ];
+                             })
+;
+        dump($houseguest);
     }
 
     public function testaudit()

@@ -23,7 +23,10 @@ use League\Csv\Writer as Csv;
 //dd(\request());
 
 Route::post('/generate', function (Request $request) {
+    ini_set('memory_limit', '256M');
+
     // get data
+    $week = $request->get('week');
     $season = Season::current();
     $data = Transaction::whereHas('user')->whereHas('houseguest', function ($q) use ($season) {
         $q->withoutGlobalScope('active');
@@ -32,7 +35,7 @@ Route::post('/generate', function (Request $request) {
         'houseguest' => function ($q) use ($season) {
             $q->withoutGlobalScope('active');
         }
-    ])->where('week', $season->current_week)->get();
+    ])->where('week', $week)->get();
 
     // make file
     $csv = Csv::createFromFileObject(new \SplTempFileObject);
@@ -50,13 +53,13 @@ Route::post('/generate', function (Request $request) {
 
     });
     // save pointer
-    $filename = date('Y-m-d') . '_' . $season->short_name . '_w' . $season->current_week . '.csv';
+    $filename = date('Y-m-d') . '_' . $season->short_name . '_w' . $week . '.csv';
     Storage::disk('stats')->put($filename, $csv->getContent());
     File::create([
         'filename'  => $filename,
         'type'      => 'stats',
         'season_id' => $season->id,
-        'week'      => $season->current_week
+        'week'      => $week
     ]);
 });
 
@@ -65,7 +68,7 @@ Route::get('/file/{type}/{file}', function ($type, $file) {
 });
 
 Route::get('/files', function (Request $request) {
-    return File::with('season')->get();
+    return File::with('season')->orderByDesc('week')->get();
 });
 
 Route::get('/stats/total/stocks', function () {

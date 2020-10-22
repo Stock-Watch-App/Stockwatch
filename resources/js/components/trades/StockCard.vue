@@ -5,18 +5,20 @@
     >
         <div class="hg-details">
             <h4>
-                {{
-                    stock.houseguest.nickname ||
-                        stock.houseguest.first_name | capitalize
-                }}
+                <a class="dark" :href="houseguestLink"> {{ stock.houseguest.nickname || stock.houseguest.first_name | capitalize }}
+<!--                    <font-awesome-icon :icon="['fas', 'arrow-right']" fixed-width/>-->
+                </a>
             </h4>
-            <vanity-tag v-if="stock.houseguest.vanitytags" :label="stock.houseguest.vanitytags.tag"></vanity-tag>
+            <vanity-tag
+                v-if="stock.houseguest.vanitytags"
+                :label="stock.houseguest.vanitytags.tag"
+            ></vanity-tag>
         </div>
-        <img :src="houseguestImage" height="85" width="85" class="hg-img" />
+        <img :src="houseguestImage" height="85" width="85" class="hg-img"/>
         <div class="hg-rating">
             <span class="rating-wrap">
                 <h3 class="num-wrap flex-row">
-                    <font-awesome-icon icon="star" class="hg-star" />
+                    <font-awesome-icon icon="star" class="hg-star"/>
                     <span class="hg-star-rating">{{ currentRating }}</span>
                     <span class="hg-star-outof">/10</span>
                 </h3>
@@ -25,12 +27,11 @@
         <div class="hg-price" v-bind:class="priceDifference.class.background">
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
-            </span>
-            <span
-                v-if="priceDifference.amount >= 0"
-                class="price-change-wrap flex-row"
-                v-bind:class="priceDifference.class.text"
-            >
+            </span> <span
+            v-if="priceDifference.amount >= 0"
+            class="price-change-wrap flex-row"
+            v-bind:class="priceDifference.class.text"
+        >
                 <font-awesome-icon
                     :icon="priceDifference.icon"
                     class="price-diff-icon"
@@ -71,7 +72,8 @@
                 class="button-base link icon-col small"
                 @click="reset"
             >
-                <font-awesome-icon icon="undo-alt" />reset
+                <font-awesome-icon icon="undo-alt"/>
+                reset
             </button>
         </div>
     </li>
@@ -90,16 +92,16 @@ export default {
         };
     },
     methods: {
-        reset: function() {
+        reset: function () {
             this.stock.quantity = this.originalStock.quantity;
         },
-        buyMax: function() {
+        buyMax: function () {
             //this needs to be mutated from the parent because of the bank
             this.$emit("buy-max", {
                 houseguest: this.stock.houseguest_id
             });
         },
-        sellAll: function() {
+        sellAll: function () {
             //this needs to be mutated from the parent because of the bank
             this.$emit("sell-all", {
                 houseguest: this.stock.houseguest_id
@@ -107,10 +109,18 @@ export default {
         }
     },
     computed: {
-        houseguestImage: function() {
+        houseguestImage: function () {
             return "/storage/" + this.stock.houseguest.image;
         },
-        currentPrice: function() {
+        houseguestLink: function () {
+            return (
+                "/houseguest/" +
+                this.stock.houseguest.season.short_name +
+                "/" +
+                this.stock.houseguest.slug
+            );
+        },
+        currentPrice: function () {
             //find latest week
             let currentWeek;
             this.stock.houseguest.prices.forEach(week => {
@@ -129,7 +139,7 @@ export default {
 
             return currentWeek.price;
         },
-        currentRating: function() {
+        currentRating: function () {
             //find latest week
             let currentWeek = [];
             this.stock.houseguest.ratings.forEach(week => {
@@ -147,7 +157,7 @@ export default {
             });
             return Math.round(total / 4);
         },
-        priceDifference: function() {
+        priceDifference: function () {
             if (this.stock.houseguest.prices.length === 1) {
                 return {
                     amount: -1, //because we use abs(), we will never have a negative number. Thus we can use it as a check.
@@ -181,8 +191,8 @@ export default {
                     background: isIncrease
                         ? "green-bg"
                         : diff === 0
-                        ? ""
-                        : "red-bg",
+                            ? ""
+                            : "red-bg",
                     text: isIncrease ? "green" : diff === 0 ? "" : "red"
                 }
             };

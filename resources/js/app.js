@@ -25,6 +25,8 @@ import VTooltip from 'v-tooltip'
 
 Vue.use(VTooltip)
 
+// import { Line } from 'vue-chartjs'
+
 
 // font awesome icons
 // not a huge fan of this global import situation, maybe this should be scoped to components (I tried and failed)
@@ -57,7 +59,8 @@ import {
     faSignInAlt,
     faSignIn,
     faFileDownload,
-    faFileUpload
+    faFileUpload,
+    faArrowRight
 } from "@fortawesome/pro-solid-svg-icons";
 import {
     faTwitch,
@@ -115,6 +118,7 @@ library.add(
     faSignIn,
     faArrowUpDuo,
     faArrowDownDuo,
+    faArrowRight,
     faBinoculars,
     faChartNetwork,
     faArrowToLeft,
@@ -175,6 +179,17 @@ Vue.component(
     "all-leaderboard-table",
     require("./components/leaderboard/AllLeaderboardTable.vue").default
 );
+
+Vue.component(
+    "houseguest-chart",
+    require("./components/houseguest/HouseguestChart.vue").default
+);
+
+Vue.component(
+    "line-chart",
+    require("./components/LineChart.vue").default
+);
+
 Vue.component(
     "profile-panel",
     require("./components/profile/Panel.vue").default
@@ -214,6 +229,7 @@ const app = new Vue({
         isMobile: false,
         isLocal: process.env.MIX_LOCAL_ENV,
     },
+    // extends: Line,
     mounted() {
         if (
             typeof window.orientation !== "undefined" ||

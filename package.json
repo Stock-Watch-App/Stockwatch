@@ -51,8 +51,10 @@
         "@fortawesome/pro-regular-svg-icons": "^5.14.0",
         "@fortawesome/pro-solid-svg-icons": "^5.14.0",
         "@fortawesome/vue-fontawesome": "^0.1.9",
+        "chart.js": "^2.9.3",
         "less": "^3.11.1",
         "v-tooltip": "^2.0.3",
+        "vue-chartjs": "^3.5.1",
         "vue-flash-message": "^0.7.2",
         "vue2-touch-events": "^2.2.1",
         "vuejs-smart-table": "0.0.5"

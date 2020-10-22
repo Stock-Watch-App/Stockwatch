@@ -37,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $appends = [
         'avatar_url',
+        'hashid'
 //        'times_played'
     ];
 

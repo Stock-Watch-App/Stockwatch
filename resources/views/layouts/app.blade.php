@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @include('umami')
 </head>
 <body>
 <div id="app" class="app-wrapper">

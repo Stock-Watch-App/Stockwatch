@@ -42,12 +42,12 @@ class LeaderboardController extends Controller
                                           $q->where('season_id', Season::current()->id);
                                       }
                                   ])
-                                  ->whereSeasonEnded()
+//                                  ->whereSeasonEnded()
                                   ->select(DB::raw('user_id, sum(networth) as networth'))
-                                  ->where('week', static function ($q) {
+                                  ->whereIn('week', static function ($q) {
                                       $q->select(DB::raw('max(week)'))
                                         ->from('leaderboard')
-                                        ->where('season_id', 1)
+//                                        ->where('season_id', 1)
                                         ->groupBy('season_id');
                                   })->groupBy('user_id')
                                   ->orderBy('networth', 'desc')

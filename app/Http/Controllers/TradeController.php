@@ -49,7 +49,7 @@ class TradeController extends Controller
     public function guestIndex(Request $request, $stateOfUser = '')
     {
         $season = Season::current();
-        $season->load(['houseguests.prices', 'houseguests.ratings',
+        $season->load(['houseguests.prices', 'houseguests.ratings', 'houseguests.season',
                 'houseguests.vanitytags' => function ($q) use ($season) {
                     $q->where('week', $season->current_week);
                 },]);
@@ -161,7 +161,7 @@ class TradeController extends Controller
         ]);
 //        dd($user);
 
-        $stocks = $user->stocks->load('houseguest');
+        $stocks = $user->stocks->load('houseguest.season');
 
 
         $stocks->each(static function ($stock, $key) use ($season) {

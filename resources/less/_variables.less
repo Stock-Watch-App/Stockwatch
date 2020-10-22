@@ -6,8 +6,10 @@
 @border-radius: 4px;
 
 // fonts
-@source-sans: "Source Sans Variable", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
-@source-sans-italic: "Source Sans Variable Italic", system-ui, -apple-system, BlinkMacSystemFont, 'seravek', 'segoe ui', 'roboto', sans-serif;
+@source-sans: "Source Sans Variable", system-ui, -apple-system,
+    BlinkMacSystemFont, "seravek", "segoe ui", "roboto", sans-serif;
+@source-sans-italic: "Source Sans Variable Italic", system-ui, -apple-system,
+    BlinkMacSystemFont, "seravek", "segoe ui", "roboto", sans-serif;
 // variable font settings
 @source-sans-bold: "wght" 700;
 @source-sans-normal: "wght" 400;
@@ -15,25 +17,24 @@
 @base-font-weight-bold: @source-sans-bold;
 @base-font-weight-normal: @source-sans-normal;
 
-
 // breakpoints
-@xlg-desktop : 1440px;
-@lg-desktop : 1280px;
-@desktop : 1024px;
-@tablet : 768px;
-@mobile : 320px;
+@xlg-desktop: 1440px;
+@lg-desktop: 1280px;
+@desktop: 1024px;
+@tablet: 768px;
+@mobile: 320px;
 @small-screen: @mobile;
 @large-screen: @xlg-desktop;
 
 // media queries
-@min-xlg-desktop : ~"only screen and (min-width: 1440px)";
-@min-lg-desktop : ~"only screen and (min-width: 1280px)";
-@max-lg-desktop : ~"only screen and (max-width: 1280px)";
-@min-desktop : ~"only screen and (min-width: 1024px)";
-@min-tablet : ~"only screen and (min-width: 768px)";
-@max-mobile : ~"only screen and (max-width: 767px)";
-@iphone5: ~'only screen and (min-width: 321px)';
-@iPhone5OrSmaller: ~'only screen and (max-width: 320px)';
+@min-xlg-desktop: ~"only screen and (min-width: 1440px)";
+@min-lg-desktop: ~"only screen and (min-width: 1280px)";
+@max-lg-desktop: ~"only screen and (max-width: 1280px)";
+@min-desktop: ~"only screen and (min-width: 1024px)";
+@min-tablet: ~"only screen and (min-width: 768px)";
+@max-mobile: ~"only screen and (max-width: 767px)";
+@iphone5: ~"only screen and (min-width: 321px)";
+@iPhone5OrSmaller: ~"only screen and (max-width: 320px)";
 
 // spacing ems
 @space-unit: 1em;
@@ -54,7 +55,7 @@
 // colors
 @primary-blue: hsl(224, 90%, 53%);
 @primary-blue-02: hsl(224, 90%, 45%);
-@primary-blue-03:hsl(224, 94%, 21%);
+@primary-blue-03: hsl(224, 94%, 21%);
 @primary-blue-04: hsl(234, 75%, 17%);
 @primary-blue-desat-01: hsl(224, 80%, 60%);
 @primary-blue-desat-02: hsl(224, 80%, 70%);
@@ -76,22 +77,22 @@
 @rank-3: hsl(209, 100%, 41%);
 @rank-4: hsl(217, 100%, 41%);
 @rank-5: hsl(287, 100%, 41%);
-@bronze: #FDA044;
-@silver: #C9D3E0;
-@gold: #FFDA64;
+@bronze: #c36658;
+@silver: #919fa3;
+@gold: #c7a838;
 
 // new colors
 @pink: hsl(320, 91%, 52%);
 @pink-overlay: hsla(320, 91%, 52%, 0.3);
-@teal: #73F6FD;
-@robot-blue: #0024F5;
-@robot-purple: #8600FC;
-@robot-yellow: #FCE700;
-@robot-lime: #00FC19;
+@teal: #73f6fd;
+@robot-blue: #0024f5;
+@robot-purple: #8600fc;
+@robot-yellow: #fce700;
+@robot-lime: #00fc19;
 @robot-gray: #717484;
 
-@gray-01: #25282F;
-@gray-02: #32333D;
+@gray-01: #25282f;
+@gray-02: #32333d;
 @gray-03: #373740;
 @gray-dark: hsl(240, 7%, 9%);
 @gray-medium: hsl(240, 4%, 45%);
@@ -130,13 +131,15 @@
 @google: hsl(217, 89%, 61%);
 
 // shadows
-@shadow-xs:	0 0 0 1px rgba(0, 0, 0, 0.05);
-@shadow-sm:	0 1px 2px 0 rgba(0, 0, 0, 0.05);
-@shadow:	0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-@shadow-md:	0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-@shadow-lg:	0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-@shadow-xl:	0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-@shadow-2xl:	0 25px 50px -12px rgba(0, 0, 0, 0.25);
-@shadow-inner:	inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-@shadow-outline:	0 0 0 3px rgba(66, 153, 225, 0.5);
-
+@shadow-xs: 0 0 0 1px rgba(0, 0, 0, 0.05);
+@shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+@shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+@shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+@shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+@shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+@shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+@shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+@shadow-outline: 0 0 0 3px rgba(66, 153, 225, 0.5);

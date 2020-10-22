@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Anomaly;
 use App\Models\Bank;
 use App\Models\Houseguest;
 use App\Models\Price;
@@ -12,6 +13,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Week;
 use App\Models\File;
+use App\Models\VanityTag;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        Anomaly::class => \App\Policies\Anomaly::class,
         Bank::class => \App\Policies\Bank::class,
         Houseguest::class => \App\Policies\Houseguest::class,
         Price::class => \App\Policies\Price::class,
@@ -37,6 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         Role::class => \App\Policies\Role::class,
         Permission::class => \App\Policies\Permission::class,
         File::class => \App\Policies\File::class,
+        VanityTag::class => \App\Policies\VanityTag::class,
     ];
 
     /**
