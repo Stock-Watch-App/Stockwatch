@@ -50,33 +50,9 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $week = 9;
-        $houseguest = Houseguest::currentSeason()
-                             ->withoutGlobalScope('active')
-                             ->whereHas('ratings', function ($q) use ($week) {
-                                 $q->where('week', $week);
-                             })
-                             ->with([
-                                 'ratings' => function ($q) use ($week) {
-                                 $q->where('week', $week);
-                             },
-                                 'ratings.user'
-                             ])
-                             ->orderBy('nickname')
-                             ->get()
-                             ->mapToAssoc(function ($houseguest) {
-                                 return [
-                                     $houseguest->nickname,
-                                     [
-                                         'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
-                                         'ratings' => $houseguest->ratings->mapToAssoc(function ($r) {
-                                             return [explode(' ', $r->user->name)[0], $r->rating];
-                                         })
-                                     ]
-                                 ];
-                             })
-;
-        dump($houseguest);
+        $user = User::find(4)->badges()->get();
+
+        dump($user);
     }
 
     public function testaudit()

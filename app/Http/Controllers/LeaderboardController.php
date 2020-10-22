@@ -23,6 +23,10 @@ class LeaderboardController extends Controller
                                   ->search($request->search)
                                   ->with([
                                       'user.banks',
+                                      'user.badges' => function ($q) {
+                                          $q->where('type', 'ordinal')
+                                            ->with('image');
+                                      },
                                       'user.vanitytags' => function ($q) use ($season) {
                                           $q->where('season_id', $season->id);
                                       }
