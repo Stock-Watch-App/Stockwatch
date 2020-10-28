@@ -50,9 +50,42 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $user = User::find(4)->badges()->get();
+        $season = Season::where('short_name', 'bbcan8')->first();
 
-        dump($user);
+        $leaderboard = Leaderboard::where('season_id', $season->id)
+                             ->where('week', $season->current_week)
+                             ->orderBy('rank')->get();
+
+        if ($l = $leaderboard->where('rank', 1)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 2)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 3)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 4)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 5)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 6)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 7)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 8)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 9)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 10)->first()) {
+            dump($l->user->name);
+}
     }
 
     public function testaudit()
