@@ -1,6 +1,6 @@
 <template>
-    <span>
-        <img :src="imageSrc" :alt="badge.name" :title="badge.name">
+    <span >
+        <img class="leaderboard-badge" :src="imageSrc" :alt="badge.name" :title="badge.name">
     </span>
 </template>
 

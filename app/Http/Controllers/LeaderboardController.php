@@ -42,6 +42,10 @@ class LeaderboardController extends Controller
     {
         $leaderboard = Leaderboard::with([
                                       'user.banks',
+                                      'user.badges' => function ($q) {
+                                          $q->where('type', 'ordinal')
+                                            ->with('image');
+                                      },
                                       'user.vanitytags' => function ($q) {
                                           $q->where('season_id', Season::current()->id);
                                       }
