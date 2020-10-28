@@ -50,33 +50,26 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $week = 9;
-        $houseguest = Houseguest::currentSeason()
-                             ->withoutGlobalScope('active')
-                             ->whereHas('ratings', function ($q) use ($week) {
-                                 $q->where('week', $week);
-                             })
-                             ->with([
-                                 'ratings' => function ($q) use ($week) {
-                                 $q->where('week', $week);
-                             },
-                                 'ratings.user'
-                             ])
-                             ->orderBy('nickname')
-                             ->get()
-                             ->mapToAssoc(function ($houseguest) {
-                                 return [
-                                     $houseguest->nickname,
-                                     [
-                                         'status'  => 'active', // spoof for historical weeks. Status is determined by existence of ratings.
-                                         'ratings' => $houseguest->ratings->mapToAssoc(function ($r) {
-                                             return [explode(' ', $r->user->name)[0], $r->rating];
-                                         })
-                                     ]
-                                 ];
-                             })
-;
-        dump($houseguest);
+        $leaderboard = Leaderboard::with([
+            'user.banks',
+            'user.vanitytags' => function ($q) {
+                $q->where('season_id', Season::current()->id);
+            }
+        ])
+                                  ->select(DB::raw('leaderboard.user_id, sum(leaderboard.networth) as networth'))
+                                  ->join(DB::raw('(select id, current_week from seasons) s'), function ($join) {
+                                      $join->on('leaderboard.season_id', 's.id');
+                                      $join->on('leaderboard.week', 's.current_week');
+                                  })
+                                  ->groupBy('leaderboard.user_id')
+                                  ->orderBy('networth', 'desc')
+                                  ->cacheFor(now()->addHours(24))
+                                  ->get();
+
+
+
+
+        dump($leaderboard);
     }
 
     public function testaudit()
