@@ -14,7 +14,7 @@ class BadgeSeeder extends Seeder
 //        $this->bbcan7();
         $this->bb21();
         $this->bbcan8();
-//        $this->bb22();
+        $this->bb22();
     }
 
     public function bbcan7()

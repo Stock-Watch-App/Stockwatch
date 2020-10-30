@@ -10,6 +10,11 @@
                 <!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
                 <!--                <p>badges here</p>-->
             </div>
+            <badge
+                v-for="badge in user.badges"
+                :badge="badge"
+                :key="badge.name"
+            ></badge>
         </div>
 
         <div class="profile-stats-wrap mg-btm-lg">
