@@ -11,7 +11,7 @@ class BadgeSeeder extends Seeder
 {
     public function run()
     {
-//        $this->bbcan7();
+        $this->bbcan7();
         $this->bb21();
         $this->bbcan8();
         $this->bb22();
@@ -22,7 +22,7 @@ class BadgeSeeder extends Seeder
         $season = Season::firstOrCreate(['short_name' => 'bbcan7'], [
             'name'         => 'Big Brother Canada 7',
             'status'       => 'ended',
-            'current_week' => 0
+            'current_week' => 10
         ]);
 
         $first = Badge::firstOrCreate([
@@ -62,16 +62,16 @@ class BadgeSeeder extends Seeder
         ]);
 
 
-//        User::find()->badges()->save($first); //
-//        User::find()->badges()->save($second); //
-//        User::find()->badges()->save($third); //
-//        User::find()->badges()->save($topfive); //
-//        User::find()->badges()->save($topfive); //
-//        User::find()->badges()->save($topten); //
-//        User::find()->badges()->save($topten); //
-//        User::find()->badges()->save($topten); //
-//        User::find()->badges()->save($topten); //
-//        User::find()->badges()->save($topten); //
+        User::find(688)->badges()->save($first); // BeastSG
+//        User::find()->badges()->save($second); // Caliber22
+        User::find(4)->badges()->save($third); // Taran
+        User::find(665)->badges()->save($topfive); // tblprg
+        User::find(1079)->badges()->save($topfive); // BB President
+        User::find(668)->badges()->save($topten); // Niki Philippart
+//        User::find()->badges()->save($topten); // Matt Liguori
+        User::find(1839)->badges()->save($topten); // David Oakley
+        User::find(6521)->badges()->save($topten); // bsneddz
+//        User::find()->badges()->save($topten); // Brandon Sneddon
     }
 
     public function bb21()
