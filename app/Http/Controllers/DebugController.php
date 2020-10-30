@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Formula;
+use App\Models\Bank;
 use App\Models\Houseguest;
 use App\Models\Leaderboard;
 use App\Models\User;
@@ -50,26 +51,29 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $leaderboard = Leaderboard::with([
-            'user.banks',
-            'user.vanitytags' => function ($q) {
-                $q->where('season_id', Season::current()->id);
+        $earned = 0;
+        $lost = 0;
+        $banks = Bank::where('season_id', 2)->with([
+            'user.leaderboard' => function ($l) {
+                $l->where('season_id', 2)->orderBy('week');
             }
-        ])
-                                  ->select(DB::raw('leaderboard.user_id, sum(leaderboard.networth) as networth'))
-                                  ->join(DB::raw('(select id, current_week from seasons) s'), function ($join) {
-                                      $join->on('leaderboard.season_id', 's.id');
-                                      $join->on('leaderboard.week', 's.current_week');
-                                  })
-                                  ->groupBy('leaderboard.user_id')
-                                  ->orderBy('networth', 'desc')
-                                  ->cacheFor(now()->addHours(24))
-                                  ->get();
+        ])->get();
+          $banks->each(function ($bank) use (&$earned, &$lost) {
+            $lastweek = 200;
+            if ($bank->user) {
+                $bank->user->leaderboard->each(function ($l) use (&$earned, &$lost, &$lastweek) {
+                    if ($l->networth > $lastweek) {
+                        $earned += $l->networth - $lastweek;
+                    } else {
+                        $lost += $lastweek - $l->networth;
+                    }
+                    $lastweek = $l->networth;
+                });
+            }
+        });
 
-
-
-
-        dump($leaderboard);
+        dump($earned);
+        dump($lost);
     }
 
     public function testaudit()
