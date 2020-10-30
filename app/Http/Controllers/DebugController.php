@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Formula;
+use App\Models\Bank;
 use App\Models\Houseguest;
 use App\Models\Leaderboard;
 use App\Models\User;
