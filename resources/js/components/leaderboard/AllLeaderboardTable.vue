@@ -35,22 +35,26 @@
                             {{ leaderboard.rank.rank }}
                         </div>
                     </td>
-                    <td class="user-row">
-                        <!--                        <a :href="'/profile/'+leaderboard.user.hashid" >-->
-                        <avatar
-                            :user="leaderboard.user"
-                            height="25"
-                            width="25"
-                            class="leaderboard-avatar"
-                        ></avatar>
-                        <span>{{ leaderboard.user.name }}</span>
-                        <vanity-tag v-if="leaderboard.user.vanitytags" :label="leaderboard.user.vanitytags.tag"></vanity-tag>
-                        <badge
-                            v-for="badge in leaderboard.user.badges"
-                            :badge="badge"
-                            :key="badge.name"
-                        ></badge>
-                        <!--                        </a>-->
+                    <td class="user-row-wrap">
+                        <a :href="'/profile/' + leaderboard.user.hashid" class="user-row">
+                            <avatar
+                                :user="leaderboard.user"
+                                height="25"
+                                width="25"
+                                class="leaderboard-avatar"
+                            ></avatar>
+                            <span>{{ leaderboard.user.name }}</span>
+                            <vanity-tag v-if="leaderboard.user.vanitytags" :label="leaderboard.user.vanitytags.tag"></vanity-tag>
+                            <badge
+                                v-for="badge in leaderboard.user.badges"
+                                :badge="badge"
+                                :key="badge.name"
+                                v-tooltip="badge.name"
+                                width="35"
+                                height="35"
+                                customClass="leaderboard-badge"
+                            ></badge>
+                        </a>
                     </td>
                     <td class="networth">
                         {{ leaderboard.networth | currency }}

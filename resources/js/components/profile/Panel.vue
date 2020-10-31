@@ -7,14 +7,28 @@
             </div>
             <div class="profile-header-stats">
                 <p>Current Rank: <span class="bold">{{ currentRank }}</span></p>
-                <!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
-                <!--                <p>badges here</p>-->
             </div>
-            <badge
-                v-for="badge in user.badges"
-                :badge="badge"
-                :key="badge.name"
-            ></badge>
+            <p class="bold">Season badges</p>
+            <div class="profile-badges">
+                <badge
+                    v-for="badge in user.badges"
+                    :badge="badge"
+                    :key="badge.name"
+                    v-tooltip="badge.name"
+                    width="55"
+                    height="55"
+                ></badge>
+            </div>
+            <div class="profile-precent-badges">
+                <badge
+                    v-for="badge in user.badges"
+                    :badge="badge"
+                    :key="badge.name"
+                    v-tooltip="badge.name"
+                    width="35"
+                    height="35"
+                ></badge>
+            </div>
         </div>
 
         <div class="profile-stats-wrap mg-btm-lg">

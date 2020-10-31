@@ -83,6 +83,10 @@
                                         v-for="badge in leaderboard.user.badges"
                                         :badge="badge"
                                         :key="badge.name"
+                                        v-tooltip="badge.name"
+                                        width="35"
+                                        height="35"
+                                        customClass="leaderboard-badge"
                                     ></badge>
                                 </a>
                             </td>

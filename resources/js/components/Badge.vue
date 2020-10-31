@@ -1,13 +1,14 @@
 <template>
-    <span >
-        <img class="leaderboard-badge" :src="imageSrc" :alt="badge.name" :title="badge.name">
-    </span>
+    <img :class="customClass" :width="width" :height="height" :src="imageSrc" :alt="badge.name" :title="badge.name">
 </template>
 
 <script>
 export default {
     props: {
-        badge: Object
+        badge: Object,
+        width: String,
+        height: String,
+        customClass: String
     },
     computed: {
       imageSrc: function () {
@@ -16,7 +17,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
