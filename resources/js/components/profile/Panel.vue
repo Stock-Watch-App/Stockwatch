@@ -11,17 +11,17 @@
             <p class="bold">Season badges</p>
             <div class="profile-badges">
                 <badge
-                    v-for="badge in user.badges"
+                    v-for="badge in ordinalBadges"
                     :badge="badge"
                     :key="badge.name"
                     v-tooltip="badge.name"
-                    width="55"
-                    height="55"
+                    width="35"
+                    height="35"
                 ></badge>
             </div>
             <div class="profile-precent-badges">
                 <badge
-                    v-for="badge in user.badges"
+                    v-for="badge in percentBadges"
                     :badge="badge"
                     :key="badge.name"
                     v-tooltip="badge.name"
@@ -214,9 +214,18 @@ export default {
                     });
                 }
             }
-            ;
             return mappedStocks;
-        }
+        },
+        ordinalBadges: function () {
+            return this.user.badges.filter(b => {
+                return b.type === 'ordinal';
+            });
+        },
+        percentBadges: function () {
+            return this.user.badges.filter(b => {
+                return b.type === 'percent';
+            });
+        },
     }
 };
 </script>
