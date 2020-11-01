@@ -15,8 +15,8 @@
                     :badge="badge"
                     :key="badge.name"
                     v-tooltip="badge.name"
-                    width="35"
-                    height="35"
+                    width="45"
+                    height="45"
                 ></badge>
             </div>
             <div class="profile-precent-badges">
