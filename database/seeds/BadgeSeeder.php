@@ -176,17 +176,24 @@ class BadgeSeeder extends Seeder
         ]);
         $toponepercent = Badge::firstOrCreate([
             'name'      => 'BBCan 8 Top One Percent',
-            'rank'      => '10',
+            'rank'      => '1',
             'type'      => 'percent',
             'season_id' => $season->id,
             'image_id'  => Image::firstOrCreate(['filename' => '/badges/bbcan8/BBCAN8_toponepercent.svg', 'mime_type' => 'image/svg+xml'])->id
         ]);
         $topfivepercent = Badge::firstOrCreate([
             'name'      => 'BBCan 8 Top Five Percent',
-            'rank'      => '10',
+            'rank'      => '5',
             'type'      => 'percent',
             'season_id' => $season->id,
             'image_id'  => Image::firstOrCreate(['filename' => '/badges/bbcan8/BBCAN8_topfivepercent.svg', 'mime_type' => 'image/svg+xml'])->id
+        ]);
+        $toptenpercent = Badge::firstOrCreate([
+            'name'      => 'BBCan 8 Top Ten Percent',
+            'rank'      => '10',
+            'type'      => 'percent',
+            'season_id' => $season->id,
+            'image_id'  => Image::firstOrCreate(['filename' => '/badges/bbcan8/BBCAN8_toptenpercent.svg', 'mime_type' => 'image/svg+xml'])->id
         ]);
 
         $leaderboard = Leaderboard::where('season_id', $season->id)
@@ -212,6 +219,11 @@ class BadgeSeeder extends Seeder
         $topfive = $leaderboard->skip($topone->count())->take(($leaderboard->count()/20)-$topone->count());
         $topfive->each(function ($l) use ($topfivepercent) {
             $l->user->badges()->save($topfivepercent);
+        });
+
+        $topten = $leaderboard->skip($topone->count()+$topfive->count())->take(($leaderboard->count()/10)-$topone->count()-$topfive->count());
+        $topten->each(function ($l) use ($toptenpercent) {
+            $l->user->badges()->save($toptenpercent);
         });
     }
 
@@ -260,18 +272,25 @@ class BadgeSeeder extends Seeder
         ]);
 
         $toponepercent = Badge::firstOrCreate([
-            'name'      => 'BBCan 8 Top One Percent',
-            'rank'      => '10',
+            'name'      => 'BB22 Top One Percent',
+            'rank'      => '1',
             'type'      => 'percent',
             'season_id' => $season->id,
             'image_id'  => Image::firstOrCreate(['filename' => '/badges/bb22/BB22_toponepercent.svg', 'mime_type' => 'image/svg+xml'])->id
         ]);
         $topfivepercent = Badge::firstOrCreate([
-            'name'      => 'BBCan 8 Top Five Percent',
-            'rank'      => '10',
+            'name'      => 'BB22 Top Five Percent',
+            'rank'      => '5',
             'type'      => 'percent',
             'season_id' => $season->id,
             'image_id'  => Image::firstOrCreate(['filename' => '/badges/bb22/BB22_topfivepercent.svg', 'mime_type' => 'image/svg+xml'])->id
+        ]);
+        $toptenpercent = Badge::firstOrCreate([
+            'name'      => 'BB22 Top Ten Percent',
+            'rank'      => '10',
+            'type'      => 'percent',
+            'season_id' => $season->id,
+            'image_id'  => Image::firstOrCreate(['filename' => '/badges/bb22/BB22_toptenpercent.svg', 'mime_type' => 'image/svg+xml'])->id
         ]);
 
         $leaderboard = Leaderboard::where('season_id', $season->id)
@@ -297,6 +316,11 @@ class BadgeSeeder extends Seeder
         $topfive = $leaderboard->skip($topone->count())->take(($leaderboard->count()/20)-$topone->count());
         $topfive->each(function ($l) use ($topfivepercent) {
             $l->user->badges()->save($topfivepercent);
+        });
+
+        $topten = $leaderboard->skip($topone->count()+$topfive->count())->take(($leaderboard->count()/10)-$topone->count()-$topfive->count());
+        $topten->each(function ($l) use ($toptenpercent) {
+            $l->user->badges()->save($toptenpercent);
         });
     }
 }
