@@ -53,7 +53,7 @@
                     <span v-show="isActive">Projections</span> </a>
             </li>
         @endif
-        @if(in_array(\App\Models\Season::current()->status, ['open','closed']))
+{{--        @if(in_array(\App\Models\Season::current()->status, ['open','closed']))--}}
             <li>
                 <a href="{{ route('leaderboard', ['season' => \App\Models\Season::current()->short_name]) }}" title="Leaderboard" class="item-wrap">
                     <x-skeleton style="width:22px;height:22px;border-radius:50%;"/>
@@ -63,7 +63,7 @@
                     <span v-show="isActive">{{ strtoupper(\App\Models\Season::current()->short_name) }} Leaderboard</span>
                 </a>
             </li>
-        @endif
+{{--        @endif--}}
         @auth
             <li class="last-item">
                 <a href="/account" title="Account" class="item-wrap">
