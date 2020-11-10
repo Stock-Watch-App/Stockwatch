@@ -1,10 +1,10 @@
-@import (reference)  './_variables.less';
-@import (reference) './_mixins.less';
+@import (reference) "./_variables.less";
+@import (reference) "./_mixins.less";
 
 .profile-page-wrap {
     --select-width: 200px;
 
-    grid-column: ~'1/-1';
+    grid-column: ~"1/-1";
     display: grid;
     grid-template-columns: 1fr;
 
@@ -30,6 +30,7 @@
         flex-direction: row;
         justify-content: space-evenly;
         gap: 0.5rem;
+        padding-bottom: 1rem;
     }
 
     .profile-header-avatar {
@@ -50,7 +51,14 @@
         .px-rem(padding, 10);
 
         h1 {
-            .fluid-typography-rem(@small-screen, @large-screen, @base, 1.5rem, 3rem, 1.75rem);
+            .fluid-typography-rem(
+                @small-screen,
+                @large-screen,
+                @base,
+                1.5rem,
+                3rem,
+                1.75rem
+            );
         }
     }
 
@@ -84,12 +92,9 @@
         &.red {
             color: darken(@red, 8%);
         }
-
     }
 
-
     .profile-stats-wrap {
-
         .week-picker-wrap {
             display: flex;
             flex-direction: column;
@@ -102,17 +107,16 @@
                     border-radius: 0;
                     flex: 1 1 auto;
                 }
-    
+
                 .next-button {
                     border-top-left-radius: 0;
                     border-bottom-left-radius: 0;
                 }
-    
+
                 .prev-button {
                     border-top-right-radius: 0;
                     border-bottom-right-radius: 0;
                 }
-
             }
         }
 
@@ -121,7 +125,6 @@
             grid-template-columns: repeat(auto-fill, minmax(175px, auto));
             grid-gap: 1rem;
         }
-
     }
 
     .stockcard {
@@ -140,11 +143,10 @@
             .price-change-wrap {
                 margin-left: 10px;
             }
-
         }
 
         .user-holdings {
-            grid-column: ~'2/3';
+            grid-column: ~"2/3";
             display: flex;
             flex-direction: column;
 
@@ -157,7 +159,7 @@
             .word {
                 font-variation-settings: "wght" 400;
                 font-size: 1rem;
-                letter-spacing: .005em;
+                letter-spacing: 0.005em;
 
                 &.small-price {
                     .font-unit-rem(14);
@@ -165,70 +167,25 @@
             }
         }
     }
-
 }
 
-.media(@min-tablet, {
-    .profile-page-wrap {
-        grid-template-columns: minmax(min-content, 300px) auto;
-        margin-left: -2rem;
-    
-        .profile-details {
-            grid-column: ~'1/2';
-            text-align: center;
-            position: relative;
-            top: unset;
-            border-bottom: none;
-            z-index: 1;
-            padding-top: 0;
-            margin-left: unset;
-            margin-right: unset;
-            padding: 1rem;
+.media(
+    @min-tablet,
+    {.profile-page-wrap {grid-template-columns: minmax(min-content, 300px) auto;
+        margin-left: -2rem; .profile-details {grid-column: ~"1/2" ; text-align: center;
+        position: relative; top: unset; border-bottom: none; z-index: 1; padding-top:
+        0; margin-left: unset; margin-right: unset; padding: 1rem; .avatar {height:
+        60px; width: 60px;}} .profile-header-stats {flex-direction: column; gap:
+        0.5rem;} .profile-header-avatar {flex-direction: column; align-items: center;
+        justify-content: center; gap: 0.5rem; padding-bottom: 1rem;}}}
+);
 
-            .avatar {
-                height: 60px;
-                width: 60px;
-            }
-        }
-
-        .profile-header-stats {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-    
-        .profile-header-avatar {
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding-bottom: 1rem;
-        }
-    }
-
-    
-});
-
-.media(@min-desktop, {
-    .profile-page-wrap {
-
-        .stats {
-            .px-rem-margin(0, 0, 32, 0);
-            .px-rem(padding, 16);
-        }
-
-        .profile-stats-wrap {
-
-            .week-picker-wrap {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-        
-                h3 {
-                    margin-right: auto;
-                    margin-bottom: 0;
-                }
-            }
-        }
-    }
-
- });
+.media(
+    @min-desktop,
+    {.profile-page-wrap {.stats {.px-rem-margin(0, 0, 32, 0) ; .px-rem(
+            padding,
+            16
+        ) ;} .profile-stats-wrap {.week-picker-wrap {display: flex;
+        flex-direction: row; align-items: center; h3 {margin-right: auto; margin-bottom:
+        0;}}}}}
+);

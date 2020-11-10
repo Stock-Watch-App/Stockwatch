@@ -7,8 +7,27 @@
             </div>
             <div class="profile-header-stats">
                 <p>Current Rank: <span class="bold">{{ currentRank }}</span></p>
-                <!--                <p>all-time rank: <span class="bold">{{ user.rank }}</span></p>-->
-                <!--                <p>badges here</p>-->
+            </div>
+            <p class="bold">Season badges</p>
+            <div class="profile-badges">
+                <badge
+                    v-for="badge in ordinalBadges"
+                    :badge="badge"
+                    :key="badge.name"
+                    v-tooltip="badge.name"
+                    width="45"
+                    height="45"
+                ></badge>
+            </div>
+            <div class="profile-precent-badges">
+                <badge
+                    v-for="badge in percentBadges"
+                    :badge="badge"
+                    :key="badge.name"
+                    v-tooltip="badge.name"
+                    width="35"
+                    height="35"
+                ></badge>
             </div>
         </div>
 
@@ -195,9 +214,18 @@ export default {
                     });
                 }
             }
-            ;
             return mappedStocks;
-        }
+        },
+        ordinalBadges: function () {
+            return this.user.badges.filter(b => {
+                return b.type === 'ordinal';
+            });
+        },
+        percentBadges: function () {
+            return this.user.badges.filter(b => {
+                return b.type === 'percent';
+            });
+        },
     }
 };
 </script>

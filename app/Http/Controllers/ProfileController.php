@@ -15,6 +15,7 @@ class ProfileController extends Controller
         $season = Season::current();
         $user->load([
             'banks',
+            'badges.image',
             'transactions',
             'leaderboard' => function ($query) use ($season) {
                 $query->where('season_id', $season->id);
@@ -31,6 +32,11 @@ class ProfileController extends Controller
 //        $user->append(['alltime-rank' => Leaderboard::])
 
         $bank = $user->bank;
+
+        if ($bank === null) {
+            $bank = $user->banks->last();
+        }
+
         $houseguests = Houseguest::with('prices')
                                  ->where('season_id', $season->id)
                                  ->withoutGlobalScope('active')

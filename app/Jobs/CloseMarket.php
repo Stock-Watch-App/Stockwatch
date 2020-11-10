@@ -25,7 +25,9 @@ class CloseMarket implements ShouldQueue
 
     public function handle()
     {
-        $this->season->status = 'closed';
-        $this->season->save();
+        if ($this->season->status === 'open') {
+            $this->season->status = 'closed';
+            $this->season->save();
+        }
     }
 }

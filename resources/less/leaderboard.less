@@ -10,7 +10,7 @@
     .leaderboard-badge {
         width: 35px;
         height: 35px;
-        margin: 0 0.5rem;
+        //margin: 0 0.25rem;
     }
 
     h3 {
@@ -42,25 +42,12 @@
         max-height: 100vh;
     }
 
-    .media(@min-desktop, {
-
-        h3 {
-            grid-column: ~"1/6";
-            grid-row: ~"1/2";
-        }
-
-        .alltime-leader-title {
-            grid-column: ~"2/8" ;
-        }
-
-        .leader-grid {
-            grid-row: ~"2/3";
-
-            &.alltime-leader {
-                grid-column: ~"2/8";
-            }
-        }
-    });
+    .media(
+        @min-desktop,
+        {h3 {grid-column: ~"1/6" ; grid-row: ~"1/2" ;} .alltime-leader-title {grid-column:
+            ~"2/8" ;} .leader-grid {grid-row: ~"2/3" ; &.alltime-leader {grid-column:
+            ~"2/8" ;}}}
+    );
 }
 
 .leaderboard-table {
@@ -118,7 +105,7 @@
     td {
         z-index: 3;
 
-        &.user-row {
+        &.user-row-wrap {
             position: sticky;
             left: 0;
             z-index: 1;
@@ -126,7 +113,7 @@
     }
 
     .rank-sort {
-        min-width: 85px;
+        min-width: 50px;
     }
 
     .networth {
@@ -139,6 +126,9 @@
         align-items: center;
         border: none;
         background-color: @white;
+        min-height: 38px;
+        font-size: 1.125rem;
+        font-variation-settings: "wght" 700;
 
         &:hover {
             background-color: transparent;
@@ -156,6 +146,10 @@
         .leaderboard-avatar {
             .px-rem(margin-right, 8);
         }
+
+        .tag {
+            .px-rem(margin-right, 8);
+        }
     }
 
     .hg-img-table {
@@ -171,7 +165,6 @@
         display: inline-block;
         width: 1.5em;
         height: 1.5em;
-        line-height: 1.5;
         text-align: center;
         font-style: normal;
         border-radius: 50%;
@@ -180,20 +173,25 @@
     }
 
     .rank-1 {
-        background-color: @gold;
+        background: linear-gradient(332.28deg, #a57a2c 17.22%, #f6e948 93.9%);
+        border: 1px solid #926a28;
         color: @black;
+        line-height: 1.25;
     }
 
     .rank-2 {
-        background-color: @silver;
+        background: linear-gradient(329.91deg, #819499 22.22%, #e5f0f2 96.12%);
+        border: 1px solid #45575a;
         color: @black;
+        line-height: 1.25;
     }
 
     .rank-3 {
-        background-color: @bronze;
+        background: linear-gradient(329.91deg, #c36658 22.22%, #f2e6e0 96.12%);
+        border: 1px solid #67352b;
         color: @black;
+        line-height: 1.25;
     }
-
 }
 
 .pagination {

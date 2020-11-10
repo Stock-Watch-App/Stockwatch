@@ -23,6 +23,10 @@ class LeaderboardController extends Controller
                                   ->search($request->search)
                                   ->with([
                                       'user.banks',
+                                      'user.badges'     => function ($q) {
+                                          $q->where('type', 'ordinal')
+                                            ->with('image');
+                                      },
                                       'user.vanitytags' => function ($q) use ($season) {
                                           $q->where('season_id', $season->id);
                                       }
@@ -37,20 +41,23 @@ class LeaderboardController extends Controller
     public function allTime()
     {
         $leaderboard = Leaderboard::with([
-                           'user.banks',
-                           'user.vanitytags' => function ($q) {
-                               $q->where('season_id', Season::current()->id);
-                           }
-                       ])
-                       ->select(DB::raw('leaderboard.user_id, sum(leaderboard.networth) as networth'))
-                       ->join(DB::raw('(select id, current_week from seasons) s'), function ($join) {
-                           $join->on('leaderboard.season_id', 's.id');
-                           $join->on('leaderboard.week', 's.current_week');
-                       })
-                       ->groupBy('leaderboard.user_id')
-                       ->orderBy('networth', 'desc')
-                       ->cacheFor(now()->addHours(24))
-                       ->get();
+                                        'user.banks',
+                                        'user.badges'     => function ($q) {
+                                            $q->where('type', 'ordinal')
+                                              ->with('image');
+                                        },
+                                        'user.vanitytags' => function ($q) {
+                                            $q->where('season_id', Season::current()->id);
+                                        }
+                                    ])
+                                    ->select(DB::raw('user_id, sum(networth) as networth'))
+                                    ->join(DB::raw('(select id, current_week from seasons) s'), function ($join) {
+                                        $join->on('leaderboard.season_id', 's.id');
+                                        $join->on('leaderboard.week', 's.current_week');
+                                    })->groupBy('user_id')
+                                    ->orderBy('networth', 'desc')
+                                    ->cacheFor(now()->addHours(24))
+                                    ->get();
 
         return view('leaderboards.alltime', compact('leaderboard'));
     }

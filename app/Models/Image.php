@@ -10,4 +10,8 @@ class Image extends BaseModel
     {
         return $this->hasOne(User::class, 'avatar_id');
     }
+    public function badge()
+    {
+        return $this->hasOne(Badge::class);
+    }
 }

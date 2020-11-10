@@ -200,15 +200,7 @@ Vue.component("select-component", require("./components/Select.vue").default);
 
 Vue.component("icon-button", require("./components/IconButton.vue").default);
 
-Vue.component("first-badge", require("./components/badges/First.vue").default);
-
-Vue.component("second-badge", require("./components/badges/Second.vue").default);
-
-Vue.component("third-badge", require("./components/badges/Third.vue").default);
-
-Vue.component("topfive-badge", require("./components/badges/TopFive.vue").default);
-
-Vue.component("topten-badge", require("./components/badges/TopTen.vue").default);
+Vue.component("badge", require("./components/Badge.vue").default);
 
 //=== FILTERS ===//
 Vue.filter("capitalize", require("./filters/Capitalize.js").default);

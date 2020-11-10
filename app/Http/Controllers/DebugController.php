@@ -51,29 +51,42 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $earned = 0;
-        $lost = 0;
-        $banks = Bank::where('season_id', 2)->with([
-            'user.leaderboard' => function ($l) {
-                $l->where('season_id', 2)->orderBy('week');
-            }
-        ])->get();
-          $banks->each(function ($bank) use (&$earned, &$lost) {
-            $lastweek = 200;
-            if ($bank->user) {
-                $bank->user->leaderboard->each(function ($l) use (&$earned, &$lost, &$lastweek) {
-                    if ($l->networth > $lastweek) {
-                        $earned += $l->networth - $lastweek;
-                    } else {
-                        $lost += $lastweek - $l->networth;
-                    }
-                    $lastweek = $l->networth;
-                });
-            }
-        });
+        $season = Season::where('short_name', 'bbcan8')->first();
 
-        dump($earned);
-        dump($lost);
+        $leaderboard = Leaderboard::where('season_id', $season->id)
+                             ->where('week', $season->current_week)
+                             ->orderBy('rank')->get();
+
+        if ($l = $leaderboard->where('rank', 1)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 2)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 3)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 4)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 5)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 6)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 7)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 8)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 9)->first()) {
+            dump($l->user->name);
+}
+        if ($l = $leaderboard->where('rank', 10)->first()) {
+            dump($l->user->name);
+}
     }
 
     public function testaudit()
