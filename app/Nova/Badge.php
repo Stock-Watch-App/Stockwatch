@@ -13,7 +13,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Badge extends Resource
 {
-    public static $model = \App\Badge::class;
+    public static $model = \App\Models\Badge::class;
 
     public static $title = 'name';
 
