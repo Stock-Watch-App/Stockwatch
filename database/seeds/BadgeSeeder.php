@@ -63,8 +63,8 @@ class BadgeSeeder extends Seeder
 
 
         User::find(688)->badges()->save($first); // BeastSG
-//        User::find()->badges()->save($second); // Caliber22
-        User::find(4)->badges()->save($third); // Taran
+//        User::find()->badges()->save($second); // Caliber22 (Tie)
+        User::find(4)->badges()->save($second); // Taran (Tie)
         User::find(665)->badges()->save($topfive); // tblprg
         User::find(1079)->badges()->save($topfive); // BB President
         User::find(668)->badges()->save($topten); // Niki Philippart
