@@ -42,7 +42,11 @@ class Season extends BaseModel
     public function scopeCurrent($query)
     {
         if (request()->has('season')) {
-            return request()->get('season');
+            $season = request()->get('season');
+            if (is_object($season)) {
+                return $season;
+            }
+             return $query->find((int) $season);
         }
 
         $season = $query->orWhere('status', 'pre-season')
