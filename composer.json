@@ -37,7 +37,7 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",
-        "league/oauth1-client": "^1.7",
+        "league/oauth1-client": "1.8.1",
         "michielkempen/nova-polymorphic-field": "^1.0",
         "orlyapps/nova-belongsto-depend": "^2.0",
         "predis/predis": "^1.1",
