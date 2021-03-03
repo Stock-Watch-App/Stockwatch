@@ -38,8 +38,11 @@ export default {
             if (this.user.banks.length === 1) {
                 return "avatarBorder1"
             }
-            else if (this.user.banks.length === 2) {
+            if (this.user.banks.length === 2) {
                 return "avatarBorder2"
+            }
+            else if (this.user.banks.length === 3) {
+                return "avatarBorder3"
             }
         }
     }
