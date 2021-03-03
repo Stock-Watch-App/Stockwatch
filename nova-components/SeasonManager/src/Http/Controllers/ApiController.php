@@ -169,7 +169,7 @@ class ApiController extends Controller
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Brent'    => [
+                                             'Guest'    => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
@@ -249,7 +249,7 @@ class ApiController extends Controller
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Brent'    => [
+                                             'Guest'    => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
@@ -284,7 +284,7 @@ class ApiController extends Controller
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Brent'    => [
+                                             'Guest'    => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],

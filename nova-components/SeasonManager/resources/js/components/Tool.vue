@@ -97,22 +97,22 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Brent</td>
+                        <td>Guest</td>
                         <td
                             v-for="(hg, name) in allRatings"
-                            :key="name + 'Brent'"
+                            :key="name + 'Guest'"
                             :class="{
                                     evicted: hg.status === 'evicted',
-                                    saved: hg.ratings.Brent.saved
+                                    saved: hg.ratings.Guest.saved
                                 }"
                         >
                             <rating-input
-                                :rating="hg.ratings.Brent.rating"
+                                :rating="hg.ratings.Guest.rating"
                                 :week="week"
                                 :houseguest="name"
                                 :status="hg.status"
-                                :user="lfc['Brent']"
-                                @saved="toggleSaved(hg.ratings.Brent, $event)"
+                                :user="lfc['Guest']"
+                                @saved="toggleSaved(hg.ratings.Guest, $event)"
                             ></rating-input>
                         </td>
                     </tr>
@@ -252,8 +252,8 @@ export default {
         },
         avgRating(hg) {
             if (hg.status === "active"
-                && ![hg.ratings.Taran.rating, hg.ratings.Brent.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
-                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Brent.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
+                && ![hg.ratings.Taran.rating, hg.ratings.Guest.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
+                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Guest.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
             }
         },
         toggleEvict(name, hg) {

@@ -534,21 +534,6 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/js/components/Tool.vue"
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-68ff5483", Component.options)
-  } else {
-    hotAPI.reload("data-v-68ff5483", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
 
 module.exports = Component.exports
 
@@ -565,19 +550,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__(1)("6e5db1d0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 7 */
@@ -893,8 +865,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         avgRating: function avgRating(hg) {
-            if (hg.status === "active" && ![hg.ratings.Taran.rating, hg.ratings.Brent.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
-                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Brent.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
+            if (hg.status === "active" && ![hg.ratings.Taran.rating, hg.ratings.Guest.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
+                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Guest.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
             }
         },
         toggleEvict: function toggleEvict(name, hg) {
@@ -966,21 +938,6 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/js/components/Toggle.vue"
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-47b09f7f", Component.options)
-  } else {
-    hotAPI.reload("data-v-47b09f7f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
 
 module.exports = Component.exports
 
@@ -997,19 +954,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__(1)("6d6aff2e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-47b09f7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Toggle.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-47b09f7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Toggle.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 12 */
@@ -1120,12 +1064,6 @@ var render = function() {
 var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-47b09f7f", module.exports)
-  }
-}
 
 /***/ }),
 /* 15 */
@@ -1159,21 +1097,6 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/js/components/HouseguestPicker.vue"
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-231c54d1", Component.options)
-  } else {
-    hotAPI.reload("data-v-231c54d1", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
 
 module.exports = Component.exports
 
@@ -1190,19 +1113,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__(1)("1aff9bdc", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-231c54d1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HouseguestPicker.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-231c54d1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./HouseguestPicker.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 17 */
@@ -1333,12 +1243,6 @@ var render = function() {
 var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-231c54d1", module.exports)
-  }
-}
 
 /***/ }),
 /* 20 */
@@ -1372,21 +1276,6 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/js/components/RatingInput.vue"
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-40d166dc", Component.options)
-  } else {
-    hotAPI.reload("data-v-40d166dc", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
 
 module.exports = Component.exports
 
@@ -1403,19 +1292,6 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__(1)("12242f9f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40d166dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RatingInput.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-40d166dc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RatingInput.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 22 */
@@ -1528,12 +1404,6 @@ var render = function() {
 var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-40d166dc", module.exports)
-  }
-}
 
 /***/ }),
 /* 25 */
@@ -1759,30 +1629,30 @@ var render = function() {
               _c(
                 "tr",
                 [
-                  _c("td", [_vm._v("Brent")]),
+                  _c("td", [_vm._v("Guest")]),
                   _vm._v(" "),
                   _vm._l(_vm.allRatings, function(hg, name) {
                     return _c(
                       "td",
                       {
-                        key: name + "Brent",
+                        key: name + "Guest",
                         class: {
                           evicted: hg.status === "evicted",
-                          saved: hg.ratings.Brent.saved
+                          saved: hg.ratings.Guest.saved
                         }
                       },
                       [
                         _c("rating-input", {
                           attrs: {
-                            rating: hg.ratings.Brent.rating,
+                            rating: hg.ratings.Guest.rating,
                             week: _vm.week,
                             houseguest: name,
                             status: hg.status,
-                            user: _vm.lfc["Brent"]
+                            user: _vm.lfc["Guest"]
                           },
                           on: {
                             saved: function($event) {
-                              return _vm.toggleSaved(hg.ratings.Brent, $event)
+                              return _vm.toggleSaved(hg.ratings.Guest, $event)
                             }
                           }
                         })
@@ -1911,12 +1781,6 @@ var render = function() {
 var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
-  }
-}
 
 /***/ }),
 /* 26 */

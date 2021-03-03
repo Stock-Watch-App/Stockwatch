@@ -111,7 +111,7 @@ export default {
                     solid: " hsl(224, 90%, 53%)",
                     transparent: "hsla(224, 90%, 53%, 0.2)"
                 },
-                Brent: {
+                Guest: {
                     solid: "hsl(320, 91%, 52%)",
                     transparent: "hsla(320, 91%, 52%, 0.3)"
                 },
