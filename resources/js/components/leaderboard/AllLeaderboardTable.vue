@@ -44,7 +44,6 @@
                                 class="leaderboard-avatar"
                             ></avatar>
                             <span>{{ leaderboard.user.name }}</span>
-                            <vanity-tag v-if="leaderboard.user.vanitytags" :label="leaderboard.user.vanitytags.tag"></vanity-tag>
                             <badge
                                 v-for="badge in leaderboard.user.badges"
                                 :badge="badge"

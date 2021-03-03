@@ -18,13 +18,13 @@ class FakeRatingSeeder extends Seeder
         $season = Season::current();
         $houseguests = Houseguest::where('season_id', $season->id)->get();
         $taran = User::find(4);
-        $brent = User::find(6);
+        $guest = User::find(6);
         $melissa = User::find(9);
         $audience = User::find(1);
 
         foreach ($houseguests as $houseguest) {
             $t = Rating::create(['rating' => mt_rand(1, 10), 'houseguest_id' => $houseguest->id, 'week' => $season->current_week + 1, 'user_id' => $taran->id])->rating;
-            $b = Rating::create(['rating' => mt_rand(1, 10), 'houseguest_id' => $houseguest->id, 'week' => $season->current_week + 1, 'user_id' => $brent->id])->rating;
+            $b = Rating::create(['rating' => mt_rand(1, 10), 'houseguest_id' => $houseguest->id, 'week' => $season->current_week + 1, 'user_id' => $guest->id])->rating;
             $m = Rating::create(['rating' => mt_rand(1, 10), 'houseguest_id' => $houseguest->id, 'week' => $season->current_week + 1, 'user_id' => $melissa->id])->rating;
             $a = Rating::create(['rating' => mt_rand(1, 10), 'houseguest_id' => $houseguest->id, 'week' => $season->current_week + 1, 'user_id' => $audience->id])->rating;
         }

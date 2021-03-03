@@ -28,7 +28,7 @@ class BBCan8TestingSeeder extends Seeder
         }
 
         $robottaran = User::create(['name' => 'Robot Taran', 'email' => 'robottaran@realitystockwatch.com']);
-        $robotbrent = User::create(['name' => 'Robot Brent', 'email' => 'robotbrent@realitystockwatch.com']);
+        $robotguest = User::create(['name' => 'Robot Guest', 'email' => 'robotguest@realitystockwatch.com']);
         $robotmelissa = User::create(['name' => 'Robot Melissa', 'email' => 'robotmelissa@realitystockwatch.com']);
         $robotaudience = User::create(['name' => 'Robot Audience', 'email' => 'robotaudience@realitystockwatch.com']);
 
@@ -73,7 +73,7 @@ class BBCan8TestingSeeder extends Seeder
         foreach ($houseguests as $houseguest) {
             for ($i = 1; $i <= $this->number_of_week_to_mock; $i++) {
                 $t = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robottaran->id])->rating;
-                $b = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotbrent->id])->rating;
+                $b = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotguest->id])->rating;
                 $m = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotmelissa->id])->rating;
                 $a = Rating::create(['rating' => mt_rand(1,10), 'houseguest_id' => $houseguest->id, 'week' => $i, 'user_id' => $robotaudience->id])->rating;
                 $rating = round(($t+$b+$m+$a)/4);

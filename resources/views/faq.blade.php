@@ -13,7 +13,7 @@
             <summary class="plus-icon">
                 <span>How does the Stock Watch work?</span>
             </summary>
-                <p>Every week, the LFC (Taran, Brent, and Melissa) will rank the remaining houseguests. The average of these numbers, along with the audience ranking, will determine the price of each houseguest. You will then have the opportunity to purchase stock, betting on which houseguest you think will improve and do well in the game. Your goal is to accumulate as much net worth as you can. At the end of the season, the person with the most net worth will win the Stock Watch.</p>
+                <p>Every week, RHAP hosts will rank the remaining houseguests. The average of these numbers, along with the audience ranking, will determine the price of each houseguest. You will then have the opportunity to purchase stock, betting on which houseguest you think will improve and do well in the game. Your goal is to accumulate as much net worth as you can. At the end of the season, the person with the most net worth will win the Stock Watch.</p>
         </details>
         <details>
             <summary class="plus-icon">
