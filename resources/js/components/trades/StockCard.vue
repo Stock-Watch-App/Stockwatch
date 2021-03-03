@@ -27,7 +27,8 @@
         <div class="hg-price" v-bind:class="priceDifference.class.background">
             <span class="price-wrap">
                 <h3>{{ currentPrice | currency }}</h3>
-            </span> <span
+            </span>
+<span
             v-if="priceDifference.amount >= 0"
             class="price-change-wrap flex-row"
             v-bind:class="priceDifference.class.text"
@@ -121,6 +122,11 @@ export default {
             );
         },
         currentPrice: function () {
+            //pre-season
+            if (this.stock.houseguest.prices.length === 0) {
+                return 0;
+            }
+
             //find latest week
             let currentWeek;
             this.stock.houseguest.prices.forEach(week => {
@@ -158,7 +164,7 @@ export default {
             return Math.round(total / 4);
         },
         priceDifference: function () {
-            if (this.stock.houseguest.prices.length === 1) {
+            if (this.stock.houseguest.prices.length <= 1) {
                 return {
                     amount: -1, //because we use abs(), we will never have a negative number. Thus we can use it as a check.
                     icon: "",
