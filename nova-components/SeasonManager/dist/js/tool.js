@@ -862,7 +862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get(this.apiPrefix + "/season/current").then(function (res) {
                 _this2.season = res.data;
-                _this2.week = _this2.season.status === "closed" ? _this2.season.current_week + 1 : _this2.season.current_week;
+                _this2.week = _this2.season.status === "closed" || _this2.season.status === "pre-season" ? _this2.season.current_week + 1 : _this2.season.current_week;
             });
         },
         getWeekData: function getWeekData() {
@@ -893,8 +893,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         avgRating: function avgRating(hg) {
-            if (hg.status === "active" && ![hg.ratings.Taran.rating, hg.ratings.Brent.rating, hg.ratings.Melissa.rating, hg.ratings.Audience.rating].includes(null)) {
-                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Brent.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
+            if (hg.status === "active" && ![hg.ratings.Taran.rating, hg.ratings.Melissa.rating, hg.ratings.Guest.rating, hg.ratings.Audience.rating].includes(null)) {
+                return Math.round((parseInt(hg.ratings.Taran.rating) + parseInt(hg.ratings.Melissa.rating) + parseInt(hg.ratings.Guest.rating) + parseInt(hg.ratings.Audience.rating)) / 4);
             }
         },
         toggleEvict: function toggleEvict(name, hg) {
@@ -1759,44 +1759,6 @@ var render = function() {
               _c(
                 "tr",
                 [
-                  _c("td", [_vm._v("Brent")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.allRatings, function(hg, name) {
-                    return _c(
-                      "td",
-                      {
-                        key: name + "Brent",
-                        class: {
-                          evicted: hg.status === "evicted",
-                          saved: hg.ratings.Brent.saved
-                        }
-                      },
-                      [
-                        _c("rating-input", {
-                          attrs: {
-                            rating: hg.ratings.Brent.rating,
-                            week: _vm.week,
-                            houseguest: name,
-                            status: hg.status,
-                            user: _vm.lfc["Brent"]
-                          },
-                          on: {
-                            saved: function($event) {
-                              return _vm.toggleSaved(hg.ratings.Brent, $event)
-                            }
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "tr",
-                [
                   _c("td", [_vm._v("Melissa")]),
                   _vm._v(" "),
                   _vm._l(_vm.allRatings, function(hg, name) {
@@ -1821,6 +1783,44 @@ var render = function() {
                           on: {
                             saved: function($event) {
                               return _vm.toggleSaved(hg.ratings.Melissa, $event)
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                [
+                  _c("td", [_vm._v("Guest")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.allRatings, function(hg, name) {
+                    return _c(
+                      "td",
+                      {
+                        key: name + "Guest",
+                        class: {
+                          evicted: hg.status === "evicted",
+                          saved: hg.ratings.Guest.saved
+                        }
+                      },
+                      [
+                        _c("rating-input", {
+                          attrs: {
+                            rating: hg.ratings.Guest.rating,
+                            week: _vm.week,
+                            houseguest: name,
+                            status: hg.status,
+                            user: _vm.lfc["Guest"]
+                          },
+                          on: {
+                            saved: function($event) {
+                              return _vm.toggleSaved(hg.ratings.Guest, $event)
                             }
                           }
                         })

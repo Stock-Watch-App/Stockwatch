@@ -19,8 +19,8 @@ class HouseguestController extends Controller
         // RATINGS
         $sortedRatings = [
             'Taran' => [],
-            'Brent' => [],
             'Melissa' => [],
+            'Guest' => [],
             'Audience' => [],
             'Average' => []
         ];
