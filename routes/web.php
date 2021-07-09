@@ -12,12 +12,13 @@ use App\Http\Controllers\DebugController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HouseguestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify'   => true]);
-Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
-Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
+Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
 
 //=== LEGAL ===//
 Route::get('/privacy', [LegalController::class, 'privacy']);

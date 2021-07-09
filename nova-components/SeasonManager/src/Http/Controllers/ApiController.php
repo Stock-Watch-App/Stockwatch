@@ -56,11 +56,11 @@ class ApiController extends Controller
                               ->get();
 
         while ($nominated->count() < 2) {
-            dump($nominated->count());
             $tag = new VanityTag();
             $tag->season_id = $request->season->id;
             $tag->week = $data['week'];
             $tag->taggable_type = Houseguest::class;
+            $tag->tag = 'Nominated';
             $nominated->push($tag);
         }
         if ($data['tags']['nom1'] !== null) {
@@ -169,11 +169,11 @@ class ApiController extends Controller
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Brent'    => [
+                                             'Melissa'  => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Melissa'  => [
+                                             'Guest'    => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
@@ -249,11 +249,11 @@ class ApiController extends Controller
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Brent'    => [
+                                             'Melissa'  => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Melissa'  => [
+                                             'Guest'    => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
@@ -284,11 +284,11 @@ class ApiController extends Controller
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Brent'    => [
+                                             'Melissa'  => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
-                                             'Melissa'  => [
+                                             'Guest'    => [
                                                  'saved'  => false, // value for vue to use to denote if an updated value is saved to the db
                                                  'rating' => null
                                              ],
