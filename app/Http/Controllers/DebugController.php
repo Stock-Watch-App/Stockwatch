@@ -51,42 +51,80 @@ class DebugController extends Controller
 
     public function xyz()
     {
-        $season = Season::where('short_name', 'bbcan8')->first();
+        $user_ids = collect(DB::select(DB::raw('select u.id, count(1) as count
+from users u
+join banks b on b.user_id = u.id
+ join stocks s on s.user_id = u.id
+where s.houseguest_id >= 53
+    and b.season_id = 6
+group by u.id
+HAVING count > 16 or count < 15;')))->map(function ($u) {
+            return $u->id;
+        });
 
-        $leaderboard = Leaderboard::where('season_id', $season->id)
-                             ->where('week', $season->current_week)
-                             ->orderBy('rank')->get();
+        $users = User::with([
+            'banks'        => function ($q) {
+                $q->whereHas('season', function ($q) {
+                    $q->where('short_name', 'bb23');
+                });
+            },
+            'stocks'       => function ($q) {
+                $q->whereHas('houseguest', function ($q) {
+                    $q->where('status', 'evicted')
+                      ->whereHas('season', function ($q) {
+                          $q->where('short_name', 'bb23');
+                      });
+                });
+            },
+            'transactions' => function ($q) {
+                $q->whereHas('houseguest', function ($q) {
+                    $q->where('status', 'evicted')
+                      ->whereHas('season', function ($q) {
+                          $q->where('short_name', 'bb23');
+                      });
+                });
+            }
+        ])
+                     ->findMany($user_ids);
 
-        if ($l = $leaderboard->where('rank', 1)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 2)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 3)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 4)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 5)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 6)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 7)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 8)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 9)->first()) {
-            dump($l->user->name);
-}
-        if ($l = $leaderboard->where('rank', 10)->first()) {
-            dump($l->user->name);
-}
+//        $stocks
+
+        dump($users->count());
+        $total = 0;
+        foreach ($users as $user) {
+            dump($user->name);
+            dump($user);
+
+            $networth = 0;
+            $networth += $user->bank->money;
+//dump($user->stocks);
+            $stocks = [];
+            dump($user->stocks);
+            foreach ($user->stocks as $stock) {
+                $total++;
+                $hg = $stock->houseguest->nickname;
+                if (array_key_exists($hg, $stocks)) {
+                    if ($stocks[$hg]->quantity < $stock->quantity) {
+                        $stocks[$hg]->delete();
+                        $stocks[$hg] = $stock;
+                    } else {
+                        $stock->delete();
+                    }
+                } else {
+                    $stocks[$hg] = $stock;
+                }
+            }
+            foreach ($stocks as $s) {
+                $networth += $s->quantity * $s->houseguest->current_price;
+            }
+//
+            dump(collect($stocks)->count());
+//            dump($networth);
+            dump('=====================================');
+            dump('=====================================');
+            dump('=====================================');
+            dump('=====================================');
+        }
     }
 
     public function testaudit()
@@ -144,18 +182,18 @@ class DebugController extends Controller
 
         $bank = $networth - $tiedUp;
 
-        $transactions->each(function($t) use (&$bank, $stocks) {
+        $transactions->each(function ($t) use (&$bank, $stocks) {
             if ($bank < 0) {
-            switch ($t->action) {
-                case 'buy':
-                    $stocks[$t->houseguest->id] -= $t->quantity;
-                    $bank += $t->quantity * $t->current_price;
-                    break;
-                case 'sell':
-                    $stocks[$t->houseguest->id] += $t->quantity;
-                    $bank -= $t->quantity * $t->current_price;
-                    break;
-            }
+                switch ($t->action) {
+                    case 'buy':
+                        $stocks[$t->houseguest->id] -= $t->quantity;
+                        $bank += $t->quantity * $t->current_price;
+                        break;
+                    case 'sell':
+                        $stocks[$t->houseguest->id] += $t->quantity;
+                        $bank -= $t->quantity * $t->current_price;
+                        break;
+                }
 
             }
         });
@@ -172,7 +210,7 @@ class DebugController extends Controller
         dump($calcNetworth);
         dump($calcNetworth == $networth);
         $stocks->each(function ($stock, $hg) use ($user_id) {
-           echo "UPDATE stocks SET quantity = {$stock} WHERE houseguest_id = {$hg} AND user_id = {$user_id};". PHP_EOL;
+            echo "UPDATE stocks SET quantity = {$stock} WHERE houseguest_id = {$hg} AND user_id = {$user_id};" . PHP_EOL;
         });
     }
 
