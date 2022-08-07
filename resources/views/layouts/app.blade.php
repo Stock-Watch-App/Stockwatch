@@ -51,6 +51,20 @@
         @endif
         @yield('content')
     </main>
+    <div class="ad">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1688616183308323"
+     crossorigin="anonymous"></script>
+        <!-- Stock watch basic ad -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-1688616183308323"
+            data-ad-slot="6398700198"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
     <footer class="footer">
         <ul>
             <li>
@@ -64,6 +78,5 @@
         <p>&copy; {{ date('Y') }} Reality Stock Watch. All Rights Reserved.</p>
     </footer>
 </div>
-@include('fathom')
 </body>
 </html>

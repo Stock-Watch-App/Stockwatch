@@ -7,6 +7,7 @@
     grid-template:
         "aside" 70px
         "content" auto
+        "ad" auto
         "footer" minmax(70px, min-content)
         ~'/ auto';
 
@@ -42,7 +43,7 @@
         display: flex;
 
         svg {
-            height: 50px;            
+            height: 50px;
         }
 
         // container positioning
@@ -177,6 +178,10 @@
         padding: 1rem 1rem 0 1rem;
     }
 
+    .ad {
+        grid-area: ad;
+    }
+
     footer {
         grid-area: footer;
         background-color: @body-bg;
@@ -206,6 +211,7 @@
         grid-template:
             "aside ." 70px
             "sidebar content" auto
+            "sidebar ad" auto
             "sidebar footer" minmax(70px, min-content)
             ~'/ auto 9fr';
 
