@@ -52,18 +52,19 @@
         @yield('content')
     </main>
     <div class="ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3010710749489779"
-     crossorigin="anonymous"></script>
-        <!-- Reality stock watch -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-3010710749489779"
-            data-ad-slot="9270090320"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3010710749489779"
+        crossorigin="anonymous"></script>
+            <!-- Reality stock watch -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-3010710749489779"
+                data-ad-slot="9270090320"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
     <footer class="footer">
         <ul>
             <li>
