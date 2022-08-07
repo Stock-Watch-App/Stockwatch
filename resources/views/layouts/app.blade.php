@@ -15,8 +15,6 @@
     @endif
 <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1688616183308323"
-     crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
