@@ -52,19 +52,18 @@
         @yield('content')
     </main>
     <div class="ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1688616183308323"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3010710749489779"
      crossorigin="anonymous"></script>
-        <!-- Stock watch basic ad -->
+        <!-- Reality stock watch -->
         <ins class="adsbygoogle"
             style="display:block"
-            data-ad-client="ca-pub-1688616183308323"
-            data-ad-slot="6398700198"
+            data-ad-client="ca-pub-3010710749489779"
+            data-ad-slot="9270090320"
             data-ad-format="auto"
             data-full-width-responsive="true"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    </script>
     <footer class="footer">
         <ul>
             <li>
