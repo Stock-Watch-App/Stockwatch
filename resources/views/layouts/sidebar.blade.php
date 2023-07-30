@@ -114,14 +114,6 @@
                     <span v-show="isActive">{{ __('Login') }}</span> </a>
             </li>
         @endguest
-        <li>
-            <a href="{{ env('FEEDBACK_URL') }}" title="Bug Reports" class="item-wrap">
-                <x-skeleton style="width:22px;height:22px;border-radius:50%;"/>
-                <figure>
-                    <font-awesome-icon icon="bug" fixed-width/>
-                </figure>
-                <span v-show="isActive">Report a Bug</span> </a>
-        </li>
         @auth
             <li>
                 <a class="item-wrap" title="Logout" href="{{ route('logout') }}"
