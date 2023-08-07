@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efcec8f0ee07cd6f2e6da2b7057f0ccb",
+    "content-hash": "2e4f3394043f7c588b83ade9e45fc6b3",
     "packages": [
         {
             "name": "brick/math",
@@ -1628,7 +1628,7 @@
                 "type": "zip",
                 "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-41465f17785d04d946172f530bf01666e16dab0b-zip-106723.zip",
                 "reference": "41465f17785d04d946172f530bf01666e16dab0b",
-                "shasum": "c521d11f45775d61b2b405b1cad8cd7aaabc9b4b"
+                "shasum": "bee50260fe45d2c920c593e2fda66c4c83dd14a7"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -10078,5 +10078,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.1.0"
 }
