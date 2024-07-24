@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::bind('houseguest', function ($value, $route) {
+            $value = str_replace('\'', '', $value);
             return Houseguest::orWhere('slug', $value)->orWhere('id', $value)->firstOrFail();
         });
 
