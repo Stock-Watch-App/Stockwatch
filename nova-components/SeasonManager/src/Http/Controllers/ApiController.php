@@ -77,10 +77,8 @@ class ApiController extends Controller
 
     public function saveRating(Request $request, $rating, $week, $houseguest, $lfc)
     {
-        if ($houseguest->season()->status === 'ended') {
-            $houseguest = Houseguest::where('slug', $houseguest->slug)->with('season', function ($query) {
-                $query->current();
-            })->first();
+        if ($houseguest->season->status === 'ended') {
+            $houseguest = Houseguest::where('slug', $houseguest->slug)->where('season_id', Season::current()->id)->first();
         }
         $user = User::where('id', $lfc)->role('lfc')->first();
         $ratingModel = Rating::updateOrCreate([
