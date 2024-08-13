@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new AuditUsers)->dailyAt('4:00')->timezone('America/New_York');
+        // $schedule->job(new AuditUsers)->dailyAt('4:00')->timezone('America/New_York');
 
         if ($season = Season::current()) {
             $schedule->job((new CloseMarket($season))->onConnection('sync'))
