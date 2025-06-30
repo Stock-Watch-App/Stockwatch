@@ -9,20 +9,8 @@
     "license": "MIT",
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
-        },
-        {
             "type": "vcs",
             "url": "https://github.com/denwebdev/google-oath2.git"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/SeasonManager"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/StatsManager"
         }
     ],
     "require": {
@@ -33,13 +21,10 @@
         "guzzlehttp/guzzle": "^6.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
-        "laravel/nova": "3.22.0",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",
         "league/oauth1-client": "1.8.1",
-        "michielkempen/nova-polymorphic-field": "^1.0",
-        "orlyapps/nova-belongsto-depend": "^2.0",
         "predis/predis": "^1.1",
         "rennokki/laravel-eloquent-query-cache": "^2.0",
         "sentry/sentry-laravel": "^1.8",
@@ -50,11 +35,9 @@
         "socialiteproviders/twitch": "^5.1",
         "socialiteproviders/twitter": "^3.0",
         "spatie/laravel-permission": "^3.7",
-        "stockwatch/season-manager": "*",
-        "stockwatch/stats-manager": "*",
         "vinkla/hashids": "^8.0",
-        "vyuldashev/nova-permission": "^2.5",
-        "wildside/userstamps": "^2.0"
+        "wildside/userstamps": "^2.0",
+        "supabase/supabase-php": "^0.3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -103,7 +86,6 @@
             "@php artisan key:generate --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan nova:publish"
         ]
     }
 }
