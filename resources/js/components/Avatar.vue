@@ -38,17 +38,22 @@ export default {
             }
         },
         userAvatarBorder: function () {
-            if (this.user.banks.length === 1) {
-                return "avatarBorder1"
-            }
-            if (this.user.banks.length === 2) {
-                return "avatarBorder2"
-            }
-            else if (this.user.banks.length === 3) {
-                return "avatarBorder3"
+            switch (true) {
+                case this.user.banks.length === 1:
+                    return "avatarBorder1";
+                case this.user.banks.length === 2:
+                    return "avatarBorder2";
+                case this.user.banks.length === 3:
+                    return "avatarBorder3";
+                case this.user.banks.length === 4:
+                    return "avatarBorder4";
+                // Times played of 5 and above use the same avatar color so set 5+ to the highest rank color
+                case this.user.banks.length >= 5:
+                    return "avatarBorderHighestRank";
+                default:
+                    return "";
             }
         }
     }
-}
-;
+};
 </script>
