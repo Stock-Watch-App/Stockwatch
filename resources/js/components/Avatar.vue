@@ -31,7 +31,10 @@ export default {
             if (this.user.avatar_url !== null && this.user.avatar_approved && !this.user.use_robot_avatar) {
                 return this.user.avatar_url;
             } else {
-                return '/images/robot-avatar-'+count+'.svg';
+                // robot-avatar-9.svg is the highest avatar available so use that avatar for users who have played 9+ times
+                // Note: Avatars 5-9 are all the same color (black)
+                const timesPlayedRank = count < 9 ? count : 9;
+                return `/images/robot-avatar-${timesPlayedRank}.svg`;
             }
         },
         userAvatarBorder: function () {
